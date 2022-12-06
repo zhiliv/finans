@@ -1,25 +1,22 @@
 <template>
-  <v-theme-provider>
   <v-app>
-    <v-app-bar color="primary" prominent class="w-100">
-      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar color="primary" prominent class="w-100" height="40"><!-- Меню для мобильных устройств -->
+      <v-app-bar-nav-icon variant="text" @click.stop="isOpen = !isOpen" class="d-lg-none d-xl-none"></v-app-bar-nav-icon>
       <v-toolbar-title></v-toolbar-title>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" temporary>
-      <v-list :items="items"></v-list>
+    <v-navigation-drawer v-model="isOpen" temporary>
+      <v-list :items="menu"></v-list>
     </v-navigation-drawer>
-    <v-navigation-drawer expand-on-hover rail>
+    <v-navigation-drawer expand-on-hover rail><!-- Меню для ПК -->
       <v-list>
         <v-list-item
-          prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-          title="Sandra Adams"
-          subtitle="sandra_a88@gmailcom"
+          prepend-avatar=""
+          title=""
+          subtitle=""
         ></v-list-item>
       </v-list>
-      <v-list density="compact" nav>
-        <v-list-item prepend-icon="mdi-folder" title="My Files" value="myfiles"></v-list-item>
-        <v-list-item prepend-icon="mdi-account-multiple" title="Shared with me" value="shared"></v-list-item>
-        <v-list-item prepend-icon="mdi-star" title="Starred" value="starred"></v-list-item>
+      <v-list density="compact" nav :items="menu">
+
       </v-list>
     </v-navigation-drawer>
 
@@ -30,15 +27,17 @@
       <v-footer>Подвал</v-footer>
     </v-main>
   </v-app>
-  </v-theme-provider>
 </template>
 <script>
+import menu from '~/system/default-menu.json' // получение списка меню
 export default {
   mounted() {
+    this.menu =  menu // установка значения меню
   },
   data() {
     return {
-      drawer: false,
+      isOpen: false,
+      menu: [], // меню
       items: [
         { title: "Dashboard1", icon: "mdi-view-dashboard" },
         { title: "Account", icon: "mdi-account-box" },
