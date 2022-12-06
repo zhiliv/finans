@@ -1,8 +1,10 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 // @ts-ignore
 export default defineNuxtConfig({
-  css: ['vuetify/lib/styles/main.sass'], // vuetify ships precompiled css, no need to import sass
+  css: ['vuetify/lib/styles/main.sass', '@mdi/font/css/materialdesignicons.min.css'], // vuetify ships precompiled css, no need to import sass
     vite: {
+        port: 80,
+
       define: {
         'process.env.DEBUG': false,
       },
@@ -15,6 +17,7 @@ export default defineNuxtConfig({
     },
     nitro: {
       compressPublicAssets: true,
+        port: 80,
     },
     purgecss: {
       enabled: true, // Always enable purgecss
