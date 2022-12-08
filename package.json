@@ -5,7 +5,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "generate-whitelist": "node ./scripts/whitelist/generator-whitelist.mjs"
   },
   "devDependencies": {
     "nuxt": "3.0.0",
@@ -13,10 +14,8 @@
     "vite-plugin-compression": "^0.5.1"
   },
   "dependencies": {
-    "@mdi/font": "^7.0.96",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
     "@nuxt-modules/compression": "^0.1.0",
-    "sass": "^1.56.1",
-    "vite-plugin-vuetify": "^1.0.0",
-    "vuetify": "^3.0.3"
+    "sass": "^1.56.1"
   }
 }
