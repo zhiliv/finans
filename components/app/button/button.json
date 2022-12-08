@@ -1,0 +1,20 @@
+{
+  "name": "app-button",
+  "label": "Кнопка",
+  "props": [
+    {
+      "btnSize": {
+        "type": "String",
+        "default": null,
+        "variant": ["sm", "lg", null],
+        "label": "Размер кнопки"
+      }
+    },
+    {
+      "toogle": {
+        "type": "String",
+        "default": null
+      }
+    }
+  ]
+}
