@@ -1,9 +1,9 @@
 /* eslint-disable prefer-const */
 import * as fs from 'fs'
 import { globby } from 'globby'
-import {listClass} from './list-class.js' // классы для проверки
-import {requiredClass} from './required-class.js' // обязательные классы, которые не будут удаляться
-const listPath = ['./pages/*.vue', './pages/modal/**/*.vue', './pages/**/*.vue', './layouts/*.vue'] // список папок для проверки
+import {listClass} from './list-class.mjs' // классы для проверки
+import {requiredClass} from './required-class.mjs' // обязательные классы, которые не будут удаляться
+const listPath = ['./pages/*.vue', './pages/**/*.vue', './pages/**/**/*.vue', './pages/modal/**/*.vue', './pages/modal/**/**/*.vue', './layouts/*.vue'] // список папок для проверки
 
 export const getWhiteList = async () => {
   let whitelist = [...requiredClass]
@@ -19,12 +19,13 @@ export const getWhiteList = async () => {
         }
       }
     }
+
     i++
     if (i === listPath.length) {
-      // await fs.writeFileSync('./scripts/whitelist/whitelist.txt', whitelist.toString())
+      await fs.writeFileSync('./scripts/whitelist/whitelist.json', JSON.stringify(whitelist))
       console.log('√ Белый список классов сформирован')
-      return whitelist
-
     }
   }
 }
+
+getWhiteList()

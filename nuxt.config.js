@@ -1,13 +1,12 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 // @ts-ignore
-import {getWhiteList} from './scripts/whitelist/generator-whitelist'
+import {getWhiteList} from './scripts/whitelist/generator-whitelist.mjs'
 import * as fs from 'fs' // модуль для работы с файловой системой
-let whitelist
-(async () => {
-  whitelist = getWhiteList() // формирование белого списка классов
-})()
+/* getWhiteList() // формирование белого списка классов
+import whitelist from './scripts/whitelist/whitelist.json'
+console.log('🚀 -> whitelist', whitelist) */
 
-// const whitelist = fs.readFileSync('./scripts/whitelist/whitelist.txt').toString() // чтение файла
+
 
 export default defineNuxtConfig({
   ssr: false,
@@ -32,6 +31,6 @@ export default defineNuxtConfig({
       './pages/**/**/*.vue',
       './pages/*.vue',
     ],
-    whitelist: whitelist.split(',')
+    // whitelist: fs.readFileSync('./scripts/whitelist/whitelist.txt').toString().split(',')
   }
 })
