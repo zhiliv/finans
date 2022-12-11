@@ -17,7 +17,7 @@
 
 <script>
 import appH from './../h/h.vue'
-const validColor = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'] // валидатор цветов
+import validColor from '~/modules/validator/color.json'
 export default {
   components: {
     'app-h': appH,
@@ -32,7 +32,7 @@ export default {
       },
     },
     /* Цвет */
-    badgesColor: {
+    color: {
       type: String,
       default: '',
       validator(value) {
@@ -41,7 +41,7 @@ export default {
     },
     /* Уровень заголовка */
     level: {
-      type: String,
+      type: [String, Number],
       default: '6',
       validator(value) {
         return value && Number.isInteger(+value) && +value > 0 && +value <= 6
@@ -50,9 +50,9 @@ export default {
   },
   computed: {
     classes() {
-      const { badgesColor } = this
+      const { color } = this
       return {
-        [`text-bg-${badgesColor}`]: true,
+        [`text-bg-${color}`]: true,
       }
     },
   },

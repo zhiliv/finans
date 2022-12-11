@@ -11,7 +11,7 @@ export default {
       type: String,
       default: 'true',
       validator(value) {
-        return value === 'false' || value === null || value === 'true'
+        return value === 'false'  || value === 'true'
       },
     },
     /* Значение поля */

@@ -28,7 +28,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'sm' || value === 'lg' || value === null
+        return value === 'sm' || value === 'lg'
       },
     },
     /* Подсчет количества символов */

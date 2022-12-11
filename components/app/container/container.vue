@@ -1,83 +1,72 @@
 <template>
-  <div :class="classes" v-bind="$attrs">
+  <div :class="classes">
     <slot></slot>
   </div>
 </template>
 <script>
+const validBooleanTrue = ['true', true]
 export default {
   props: {
-    /*
-     * Класс container-sm
-     */
-    containerSm: {
-      type: String,
+    /* Класс container-sm */
+    sm: {
+      type: [String, Boolean],
       default: null,
-      validator(value){
-        return value === 'true' || value === null
-      }
+      validator(value) {
+        return validBooleanTrue.includes(value)
+      },
     },
-    /*
-     * Класс container-md
-     */
-     containerMd: {
-      type: String,
+    /* Класс container-md */
+    md: {
+      type: [String, Boolean],
       default: null,
-      validator(value){
-        return value === 'true' || value === null
-      }
+      validator(value) {
+        return validBooleanTrue.includes(value)
+      },
     },
-    /*
-     * Класс container-lg
-     */
-     containerLg: {
-      type: String,
+    /* Класс container-lg */
+    lg: {
+      type: [String, Boolean],
       default: null,
-      validator(value){
-        return value === 'true' || value === null
-      }
+      validator(value) {
+        return validBooleanTrue.includes(value)
+      },
     },
-    /*
-     * Класс container-xl
-     */
-     containerXl: {
-      type: String,
+    /* Класс container-xl */
+    xl: {
+      type: [String, Boolean],
       default: null,
-      validator(value){
-        return value === 'true' || value === null
-      }
+      validator(value) {
+        return validBooleanTrue.includes(value)
+      },
     },
-    /*
-     * Класс container-xxl
-     */
-     containerXxl: {
-      type: String,
+    /* Класс container-xxl */
+    xxl: {
+      type: [String, Boolean],
       default: null,
-      validator(value){
-        return value === 'true' || value === null
-      }
+      validator(value) {
+        return validBooleanTrue.includes(value)
+      },
     },
-    /*
-     * Класс container-fluid
-     */
-     containerFluid: {
-      type: String,
+    /* Класс container-fluid */
+    fluid: {
+      type: [String, Boolean],
       default: null,
-      validator(value){
-        return value === 'true' || value === null
-      }
+      validator(value) {
+        return validBooleanTrue.includes(value)
+      },
     },
   },
   computed: {
     classes() {
-      const { containerSm, containerMd, containerLg, containerXl, containerXxl, containerFluid } = this
+      const { sm, md, lg, xl, xxl, fluid } = this
       return {
         container: !containerFluid, // установка класса container
-        'container-fluid': !!containerFluid, // установка класса container-fluid
-        'container-sm': !!containerSm, // установка класса container-sm
-        'container-md': !!containerMd, // установка класса container-md
-        'container-lg': !!containerLg, // установка класса container-lg
-        'container-xl': !!containerXl, // установка класса container-xl
-        'container-xxl': !!containerXxl, // установка класса container-xxl
+        'container-fluid': !!fluid, // установка класса container-fluid
+        'container-sm': !!sm, // установка класса container-sm
+        'container-md': !!md, // установка класса container-md
+        'container-lg': !!lg, // установка класса container-lg
+        'container-xl': !!xl, // установка класса container-xl
+        'container-xxl': !!xxl, // установка класса container-xxl
       }
     },
   },

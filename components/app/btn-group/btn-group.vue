@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import validBooleanTrue from '~/modules/validator/bool-true.json'
+import validSize from '~/modules/validator/size.json'
 import appButton from './../button/button.vue'
 export default {
   components: {
@@ -25,22 +27,22 @@ export default {
     /*
      * Размер группы кнопок
      */
-     btnGroupSize: {
+    size: {
       type: String,
       default: null,
       validator(value) {
-        return value === 'sm' || value === 'lg' || value === null
+        return validSize.includes(value)
       },
     },
     /*
      * Вертикальное расположение
      */
-     btnGroupVertical: {
-      type: String,
-      default: null,
-      validator(value){
-        return value === 'true' || value === null
-      }
+    vertical: {
+      type: [String, Boolean],
+      default: false,
+      validator(value) {
+        return String(value) === 'true'
+      },
     },
     /*
      * Массив кнопок для отображения
@@ -56,17 +58,17 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'group' || value === 'toolbar' || value === null
+        return value === 'group' || value === 'toolbar'
       },
     },
   },
   computed: {
     classes() {
-      const { btnGroupSize, btnGroupVertical } = this
+      const { size, vertical } = this
       return {
-        'btn-group': !btnGroupSize && !btnGroupVertical,
-        [`btn-group-${btnGroupSize}`]: !!btnGroupSize,
-        [`btn-group-${btnGroupVertical}`]: !!btnGroupVertical,
+        'btn-group': !size && !vertical,
+        [`btn-group-${size}`]: !!size,
+        [`btn-group-${vertical}`]: !!vertical,
       }
     },
   },

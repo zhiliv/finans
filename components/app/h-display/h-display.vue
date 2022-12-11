@@ -16,7 +16,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return (+value > 0 && +value <= 6) || value === null
+        return (+value > 0 && +value <= 6)
       },
     },
   },

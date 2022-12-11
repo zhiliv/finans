@@ -1,31 +1,31 @@
 <template>
-  <abbr :class="[classes]" v-bind="$attrs">
+  <abbr :class="[classes]">
     <slot></slot>
   </abbr>
 </template>
 
 <script>
+
 export default {
   props: {
-    /**
-     * Признак использования меньшего шрифта
-     */
+    /* Признак использования меньшего шрифта */
     initialism: {
-      type: String,
+      type: [String, Boolean],
       default: null,
+      validator(value) {
+        return String(value) === "true"
+      },
     },
   },
   computed: {
-    /*
-    * Получение классов компонента
-    */
-    classes(){
-      const {initialism} = this
+    /* Получение классов компонента */
+    classes() {
+      const { initialism } = this
       return {
-        'initialism': !!initialism
+        initialism: !!initialism,
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

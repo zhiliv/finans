@@ -5,9 +5,7 @@
         <button class="accordion-button" type="button" @click="toggle">{{item.title}}</button>
       </h2>
       <div class="accordion-collapse collapse">
-        <div class="accordion-body">
-          {{item.body}}
-        </div>
+        <div class="accordion-body">{{item.body}}</div>
       </div>
     </div>
   </div>
@@ -23,12 +21,12 @@ export default {
     },
   },
   methods: {
-    toggle(event){
+    toggle(event) {
       const el = event.target.parentElement.parentElement.querySelector('.collapse')
-      if(el) el.classList.toggle('show')
+      if (el) el.classList.toggle('show')
       event.target.classList.toggle('collapsed')
-    }
-  }
+    },
+  },
 }
 </script>
 

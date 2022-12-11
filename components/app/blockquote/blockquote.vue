@@ -12,27 +12,19 @@
 </template>
 
 <script>
-import appFigcaption from './../figcaption/figcaption.vue'
 export default {
-  components: {
-    'app-figcaption': appFigcaption
-  },
   props: {
-    /*
-    * Классы для нижней подписи
-    */
+    /* Классы для нижней подписи */
     classFooter: {
       type: String,
-      default: ''
+      default: null,
     },
-    /*
-    * Классы для родительского блока
-    */
+    /* Классы для родительского блока */
     classParent: {
       type: String,
-      default: ''
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>
 

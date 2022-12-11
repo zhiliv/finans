@@ -20,7 +20,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === 'false' || value === null
+        return value === 'true' || value === 'false'
       },
     },
     /* Класс col-from-label-sm */
@@ -28,7 +28,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === 'false' || value === null
+        return value === 'true' || value === 'false'
       },
     },
     /* Класс col-from-label-lg */
@@ -36,7 +36,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === 'false' || value === null
+        return value === 'true' || value === 'false'
       },
     },
   },

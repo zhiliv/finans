@@ -1,401 +1,356 @@
 <template>
-  <div :class="classes" v-bind="$attrs">
+  <div :class="classes">
     <slot></slot>
   </div>
 </template>
 <script>
-import { strToBool } from './../../../scripts/component/func'
-const validCol = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'auto', 'false', 'true', null] // допустимые значения для классов col, col-sm, col-md, col-lg, col-xl, col-xxl
-const validOffset = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', null] // доступные значения для класса offset
-const validOffsetAdapt = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', null] // доступные значения для классов offset-sm-*, offset-md-*, offset-lg-*, offset-xl-*, offset-xxl-*
-const validOrder = ['first', 'last', '0', '1', '2', '3', '4', '5', null] // доступные значения для классов order-*, order-sm-*, order-md-*, order-lg-*, order-xl-*, order-xxl-*
-const validFlex = ['0', '1', null]
-const validFloat = ['start', 'end', 'none', null]
+import mixinFunction from '~/mixins/globalMixins'
+import validBooleanTrue from '~/modules/validator/bool-true.json'
+import validCol from '~/modules/validator/col.json'
+import validOffset from '~/modules/validator/offset.json'
+import validOffsetAdapt from '~/modules/validator/offset-adapter.json'
+import validOrder from '~/modules/validator/order.json'
+import validFlex from '~/modules/validator/flex.json'
+import validFloat from '~/modules/validator/float.json'
+
 export default {
+  mixins: [mixinFunction, validBooleanTrue],
   props: {
     col: {
-      /*
-       * Класс col, col-*
-       */
-      type: String,
+      /* Класс col, col-* */
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validCol.includes(value)
+        return validCol.includes(String(value))
       },
     },
-    /*
-     * Класс col-sm, col-s,-*
-     */
+    /* Класс col-sm, col-s,-* */
     colSm: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validCol.includes(value)
+        return validCol.includes(String(value))
       },
     },
-    /*
-     * Класс col-md, col-md-*
-     */
+    /* Класс col-md, col-md-* */
     colMd: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return value ? validCol.includes(value) : false
+        return validCol.includes(String(value))
       },
     },
-    /*
-     * Класс col-lg, col-lg-*
-     */
+    /* Класс col-lg, col-lg-* */
     colLg: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validCol.includes(value)
+        return validCol.includes(String(value))
       },
     },
-    /*
-     * Класс col-xl, col-xl-*
-     */
+    /* Класс col-xl, col-xl-* */
     colXl: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validCol.includes(value)
+        return validCol.includes(String(value))
       },
     },
-    /*
-     * Класс col-xxl, col-xxl-*
-     */
+    /* * Класс col-xxl, col-xxl-* */
     colXxl: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validCol.includes(value)
+        return validCol.includes(String(value))
       },
     },
-    /*
-     * Класс offset-*
-     */
+    /* Класс offset-**/
     offset: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validOffset.includes(value)
+        return validOffset.includes(String(value))
       },
     },
-    /*
-     * Класс offset-sm-*
-     */
+    /* Класс offset-sm-* */
     offsetSm: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validOffsetAdapt.includes(value)
+        return validOffsetAdapt.includes(String(value))
       },
     },
-    /*
-     * Класс offset-lg-*
-     */
+    /* Класс offset-lg-* */
     offsetMd: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validOffsetAdapt.includes(value)
+        return validOffsetAdapt.includes(String(value))
       },
     },
-    /*
-     * Класс offset-md-*
-     */
+    /* Класс offset-md-* */
     offsetLg: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validOffsetAdapt.includes(value)
+        return validOffsetAdapt.includes(String(value))
       },
     },
-    /*
-     * Класс offset-xl-*
-     */
+    /* Класс offset-xl-* */
     offsetXl: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validOffsetAdapt.includes(value)
+        return validOffsetAdapt.includes(String(value))
       },
     },
-    /*
-     * Класс offset-xxl-*
-     */
+    /* Класс offset-xxl-* */
     offsetXxl: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validOffsetAdapt.includes(value)
+        return validOffsetAdapt.includes(String(value))
       },
     },
-    /*
-     * Класс order-*
-     */
+    /* Класс order-* */
     order: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
         return validOffsetAdapt.includes(value)
       },
     },
-    /*
-     * Класс order-sm-*
-     */
+    /* Класс order-sm-* */
     orderSm: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
         return validOrder.includes(value)
       },
     },
-    /*
-     * Класс order-md-*
-     */
+    /* Класс order-md-* */
     orderMd: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
         return validOrder.includes(value)
       },
     },
-    /*
-     * Класс order-lg-*
-     */
+    /* Класс order-lg-* */
     orderLg: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
         return validOrder.includes(value)
       },
     },
-    /*
-     * Класс order-xl-*
-     */
+    /* Класс order-xl-* */
     orderXl: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
         return validOrder.includes(value)
       },
     },
-    /*
-     * Класс order-xxl-*
-     */
+    /* Класс order-xxl-* */
     orderXxl: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
         return validOrder.includes(value)
       },
     },
-    /*
-     * Класс flex-fill
-     */
+    /* Класс flex-fill */
     flexFill: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === null || value === 'true'
+        return validBooleanTrue.includes(value)
       },
     },
-    /*
-     * Класс flex-sm-fill
-     */
+    /* Класс flex-sm-fill */
     flexSmFill: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === null || value === 'true'
+        return validBooleanTrue.includes(value)
       },
     },
-    /*
-     * Класс flex-md-fill
-     */
+    /* Класс flex-md-fill */
     flexMdFill: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === null || value === 'true'
+        return validBooleanTrue.includes(value)
       },
     },
-    /*
-     * Класс flex-lg-fill
-     */
+    /* Класс flex-lg-fill */
     flexLgFill: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === null || value === 'true'
+        return validBooleanTrue.includes(value)
       },
     },
-    /*
-     * Класс flex-xl-fill
-     */
+    /* Класс flex-xl-fill */
     flexXlFill: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === null || value === 'true'
+        return validBooleanTrue.includes(value)
       },
     },
-    /*
-     * Класс flex-xxl-fill
-     */
+    /* Класс flex-xxl-fill */
     flexXxlFill: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === null || value === 'true'
+        return validBooleanTrue.includes(value)
       },
     },
     /* Класс flex-grow-* */
     flexGrow: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-sm-grow-* */
     flexSmGrow: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-md-grow-* */
     flexMdGrow: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-lg-grow-* */
     flexLgGrow: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-xl-grow-* */
     flexXlGrow: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-xxl-grow-* */
     flexXxlGrow: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
 
     /* Класс flex-shrink-* */
     flexShrink: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-sm-shrink-* */
     flexSmShrink: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-md-shrink-* */
     flexMdShrink: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-lg-shrink-* */
     flexLgShrink: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-xl-shrink-* */
     flexXlShrink: {
-      type: String,
+      type: [String, Number],
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFlex.includes(String(value))
       },
     },
     /* Класс flex-xxl-shrink-* */
     flexXxlShrink: {
+      type: [String, Number],
+      default: null,
+      validator(value) {
+        return validFlex.includes(String(value))
+      },
+    },
+    /* Класс float-* */
+    float: {
       type: String,
       default: null,
       validator(value) {
-        return validFlex.includes(value)
+        return validFloat.includes(value)
       },
-      /* Класс float-* */
-      float: {
-        type: String,
-        default: null,
-        validator(value) {
-          return validFloat.includes(value)
-        },
+    },
+    /* Класс float-sm-* */
+    floatSm: {
+      type: String,
+      default: null,
+      validator(value) {
+        return validFloat.includes(value)
       },
-      /* Класс float-sm-* */
-      floatSm: {
-        type: String,
-        default: null,
-        validator(value) {
-          return validFloat.includes(value)
-        },
+    },
+    /* Класс float-md-* */
+    floatMd: {
+      type: String,
+      default: null,
+      validator(value) {
+        return validFloat.includes(value)
       },
-      /* Класс float-md-* */
-      floatMd: {
-        type: String,
-        default: null,
-        validator(value) {
-          return validFloat.includes(value)
-        },
+    },
+    /* Класс float-lg-* */
+    floatLg: {
+      type: String,
+      default: null,
+      validator(value) {
+        return validFloat.includes(value)
       },
-      /* Класс float-lg-* */
-      floatLg: {
-        type: String,
-        default: null,
-        validator(value) {
-          return validFloat.includes(value)
-        },
+    },
+    /* Класс float-xl-* */
+    floatXl: {
+      type: String,
+      default: null,
+      validator(value) {
+        return validFloat.includes(value)
       },
-      /* Класс float-xl-* */
-      floatXl: {
-        type: String,
-        default: null,
-        validator(value) {
-          return validFloat.includes(value)
-        },
-      },
-      /* Класс float-xxl-* */
-      floatXxl: {
-        type: String,
-        default: null,
-        validator(value) {
-          return validFloat.includes(value)
-        },
+    },
+    /* Класс float-xxl-* */
+    floatXxl: {
+      type: String,
+      default: null,
+      validator(value) {
+        return validFloat.includes(value)
       },
     },
   },
@@ -412,7 +367,7 @@ export default {
       const { flexShrink, flexSmShrink, flexMdShrink, flexLgShrink, flexXlShrink, flexXxlShrink } = this
       const { float, floatSm, floatMd, floatLg, floatXl, floatXxl } = this
       return {
-        col: strToBool(col) === true, // проверяем что значение не является числом и является булевым типом
+        col: this.strToBool(col) === true, // проверяем что значение не является числом и является булевым типом
         'col-auto': col === 'auto',
         [`col-${col}`]: !!col && col !== 'auto' && col !== 'false', // проверяем что значение является числом
         'col-sm': colSm === 'true', // проверяем что значение не является числом и является булевым типом
@@ -806,6 +761,7 @@ export default {
     .flex-sm-grow-0 {
       flex-grow: 0 !important;
     }
+
     .flex-sm-grow-1 {
       flex-grow: 1 !important;
     }
@@ -813,6 +769,7 @@ export default {
     .flex-sm-shrink-0 {
       flex-shrink: 0 !important;
     }
+
     .flex-sm-shrink-1 {
       flex-shrink: 1 !important;
     }
@@ -820,9 +777,11 @@ export default {
     .float-sm-start {
       float: left !important;
     }
+
     .float-sm-end {
       float: right !important;
     }
+
     .float-sm-none {
       float: none !important;
     }
@@ -985,6 +944,7 @@ export default {
     .flex-md-grow-0 {
       flex-grow: 0 !important;
     }
+
     .flex-md-grow-1 {
       flex-grow: 1 !important;
     }
@@ -992,6 +952,7 @@ export default {
     .flex-md-shrink-0 {
       flex-shrink: 0 !important;
     }
+
     .flex-md-shrink-1 {
       flex-shrink: 1 !important;
     }
@@ -999,9 +960,11 @@ export default {
     .float-md-start {
       float: left !important;
     }
+
     .float-md-end {
       float: right !important;
     }
+
     .float-md-none {
       float: none !important;
     }
@@ -1164,6 +1127,7 @@ export default {
     .flex-lg-grow-0 {
       flex-grow: 0 !important;
     }
+
     .flex-lg-grow-1 {
       flex-grow: 1 !important;
     }
@@ -1171,6 +1135,7 @@ export default {
     .flex-lg-shrink-0 {
       flex-shrink: 0 !important;
     }
+
     .flex-lg-shrink-1 {
       flex-shrink: 1 !important;
     }
@@ -1178,9 +1143,11 @@ export default {
     .float-lg-start {
       float: left !important;
     }
+
     .float-lg-end {
       float: right !important;
     }
+
     .float-lg-none {
       float: none !important;
     }
@@ -1343,6 +1310,7 @@ export default {
     .flex-xl-grow-0 {
       flex-grow: 0 !important;
     }
+
     .flex-xl-grow-1 {
       flex-grow: 1 !important;
     }
@@ -1350,6 +1318,7 @@ export default {
     .flex-xl-shrink-0 {
       flex-shrink: 0 !important;
     }
+
     .flex-xl-shrink-1 {
       flex-shrink: 1 !important;
     }
@@ -1357,9 +1326,11 @@ export default {
     .float-xl-start {
       float: left !important;
     }
+
     .float-xl-end {
       float: right !important;
     }
+
     .float-xl-none {
       float: none !important;
     }
@@ -1514,6 +1485,7 @@ export default {
     .order-xxl-last {
       order: 6 !important;
     }
+
     .flex-xxl-fill {
       flex: 1 1 auto !important;
     }
@@ -1521,6 +1493,7 @@ export default {
     .flex-xxl-grow-0 {
       flex-grow: 0 !important;
     }
+
     .flex-xxl-grow-1 {
       flex-grow: 1 !important;
     }
@@ -1528,6 +1501,7 @@ export default {
     .flex-xxl-shrink-0 {
       flex-shrink: 0 !important;
     }
+
     .flex-xxl-shrink-1 {
       flex-shrink: 1 !important;
     }
@@ -1535,9 +1509,11 @@ export default {
     .float-xxl-start {
       float: left !important;
     }
+
     .float-xxl-end {
       float: right !important;
     }
+
     .float-xxl-none {
       float: none !important;
     }

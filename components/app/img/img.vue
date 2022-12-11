@@ -15,7 +15,7 @@ export default {
       type: Boolean,
       default: null,
       validator(value) {
-        return value === null || value === 'true'
+        return  value === 'true'
       },
     },
     /* Класс img-thumbnail */

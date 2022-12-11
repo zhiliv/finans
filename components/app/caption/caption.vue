@@ -10,16 +10,19 @@ export default {
     /*
      * Расположение заголовка сверху
      */
-    captionTop: {
+    top: {
       type: String,
       default: null,
+      validator(value){
+        return value === 'true' || value === true
+      }
     },
   },
   computed: {
     classes() {
-      const { captionTop } = this
+      const { top } = this
       return {
-        'caption-top': !!captionTop,
+        'caption-top': !!top,
       }
     },
   },

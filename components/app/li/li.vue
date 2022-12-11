@@ -12,7 +12,7 @@ export default {
       type: String,
       default: null,
       validator(value){
-        return value === null || value === 'true'
+        return  value === 'true'
       }
     },
   },

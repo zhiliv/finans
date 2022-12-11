@@ -28,7 +28,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -38,7 +38,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -48,7 +48,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -58,7 +58,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -68,7 +68,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -78,7 +78,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -88,7 +88,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -98,7 +98,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -108,7 +108,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -118,7 +118,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -128,7 +128,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -138,7 +138,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -148,7 +148,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -158,7 +158,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -168,7 +168,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -178,7 +178,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -188,7 +188,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -198,7 +198,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -208,7 +208,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -218,7 +218,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -228,7 +228,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -238,7 +238,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -248,7 +248,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -258,7 +258,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === true || value === null
+        return value === true
       },
     },
     /*
@@ -268,7 +268,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === true || value === null
+        return value === true
       },
     },
     /*
@@ -278,7 +278,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === true || value === null
+        return value === true
       },
     },
     /*
@@ -288,7 +288,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === true || value === null
+        return value === true
       },
     },
     /*
@@ -298,7 +298,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === true || value === null
+        return value === true
       },
     },
     /*
@@ -308,7 +308,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === true || value === null
+        return value === true
       },
     },
 
@@ -319,7 +319,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -329,7 +329,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -339,7 +339,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -349,7 +349,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -359,7 +359,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -369,7 +369,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -379,7 +379,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validJustifyContent.includes(value) || value === null
+        return validJustifyContent.includes(value)
       },
     },
     /*
@@ -389,7 +389,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validJustifyContent.includes(value) || value === null
+        return validJustifyContent.includes(value)
       },
     },
     /*
@@ -399,7 +399,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validJustifyContent.includes(value) || value === null
+        return validJustifyContent.includes(value)
       },
     },
     /*
@@ -409,7 +409,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validJustifyContent.includes(value) || value === null
+        return validJustifyContent.includes(value)
       },
     },
     /*
@@ -419,7 +419,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validJustifyContent.includes(value) || value === null
+        return validJustifyContent.includes(value)
       },
     },
     /*
@@ -429,7 +429,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validJustifyContent.includes(value) || value === null
+        return validJustifyContent.includes(value)
       },
     },
     /*
@@ -439,7 +439,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignItem.includes(value) || value === null
+        return validAlignItem.includes(value)
       },
     },
     /*
@@ -449,7 +449,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignItem.includes(value) || value === null
+        return validAlignItem.includes(value)
       },
     },
     /*
@@ -459,7 +459,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignItem.includes(value) || value === null
+        return validAlignItem.includes(value)
       },
     },
     /*
@@ -469,7 +469,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignItem.includes(value) || value === null
+        return validAlignItem.includes(value)
       },
     },
     /*
@@ -479,7 +479,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignItem.includes(value) || value === null
+        return validAlignItem.includes(value)
       },
     },
     /*
@@ -489,7 +489,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignItem.includes(value) || value === null
+        return validAlignItem.includes(value)
       },
     },
     /*
@@ -499,7 +499,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignContent.includes(value) || value === null
+        return validAlignContent.includes(value)
       },
     },
     /*
@@ -509,7 +509,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignContent.includes(value) || value === null
+        return validAlignContent.includes(value)
       },
     },
     /*
@@ -519,7 +519,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignContent.includes(value) || value === null
+        return validAlignContent.includes(value)
       },
     },
     /*
@@ -529,7 +529,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignContent.includes(value) || value === null
+        return validAlignContent.includes(value)
       },
     },
     /*
@@ -539,7 +539,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignContent.includes(value) || value === null
+        return validAlignContent.includes(value)
       },
     },
     /*
@@ -549,7 +549,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignContent.includes(value) || value === null
+        return validAlignContent.includes(value)
       },
     },
     /*
@@ -559,7 +559,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignSelf.includes(value) || value === null
+        return validAlignSelf.includes(value)
       },
     },
     /*
@@ -569,7 +569,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignSelf.includes(value) || value === null
+        return validAlignSelf.includes(value)
       },
     },
     /*
@@ -579,7 +579,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignSelf.includes(value) || value === null
+        return validAlignSelf.includes(value)
       },
     },
     /*
@@ -589,7 +589,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignSelf.includes(value) || value === null
+        return validAlignSelf.includes(value)
       },
     },
     /*
@@ -599,7 +599,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignSelf.includes(value) || value === null
+        return validAlignSelf.includes(value)
       },
     },
     /*
@@ -609,7 +609,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validAlignSelf.includes(value) || value === null
+        return validAlignSelf.includes(value)
       },
     },
     /*
@@ -619,7 +619,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -629,7 +629,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -639,7 +639,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -649,7 +649,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -659,7 +659,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -669,7 +669,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -679,7 +679,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -689,7 +689,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -699,7 +699,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -709,7 +709,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -719,7 +719,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -729,7 +729,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -739,7 +739,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -749,7 +749,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -759,7 +759,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -769,7 +769,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -779,7 +779,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
     /*
@@ -789,7 +789,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return value === 'true' || value === null
+        return value === 'true'
       },
     },
   },

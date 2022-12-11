@@ -1,32 +1,32 @@
 <template>
-  <button
-    :class="[classes, { active: isActive }]"
-    v-bind="$attrs"
-    @click="$emit('click', $event)"
-  >
+  <button :class="[classes, { active: isActive }]" v-bind="$attrs" @click="$emit('click', $event)">
     <slot></slot>
   </button>
 </template>
 
 <script>
+import validSize from '~/modules/validator/size.json'
 export default {
   props: {
     /*
      * размер кнопки
      */
-    btnSize: {
+    size: {
       type: String,
       default: null,
       validator(value) {
-        return value === 'sm' || value === 'lg' || value === null
+        return validSize.includes(value)
       },
     },
     /*
      * Добавление / удаление класса active при нажатии на кнопку
      */
     toogle: {
-      type: String,
+      type: [String.Boolean],
       default: null,
+      validator(value) {
+        return String(value) === 'true'
+      },
     },
   },
   data() {
@@ -51,7 +51,7 @@ export default {
      */
     handleClick(event) {
       const { toogle } = this
-      toogle === true ? (this.isActive = !this.isActive) : (this.isActive = false) // добавляем / удаляем класс если включен признак toogle
+      toogle === true || toogle === 'true' ? (this.isActive = !this.isActive) : (this.isActive = false) // добавляем / удаляем класс если включен признак toogle
       this.$emit('click', event)
     },
   },

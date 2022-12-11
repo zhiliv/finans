@@ -1,5 +1,5 @@
 <template>
-  <address v-bind="$attrs">
+  <address>
     <slot></slot>
   </address>
 </template>

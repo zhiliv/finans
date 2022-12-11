@@ -2,15 +2,6 @@
   <app-button :class="[{'btn-close': true}, $attrs.class]" @click="$emit('click', $event)"></app-button>
 </template>
 
-<script>
-import appButton from './../button.vue'
-export default {
-  components: {
-    'app-button': appButton,
-  },
-}
-</script>
-
 <style>
   .btn-close {
     box-sizing: content-box;

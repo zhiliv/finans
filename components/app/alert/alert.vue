@@ -15,33 +15,29 @@
 </template>
 
 <script>
-import appButtonClose from './../button/close/close.vue'
-const validAlert = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark']
+import validColor from '~/modules/validator/color.json'
 export default {
-  components: {
-    'app-button-close': appButtonClose,
-  },
   props: {
     /* Признак отображения кнопки закрытия */
     close: {
-      type: String,
-      default: 'false',
+      type: [String, Boolean],
+      default: null,
       validator(value) {
-        return value === 'true' || value === 'false'
+        return String(value) === 'true'
       },
     },
     /* Цвет уведомления */
-    alertColor: {
+    color: {
       type: String,
       default: 'primary',
       validator(value) {
-        return validAlert.includes(value)
+        return validColor.includes(String(value))
       },
     },
     /* Время показа уведомления, в миллисекундах */
     time: {
       type: String,
-      default: '',
+      default: 0,
       validator(value) {
         return Number.isInteger(+value)
       },
@@ -49,15 +45,16 @@ export default {
   },
   computed: {
     classes() {
-      const { alertColor } = this
+      const { color } = this
       return {
-        [`alert-${alertColor}`]: !!alertColor,
+        [`alert-${color}`]: !!color,
       }
     },
   },
   mounted() {
     const { time } = this
-    if (time) // если установлено время показа, то закрываем уведомление по таймеру
+    if (time > 0)
+      // если установлено время показа, то закрываем уведомление по таймеру
       setTimeout(() => {
         this.$el.remove() // удаление элемента
       }, time)
