@@ -8,7 +8,7 @@
         v-bind="$attrs"
         v-model="value"
         :class="[{'form-check-input': true}]"
-        :type="type"
+        type="checkbox"
         @dblclick="$emit('dblclick', $event)"
         @click="$emit('click', $event)"
         @change="$emit('change', $event)"
@@ -18,23 +18,14 @@
 </template>
 
 <script>
-import appLabel from './../label/label.vue'
 export default {
-  components: {
-    'app-label': appLabel,
-  },
   props: {
-    /* Тип поля ввода */
-    type: {
-      type: String,
-      default: 'checkbox',
-    },
     /* Признак переключателя  */
     switch: {
-      type: String,
-      default: 'false',
+      type: [String, Boolean],
+      default: null,
       valiadator(value) {
-        return value === 'true' || value === 'false'
+        return String(value) === 'true'
       },
     },
     /* Заголовок */

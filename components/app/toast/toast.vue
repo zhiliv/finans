@@ -15,11 +15,7 @@
 </template>
 
 <script>
-import bodyToast from './body-toast/body-toast.vue'
 export default {
-  components: {
-    'app-body-toast': bodyToast,
-  },
   data() {
     return {
       listToast: [], // список уведомлений

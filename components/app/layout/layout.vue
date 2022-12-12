@@ -12,7 +12,7 @@ import validAlignSelf from '~/modules/validator/align-self.json'
 export default {
   props: {
     /* Класс d-flex */
-    dFlex: {
+    flex: {
       type: [String, Boolean],
       default: true,
       validator(value) {
@@ -20,7 +20,7 @@ export default {
       },
     },
     /* Класс d-sm-flex */
-    dSmFlex: {
+    smFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -28,7 +28,7 @@ export default {
       },
     },
     /* Класс d-md-flex */
-    dMdFlex: {
+    mdFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -36,7 +36,7 @@ export default {
       },
     },
     /* Класс d-lg-flex */
-    dLgFlex: {
+    lgFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -44,7 +44,7 @@ export default {
       },
     },
     /* Класс d-xl-flex */
-    dXlFlex: {
+    xlFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -52,7 +52,7 @@ export default {
       },
     },
     /* Класс d-xxl-flex */
-    dXxlFlex: {
+    xxlFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -60,7 +60,7 @@ export default {
       },
     },
     /* Класс d-inline-flex */
-    dInlineFlex: {
+    inlineFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -68,7 +68,7 @@ export default {
       },
     },
     /* Класс d-sm-inline-flex */
-    dSmInlineFlex: {
+    smInlineFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -76,7 +76,7 @@ export default {
       },
     },
     /* Класс d-md-inline-flex */
-    dMdInlineFlex: {
+    mdInlineFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -84,7 +84,7 @@ export default {
       },
     },
     /* Класс d-lg-inline-flex */
-    dLgInlineFlex: {
+    lgInlineFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -92,7 +92,7 @@ export default {
       },
     },
     /* Класс d-xl-inline-flex */
-    dXlInlineFlex: {
+    xlInlineFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -100,7 +100,7 @@ export default {
       },
     },
     /* Класс d-xxl-inline-flex */
-    dXxlInlineFlex: {
+    xxlInlineFlex: {
       type: [String, Boolean],
       default: null,
       validator(value) {
@@ -348,7 +348,7 @@ export default {
       },
     },
     /*Классы align-item-* */
-    alignItems: {
+    alignItem: {
       type: String,
       default: null,
       validator(value) {
@@ -638,8 +638,8 @@ export default {
   },
   computed: {
     classes() {
-      const { dInlineFlex, dSmInlineFlex, dMdInlineFlex, dLgInlineFlex, dXlInlineFlex, dXxlInlineFlex } = this
-      const { dFlex, dSmFlex, dMdFlex, dLgFlex, dXlFlex, dXxlFlex } = this
+      const { inlineFlex, smInlineFlex, mdInlineFlex, lgInlineFlex, xlInlineFlex, xxlInlineFlex } = this
+      const { flex, smFlex, mdFlex, lgFlex, xlFlex, xxlFlex } = this
       const { flexRow, flexSmRow, flexMdRow, flexLgRow, flexXlRow, flexXxlRow } = this
       const {
         flexRowReverse,
@@ -666,7 +666,7 @@ export default {
         justifyContentXl,
         justifyContentXxl,
       } = this
-      const { alignItems, alignItemsSm, alignItemsMd, alignItemsLg, alignItemsXl, alignItemsXxl } = this
+      const { alignItem, alignItemsSm, alignItemsMd, alignItemsLg, alignItemsXl, alignItemsXxl } = this
       const { alignContent, alignContentSm, alignContentMd, alignContentLg, alignContentXl, alignContentXxl } = this
       const { alignSelf, alignSelfSm, alignSelfMd, alignSelfLg, alignSelfXl, alignSelfXxl } = this
       const { flexNowrap, flexSmNowrap, flexMdNowrap, flexLgNowrap, flexXlNowrap, flexXxlNowrap } = this
@@ -680,18 +680,18 @@ export default {
         flexXxlWrapReverse,
       } = this
       return {
-        'd-flex': String(dInlineFlex) === 'false' && String(dFlex) === 'true',
-        'd-sm-flex': !!dSmFlex,
-        'd-md-flex': !!dMdFlex,
-        'd-lg-flex': !!dLgFlex,
-        'd-xl-flex': !!dXlFlex,
-        'd-xxl-flex': !!dXxlFlex,
-        'd-inline-flex': !!dInlineFlex,
-        'd-sm-inline-flex': !!dSmInlineFlex,
-        'd-md-inline-flex': !!dMdInlineFlex,
-        'd-lg-inline-flex': !!dLgInlineFlex,
-        'd-xl-inline-flex': !!dXlInlineFlex,
-        'd-xxl-inline-flex': !!dXxlInlineFlex,
+        'd-flex': String(inlineFlex) === 'false' && String(flex) === 'true',
+        'd-sm-flex': !!smFlex,
+        'd-md-flex': !!mdFlex,
+        'd-lg-flex': !!lgFlex,
+        'd-xl-flex': !!xlFlex,
+        'd-xxl-flex': !!xxlFlex,
+        'd-inline-flex': !!inlineFlex,
+        'd-sm-inline-flex': !!smInlineFlex,
+        'd-md-inline-flex': !!mdInlineFlex,
+        'd-lg-inline-flex': !!lgInlineFlex,
+        'd-xl-inline-flex': !!xlInlineFlex,
+        'd-xxl-inline-flex': !!xxlInlineFlex,
         'flex-row': !!flexRow && !flexRowReverse,
         'flex-sm-row': !!flexSmRow,
         'flex-md-row': !!flexMdRow,

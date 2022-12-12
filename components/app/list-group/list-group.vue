@@ -11,7 +11,10 @@
         <slot></slot>
       </template>
     </ul>
-    <app-spinner v-if="showSpinner && !isLoad" :class="[{'relative': true, 'top-50': true, 'start-50': true}, spinnerClasses]" />
+    <app-spinner
+      v-if="showSpinner && !isLoad"
+      :class="[{'relative': true, 'top-50': true, 'start-50': true}, spinnerClasses]"
+    />
   </div>
 </template>
 
@@ -43,12 +46,12 @@ export default {
     /* Классы для срок */
     classItem: {
       type: String,
-      default: '',
+      default: null,
     },
     /* Классы при активности */
     classesActive: {
       type: String,
-      default: '',
+      default: null,
     },
     /* Классы для спиннера */
     spinnerClasses: {
@@ -58,16 +61,16 @@ export default {
     /* Признак заполнения списка */
     isLoad: {
       type: [String, Boolean],
-      default: false
+      default: false,
     },
     /* Отображать ли спинер при отображении компонента */
     showSpinner: {
       type: [String, Boolean],
       default: false,
-      validator(value){
-        return value === 'true' || value === true || value === false || value === 'false'
-      }
-    }
+      validator(value) {
+        return String(value) === 'true' || String(value) === 'false'
+      },
+    },
   },
   mounted() {
     this.$on('active', event => {

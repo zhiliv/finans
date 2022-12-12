@@ -353,9 +353,6 @@ export default {
       },
     },
   },
-  mounted() {
-    console.log(this)
-  },
   computed: {
     /*
      * Формирование классов для компонента

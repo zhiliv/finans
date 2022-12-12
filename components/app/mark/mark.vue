@@ -1,5 +1,5 @@
 <template>
-  <mark v-bind="$attrs">
+  <mark>
     <slot></slot>
   </mark>
 </template>

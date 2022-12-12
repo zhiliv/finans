@@ -6,22 +6,18 @@
 </template>
 
 <script>
-import appLabel from './../label/label.vue'
 export default {
-  components: {
-    'app-label': appLabel,
-  },
   props: {
     label: {
       type: String,
       default: '',
     },
   },
-  data(){
+  data() {
     return {
-      value: false
+      value: false,
     }
-  }
+  },
 }
 </script>
 

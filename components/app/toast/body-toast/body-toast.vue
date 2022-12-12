@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import validColor from '~/modules/validator/color.json'
 export default {
   props: {
     /* Идентификатор уведомления */
@@ -27,7 +28,7 @@ export default {
     title: {
       type: String,
       required: true,
-      default: '',
+      default: null,
     },
     /* Текст сообщения */
     message: {
@@ -39,17 +40,7 @@ export default {
       type: String,
       default: 'light',
       validator(value) {
-        return (
-          value === '' ||
-          value === 'primary' ||
-          value === 'secondary' ||
-          value === 'success' ||
-          value === 'info' ||
-          value === 'warning' ||
-          value === 'danger' ||
-          value === 'dark' ||
-          value === 'light'
-        )
+        return validColor.includes(value)
       },
     },
     /* Время через которое будет удалено сообщение */

@@ -1,5 +1,5 @@
 <template>
-  <li v-bind="$attrs" :class="classes" @click="$emit('click', $event)">
+  <li :class="classes" @click="$emit('click', $event)">
     <slot></slot>
   </li>
 </template>
@@ -9,11 +9,11 @@ export default {
   props: {
     /* Класс list-inline-item */
     listInlineItem: {
-      type: String,
+      type: [String, Boolean],
       default: null,
-      validator(value){
-        return  value === 'true'
-      }
+      validator(value) {
+        return String(value) === 'true'
+      },
     },
   },
   computed: {

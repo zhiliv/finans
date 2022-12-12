@@ -16,11 +16,11 @@ export default {
       },
     },
     /* Маленький размер спинера */
-    spinnerSm: {
+    sm: {
       type: [String, Boolean],
-      default: false,
+      default: null,
       validator(value) {
-        return value === false || value === 'true' || value === true
+        return String(value) === 'true'
       },
     },
     /* Текст внутри спинера */
@@ -31,10 +31,10 @@ export default {
   },
   computed: {
     classes() {
-      const { typeSpinner, spinnerSm } = this
+      const { typeSpinner, sm } = this
       return {
         [`spinner-${typeSpinner}`]: !!typeSpinner,
-        [`spinner-${typeSpinner}-sm`]: !!spinnerSm,
+        [`spinner-${typeSpinner}-sm`]: !!sm,
       }
     },
   },

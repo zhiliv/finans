@@ -1,5 +1,5 @@
 <template>
-  <label :class="classes" v-bind="$attrs">
+  <label :class="classes">
     <slot></slot>
   </label>
 </template>
@@ -9,34 +9,34 @@ export default {
   props: {
     /* Класс form-label */
     formLabel: {
-      type: String,
-      default: 'true',
+      type: [String, Boolean],
+      default: true,
       validator(value) {
-        return value === 'true' || value === 'false'
+        return String(value) === 'true'
       },
     },
     /* Класс col-from-label */
     colFormLabel: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true' || value === 'false'
+        return String(value) === 'true'
       },
     },
     /* Класс col-from-label-sm */
     colFormLabelSm: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true' || value === 'false'
+        return String(value) === 'true'
       },
     },
     /* Класс col-from-label-lg */
     colFormLabelLg: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true' || value === 'false'
+        return String(value) === 'true'
       },
     },
   },
@@ -44,7 +44,7 @@ export default {
     classes() {
       const { formLabel, colFormLabel, colFormLabelLg, colFormLabelSm } = this
       return {
-        'form-label': formLabel === 'true',
+        'form-label': formLabel === 'true' || formLabel === true,
         'col-form-label': !!colFormLabel,
         'col-form-label-lg': !!colFormLabelLg,
         'col-form-label-sm': !!colFormLabelSm,
