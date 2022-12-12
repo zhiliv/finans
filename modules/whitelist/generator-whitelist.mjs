@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import { globby } from 'globby'
 import { parse } from 'node-html-parser';
 import {listClass} from './list-class.mjs' // классы для проверки
-import {requiredClass} from './required-class.mjs' // обязательные классы, которые не будут удаляться
+import {requiredClass} from './modules/whitelist/required-class.josn/index.js' // обязательные классы, которые не будут удаляться
 const listPath = ['./pages/*.vue', './pages/**/*.vue', './pages/**/**/*.vue', './pages/modal/**/*.vue', './pages/modal/**/**/*.vue', './layouts/*.vue'] // список папок для проверки
 
 /*
