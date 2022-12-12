@@ -4,377 +4,302 @@
   </div>
 </template>
 <script>
-import { strToBool, isBoolean } from '../../../scripts/component/func'
-const validJustifyContent = ['start', 'end', 'center', 'between', 'around', 'every'] // доступные варианты для  justify-content-*
-const validAlignItem = ['start', 'end', 'center', 'baseline', 'stretch'] // доступные варианты align-item-*
-const validAlignContent = ['start', 'end', 'center', 'between', 'around', 'stretch'] // доступные варианты для align-content
-const validAlignSelf = ['auto', 'start', 'end', 'center', 'baseline', 'stretch'] // доступные варианты для align-self-*
+import validJustifyContent from '~/modules/validator/justify-content.json'
+import validAlignItem from '~/modules/validator/align-item.json'
+import validAlignContent from '~/modules/validator/align-content.json'
+import validAlignSelf from '~/modules/validator/align-self.json'
+
 export default {
   props: {
-    /*
-     * Класс d-flex
-     */
+    /* Класс d-flex */
     dFlex: {
       type: [String, Boolean],
       default: true,
       validator(value) {
-        return isBoolean(strToBool(value))
+        return String(value) == 'true'
       },
     },
-    /*
-     * Класс d-sm-flex
-     */
+    /* Класс d-sm-flex */
     dSmFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-md-flex
-     */
+    /* Класс d-md-flex */
     dMdFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-lg-flex
-     */
+    /* Класс d-lg-flex */
     dLgFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-xl-flex
-     */
+    /* Класс d-xl-flex */
     dXlFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-xxl-flex
-     */
+    /* Класс d-xxl-flex */
     dXxlFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-inline-flex
-     */
+    /* Класс d-inline-flex */
     dInlineFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-sm-inline-flex
-     */
+    /* Класс d-sm-inline-flex */
     dSmInlineFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-md-inline-flex
-     */
+    /* Класс d-md-inline-flex */
     dMdInlineFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-lg-inline-flex
-     */
+    /* Класс d-lg-inline-flex */
     dLgInlineFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-xl-inline-flex
-     */
+    /* Класс d-xl-inline-flex */
     dXlInlineFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс d-xxl-inline-flex
-     */
+    /* Класс d-xxl-inline-flex */
     dXxlInlineFlex: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-row
-     */
+    /* Класс flex-row */
     flexRow: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-sm-row
-     */
+    /* Класс flex-sm-row */
     flexSmRow: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-md-row
-     */
+    /* Класс flex-md-row */
     flexMdRow: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-lg-row
-     */
+    /* Класс flex-lg-row */
     flexLgRow: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-xl-row
-     */
+    /* Класс flex-xl-row */
     flexXlRow: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-xxl-row
-     */
+    /* Класс flex-xxl-row */
     flexXxlRow: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-row-reverse
-     */
+    /* Класс flex-row-reverse */
     flexRowReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-sm-row-reverse
-     */
+    /* Класс flex-sm-row-reverse */
     flexSmRowReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-md-row-reverse
-     */
+    /* Класс flex-md-row-reverse */
     flexMdRowReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-lg-row-reverse
-     */
+    /* Класс flex-lg-row-reverse */
     flexLgRowReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-xl-row-reverse
-     */
+    /* Класс flex-xl-row-reverse */
     flexXlRowReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-xxl-row-reverse
-     */
+    /* Класс flex-xxl-row-reverse */
     flexXxlRowReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-column
-     */
+    /* Класс flex-column */
     flexColumn: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === true
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-sm-column
-     */
+    /* Класс flex-sm-column */
     flexSmColumn: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === true
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-md-column
-     */
+    /* Класс flex-md-column */
     flexMdColumn: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === true
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-lg-column
-     */
+    /* Класс flex-lg-column */
     flexLgColumn: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === true
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-xl-column
-     */
+    /* Класс flex-xl-column */
     flexXlColumn: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === true
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-xxl-column
-     */
+    /* Класс flex-xxl-column */
     flexXxlColumn: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === true
+        return String(value) === 'true'
       },
     },
-
-    /*
-     * Класс flex-column-reverse
-     */
+    /* Класс flex-column-reverse */
     flexColumnReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-sm-column-reverse
-     */
+    /* Класс flex-sm-column-reverse */
     flexSmColumnReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-md-column-reverse
-     */
+    /* Класс flex-md-column-reverse */
     flexMdColumnReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-lg-column-reverse
-     */
+    /* Класс flex-lg-column-reverse */
     flexLgColumnReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-xl-column-reverse
-     */
+    /* Класс flex-xl-column-reverse */
     flexXlColumnReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Класс flex-column-xxl-reverse
-     */
+    /* Класс flex-column-xxl-reverse */
     flexXxlColumnReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы justify-content-*
-     */
+    /* Классы justify-content-* */
     justifyContent: {
       type: String,
       default: null,
@@ -382,9 +307,7 @@ export default {
         return validJustifyContent.includes(value)
       },
     },
-    /*
-     * Классы justify-content-sm-*
-     */
+    /* Классы justify-content-sm-* */
     justifyContentSm: {
       type: String,
       default: null,
@@ -392,9 +315,7 @@ export default {
         return validJustifyContent.includes(value)
       },
     },
-    /*
-     * Классы justify-content-md-*
-     */
+    /* Классы justify-content-md-* */
     justifyContentMd: {
       type: String,
       default: null,
@@ -402,9 +323,7 @@ export default {
         return validJustifyContent.includes(value)
       },
     },
-    /*
-     * Классы justify-content-xl-*
-     */
+    /* Классы justify-content-xl-* */
     justifyContentLg: {
       type: String,
       default: null,
@@ -412,9 +331,7 @@ export default {
         return validJustifyContent.includes(value)
       },
     },
-    /*
-     * Классы justify-content-xxl*
-     */
+    /* Классы justify-content-xxl* */
     justifyContentXl: {
       type: String,
       default: null,
@@ -422,9 +339,7 @@ export default {
         return validJustifyContent.includes(value)
       },
     },
-    /*
-     * Классы justify-content-*
-     */
+    /* Классы justify-content-* */
     justifyContentXxl: {
       type: String,
       default: null,
@@ -432,9 +347,7 @@ export default {
         return validJustifyContent.includes(value)
       },
     },
-    /*
-     * Классы align-item-*
-     */
+    /*Классы align-item-* */
     alignItems: {
       type: String,
       default: null,
@@ -442,9 +355,7 @@ export default {
         return validAlignItem.includes(value)
       },
     },
-    /*
-     * Классы align-item-sm-*
-     */
+    /* Классы align-item-sm-* */
     alignItemsSm: {
       type: String,
       default: null,
@@ -452,9 +363,7 @@ export default {
         return validAlignItem.includes(value)
       },
     },
-    /*
-     * Классы align-item-md-*
-     */
+    /* Классы align-item-md-* */
     alignItemsMd: {
       type: String,
       default: null,
@@ -462,9 +371,7 @@ export default {
         return validAlignItem.includes(value)
       },
     },
-    /*
-     * Классы align-item-lg-*
-     */
+    /* Классы align-item-lg-* */
     alignItemsLg: {
       type: String,
       default: null,
@@ -472,9 +379,7 @@ export default {
         return validAlignItem.includes(value)
       },
     },
-    /*
-     * Классы align-item-xl-*
-     */
+    /* Классы align-item-xl-* */
     alignItemsXl: {
       type: String,
       default: null,
@@ -482,9 +387,7 @@ export default {
         return validAlignItem.includes(value)
       },
     },
-    /*
-     * Классы align-item-xxl-*
-     */
+    /* Классы align-item-xxl-* */
     alignItemsXxl: {
       type: String,
       default: null,
@@ -492,9 +395,7 @@ export default {
         return validAlignItem.includes(value)
       },
     },
-    /*
-     * Классы align-content-*
-     */
+    /* Классы align-content-* */
     alignContent: {
       type: String,
       default: null,
@@ -502,9 +403,7 @@ export default {
         return validAlignContent.includes(value)
       },
     },
-    /*
-     * Классы align-content-sm-*
-     */
+    /* Классы align-content-sm-* */
     alignContentSm: {
       type: String,
       default: null,
@@ -512,9 +411,7 @@ export default {
         return validAlignContent.includes(value)
       },
     },
-    /*
-     * Классы align-content-md-*
-     */
+    /* Классы align-content-md-* */
     alignContentMd: {
       type: String,
       default: null,
@@ -522,9 +419,7 @@ export default {
         return validAlignContent.includes(value)
       },
     },
-    /*
-     * Классы align-content-lg-*
-     */
+    /* Классы align-content-lg-* */
     alignContentLg: {
       type: String,
       default: null,
@@ -532,9 +427,7 @@ export default {
         return validAlignContent.includes(value)
       },
     },
-    /*
-     * Классы align-content-xl-*
-     */
+    /* Классы align-content-xl-* */
     alignContentXl: {
       type: String,
       default: null,
@@ -542,9 +435,7 @@ export default {
         return validAlignContent.includes(value)
       },
     },
-    /*
-     * Классы align-content-xxl-*
-     */
+    /* Классы align-content-xxl-* */
     alignContentXxl: {
       type: String,
       default: null,
@@ -552,9 +443,7 @@ export default {
         return validAlignContent.includes(value)
       },
     },
-    /*
-     * Классы align-self-*
-     */
+    /* Классы align-self-* */
     alignSelf: {
       type: String,
       default: null,
@@ -562,9 +451,7 @@ export default {
         return validAlignSelf.includes(value)
       },
     },
-    /*
-     * Классы align-self-sm-*
-     */
+    /* Классы align-self-sm-* */
     alignSelfSm: {
       type: String,
       default: null,
@@ -572,9 +459,7 @@ export default {
         return validAlignSelf.includes(value)
       },
     },
-    /*
-     * Классы align-self-md-*
-     */
+    /* Классы align-self-md-* */
     alignSelfMd: {
       type: String,
       default: null,
@@ -582,9 +467,7 @@ export default {
         return validAlignSelf.includes(value)
       },
     },
-    /*
-     * Классы align-self-Lg*
-     */
+    /* Классы align-self-Lg* */
     alignSelfLg: {
       type: String,
       default: null,
@@ -592,9 +475,7 @@ export default {
         return validAlignSelf.includes(value)
       },
     },
-    /*
-     * Классы align-self-Xl*
-     */
+    /* Классы align-self-Xl* */
     alignSelfXl: {
       type: String,
       default: null,
@@ -602,9 +483,7 @@ export default {
         return validAlignSelf.includes(value)
       },
     },
-    /*
-     * Классы align-self-xxl-*
-     */
+    /* Классы align-self-xxl-* */
     alignSelfXxl: {
       type: String,
       default: null,
@@ -612,184 +491,148 @@ export default {
         return validAlignSelf.includes(value)
       },
     },
-    /*
-     * Классы flex-nowrap
-     */
+    /* Классы flex-nowrap */
     flexNowrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-sm-nowrap
-     */
+    /* Классы flex-sm-nowrap */
     flexSmNowrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-md-nowrap
-     */
+    /* Классы flex-md-nowrap */
     flexMdNowrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-lg-nowrap
-     */
+    /* Классы flex-lg-nowrap */
     flexLgNowrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-xl-nowrap
-     */
+    /* Классы flex-xl-nowrap */
     flexXlNowrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-xxl-nowrap
-     */
+    /* Классы flex-xxl-nowrap */
     flexXxlNowrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-wrap
-     */
+    /* Классы flex-wrap */
     flexWrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-sm-wrap
-     */
+    /* Классы flex-sm-wrap */
     flexSmWrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-md-wrap
-     */
+    /* Классы flex-md-wrap */
     flexMdWrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-lg-wrap
-     */
+    /* Классы flex-lg-wrap */
     flexLgWrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-xl-wrap
-     */
+    /* Классы flex-xl-wrap */
     flexXlWrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-xxl-wrap
-     */
+    /* Классы flex-xxl-wrap */
     flexXxlWrap: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-wrap-reverse
-     */
+    /* Классы flex-wrap-reverse */
     flexWrapReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-sm-wrap-reverse
-     */
+    /* Классы flex-sm-wrap-reverse */
     flexSmWrapReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-md-wrap-reverse
-     */
+    /* Классы flex-md-wrap-reverse */
     flexMdWrapReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-lg-wrap-reverse
-     */
+    /* Классы flex-lg-wrap-reverse */
     flexLgWrapReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-xl-wrap-reverse
-     */
+    /* Классы flex-xl-wrap-reverse */
     flexXlWrapReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
-    /*
-     * Классы flex-xxl-wrap-reverse
-     */
+    /* Классы flex-xxl-wrap-reverse */
     flexXxlWrapReverse: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return value === 'true'
+        return String(value) === 'true'
       },
     },
   },
@@ -837,7 +680,7 @@ export default {
         flexXxlWrapReverse,
       } = this
       return {
-        'd-flex': !dInlineFlex && !!dFlex,
+        'd-flex': String(dInlineFlex) === 'false' && String(dFlex) === 'true',
         'd-sm-flex': !!dSmFlex,
         'd-md-flex': !!dMdFlex,
         'd-lg-flex': !!dLgFlex,

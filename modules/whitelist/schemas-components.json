@@ -6,10 +6,6 @@
         "name": "initialism",
         "values": [
           {
-            "value": true,
-            "class": "initialism"
-          },
-          {
             "value": "true",
             "class": "initialism"
           }
@@ -121,10 +117,6 @@
         "name": "vertical",
         "values": [
           {
-            "value": true,
-            "class": "btn-group-vertical"
-          },
-          {
             "value": "true",
             "class": "btn-group-vertical"
           }
@@ -157,10 +149,6 @@
         "name": "top",
         "values": [
           {
-            "value": true,
-            "class": "caption-top"
-          },
-          {
             "value": "true",
             "class": "caption-top"
           }
@@ -175,10 +163,6 @@
         "name": "col",
         "values": [
           {
-            "value": true,
-            "class": "col"
-          },
-          {
             "value": "true",
             "class": "col"
           },
@@ -191,15 +175,7 @@
             "class": "col-1"
           },
           {
-            "value": 1,
-            "class": "col-1"
-          },
-          {
             "value": "2",
-            "class": "col-2"
-          },
-          {
-            "value": 2,
             "class": "col-2"
           },
           {
@@ -207,15 +183,7 @@
             "class": "col-3"
           },
           {
-            "value": 3,
-            "class": "col-3"
-          },
-          {
             "value": "4",
-            "class": "col-4"
-          },
-          {
-            "value": 4,
             "class": "col-4"
           },
           {
@@ -223,15 +191,7 @@
             "class": "col-5"
           },
           {
-            "value": 5,
-            "class": "col-5"
-          },
-          {
             "value": "6",
-            "class": "col-6"
-          },
-          {
-            "value": 6,
             "class": "col-6"
           },
           {
@@ -239,15 +199,7 @@
             "class": "col-7"
           },
           {
-            "value": 7,
-            "class": "col-7"
-          },
-          {
             "value": "8",
-            "class": "col-8"
-          },
-          {
-            "value": 8,
             "class": "col-8"
           },
           {
@@ -255,15 +207,7 @@
             "class": "col-9"
           },
           {
-            "value": 9,
-            "class": "col-9"
-          },
-          {
             "value": "10",
-            "class": "col-10"
-          },
-          {
-            "value": 10,
             "class": "col-10"
           },
           {
@@ -271,15 +215,7 @@
             "class": "col-11"
           },
           {
-            "value": 11,
-            "class": "col-11"
-          },
-          {
             "value": "12",
-            "class": "col-12"
-          },
-          {
-            "value": 12,
             "class": "col-12"
           }
         ]
@@ -287,10 +223,6 @@
       {
         "name": "col-sm",
         "values": [
-          {
-            "value": true,
-            "class": "col-sm"
-          },
           {
             "value": "true",
             "class": "col-sm"
@@ -304,15 +236,7 @@
             "class": "col-sm-1"
           },
           {
-            "value": 1,
-            "class": "col-sm-1"
-          },
-          {
             "value": "2",
-            "class": "col-sm-2"
-          },
-          {
-            "value": 2,
             "class": "col-sm-2"
           },
           {
@@ -320,15 +244,7 @@
             "class": "col-sm-3"
           },
           {
-            "value": 3,
-            "class": "col-sm-3"
-          },
-          {
             "value": "4",
-            "class": "col-sm-4"
-          },
-          {
-            "value": 4,
             "class": "col-sm-4"
           },
           {
@@ -336,15 +252,7 @@
             "class": "col-sm-5"
           },
           {
-            "value": 5,
-            "class": "col-sm-5"
-          },
-          {
             "value": "6",
-            "class": "col-sm-6"
-          },
-          {
-            "value": 6,
             "class": "col-sm-6"
           },
           {
@@ -352,15 +260,7 @@
             "class": "col-sm-7"
           },
           {
-            "value": 7,
-            "class": "col-sm-7"
-          },
-          {
             "value": "8",
-            "class": "col-sm-8"
-          },
-          {
-            "value": 8,
             "class": "col-sm-8"
           },
           {
@@ -368,15 +268,7 @@
             "class": "col-sm-9"
           },
           {
-            "value": 9,
-            "class": "col-sm-9"
-          },
-          {
             "value": "10",
-            "class": "col-sm-10"
-          },
-          {
-            "value": 10,
             "class": "col-sm-10"
           },
           {
@@ -384,15 +276,7 @@
             "class": "col-sm-11"
           },
           {
-            "value": 11,
-            "class": "col-sm-11"
-          },
-          {
             "value": "12",
-            "class": "col-sm-12"
-          },
-          {
-            "value": 12,
             "class": "col-sm-12"
           }
         ]
@@ -400,10 +284,6 @@
       {
         "name": "col-md",
         "values": [
-          {
-            "value": true,
-            "class": "col-md"
-          },
           {
             "value": "true",
             "class": "col-md"
@@ -417,15 +297,7 @@
             "class": "col-md-1"
           },
           {
-            "value": 1,
-            "class": "col-md-1"
-          },
-          {
             "value": "2",
-            "class": "col-md-2"
-          },
-          {
-            "value": 2,
             "class": "col-md-2"
           },
           {
@@ -433,15 +305,7 @@
             "class": "col-md-3"
           },
           {
-            "value": 3,
-            "class": "col-md-3"
-          },
-          {
             "value": "4",
-            "class": "col-md-4"
-          },
-          {
-            "value": 4,
             "class": "col-md-4"
           },
           {
@@ -449,15 +313,7 @@
             "class": "col-md-5"
           },
           {
-            "value": 5,
-            "class": "col-md-5"
-          },
-          {
             "value": "6",
-            "class": "col-md-6"
-          },
-          {
-            "value": 6,
             "class": "col-md-6"
           },
           {
@@ -465,15 +321,7 @@
             "class": "col-md-7"
           },
           {
-            "value": 7,
-            "class": "col-md-7"
-          },
-          {
             "value": "8",
-            "class": "col-md-8"
-          },
-          {
-            "value": 8,
             "class": "col-md-8"
           },
           {
@@ -481,15 +329,7 @@
             "class": "col-md-9"
           },
           {
-            "value": 9,
-            "class": "col-md-9"
-          },
-          {
             "value": "10",
-            "class": "col-md-10"
-          },
-          {
-            "value": 10,
             "class": "col-md-10"
           },
           {
@@ -497,15 +337,7 @@
             "class": "col-md-11"
           },
           {
-            "value": 11,
-            "class": "col-md-11"
-          },
-          {
             "value": "12",
-            "class": "col-md-12"
-          },
-          {
-            "value": 12,
             "class": "col-md-12"
           }
         ]
@@ -513,10 +345,6 @@
       {
         "name": "col-lg",
         "values": [
-          {
-            "value": true,
-            "class": "col-lg"
-          },
           {
             "value": "true",
             "class": "col-lg"
@@ -530,15 +358,7 @@
             "class": "col-lg-1"
           },
           {
-            "value": 1,
-            "class": "col-lg-1"
-          },
-          {
             "value": "2",
-            "class": "col-lg-2"
-          },
-          {
-            "value": 2,
             "class": "col-lg-2"
           },
           {
@@ -546,15 +366,7 @@
             "class": "col-lg-3"
           },
           {
-            "value": 3,
-            "class": "col-lg-3"
-          },
-          {
             "value": "4",
-            "class": "col-lg-4"
-          },
-          {
-            "value": 4,
             "class": "col-lg-4"
           },
           {
@@ -562,15 +374,7 @@
             "class": "col-lg-5"
           },
           {
-            "value": 5,
-            "class": "col-lg-5"
-          },
-          {
             "value": "6",
-            "class": "col-lg-6"
-          },
-          {
-            "value": 6,
             "class": "col-lg-6"
           },
           {
@@ -578,15 +382,7 @@
             "class": "col-lg-7"
           },
           {
-            "value": 7,
-            "class": "col-lg-7"
-          },
-          {
             "value": "8",
-            "class": "col-lg-8"
-          },
-          {
-            "value": 8,
             "class": "col-lg-8"
           },
           {
@@ -594,15 +390,7 @@
             "class": "col-lg-9"
           },
           {
-            "value": 9,
-            "class": "col-lg-9"
-          },
-          {
             "value": "10",
-            "class": "col-lg-10"
-          },
-          {
-            "value": 10,
             "class": "col-lg-10"
           },
           {
@@ -610,15 +398,7 @@
             "class": "col-lg-11"
           },
           {
-            "value": 11,
-            "class": "col-lg-11"
-          },
-          {
             "value": "12",
-            "class": "col-lg-12"
-          },
-          {
-            "value": 12,
             "class": "col-lg-12"
           }
         ]
@@ -626,10 +406,6 @@
       {
         "name": "col-xl",
         "values": [
-          {
-            "value": true,
-            "class": "col-xl"
-          },
           {
             "value": "true",
             "class": "col-xl"
@@ -643,15 +419,7 @@
             "class": "col-xl-1"
           },
           {
-            "value": 1,
-            "class": "col-xl-1"
-          },
-          {
             "value": "2",
-            "class": "col-xl-2"
-          },
-          {
-            "value": 2,
             "class": "col-xl-2"
           },
           {
@@ -659,15 +427,7 @@
             "class": "col-xl-3"
           },
           {
-            "value": 3,
-            "class": "col-xl-3"
-          },
-          {
             "value": "4",
-            "class": "col-xl-4"
-          },
-          {
-            "value": 4,
             "class": "col-xl-4"
           },
           {
@@ -675,15 +435,7 @@
             "class": "col-xl-5"
           },
           {
-            "value": 5,
-            "class": "col-xl-5"
-          },
-          {
             "value": "6",
-            "class": "col-xl-6"
-          },
-          {
-            "value": 6,
             "class": "col-xl-6"
           },
           {
@@ -691,15 +443,7 @@
             "class": "col-xl-7"
           },
           {
-            "value": 7,
-            "class": "col-xl-7"
-          },
-          {
             "value": "8",
-            "class": "col-xl-8"
-          },
-          {
-            "value": 8,
             "class": "col-xl-8"
           },
           {
@@ -707,15 +451,7 @@
             "class": "col-xl-9"
           },
           {
-            "value": 9,
-            "class": "col-xl-9"
-          },
-          {
             "value": "10",
-            "class": "col-xl-10"
-          },
-          {
-            "value": 10,
             "class": "col-xl-10"
           },
           {
@@ -723,15 +459,7 @@
             "class": "col-xl-11"
           },
           {
-            "value": 11,
-            "class": "col-xl-11"
-          },
-          {
             "value": "12",
-            "class": "col-xl-12"
-          },
-          {
-            "value": 12,
             "class": "col-xl-12"
           }
         ]
@@ -739,10 +467,6 @@
       {
         "name": "col-xxl",
         "values": [
-          {
-            "value": true,
-            "class": "col-xxl"
-          },
           {
             "value": "true",
             "class": "col-xxl"
@@ -756,15 +480,7 @@
             "class": "col-xxl-1"
           },
           {
-            "value": 1,
-            "class": "col-xxl-1"
-          },
-          {
             "value": "2",
-            "class": "col-xxl-2"
-          },
-          {
-            "value": 2,
             "class": "col-xxl-2"
           },
           {
@@ -772,15 +488,7 @@
             "class": "col-xxl-3"
           },
           {
-            "value": 3,
-            "class": "col-xxl-3"
-          },
-          {
             "value": "4",
-            "class": "col-xxl-4"
-          },
-          {
-            "value": 4,
             "class": "col-xxl-4"
           },
           {
@@ -788,15 +496,7 @@
             "class": "col-xxl-5"
           },
           {
-            "value": 5,
-            "class": "col-xxl-5"
-          },
-          {
             "value": "6",
-            "class": "col-xxl-6"
-          },
-          {
-            "value": 6,
             "class": "col-xxl-6"
           },
           {
@@ -804,15 +504,7 @@
             "class": "col-xxl-7"
           },
           {
-            "value": 7,
-            "class": "col-xxl-7"
-          },
-          {
             "value": "8",
-            "class": "col-xxl-8"
-          },
-          {
-            "value": 8,
             "class": "col-xxl-8"
           },
           {
@@ -820,15 +512,7 @@
             "class": "col-xxl-9"
           },
           {
-            "value": 9,
-            "class": "col-xxl-9"
-          },
-          {
             "value": "10",
-            "class": "col-xxl-10"
-          },
-          {
-            "value": 10,
             "class": "col-xxl-10"
           },
           {
@@ -836,15 +520,7 @@
             "class": "col-xxl-11"
           },
           {
-            "value": 11,
-            "class": "col-xxl-11"
-          },
-          {
             "value": "12",
-            "class": "col-xxl-12"
-          },
-          {
-            "value": 12,
             "class": "col-xxl-12"
           }
         ]
@@ -857,15 +533,7 @@
             "class": "offset-0"
           },
           {
-            "value": 0,
-            "class": "offset-0"
-          },
-          {
             "value": "1",
-            "class": "offset-1"
-          },
-          {
-            "value": 1,
             "class": "offset-1"
           },
           {
@@ -873,15 +541,7 @@
             "class": "offset-2"
           },
           {
-            "value": 2,
-            "class": "offset-2"
-          },
-          {
             "value": "3",
-            "class": "offset-3"
-          },
-          {
-            "value": 3,
             "class": "offset-3"
           },
           {
@@ -889,15 +549,7 @@
             "class": "offset-4"
           },
           {
-            "value": 4,
-            "class": "offset-4"
-          },
-          {
             "value": "5",
-            "class": "offset-5"
-          },
-          {
-            "value": 5,
             "class": "offset-5"
           },
           {
@@ -905,15 +557,7 @@
             "class": "offset-6"
           },
           {
-            "value": 6,
-            "class": "offset-6"
-          },
-          {
             "value": "7",
-            "class": "offset-7"
-          },
-          {
-            "value": 7,
             "class": "offset-7"
           },
           {
@@ -921,15 +565,7 @@
             "class": "offset-8"
           },
           {
-            "value": 8,
-            "class": "offset-8"
-          },
-          {
             "value": "9",
-            "class": "offset-9"
-          },
-          {
-            "value": 9,
             "class": "offset-9"
           },
           {
@@ -937,23 +573,11 @@
             "class": "offset-10"
           },
           {
-            "value": 10,
-            "class": "offset-10"
-          },
-          {
             "value": "11",
             "class": "offset-11"
           },
           {
-            "value": 11,
-            "class": "offset-11"
-          },
-          {
             "value": "12",
-            "class": "offset-12"
-          },
-          {
-            "value": 12,
             "class": "offset-12"
           }
         ]
@@ -966,15 +590,7 @@
             "class": "offset-sm-0"
           },
           {
-            "value": 0,
-            "class": "offset-sm-0"
-          },
-          {
             "value": "1",
-            "class": "offset-sm-1"
-          },
-          {
-            "value": 1,
             "class": "offset-sm-1"
           },
           {
@@ -982,15 +598,7 @@
             "class": "offset-sm-2"
           },
           {
-            "value": 2,
-            "class": "offset-sm-2"
-          },
-          {
             "value": "3",
-            "class": "offset-sm-3"
-          },
-          {
-            "value": 3,
             "class": "offset-sm-3"
           },
           {
@@ -998,15 +606,7 @@
             "class": "offset-sm-4"
           },
           {
-            "value": 4,
-            "class": "offset-sm-4"
-          },
-          {
             "value": "5",
-            "class": "offset-sm-5"
-          },
-          {
-            "value": 5,
             "class": "offset-sm-5"
           },
           {
@@ -1014,15 +614,7 @@
             "class": "offset-sm-6"
           },
           {
-            "value": 6,
-            "class": "offset-sm-6"
-          },
-          {
             "value": "7",
-            "class": "offset-sm-7"
-          },
-          {
-            "value": 7,
             "class": "offset-sm-7"
           },
           {
@@ -1030,15 +622,7 @@
             "class": "offset-sm-8"
           },
           {
-            "value": 8,
-            "class": "offset-sm-8"
-          },
-          {
             "value": "9",
-            "class": "offset-sm-9"
-          },
-          {
-            "value": 9,
             "class": "offset-sm-9"
           },
           {
@@ -1046,23 +630,11 @@
             "class": "offset-sm-10"
           },
           {
-            "value": 10,
-            "class": "offset-sm-10"
-          },
-          {
             "value": "11",
             "class": "offset-sm-11"
           },
           {
-            "value": 11,
-            "class": "offset-sm-11"
-          },
-          {
             "value": "12",
-            "class": "offset-sm-12"
-          },
-          {
-            "value": 12,
             "class": "offset-sm-12"
           }
         ]
@@ -1075,15 +647,7 @@
             "class": "offset-md-0"
           },
           {
-            "value": 0,
-            "class": "offset-md-0"
-          },
-          {
             "value": "1",
-            "class": "offset-md-1"
-          },
-          {
-            "value": 1,
             "class": "offset-md-1"
           },
           {
@@ -1091,15 +655,7 @@
             "class": "offset-md-2"
           },
           {
-            "value": 2,
-            "class": "offset-md-2"
-          },
-          {
             "value": "3",
-            "class": "offset-md-3"
-          },
-          {
-            "value": 3,
             "class": "offset-md-3"
           },
           {
@@ -1107,15 +663,7 @@
             "class": "offset-md-4"
           },
           {
-            "value": 4,
-            "class": "offset-md-4"
-          },
-          {
             "value": "5",
-            "class": "offset-md-5"
-          },
-          {
-            "value": 5,
             "class": "offset-md-5"
           },
           {
@@ -1123,15 +671,7 @@
             "class": "offset-md-6"
           },
           {
-            "value": 6,
-            "class": "offset-md-6"
-          },
-          {
             "value": "7",
-            "class": "offset-md-7"
-          },
-          {
-            "value": 7,
             "class": "offset-md-7"
           },
           {
@@ -1139,15 +679,7 @@
             "class": "offset-md-8"
           },
           {
-            "value": 8,
-            "class": "offset-md-8"
-          },
-          {
             "value": "9",
-            "class": "offset-md-9"
-          },
-          {
-            "value": 9,
             "class": "offset-md-9"
           },
           {
@@ -1155,23 +687,11 @@
             "class": "offset-md-10"
           },
           {
-            "value": 10,
-            "class": "offset-md-10"
-          },
-          {
             "value": "11",
             "class": "offset-md-11"
           },
           {
-            "value": 11,
-            "class": "offset-md-11"
-          },
-          {
             "value": "12",
-            "class": "offset-md-12"
-          },
-          {
-            "value": 12,
             "class": "offset-md-12"
           }
         ]
@@ -1184,15 +704,7 @@
             "class": "offset-lg-0"
           },
           {
-            "value": 0,
-            "class": "offset-lg-0"
-          },
-          {
             "value": "1",
-            "class": "offset-lg-1"
-          },
-          {
-            "value": 1,
             "class": "offset-lg-1"
           },
           {
@@ -1200,15 +712,7 @@
             "class": "offset-lg-2"
           },
           {
-            "value": 2,
-            "class": "offset-lg-2"
-          },
-          {
             "value": "3",
-            "class": "offset-lg-3"
-          },
-          {
-            "value": 3,
             "class": "offset-lg-3"
           },
           {
@@ -1216,15 +720,7 @@
             "class": "offset-lg-4"
           },
           {
-            "value": 4,
-            "class": "offset-lg-4"
-          },
-          {
             "value": "5",
-            "class": "offset-lg-5"
-          },
-          {
-            "value": 5,
             "class": "offset-lg-5"
           },
           {
@@ -1232,15 +728,7 @@
             "class": "offset-lg-6"
           },
           {
-            "value": 6,
-            "class": "offset-lg-6"
-          },
-          {
             "value": "7",
-            "class": "offset-lg-7"
-          },
-          {
-            "value": 7,
             "class": "offset-lg-7"
           },
           {
@@ -1248,15 +736,7 @@
             "class": "offset-lg-8"
           },
           {
-            "value": 8,
-            "class": "offset-lg-8"
-          },
-          {
             "value": "9",
-            "class": "offset-lg-9"
-          },
-          {
-            "value": 9,
             "class": "offset-lg-9"
           },
           {
@@ -1264,23 +744,11 @@
             "class": "offset-lg-10"
           },
           {
-            "value": 10,
-            "class": "offset-lg-10"
-          },
-          {
             "value": "11",
             "class": "offset-lg-11"
           },
           {
-            "value": 11,
-            "class": "offset-lg-11"
-          },
-          {
             "value": "12",
-            "class": "offset-lg-12"
-          },
-          {
-            "value": 12,
             "class": "offset-lg-12"
           }
         ]
@@ -1293,15 +761,7 @@
             "class": "offset-xl-0"
           },
           {
-            "value": 0,
-            "class": "offset-xl-0"
-          },
-          {
             "value": "1",
-            "class": "offset-xl-1"
-          },
-          {
-            "value": 1,
             "class": "offset-xl-1"
           },
           {
@@ -1309,15 +769,7 @@
             "class": "offset-xl-2"
           },
           {
-            "value": 2,
-            "class": "offset-xl-2"
-          },
-          {
             "value": "3",
-            "class": "offset-xl-3"
-          },
-          {
-            "value": 3,
             "class": "offset-xl-3"
           },
           {
@@ -1325,15 +777,7 @@
             "class": "offset-xl-4"
           },
           {
-            "value": 4,
-            "class": "offset-xl-4"
-          },
-          {
             "value": "5",
-            "class": "offset-xl-5"
-          },
-          {
-            "value": 5,
             "class": "offset-xl-5"
           },
           {
@@ -1341,15 +785,7 @@
             "class": "offset-xl-6"
           },
           {
-            "value": 6,
-            "class": "offset-xl-6"
-          },
-          {
             "value": "7",
-            "class": "offset-xl-7"
-          },
-          {
-            "value": 7,
             "class": "offset-xl-7"
           },
           {
@@ -1357,15 +793,7 @@
             "class": "offset-xl-8"
           },
           {
-            "value": 8,
-            "class": "offset-xl-8"
-          },
-          {
             "value": "9",
-            "class": "offset-xl-9"
-          },
-          {
-            "value": 9,
             "class": "offset-xl-9"
           },
           {
@@ -1373,23 +801,11 @@
             "class": "offset-xl-10"
           },
           {
-            "value": 10,
-            "class": "offset-xl-10"
-          },
-          {
             "value": "11",
             "class": "offset-xl-11"
           },
           {
-            "value": 11,
-            "class": "offset-xl-11"
-          },
-          {
             "value": "12",
-            "class": "offset-xl-12"
-          },
-          {
-            "value": 12,
             "class": "offset-xl-12"
           }
         ]
@@ -1402,15 +818,7 @@
             "class": "offset-xxl-0"
           },
           {
-            "value": 0,
-            "class": "offset-xxl-0"
-          },
-          {
             "value": "1",
-            "class": "offset-xxl-1"
-          },
-          {
-            "value": 1,
             "class": "offset-xxl-1"
           },
           {
@@ -1418,15 +826,7 @@
             "class": "offset-xxl-2"
           },
           {
-            "value": 2,
-            "class": "offset-xxl-2"
-          },
-          {
             "value": "3",
-            "class": "offset-xxl-3"
-          },
-          {
-            "value": 3,
             "class": "offset-xxl-3"
           },
           {
@@ -1434,15 +834,7 @@
             "class": "offset-xxl-4"
           },
           {
-            "value": 4,
-            "class": "offset-xxl-4"
-          },
-          {
             "value": "5",
-            "class": "offset-xxl-5"
-          },
-          {
-            "value": 5,
             "class": "offset-xxl-5"
           },
           {
@@ -1450,15 +842,7 @@
             "class": "offset-xxl-6"
           },
           {
-            "value": 6,
-            "class": "offset-xxl-6"
-          },
-          {
             "value": "7",
-            "class": "offset-xxl-7"
-          },
-          {
-            "value": 7,
             "class": "offset-xxl-7"
           },
           {
@@ -1466,15 +850,7 @@
             "class": "offset-xxl-8"
           },
           {
-            "value": 8,
-            "class": "offset-xxl-8"
-          },
-          {
             "value": "9",
-            "class": "offset-xxl-9"
-          },
-          {
-            "value": 9,
             "class": "offset-xxl-9"
           },
           {
@@ -1482,23 +858,11 @@
             "class": "offset-xxl-10"
           },
           {
-            "value": 10,
-            "class": "offset-xxl-10"
-          },
-          {
             "value": "11",
             "class": "offset-xxl-11"
           },
           {
-            "value": 11,
-            "class": "offset-xxl-11"
-          },
-          {
             "value": "12",
-            "class": "offset-xxl-12"
-          },
-          {
-            "value": 12,
             "class": "offset-xxl-12"
           }
         ]
@@ -1515,15 +879,7 @@
             "class": "order-0"
           },
           {
-            "value": 0,
-            "class": "order-0"
-          },
-          {
             "value": "1",
-            "class": "order-1"
-          },
-          {
-            "value": 1,
             "class": "order-1"
           },
           {
@@ -1531,15 +887,7 @@
             "class": "order-2"
           },
           {
-            "value": 2,
-            "class": "order-2"
-          },
-          {
             "value": "3",
-            "class": "order-3"
-          },
-          {
-            "value": 3,
             "class": "order-3"
           },
           {
@@ -1547,15 +895,7 @@
             "class": "order-4"
           },
           {
-            "value": 4,
-            "class": "order-4"
-          },
-          {
             "value": "5",
-            "class": "order-5"
-          },
-          {
-            "value": 5,
             "class": "order-5"
           },
           {
@@ -1563,15 +903,7 @@
             "class": "order-6"
           },
           {
-            "value": 6,
-            "class": "order-6"
-          },
-          {
             "value": "7",
-            "class": "order-7"
-          },
-          {
-            "value": 7,
             "class": "order-7"
           },
           {
@@ -1579,15 +911,7 @@
             "class": "order-8"
           },
           {
-            "value": 8,
-            "class": "order-8"
-          },
-          {
             "value": "9",
-            "class": "order-9"
-          },
-          {
-            "value": 9,
             "class": "order-9"
           },
           {
@@ -1595,23 +919,11 @@
             "class": "order-10"
           },
           {
-            "value": 10,
-            "class": "order-10"
-          },
-          {
             "value": "11",
             "class": "order-11"
           },
           {
-            "value": 11,
-            "class": "order-11"
-          },
-          {
             "value": "12",
-            "class": "order-12"
-          },
-          {
-            "value": 12,
             "class": "order-12"
           }
         ]
@@ -1628,15 +940,7 @@
             "class": "order-sm-0"
           },
           {
-            "value": 0,
-            "class": "order-sm-0"
-          },
-          {
             "value": "1",
-            "class": "order-sm-1"
-          },
-          {
-            "value": 1,
             "class": "order-sm-1"
           },
           {
@@ -1644,15 +948,7 @@
             "class": "order-sm-2"
           },
           {
-            "value": 2,
-            "class": "order-sm-2"
-          },
-          {
             "value": "3",
-            "class": "order-sm-3"
-          },
-          {
-            "value": 3,
             "class": "order-sm-3"
           },
           {
@@ -1660,15 +956,7 @@
             "class": "order-sm-4"
           },
           {
-            "value": 4,
-            "class": "order-sm-4"
-          },
-          {
             "value": "5",
-            "class": "order-sm-5"
-          },
-          {
-            "value": 5,
             "class": "order-sm-5"
           },
           {
@@ -1676,15 +964,7 @@
             "class": "order-sm-6"
           },
           {
-            "value": 6,
-            "class": "order-sm-6"
-          },
-          {
             "value": "7",
-            "class": "order-sm-7"
-          },
-          {
-            "value": 7,
             "class": "order-sm-7"
           },
           {
@@ -1692,15 +972,7 @@
             "class": "order-sm-8"
           },
           {
-            "value": 8,
-            "class": "order-sm-8"
-          },
-          {
             "value": "9",
-            "class": "order-sm-9"
-          },
-          {
-            "value": 9,
             "class": "order-sm-9"
           },
           {
@@ -1708,23 +980,11 @@
             "class": "order-sm-10"
           },
           {
-            "value": 10,
-            "class": "order-sm-10"
-          },
-          {
             "value": "11",
             "class": "order-sm-11"
           },
           {
-            "value": 11,
-            "class": "order-sm-11"
-          },
-          {
             "value": "12",
-            "class": "order-sm-12"
-          },
-          {
-            "value": 12,
             "class": "order-sm-12"
           }
         ]
@@ -1741,15 +1001,7 @@
             "class": "order-sm-0"
           },
           {
-            "value": 0,
-            "class": "order-sm-0"
-          },
-          {
             "value": "1",
-            "class": "order-sm-1"
-          },
-          {
-            "value": 1,
             "class": "order-sm-1"
           },
           {
@@ -1757,15 +1009,7 @@
             "class": "order-sm-2"
           },
           {
-            "value": 2,
-            "class": "order-sm-2"
-          },
-          {
             "value": "3",
-            "class": "order-sm-3"
-          },
-          {
-            "value": 3,
             "class": "order-sm-3"
           },
           {
@@ -1773,15 +1017,7 @@
             "class": "order-sm-4"
           },
           {
-            "value": 4,
-            "class": "order-sm-4"
-          },
-          {
             "value": "5",
-            "class": "order-sm-5"
-          },
-          {
-            "value": 5,
             "class": "order-sm-5"
           },
           {
@@ -1789,15 +1025,7 @@
             "class": "order-sm-6"
           },
           {
-            "value": 6,
-            "class": "order-sm-6"
-          },
-          {
             "value": "7",
-            "class": "order-sm-7"
-          },
-          {
-            "value": 7,
             "class": "order-sm-7"
           },
           {
@@ -1805,15 +1033,7 @@
             "class": "order-sm-8"
           },
           {
-            "value": 8,
-            "class": "order-sm-8"
-          },
-          {
             "value": "9",
-            "class": "order-sm-9"
-          },
-          {
-            "value": 9,
             "class": "order-sm-9"
           },
           {
@@ -1821,23 +1041,11 @@
             "class": "order-sm-10"
           },
           {
-            "value": 10,
-            "class": "order-sm-10"
-          },
-          {
             "value": "11",
             "class": "order-sm-11"
           },
           {
-            "value": 11,
-            "class": "order-sm-11"
-          },
-          {
             "value": "12",
-            "class": "order-sm-12"
-          },
-          {
-            "value": 12,
             "class": "order-sm-12"
           }
         ]
@@ -1854,15 +1062,7 @@
             "class": "order-lg-0"
           },
           {
-            "value": 0,
-            "class": "order-lg-0"
-          },
-          {
             "value": "1",
-            "class": "order-lg-1"
-          },
-          {
-            "value": 1,
             "class": "order-lg-1"
           },
           {
@@ -1870,15 +1070,7 @@
             "class": "order-lg-2"
           },
           {
-            "value": 2,
-            "class": "order-lg-2"
-          },
-          {
             "value": "3",
-            "class": "order-lg-3"
-          },
-          {
-            "value": 3,
             "class": "order-lg-3"
           },
           {
@@ -1886,15 +1078,7 @@
             "class": "order-lg-4"
           },
           {
-            "value": 4,
-            "class": "order-lg-4"
-          },
-          {
             "value": "5",
-            "class": "order-lg-5"
-          },
-          {
-            "value": 5,
             "class": "order-lg-5"
           },
           {
@@ -1902,15 +1086,7 @@
             "class": "order-lg-6"
           },
           {
-            "value": 6,
-            "class": "order-lg-6"
-          },
-          {
             "value": "7",
-            "class": "order-lg-7"
-          },
-          {
-            "value": 7,
             "class": "order-lg-7"
           },
           {
@@ -1918,15 +1094,7 @@
             "class": "order-lg-8"
           },
           {
-            "value": 8,
-            "class": "order-lg-8"
-          },
-          {
             "value": "9",
-            "class": "order-lg-9"
-          },
-          {
-            "value": 9,
             "class": "order-lg-9"
           },
           {
@@ -1934,23 +1102,11 @@
             "class": "order-lg-10"
           },
           {
-            "value": 10,
-            "class": "order-lg-10"
-          },
-          {
             "value": "11",
             "class": "order-lg-11"
           },
           {
-            "value": 11,
-            "class": "order-lg-11"
-          },
-          {
             "value": "12",
-            "class": "order-lg-12"
-          },
-          {
-            "value": 12,
             "class": "order-lg-12"
           }
         ]
@@ -1967,15 +1123,7 @@
             "class": "order-xl-0"
           },
           {
-            "value": 0,
-            "class": "order-xl-0"
-          },
-          {
             "value": "1",
-            "class": "order-xl-1"
-          },
-          {
-            "value": 1,
             "class": "order-xl-1"
           },
           {
@@ -1983,15 +1131,7 @@
             "class": "order-xl-2"
           },
           {
-            "value": 2,
-            "class": "order-xl-2"
-          },
-          {
             "value": "3",
-            "class": "order-xl-3"
-          },
-          {
-            "value": 3,
             "class": "order-xl-3"
           },
           {
@@ -1999,15 +1139,7 @@
             "class": "order-xl-4"
           },
           {
-            "value": 4,
-            "class": "order-xl-4"
-          },
-          {
             "value": "5",
-            "class": "order-xl-5"
-          },
-          {
-            "value": 5,
             "class": "order-xl-5"
           },
           {
@@ -2015,15 +1147,7 @@
             "class": "order-xl-6"
           },
           {
-            "value": 6,
-            "class": "order-xl-6"
-          },
-          {
             "value": "7",
-            "class": "order-xl-7"
-          },
-          {
-            "value": 7,
             "class": "order-xl-7"
           },
           {
@@ -2031,15 +1155,7 @@
             "class": "order-xl-8"
           },
           {
-            "value": 8,
-            "class": "order-xl-8"
-          },
-          {
             "value": "9",
-            "class": "order-xl-9"
-          },
-          {
-            "value": 9,
             "class": "order-xl-9"
           },
           {
@@ -2047,23 +1163,11 @@
             "class": "order-xl-10"
           },
           {
-            "value": 10,
-            "class": "order-xl-10"
-          },
-          {
             "value": "11",
             "class": "order-xl-11"
           },
           {
-            "value": 11,
-            "class": "order-xl-11"
-          },
-          {
             "value": "12",
-            "class": "order-xl-12"
-          },
-          {
-            "value": 12,
             "class": "order-xl-12"
           }
         ]
@@ -2080,15 +1184,7 @@
             "class": "order-xxl-0"
           },
           {
-            "value": 0,
-            "class": "order-xxl-0"
-          },
-          {
             "value": "1",
-            "class": "order-xxl-1"
-          },
-          {
-            "value": 1,
             "class": "order-xxl-1"
           },
           {
@@ -2096,15 +1192,7 @@
             "class": "order-xxl-2"
           },
           {
-            "value": 2,
-            "class": "order-xxl-2"
-          },
-          {
             "value": "3",
-            "class": "order-xxl-3"
-          },
-          {
-            "value": 3,
             "class": "order-xxl-3"
           },
           {
@@ -2112,15 +1200,7 @@
             "class": "order-xxl-4"
           },
           {
-            "value": 4,
-            "class": "order-xxl-4"
-          },
-          {
             "value": "5",
-            "class": "order-xxl-5"
-          },
-          {
-            "value": 5,
             "class": "order-xxl-5"
           },
           {
@@ -2128,15 +1208,7 @@
             "class": "order-xxl-6"
           },
           {
-            "value": 6,
-            "class": "order-xxl-6"
-          },
-          {
             "value": "7",
-            "class": "order-xxl-7"
-          },
-          {
-            "value": 7,
             "class": "order-xxl-7"
           },
           {
@@ -2144,15 +1216,7 @@
             "class": "order-xxl-8"
           },
           {
-            "value": 8,
-            "class": "order-xxl-8"
-          },
-          {
             "value": "9",
-            "class": "order-xxl-9"
-          },
-          {
-            "value": 9,
             "class": "order-xxl-9"
           },
           {
@@ -2160,23 +1224,11 @@
             "class": "order-xxl-10"
           },
           {
-            "value": 10,
-            "class": "order-xxl-10"
-          },
-          {
             "value": "11",
             "class": "order-xxl-11"
           },
           {
-            "value": 11,
-            "class": "order-xxl-11"
-          },
-          {
             "value": "12",
-            "class": "order-xxl-12"
-          },
-          {
-            "value": 12,
             "class": "order-xxl-12"
           }
         ]
@@ -2184,10 +1236,6 @@
       {
         "name": "flex-fill",
         "values": [
-          {
-            "value": true,
-            "class": "flex-fill"
-          },
           {
             "value": "true",
             "class": "flex-fill"
@@ -2198,10 +1246,6 @@
         "name": "flex-sm-fill",
         "values": [
           {
-            "value": true,
-            "class": "flex-sm-fill"
-          },
-          {
             "value": "true",
             "class": "flex-sm-fill"
           }
@@ -2210,10 +1254,6 @@
       {
         "name": "flex-md-fill",
         "values": [
-          {
-            "value": true,
-            "class": "flex-md-fill"
-          },
           {
             "value": "true",
             "class": "flex-md-fill"
@@ -2224,10 +1264,6 @@
         "name": "flex-lg-fill",
         "values": [
           {
-            "value": true,
-            "class": "flex-lg-fill"
-          },
-          {
             "value": "true",
             "class": "flex-lg-fill"
           }
@@ -2236,10 +1272,6 @@
       {
         "name": "flex-xl-fill",
         "values": [
-          {
-            "value": true,
-            "class": "flex-xl-fill"
-          },
           {
             "value": "true",
             "class": "flex-xl-fill"
@@ -2250,10 +1282,6 @@
         "name": "flex-xxl-fill",
         "values": [
           {
-            "value": true,
-            "class": "flex-xxl-fill"
-          },
-          {
             "value": "true",
             "class": "flex-xxl-fill"
           }
@@ -2263,16 +1291,8 @@
         "name": "flex-grow",
         "values": [
           {
-            "value": 0,
-            "class": "flex-grow-0"
-          },
-          {
             "value": "0",
             "class": "flex-grow-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-grow-1"
           },
           {
             "value": "1",
@@ -2284,16 +1304,8 @@
         "name": "flex-grow-sm",
         "values": [
           {
-            "value": 0,
-            "class": "flex-sm-grow-0"
-          },
-          {
             "value": "0",
             "class": "flex-sm-grow-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-sm-grow-1"
           },
           {
             "value": "1",
@@ -2305,16 +1317,8 @@
         "name": "flex-grow-md",
         "values": [
           {
-            "value": 0,
-            "class": "flex-md-grow-0"
-          },
-          {
             "value": "0",
             "class": "flex-md-grow-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-md-grow-1"
           },
           {
             "value": "1",
@@ -2326,16 +1330,8 @@
         "name": "flex-grow-lg",
         "values": [
           {
-            "value": 0,
-            "class": "flex-lg-grow-0"
-          },
-          {
             "value": "0",
             "class": "flex-lg-grow-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-lg-grow-1"
           },
           {
             "value": "1",
@@ -2347,16 +1343,8 @@
         "name": "flex-grow-xl",
         "values": [
           {
-            "value": 0,
-            "class": "flex-xl-grow-0"
-          },
-          {
             "value": "0",
             "class": "flex-xl-grow-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-xl-grow-1"
           },
           {
             "value": "1",
@@ -2368,16 +1356,8 @@
         "name": "flex-grow-xxl",
         "values": [
           {
-            "value": 0,
-            "class": "flex-xxl-grow-0"
-          },
-          {
             "value": "0",
             "class": "flex-xxl-grow-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-xxl-grow-1"
           },
           {
             "value": "1",
@@ -2389,16 +1369,8 @@
         "name": "flex-shrink",
         "values": [
           {
-            "value": 0,
-            "class": "flex-shrink-0"
-          },
-          {
             "value": "0",
             "class": "flex-shrink-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-shrink-1"
           },
           {
             "value": "1",
@@ -2410,16 +1382,8 @@
         "name": "flex-shrink-sm",
         "values": [
           {
-            "value": 0,
-            "class": "flex-sm-shrink-0"
-          },
-          {
             "value": "0",
             "class": "flex-sm-shrink-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-sm-shrink-1"
           },
           {
             "value": "1",
@@ -2431,16 +1395,8 @@
         "name": "flex-shrink-md",
         "values": [
           {
-            "value": 0,
-            "class": "flex-md-shrink-0"
-          },
-          {
             "value": "0",
             "class": "flex-md-shrink-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-md-shrink-1"
           },
           {
             "value": "1",
@@ -2452,16 +1408,8 @@
         "name": "flex-shrink-lg",
         "values": [
           {
-            "value": 0,
-            "class": "flex-lg-shrink-0"
-          },
-          {
             "value": "0",
             "class": "flex-lg-shrink-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-lg-shrink-1"
           },
           {
             "value": "1",
@@ -2473,16 +1421,8 @@
         "name": "flex-shrink-xl",
         "values": [
           {
-            "value": 0,
-            "class": "flex-xl-shrink-0"
-          },
-          {
             "value": "0",
             "class": "flex-xl-shrink-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-xl-shrink-1"
           },
           {
             "value": "1",
@@ -2494,16 +1434,8 @@
         "name": "flex-shrink-xxl",
         "values": [
           {
-            "value": 0,
-            "class": "flex-xxl-shrink-0"
-          },
-          {
             "value": "0",
             "class": "flex-xxl-shrink-0"
-          },
-          {
-            "value": 1,
-            "class": "flex-xxl-shrink-1"
           },
           {
             "value": "1",
@@ -2622,10 +1554,6 @@
         "name": "sm",
         "values": [
           {
-            "value": true,
-            "class": "container-sm"
-          },
-          {
             "value": "true",
             "class": "container-sm"
           }
@@ -2634,10 +1562,6 @@
       {
         "name": "md",
         "values": [
-          {
-            "value": true,
-            "class": "container-md"
-          },
           {
             "value": "true",
             "class": "container-md"
@@ -2648,10 +1572,6 @@
         "name": "lg",
         "values": [
           {
-            "value": true,
-            "class": "container-lg"
-          },
-          {
             "value": "true",
             "class": "container-lg"
           }
@@ -2661,10 +1581,6 @@
         "name": "xl",
         "values": [
           {
-            "value": true,
-            "class": "container-xl"
-          },
-          {
             "value": "true",
             "class": "container-xl"
           }
@@ -2673,10 +1589,6 @@
       {
         "name": "xxl",
         "values": [
-          {
-            "value": true,
-            "class": "container-xxl"
-          },
           {
             "value": "true",
             "class": "container-xxl"

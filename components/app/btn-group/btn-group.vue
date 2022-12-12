@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import validBooleanTrue from '~/modules/validator/bool-true.json'
 import validSize from '~/modules/validator/size.json'
 import appButton from './../button/button.vue'
 export default {

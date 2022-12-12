@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-const validBooleanTrue = ['true', true]
 export default {
   props: {
     /* Класс container-sm */
@@ -12,7 +11,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс container-md */
@@ -20,7 +19,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс container-lg */
@@ -28,7 +27,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс container-xl */
@@ -36,7 +35,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс container-xxl */
@@ -44,7 +43,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс container-fluid */
@@ -52,7 +51,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
   },

@@ -1,13 +1,3 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
-// @ts-ignore
-import {getWhiteList} from './scripts/whitelist/generator-whitelist.mjs'
-import * as fs from 'fs' // модуль для работы с файловой системой
-/* getWhiteList() // формирование белого списка классов
-import whitelist from './scripts/whitelist/whitelist.json'
-console.log('🚀 -> whitelist', whitelist) */
-
-
-
 export default defineNuxtConfig({
   ssr: false,
   css: ['assets/css/main.css'],
