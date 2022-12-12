@@ -1,3 +1,4 @@
+# События для компонентов
     @dblclick="$emit('dblclick', $event)"
     @click="$emit('click', $event)"
     @change="$emit('change', $event)"
