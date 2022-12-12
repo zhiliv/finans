@@ -7,15 +7,13 @@
 <script>
 export default {
   props: {
-    /*
-     * Расположение заголовка сверху
-     */
+    /* Расположение заголовка сверху */
     top: {
-      type: String,
+      type: [String, Boolean],
       default: null,
-      validator(value){
-        return value === 'true' || value === true
-      }
+      validator(value) {
+        return String(value) === 'true'
+      },
     },
   },
   computed: {

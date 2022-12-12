@@ -5,7 +5,6 @@
 </template>
 <script>
 import mixinFunction from '~/mixins/globalMixins'
-import validBooleanTrue from '~/modules/validator/bool-true.json'
 import validCol from '~/modules/validator/col.json'
 import validOffset from '~/modules/validator/offset.json'
 import validOffsetAdapt from '~/modules/validator/offset-adapter.json'
@@ -14,7 +13,7 @@ import validFlex from '~/modules/validator/flex.json'
 import validFloat from '~/modules/validator/float.json'
 
 export default {
-  mixins: [mixinFunction, validBooleanTrue],
+  mixins: [mixinFunction],
   props: {
     col: {
       /* Класс col, col-* */
@@ -117,7 +116,7 @@ export default {
       type: [String, Number],
       default: null,
       validator(value) {
-        return validOffsetAdapt.includes(value)
+        return validOffsetAdapt.includes(String(value))
       },
     },
     /* Класс order-sm-* */
@@ -125,7 +124,7 @@ export default {
       type: [String, Number],
       default: null,
       validator(value) {
-        return validOrder.includes(value)
+        return validOrder.includes(String(value))
       },
     },
     /* Класс order-md-* */
@@ -133,7 +132,7 @@ export default {
       type: [String, Number],
       default: null,
       validator(value) {
-        return validOrder.includes(value)
+        return validOrder.includes(String(value))
       },
     },
     /* Класс order-lg-* */
@@ -141,7 +140,7 @@ export default {
       type: [String, Number],
       default: null,
       validator(value) {
-        return validOrder.includes(value)
+        return validOrder.includes(String(value))
       },
     },
     /* Класс order-xl-* */
@@ -149,7 +148,7 @@ export default {
       type: [String, Number],
       default: null,
       validator(value) {
-        return validOrder.includes(value)
+        return validOrder.includes(String(value))
       },
     },
     /* Класс order-xxl-* */
@@ -157,7 +156,7 @@ export default {
       type: [String, Number],
       default: null,
       validator(value) {
-        return validOrder.includes(value)
+        return validOrder.includes(String(value))
       },
     },
     /* Класс flex-fill */
@@ -165,7 +164,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс flex-sm-fill */
@@ -173,7 +172,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс flex-md-fill */
@@ -181,7 +180,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс flex-lg-fill */
@@ -189,7 +188,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс flex-xl-fill */
@@ -197,7 +196,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс flex-xxl-fill */
@@ -205,7 +204,7 @@ export default {
       type: [String, Boolean],
       default: null,
       validator(value) {
-        return validBooleanTrue.includes(value)
+        return String(value) === 'true'
       },
     },
     /* Класс flex-grow-* */
@@ -354,6 +353,9 @@ export default {
       },
     },
   },
+  mounted() {
+    console.log(this)
+  },
   computed: {
     /*
      * Формирование классов для компонента
@@ -366,8 +368,9 @@ export default {
       const { flexGrow, flexSmGrow, flexMdGrow, flexLgGrow, flexXlGrow, flexXxlGrow } = this
       const { flexShrink, flexSmShrink, flexMdShrink, flexLgShrink, flexXlShrink, flexXxlShrink } = this
       const { float, floatSm, floatMd, floatLg, floatXl, floatXxl } = this
+      const {strToBool} = this
       return {
-        col: this.strToBool(col) === true, // проверяем что значение не является числом и является булевым типом
+        col: strToBool(col) === true, // проверяем что значение не является числом и является булевым типом
         'col-auto': col === 'auto',
         [`col-${col}`]: !!col && col !== 'auto' && col !== 'false', // проверяем что значение является числом
         'col-sm': colSm === 'true', // проверяем что значение не является числом и является булевым типом

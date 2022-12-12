@@ -1,10 +1,10 @@
 <template>
   <app-col col="12" atr="test" flex-fill="true">
-    <app-button btn-size="sm" @click="test != !test">Тест</app-button>
+    <app-d-flex>
+      dfgdsrg
+    </app-d-flex>
+    <app-button size="sm" @click="test != !test">Тест</app-button>
   </app-col>
-  <app-test>
-    <app-lll arttt="fsdfgs" btn-size="sm">Тест</app-lll>
-  </app-test>
 </template>
 <script>
 import menu from '~/system/default-menu.json' // получение списка меню

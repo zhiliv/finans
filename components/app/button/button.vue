@@ -36,10 +36,10 @@ export default {
   },
   computed: {
     classes() {
-      const { btnSize } = this
+      const { size } = this
       return {
         btn: true,
-        [`btn-${btnSize}`]: !!btnSize,
+        [`btn-${size}`]: size,
       }
     },
   },
