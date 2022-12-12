@@ -1,6 +1,5 @@
 <template>
   <app-button
-    v-bind="$attrs"
     :class="{'no-select': true,'align-items-start': true,'d-flex': true,'my-1': true}"
     :btn-size="size"
     @click="$emit('click', click($event))"
@@ -21,7 +20,7 @@ export default {
     /* Классы при активности */
     classesActive: {
       type: String,
-      default: '',
+      default: null,
     },
     /* Размер */
     size: {

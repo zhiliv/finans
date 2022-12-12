@@ -67,20 +67,14 @@
 </template>
 
 <script>
-import appContainer from './../container/container.vue'
-import appA from './../a/a.vue'
 import { addStringListClass } from './../../../scripts/component/func'
 
 export default {
-  components: {
-    'app-container': appContainer,
-    'app-a': appA,
-  },
   props: {
     /* Заголовок меню */
     title: {
       type: String,
-      default: '',
+      default: null,
     },
     /* Значение списка меню */
     menu: {
@@ -95,17 +89,17 @@ export default {
     /* Классы для пунктов */
     classLi: {
       type: String,
-      default: '',
+      default: null,
     },
     /* Классы для ссылки */
     classLink: {
       type: String,
-      default: '',
+      default: null,
     },
     /* Классы для dropdown */
     classDropdown: {
       type: String,
-      default: '',
+      default: null,
     },
   },
   methods: {

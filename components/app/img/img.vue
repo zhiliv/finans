@@ -1,5 +1,5 @@
 <template>
-  <img :src="src" :class="classes" v-bind="$attrs" @click="$emit('click', $event)" />
+  <img :src="src" :class="classes" @click="$emit('click', $event)" />
 </template>
 
 <script>
@@ -11,17 +11,20 @@ export default {
       default: null,
     },
     /* Класс img-fluid */
-    imgFluid: {
-      type: Boolean,
+    fluid: {
+      type: [String, Boolean],
       default: null,
       validator(value) {
-        return  value === 'true'
+        return String(value) === 'true'
       },
     },
     /* Класс img-thumbnail */
-    imgThumbnail: {
+    thumbnail: {
       type: Boolean,
       default: false,
+      validator(value) {
+        return String(value) === 'true'
+      },
     },
   },
   computed: {

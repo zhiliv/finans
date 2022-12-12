@@ -15,8 +15,8 @@
 </template>
 
 <script>
+import validSize from '~/modules/validator/size.json'
 export default {
-  inheritAttrs: false,
   props: {
     /* значение */
     value: {
@@ -24,19 +24,19 @@ export default {
       default: '',
     },
     /* Размер */
-    textareaSize: {
+    size: {
       type: String,
       default: null,
       validator(value) {
-        return value === 'sm' || value === 'lg'
+        return validSize.includes(value)
       },
     },
     /* Подсчет количества символов */
     isCount: {
-      type: String,
-      default: 'false',
+      type: [String, Boolean],
+      default: null,
       validator(value) {
-        return value === 'true' || value === 'false'
+        return String(value) === 'true'
       },
     },
   },
@@ -46,9 +46,9 @@ export default {
   computed: {
     /* Установка классов */
     classes() {
-      const { textareaSize } = this
+      const { size } = this
       return {
-        [`textarea-${textareaSize}`]: !!textareaSize,
+        [`textarea-${size}`]: size,
       }
     },
   },

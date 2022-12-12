@@ -1,5 +1,5 @@
 <template>
-  <hr v-bind="$attrs" />
+  <hr/>
 </template>
 
 

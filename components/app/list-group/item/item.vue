@@ -1,6 +1,5 @@
 <template>
   <li
-    v-bind="$attrs"
     :class="[{'no-select': true, 'align-items-start': true, 'd-block': true, 'list-group-item': true}]"
     @click="$emit('click', click($event))"
   >
@@ -14,7 +13,7 @@ export default {
     /* Классы при активности */
     classesActive: {
       type: String,
-      default: '',
+      default: null,
     },
   },
   data() {

@@ -12,17 +12,7 @@
 </template>
 
 <script>
-import appRow from './../row/row.vue'
-import appCol from './../col/col.vue'
-import appH from './../h/h.vue'
-import appBtnClose from './../button/close/close.vue'
 export default {
-  components: {
-    'app-row': appRow,
-    'app-col': appCol,
-    'app-button-close': appBtnClose,
-    'app-h': appH,
-  },
   props: {
     /* Заголовок */
     title: {

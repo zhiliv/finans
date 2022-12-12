@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/valid-template-root -->
 <template></template>
 <script>
+import colors from '~/modules/validator/color.json'
 export default {
   props: {
     type: {
@@ -33,17 +34,7 @@ export default {
       type: String,
       default: '',
       validator(value) {
-        return (
-          value === '' ||
-          value === 'primary' ||
-          value === 'secondary' ||
-          value === 'success' ||
-          value === 'info' ||
-          value === 'warning' ||
-          value === 'danger' ||
-          value === 'dark' ||
-          value === 'light'
-        )
+        return colors.includes(value)
       },
     },
     showMessage: {
@@ -51,7 +42,7 @@ export default {
       type: [Boolean, String],
       default: false,
       validator(value) {
-        return value === false || value === true || value === 'false' || value === 'true'
+        return String(value) === 'false' || String(value) === 'true'
       },
     },
   },

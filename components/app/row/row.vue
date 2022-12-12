@@ -1,25 +1,28 @@
 <template>
-  <div :class="classes" v-bind="$attrs">
+  <div :class="[{'row': true}, classes]">
     <slot></slot>
   </div>
 </template>
 
 <script>
-const validRow = ['1', '2', '3', '4', '5', '6', 'auto', null]
+import validRow from '~/modules/validator/row-cols.json'
 export default {
   inheritAttrs: true,
   props: {
     /* Класс row */
     row: {
       type: String,
-      default: 'true',
+      default: true,
+      validator(value) {
+        return String(value) === 'true' || String(value) == 'false'
+      },
     },
     /* Класс row-cols-* */
     rowCols: {
       type: String,
       default: null,
       validator(value) {
-        return validRow.includes(value)
+        return validRow.includes(String(value))
       },
     },
     /* Класс row-cols-sm-* */
@@ -27,7 +30,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validRow.includes(value)
+        return validRow.includes(String(value))
       },
     },
     /* Класс row-cols-md-* */
@@ -35,7 +38,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validRow.includes(value)
+        return validRow.includes(String(value))
       },
     },
     /* Класс row-cols-lg-* */
@@ -43,7 +46,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validRow.includes(value)
+        return validRow.includes(String(value))
       },
     },
     /* Класс row-cols-xl-* */
@@ -51,7 +54,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validRow.includes(value)
+        return validRow.includes(String(value))
       },
     },
     /* Класс row-cols-xxl-* */
@@ -59,7 +62,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return validRow.includes(value)
+        return validRow.includes(String(value))
       },
     },
   },
@@ -80,8 +83,6 @@ export default {
 }
 </script>
 <style>
-
-
   .row-cols-auto > * {
     flex: 0 0 auto;
     width: auto;

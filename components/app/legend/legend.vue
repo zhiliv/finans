@@ -1,5 +1,5 @@
 <template>
-  <legend v-bind="$attrs">
+  <legend>
     <slot></slot>
   </legend>
 </template>

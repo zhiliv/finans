@@ -8,10 +8,10 @@ export default {
   props: {
     /* Установка класса form-control */
     formControl: {
-      type: String,
-      default: 'true',
+      type: [String, Boolean],
+      default: true,
       validator(value) {
-        return value === 'false'  || value === 'true'
+        return value === 'false' || value === 'true'
       },
     },
     /* Значение поля */

@@ -6,8 +6,8 @@
 
 
 <style>
-b,
-strong {
-  font-weight: bolder;
-}
+  b,
+  strong {
+    font-weight: bolder;
+  }
 </style>
