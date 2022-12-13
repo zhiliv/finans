@@ -1,0 +1,184 @@
+:root {
+  --amber: #ffc107;
+  --amber-lighten-5: #fff8e1;
+  --amber-lighten-4: #ffecb3;
+  --amber-lighten-3: #ffe082;
+  --amber-lighten-2: #ffd54f;
+  --amber-lighten-1: #ffca28;
+  --amber-darken-1: #ffb300;
+  --amber-darken-2: #ffa000;
+  --amber-darken-3: #ff8f00;
+  --amber-darken-4: #ff6f00;
+  --amber-accent-1: #ffe57f;
+  --amber-accent-2: #ffd740;
+  --amber-accent-3: #ffc400;
+  --amber-accent-4: #ffab00;
+}
+
+.bg-amber {
+  background-color: var(--amber) !important;
+}
+
+.bg-amber-lighten-5 {
+  background-color: var(--amber-lighten-5) !important;
+}
+
+.bg-amber-lighten-4 {
+  background-color: var(--amber-lighten-4) !important;
+}
+
+.bg-amber-lighten-3 {
+  background-color: var(--amber-lighten-3) !important;
+}
+
+.bg-amber-lighten-2 {
+  background-color: var(--amber-lighten-2) !important;
+}
+
+.bg-amber-lighten-1 {
+  background-color: var(--amber-lighten-1) !important;
+}
+
+.bg-amber-darken-1 {
+  background-color: var(--amber-darken-1) !important;
+}
+
+.bg-amber-darken-2 {
+  background-color: var(--amber-darken-2) !important;
+}
+
+.bg-amber-darken-3 {
+  background-color: var(--amber-darken-3) !important;
+}
+
+.bg-amber-darken-4 {
+  background-color: var(--amber-darken-4) !important;
+}
+
+.bg-amber-accent-1 {
+  background-color: var(--amber-accent-1) !important;
+}
+
+.bg-amber-accent-2 {
+  background-color: var(--amber-accent-2) !important;
+}
+
+.bg-amber-accent-3 {
+  background-color: var(--amber-accent-3) !important;
+}
+
+.bg-amber-accent-4 {
+  background-color: var(--amber-accent-4) !important;
+}
+
+.bg-amber-hvr:hover {
+  background-color: var(--amber) !important;
+}
+
+.bg-amber-lighten-5-hvr:hover {
+  background-color: var(--amber-lighten-5) !important;
+}
+
+.bg-amber-lighten-4-hvr:hover {
+  background-color: var(--amber-lighten-4) !important;
+}
+
+.bg-amber-lighten-3-hvr:hover {
+  background-color: var(--amber-lighten-3) !important;
+}
+
+.bg-amber-lighten-2-hvr:hover {
+  background-color: var(--amber-lighten-2) !important;
+}
+
+.bg-amber-lighten-1-hvr:hover {
+  background-color: var(--amber-lighten-1) !important;
+}
+
+.bg-amber-darken-1-hvr:hover {
+  background-color: var(--amber-darken-1) !important;
+}
+
+.bg-amber-darken-2-hvr:hover {
+  background-color: var(--amber-darken-2) !important;
+}
+
+.bg-amber-darken-3-hvr:hover {
+  background-color: var(--amber-darken-3) !important;
+}
+
+.bg-amber-darken-4-hvr:hover {
+  background-color: var(--amber-darken-4) !important;
+}
+
+.bg-amber-accent-1-hvr:hover {
+  background-color: var(--amber-accent-1) !important;
+}
+
+.bg-amber-accent-2-hvr:hover {
+  background-color: var(--amber-accent-2) !important;
+}
+
+.bg-amber-accent-3-hvr:hover {
+  background-color: var(--amber-accent-3) !important;
+}
+
+.bg-amber-accent-4-hvr:hover {
+  background-color: var(--amber-accent-4) !important;
+}
+
+.bg-amber-fcs:focus {
+  background-color: var(--amber) !important;
+}
+
+.bg-amber-lighten-5-fcs:focus {
+  background-color: var(--amber-lighten-5) !important;
+}
+
+.bg-amber-lighten-4-fcs:focus {
+  background-color: var(--amber-lighten-4) !important;
+}
+
+.bg-amber-lighten-3-fcs:focus {
+  background-color: var(--amber-lighten-3) !important;
+}
+
+.bg-amber-lighten-2-fcs:focus {
+  background-color: var(--amber-lighten-2) !important;
+}
+
+.bg-amber-lighten-1-fcs:focus {
+  background-color: var(--amber-lighten-1) !important;
+}
+
+.bg-amber-darken-1-fcs:focus {
+  background-color: var(--amber-darken-1) !important;
+}
+
+.bg-amber-darken-2-fcs:focus {
+  background-color: var(--amber-darken-2) !important;
+}
+
+.bg-amber-darken-3-fcs:focus {
+  background-color: var(--amber-darken-3) !important;
+}
+
+.bg-amber-darken-4-fcs:focus {
+  background-color: var(--amber-darken-4) !important;
+}
+
+.bg-amber-accent-1-fcs:focus {
+  background-color: var(--amber-accent-1) !important;
+}
+
+.bg-amber-accent-2-fcs:focus {
+  background-color: var(--amber-accent-2) !important;
+}
+
+.bg-amber-accent-3-fcs:focus {
+  background-color: var(--amber-accent-3) !important;
+}
+
+.bg-amber-accent-4-fcs:focus {
+  background-color: var(--amber-accent-4) !important;
+}

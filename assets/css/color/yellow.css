@@ -1,0 +1,16 @@
+:root {
+  --yellow: #ffeb3b;
+  --yellow-lighten-5: #fffde7;
+  --yellow-lighten-4: #fff9c4;
+  --yellow-lighten-3: #fff59d;
+  --yellow-lighten-2: #fff176;
+  --yellow-lighten-1: #ffee58;
+  --yellow-darken-1: #fdd835;
+  --yellow-darken-2: #fbc02d;
+  --yellow-darken-3: #f9a825;
+  --yellow-darken-4: #f57f17;
+  --yellow-accent-1: #ffff8d;
+  --yellow-accent-2: #ffff00;
+  --yellow-accent-3: #ffea00;
+  --yellow-accent-4: #ffd600;
+}

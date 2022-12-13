@@ -1,13 +1,15 @@
 <template>
-  <app-col col="12" atr="test" flex-fill="true">
-    <app-d-flex>
-      dfgdsrg
-    </app-d-flex>
-    <app-button size="sm" @click="test != !test">Тест</app-button>
-  </app-col>
+  <app-container fluid="true" class="vh-100">
+    <app-row class="h-100">
+      <app-col col="3" style="background: red;">
+
+      </app-col>
+    </app-row>
+  </app-container>
+
 </template>
 <script>
-import menu from '~/system/default-menu.json' // получение списка меню
+import menu from '~~/modules/menu/default-menu.json' // получение списка меню
 export default {
   mounted() {
     this.menu = menu // установка значения меню
@@ -26,8 +28,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '~/assets/css/size.css';
+@import '~/assets/css/padding.css';
   .h-90 {
     height: 90%;
+  }
+
+  .test{
+    background: $secondary
   }
 </style>

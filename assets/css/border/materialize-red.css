@@ -1,0 +1,132 @@
+:root {
+  --materialize-red: #e51c23;
+  --materialize-red-lighten-5: #fdeaeb;
+  --materialize-red-lighten-4: #f8c1c3;
+  --materialize-red-lighten-3: #f3989b;
+  --materialize-red-lighten-2: #ee6e73;
+  --materialize-red-lighten-1: #ea454b;
+  --materialize-red-darken-1: #d0181e;
+  --materialize-red-darken-2: #b9151b;
+  --materialize-red-darken-3: #a21318;
+  --materialize-red-darken-4: #8b1014;
+}
+
+.border-materialize-red {
+  border-color: var(--materialize-red) !important;
+}
+
+.border-materialize-red-lighten-5 {
+  border-color: var(--materialize-red-lighten-5) !important;
+}
+
+.border-materialize-red-lighten-4 {
+  border-color: var(--materialize-red-lighten-4) !important;
+}
+
+.border-materialize-red-lighten-3 {
+  border-color: var(--materialize-red-lighten-3) !important;
+}
+
+.border-materialize-red-lighten-2 {
+  border-color: var(--materialize-red-lighten-2) !important;
+}
+
+.border-materialize-red-lighten-1 {
+  border-color: var(--materialize-red-lighten-1) !important;
+}
+
+.border-materialize-red-darken-1 {
+  border-color: var(--materialize-red-darken-1) !important;
+}
+
+.border-materialize-red-darken-2 {
+  border-color: var(--materialize-red-darken-2) !important;
+}
+
+.border-materialize-red-darken-3 {
+  border-color: var(--materialize-red-darken-3) !important;
+}
+
+.border-materialize-red-darken-4 {
+  border-color: var(--materialize-red-darken-4) !important;
+}
+
+.border-materialize-red-hvr:hover {
+  border-color: var(--materialize-red) !important;
+}
+
+.border-materialize-red-lighten-5-hvr:hover {
+  border-color: var(--materialize-red-lighten-5) !important;
+}
+
+.border-materialize-red-lighten-4-hvr:hover {
+  border-color: var(--materialize-red-lighten-4) !important;
+}
+
+.border-materialize-red-lighten-3-hvr:hover {
+  border-color: var(--materialize-red-lighten-3) !important;
+}
+
+.border-materialize-red-lighten-2-hvr:hover {
+  border-color: var(--materialize-red-lighten-2) !important;
+}
+
+.border-materialize-red-lighten-1-hvr:hover {
+  border-color: var(--materialize-red-lighten-1) !important;
+}
+
+.border-materialize-red-darken-1-hvr:hover {
+  border-color: var(--materialize-red-darken-1) !important;
+}
+
+.border-materialize-red-darken-2-hvr:hover {
+  border-color: var(--materialize-red-darken-2) !important;
+}
+
+.border-materialize-red-darken-3-hvr:hover {
+  border-color: var(--materialize-red-darken-3) !important;
+}
+
+.border-materialize-red-darken-4-hvr:hover {
+  border-color: var(--materialize-red-darken-4) !important;
+}
+
+.border-materialize-red-fcs:focus {
+  border-color: var(--materialize-red) !important;
+}
+
+.border-materialize-red-lighten-5-fcs:focus {
+  border-color: var(--materialize-red-lighten-5) !important;
+}
+
+.border-materialize-red-lighten-4-fcs:focus {
+  border-color: var(--materialize-red-lighten-4) !important;
+}
+
+.border-materialize-red-lighten-3-fcs:focus {
+  border-color: var(--materialize-red-lighten-3) !important;
+}
+
+.border-materialize-red-lighten-2-fcs:focus {
+  border-color: var(--materialize-red-lighten-2) !important;
+}
+
+.border-materialize-red-lighten-1-fcs:focus {
+  border-color: var(--materialize-red-lighten-1) !important;
+}
+
+.border-materialize-red-darken-1-fcs:focus {
+  border-color: var(--materialize-red-darken-1) !important;
+}
+
+.border-materialize-red-darken-2-fcs:focus {
+  border-color: var(--materialize-red-darken-2) !important;
+}
+
+.border-materialize-red-darken-3-fcs:focus {
+  border-color: var(--materialize-red-darken-3) !important;
+}
+
+.border-materialize-red-darken-4-fcs:focus {
+  border-color: var(--materialize-red-darken-4) !important;
+}

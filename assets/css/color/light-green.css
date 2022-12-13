@@ -1,0 +1,16 @@
+:root {
+  --light-green: #8bc34a;
+  --light-green-lighten-5: #f1f8e9;
+  --light-green-lighten-4: #dcedc8;
+  --light-green-lighten-3: #c5e1a5;
+  --light-green-lighten-2: #aed581;
+  --light-green-lighten-1: #9ccc65;
+  --light-green-darken-1: #7cb342;
+  --light-green-darken-2: #689f38;
+  --light-green-darken-3: #558b2f;
+  --light-green-darken-4: #33691e;
+  --light-green-accent-1: #ccff90;
+  --light-green-accent-2: #b2ff59;
+  --light-green-accent-3: #76ff03;
+  --light-green-accent-4: #64dd17;
+}

@@ -1,0 +1,184 @@
+:root {
+  --deep-orange: #ff5722;
+  --deep-orange-lighten-5: #fbe9e7;
+  --deep-orange-lighten-4: #ffccbc;
+  --deep-orange-lighten-3: #ffab91;
+  --deep-orange-lighten-2: #ff8a65;
+  --deep-orange-lighten-1: #ff7043;
+  --deep-orange-darken-1: #f4511e;
+  --deep-orange-darken-2: #e64a19;
+  --deep-orange-darken-3: #d84315;
+  --deep-orange-darken-4: #bf360c;
+  --deep-orange-accent-1: #ff9e80;
+  --deep-orange-accent-2: #ff6e40;
+  --deep-orange-accent-3: #ff3d00;
+  --deep-orange-accent-4: #dd2c00;
+}
+
+.deep-orange-text {
+  color: var(--deep-orange) !important;
+}
+
+.deep-orange-lighten-5-text {
+  color: var(--deep-orange-lighten-5) !important;
+}
+
+.deep-orange-lighten-4-text {
+  color: var(--deep-orange-lighten-4) !important;
+}
+
+.deep-orange-lighten-3-text {
+  color: var(--deep-orange-lighten-3) !important;
+}
+
+.deep-orange-lighten-2-text {
+  color: var(--deep-orange-lighten-2) !important;
+}
+
+.deep-orange-lighten-1-text {
+  color: var(--deep-orange-lighten-1) !important;
+}
+
+.deep-orange-darken-1-text {
+  color: var(--deep-orange-darken-1) !important;
+}
+
+.deep-orange-darken-2-text {
+  color: var(--deep-orange-darken-2) !important;
+}
+
+.deep-orange-darken-3-text {
+  color: var(--deep-orange-darken-3) !important;
+}
+
+.deep-orange-darken-4-text {
+  color: var(--deep-orange-darken-4) !important;
+}
+
+.deep-orange-accent-1-text {
+  color: var(--deep-orange-accent-1) !important;
+}
+
+.deep-orange-accent-2-text {
+  color: var(--deep-orange-accent-2) !important;
+}
+
+.deep-orange-accent-3-text {
+  color: var(--deep-orange-accent-3) !important;
+}
+
+.deep-orange-accent-4-text {
+  color: var(--deep-orange-accent-4) !important;
+}
+
+.deep-orange-text-hvr:hover {
+  color: var(--deep-orange) !important;
+}
+
+.deep-orange-lighten-5-text-hvr:hover {
+  color: var(--deep-orange-lighten-5) !important;
+}
+
+.deep-orange-lighten-4-text-hvr:hover {
+  color: var(--deep-orange-lighten-4) !important;
+}
+
+.deep-orange-lighten-3-text-hvr:hover {
+  color: var(--deep-orange-lighten-3) !important;
+}
+
+.deep-orange-lighten-2-text-hvr:hover {
+  color: var(--deep-orange-lighten-2) !important;
+}
+
+.deep-orange-lighten-1-text-hvr:hover {
+  color: var(--deep-orange-lighten-1) !important;
+}
+
+.deep-orange-darken-1-text-hvr:hover {
+  color: var(--deep-orange-darken-1) !important;
+}
+
+.deep-orange-darken-2-text-hvr:hover {
+  color: var(--deep-orange-darken-2) !important;
+}
+
+.deep-orange-darken-3-text-hvr:hover {
+  color: var(--deep-orange-darken-3) !important;
+}
+
+.deep-orange-darken-4-text-hvr:hover {
+  color: var(--deep-orange-darken-4) !important;
+}
+
+.deep-orange-accent-1-text-hvr:hover {
+  color: var(--deep-orange-accent-1) !important;
+}
+
+.deep-orange-accent-2-text-hvr:hover {
+  color: var(--deep-orange-accent-2) !important;
+}
+
+.deep-orange-accent-3-text-hvr:hover {
+  color: var(--deep-orange-accent-3) !important;
+}
+
+.deep-orange-accent-4-text-hvr:hover {
+  color: var(--deep-orange-accent-4) !important;
+}
+
+.deep-orange-text-fcs:focus {
+  color: var(--deep-orange) !important;
+}
+
+.deep-orange-lighten-5-text-fcs:focus {
+  color: var(--deep-orange-lighten-5) !important;
+}
+
+.deep-orange-lighten-4-text-fcs:focus {
+  color: var(--deep-orange-lighten-4) !important;
+}
+
+.deep-orange-lighten-3-text-fcs:focus {
+  color: var(--deep-orange-lighten-3) !important;
+}
+
+.deep-orange-lighten-2-text-fcs:focus {
+  color: var(--deep-orange-lighten-2) !important;
+}
+
+.deep-orange-lighten-1-text-fcs:focus {
+  color: var(--deep-orange-lighten-1) !important;
+}
+
+.deep-orange-darken-1-text-fcs:focus {
+  color: var(--deep-orange-darken-1) !important;
+}
+
+.deep-orange-darken-2-text-fcs:focus {
+  color: var(--deep-orange-darken-2) !important;
+}
+
+.deep-orange-darken-3-text-fcs:focus {
+  color: var(--deep-orange-darken-3) !important;
+}
+
+.deep-orange-darken-4-text-fcs:focus {
+  color: var(--deep-orange-darken-4) !important;
+}
+
+.deep-orange-accent-1-text-fcs:focus {
+  color: var(--deep-orange-accent-1) !important;
+}
+
+.deep-orange-accent-2-text-fcs:focus {
+  color: var(--deep-orange-accent-2) !important;
+}
+
+.deep-orange-accent-3-text-fcs:focus {
+  color: var(--deep-orange-accent-3) !important;
+}
+
+.deep-orange-accent-4-text-fcs:focus {
+  color: var(--deep-orange-accent-4) !important;
+}

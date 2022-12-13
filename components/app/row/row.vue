@@ -1,5 +1,5 @@
 <template>
-  <div :class="[{'row': true}, classes]">
+  <div :class="[classes]">
     <slot></slot>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
   props: {
     /* Класс row */
     row: {
-      type: String,
+      type: [String, Boolean],
       default: true,
       validator(value) {
         return String(value) === 'true' || String(value) == 'false'
@@ -19,7 +19,7 @@ export default {
     },
     /* Класс row-cols-* */
     rowCols: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
         return validRow.includes(String(value))
@@ -27,7 +27,7 @@ export default {
     },
     /* Класс row-cols-sm-* */
     rowColsSm: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
         return validRow.includes(String(value))
@@ -35,7 +35,7 @@ export default {
     },
     /* Класс row-cols-md-* */
     rowColsMd: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
         return validRow.includes(String(value))
@@ -43,7 +43,7 @@ export default {
     },
     /* Класс row-cols-lg-* */
     rowColsLg: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
         return validRow.includes(String(value))
@@ -51,7 +51,7 @@ export default {
     },
     /* Класс row-cols-xl-* */
     rowColsXl: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
         return validRow.includes(String(value))
@@ -59,7 +59,7 @@ export default {
     },
     /* Класс row-cols-xxl-* */
     rowColsXxl: {
-      type: String,
+      type: [String, Boolean],
       default: null,
       validator(value) {
         return validRow.includes(String(value))

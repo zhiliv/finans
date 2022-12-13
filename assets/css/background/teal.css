@@ -1,0 +1,185 @@
+:root {
+  --teal: #009688;
+  --teal-lighten-5: #e0f2f1;
+  --teal-lighten-4: #b2dfdb;
+  --teal-lighten-3: #80cbc4;
+  --teal-lighten-2: #4db6ac;
+  --teal-lighten-1: #26a69a;
+  --teal-darken-1: #00897b;
+  --teal-darken-2: #00796b;
+  --teal-darken-3: #00695c;
+  --teal-darken-4: #004d40;
+  --teal-accent-1: #a7ffeb;
+  --teal-accent-2: #64ffda;
+  --teal-accent-3: #1de9b6;
+  --teal-accent-4: #00bfa5;
+}
+
+
+.bg-teal {
+  background-color: var(--teal) !important;
+}
+
+.bg-teal-lighten-5 {
+  background-color: var(--teal-lighten-5) !important;
+}
+
+.bg-teal-lighten-4 {
+  background-color: var(--teal-lighten-4) !important;
+}
+
+.bg-teal-lighten-3 {
+  background-color: var(--teal-lighten-3) !important;
+}
+
+.bg-teal-lighten-2 {
+  background-color: var(--teal-lighten-2) !important;
+}
+
+.bg-teal-lighten-1 {
+  background-color: var(--teal-lighten-1) !important;
+}
+
+.bg-teal-darken-1 {
+  background-color: var(--teal-darken-1) !important;
+}
+
+.bg-teal-darken-2 {
+  background-color: var(--teal-darken-2) !important;
+}
+
+.bg-teal-darken-3 {
+  background-color: var(--teal-darken-3) !important;
+}
+
+.bg-teal-darken-4 {
+  background-color: var(--teal-darken-4) !important;
+}
+
+.bg-teal-accent-1 {
+  background-color: var(--teal-accent-1) !important;
+}
+
+.bg-teal-accent-2 {
+  background-color: var(--teal-accent-2) !important;
+}
+
+.bg-teal-accent-3 {
+  background-color: var(--teal-accent-3) !important;
+}
+
+.bg-teal-accent-4 {
+  background-color: var(--teal-accent-4) !important;
+}
+
+.bg-teal-hvr:hover {
+  background-color: var(--teal) !important;
+}
+
+.bg-teal-lighten-5-hvr:hover {
+  background-color: var(--teal-lighten-5) !important;
+}
+
+.bg-teal-lighten-4-hvr:hover {
+  background-color: var(--teal-lighten-4) !important;
+}
+
+.bg-teal-lighten-3-hvr:hover {
+  background-color: var(--teal-lighten-3) !important;
+}
+
+.bg-teal-lighten-2-hvr:hover {
+  background-color: var(--teal-lighten-2) !important;
+}
+
+.bg-teal-lighten-1-hvr:hover {
+  background-color: var(--teal-lighten-1) !important;
+}
+
+.bg-teal-darken-1-hvr:hover {
+  background-color: var(--teal-darken-1) !important;
+}
+
+.bg-teal-darken-2-hvr:hover {
+  background-color: var(--teal-darken-2) !important;
+}
+
+.bg-teal-darken-3-hvr:hover {
+  background-color: var(--teal-darken-3) !important;
+}
+
+.bg-teal-darken-4-hvr:hover {
+  background-color: var(--teal-darken-4) !important;
+}
+
+.bg-teal-accent-1-hvr:hover {
+  background-color: var(--teal-accent-1) !important;
+}
+
+.bg-teal-accent-2-hvr:hover {
+  background-color: var(--teal-accent-2) !important;
+}
+
+.bg-teal-accent-3-hvr:hover {
+  background-color: var(--teal-accent-3) !important;
+}
+
+.bg-teal-accent-4-hvr:hover {
+  background-color: var(--teal-accent-4) !important;
+}
+
+.bg-teal-fcs:focus {
+  background-color: var(--teal) !important;
+}
+
+.bg-teal-lighten-5-fcs:focus {
+  background-color: var(--teal-lighten-5) !important;
+}
+
+.bg-teal-lighten-4-fcs:focus {
+  background-color: var(--teal-lighten-4) !important;
+}
+
+.bg-teal-lighten-3-fcs:focus {
+  background-color: var(--teal-lighten-3) !important;
+}
+
+.bg-teal-lighten-2-fcs:focus {
+  background-color: var(--teal-lighten-2) !important;
+}
+
+.bg-teal-lighten-1-fcs:focus {
+  background-color: var(--teal-lighten-1) !important;
+}
+
+.bg-teal-darken-1-fcs:focus {
+  background-color: var(--teal-darken-1) !important;
+}
+
+.bg-teal-darken-2-fcs:focus {
+  background-color: var(--teal-darken-2) !important;
+}
+
+.bg-teal-darken-3-fcs:focus {
+  background-color: var(--teal-darken-3) !important;
+}
+
+.bg-teal-darken-4-fcs:focus {
+  background-color: var(--teal-darken-4) !important;
+}
+
+.bg-teal-accent-1-fcs:focus {
+  background-color: var(--teal-accent-1) !important;
+}
+
+.bg-teal-accent-2-fcs:focus {
+  background-color: var(--teal-accent-2) !important;
+}
+
+.bg-teal-accent-3-fcs:focus {
+  background-color: var(--teal-accent-3) !important;
+}
+
+.bg-teal-accent-4-fcs:focus {
+  background-color: var(--teal-accent-4) !important;
+}

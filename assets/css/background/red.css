@@ -1,0 +1,184 @@
+:root {
+  --red: #f44336;
+  --red-lighten-5: #ffebee;
+  --red-lighten-4: #ffcdd2;
+  --red-lighten-3: #ef9a9a;
+  --red-lighten-2: #e57373;
+  --red-lighten-1: #ef5350;
+  --red-darken-1: #e53935;
+  --red-darken-2: #d32f2f;
+  --red-darken-3: #c62828;
+  --red-darken-4: #b71c1c;
+  --red-accent-1: #ff8a80;
+  --red-accent-2: #ff5252;
+  --red-accent-3: #ff1744;
+  --red-accent-4: #d50000;
+}
+
+.bg-red {
+  background-color: var(--red) !important;
+}
+
+.bg-red-lighten-5 {
+  background-color: var(--red-lighten-5) !important;
+}
+
+.bg-red-lighten-4 {
+  background-color: var(--red-lighten-4) !important;
+}
+
+.bg-red-lighten-3 {
+  background-color: var(--red-lighten-3) !important;
+}
+
+.bg-red-lighten-2 {
+  background-color: var(--red-lighten-2) !important;
+}
+
+.bg-red-lighten-1 {
+  background-color: var(--red-lighten-1) !important;
+}
+
+.bg-red-darken-1 {
+  background-color: var(--red-darken-1) !important;
+}
+
+.bg-red-darken-2 {
+  background-color: var(--red-darken-2) !important;
+}
+
+.bg-red-darken-3 {
+  background-color: var(--red-darken-3) !important;
+}
+
+.bg-red-darken-4 {
+  background-color: var(--red-darken-4) !important;
+}
+
+.bg-red-accent-1 {
+  background-color: var(--red-accent-1) !important;
+}
+
+.bg-red-accent-2 {
+  background-color: var(--red-accent-2) !important;
+}
+
+.bg-red-accent-3 {
+  background-color: var(--red-accent-3) !important;
+}
+
+.bg-red-accent-4 {
+  background-color: var(--red-accent-4) !important;
+}
+
+.bg-red-hvr:hover {
+  background-color: var(--red) !important;
+}
+
+.bg-red-lighten-5-hvr:hover {
+  background-color: var(--red-lighten-5) !important;
+}
+
+.bg-red-lighten-4-hvr:hover {
+  background-color: var(--red-lighten-4) !important;
+}
+
+.bg-red-lighten-3-hvr:hover {
+  background-color: var(--red-lighten-3) !important;
+}
+
+.bg-red-lighten-2-hvr:hover {
+  background-color: var(--red-lighten-2) !important;
+}
+
+.bg-red-lighten-1-hvr:hover {
+  background-color: var(--red-lighten-1) !important;
+}
+
+.bg-red-darken-1-hvr:hover {
+  background-color: var(--red-darken-1) !important;
+}
+
+.bg-red-darken-2-hvr:hover {
+  background-color: var(--red-darken-2) !important;
+}
+
+.bg-red-darken-3-hvr:hover {
+  background-color: var(--red-darken-3) !important;
+}
+
+.bg-red-darken-4-hvr:hover {
+  background-color: var(--red-darken-4) !important;
+}
+
+.bg-red-accent-1-hvr:hover {
+  background-color: var(--red-accent-1) !important;
+}
+
+.bg-red-accent-2-hvr:hover {
+  background-color: var(--red-accent-2) !important;
+}
+
+.bg-red-accent-3-hvr:hover {
+  background-color: var(--red-accent-3) !important;
+}
+
+.bg-red-accent-4-hvr:hover {
+  background-color: var(--red-accent-4) !important;
+}
+
+.bg-red-fcs:focus {
+  background-color: var(--red) !important;
+}
+
+.bg-red-lighten-5-fcs:focus {
+  background-color: var(--red-lighten-5) !important;
+}
+
+.bg-red-lighten-4-fcs:focus {
+  background-color: var(--red-lighten-4) !important;
+}
+
+.bg-red-lighten-3-fcs:focus {
+  background-color: var(--red-lighten-3) !important;
+}
+
+.bg-red-lighten-2-fcs:focus {
+  background-color: var(--red-lighten-2) !important;
+}
+
+.bg-red-lighten-1-fcs:focus {
+  background-color: var(--red-lighten-1) !important;
+}
+
+.bg-red-darken-1-fcs:focus {
+  background-color: var(--red-darken-1) !important;
+}
+
+.bg-red-darken-2-fcs:focus {
+  background-color: var(--red-darken-2) !important;
+}
+
+.bg-red-darken-3-fcs:focus {
+  background-color: var(--red-darken-3) !important;
+}
+
+.bg-red-darken-4-fcs:focus {
+  background-color: var(--red-darken-4) !important;
+}
+
+.bg-red-accent-1-fcs:focus {
+  background-color: var(--red-accent-1) !important;
+}
+
+.bg-red-accent-2-fcs:focus {
+  background-color: var(--red-accent-2) !important;
+}
+
+.bg-red-accent-3-fcs:focus {
+  background-color: var(--red-accent-3) !important;
+}
+
+.bg-red-accent-4-fcs:focus {
+  background-color: var(--red-accent-4) !important;
+}

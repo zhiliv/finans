@@ -1,0 +1,184 @@
+:root {
+  --deep-purple: #673ab7;
+  --deep-purple-lighten-5: #ede7f6;
+  --deep-purple-lighten-4: #d1c4e9;
+  --deep-purple-lighten-3: #b39ddb;
+  --deep-purple-lighten-2: #9575cd;
+  --deep-purple-lighten-1: #7e57c2;
+  --deep-purple-darken-1: #5e35b1;
+  --deep-purple-darken-2: #512da8;
+  --deep-purple-darken-3: #4527a0;
+  --deep-purple-darken-4: #311b92;
+  --deep-purple-accent-1: #b388ff;
+  --deep-purple-accent-2: #7c4dff;
+  --deep-purple-accent-3: #651fff;
+  --deep-purple-accent-4: #6200ea;
+}
+
+.bg-deep-purple {
+  background-color: var(--deep-purple) !important;
+}
+
+.bg-deep-purple-lighten-5 {
+  background-color: var(--deep-purple-lighten-5) !important;
+}
+
+.bg-deep-purple-lighten-4 {
+  background-color: var(--deep-purple-lighten-4) !important;
+}
+
+.bg-deep-purple-lighten-3 {
+  background-color: var(--deep-purple-lighten-3) !important;
+}
+
+.bg-deep-purple-lighten-2 {
+  background-color: var(--deep-purple-lighten-2) !important;
+}
+
+.bg-deep-purple-lighten-1 {
+  background-color: var(--deep-purple-lighten-1) !important;
+}
+
+.bg-deep-purple-darken-1 {
+  background-color: var(--deep-purple-darken-1) !important;
+}
+
+.bg-deep-purple-darken-2 {
+  background-color: var(--deep-purple-darken-2) !important;
+}
+
+.bg-deep-purple-darken-3 {
+  background-color: var(--deep-purple-darken-3) !important;
+}
+
+.bg-deep-purple-darken-4 {
+  background-color: var(--deep-purple-darken-4) !important;
+}
+
+.bg-deep-purple-accent-1 {
+  background-color: var(--deep-purple-accent-1) !important;
+}
+
+.bg-deep-purple-accent-2 {
+  background-color: var(--deep-purple-accent-2) !important;
+}
+
+.bg-deep-purple-accent-3 {
+  background-color: var(--deep-purple-accent-3) !important;
+}
+
+.bg-deep-purple-accent-4 {
+  background-color: var(--deep-purple-accent-4) !important;
+}
+
+.bg-deep-purple-fcs:focus {
+  background-color: var(--deep-purple) !important;
+}
+
+.bg-deep-purple-hvr:hover {
+  background-color: var(--deep-purple) !important;
+}
+
+.bg-deep-purple-lighten-5-hvr:hover {
+  background-color: var(--deep-purple-lighten-5) !important;
+}
+
+.bg-deep-purple-lighten-4-hvr:hover {
+  background-color: var(--deep-purple-lighten-4) !important;
+}
+
+.bg-deep-purple-lighten-3-hvr:hover {
+  background-color: var(--deep-purple-lighten-3) !important;
+}
+
+.bg-deep-purple-lighten-2-hvr:hover {
+  background-color: var(--deep-purple-lighten-2) !important;
+}
+
+.bg-deep-purple-lighten-1-hvr:hover {
+  background-color: var(--deep-purple-lighten-1) !important;
+}
+
+.bg-deep-purple-darken-1-hvr:hover {
+  background-color: var(--deep-purple-darken-1) !important;
+}
+
+.bg-deep-purple-darken-2-hvr:hover {
+  background-color: var(--deep-purple-darken-2) !important;
+}
+
+.bg-deep-purple-darken-3-hvr:hover {
+  background-color: var(--deep-purple-darken-3) !important;
+}
+
+.bg-deep-purple-darken-4-hvr:hover {
+  background-color: var(--deep-purple-darken-4) !important;
+}
+
+.bg-deep-purple-accent-1-hvr:hover {
+  background-color: var(--deep-purple-accent-1) !important;
+}
+
+.bg-deep-purple-accent-2-hvr:hover {
+  background-color: var(--deep-purple-accent-2) !important;
+}
+
+.bg-deep-purple-accent-3-hvr:hover {
+  background-color: var(--deep-purple-accent-3) !important;
+}
+
+.bg-deep-purple-accent-4-hvr:hover {
+  background-color: var(--deep-purple-accent-4) !important;
+}
+
+.bg-deep-purple-lighten-5-fcs:focus {
+  background-color: var(--deep-purple-lighten-5) !important;
+}
+
+.bg-deep-purple-lighten-4-fcs:focus {
+  background-color: var(--deep-purple-lighten-4) !important;
+}
+
+.bg-deep-purple-lighten-3-fcs:focus {
+  background-color: var(--deep-purple-lighten-3) !important;
+}
+
+.bg-deep-purple-lighten-2-fcs:focus {
+  background-color: var(--deep-purple-lighten-2) !important;
+}
+
+.bg-deep-purple-lighten-1-fcs:focus {
+  background-color: var(--deep-purple-lighten-1) !important;
+}
+
+.bg-deep-purple-darken-1-fcs:focus {
+  background-color: var(--deep-purple-darken-1) !important;
+}
+
+.bg-deep-purple-darken-2-fcs:focus {
+  background-color: var(--deep-purple-darken-2) !important;
+}
+
+.bg-deep-purple-darken-3-fcs:focus {
+  background-color: var(--deep-purple-darken-3) !important;
+}
+
+.bg-deep-purple-darken-4-fcs:focus {
+  background-color: var(--deep-purple-darken-4) !important;
+}
+
+.bg-deep-purple-accent-1-fcs:focus {
+  background-color: var(--deep-purple-accent-1) !important;
+}
+
+.bg-deep-purple-accent-2-fcs:focus {
+  background-color: var(--deep-purple-accent-2) !important;
+}
+
+.bg-deep-purple-accent-3-fcs:focus {
+  background-color: var(--deep-purple-accent-3) !important;
+}
+
+.bg-deep-purple-accent-4-fcs:focus {
+  background-color: var(--deep-purple-accent-4) !important;
+}
