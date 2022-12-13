@@ -1,0 +1,184 @@
+:root {
+  --green: #4caf50;
+  --green-lighten-5: #e8f5e9;
+  --green-lighten-4: #c8e6c9;
+  --green-lighten-3: #a5d6a7;
+  --green-lighten-2: #81c784;
+  --green-lighten-1: #66bb6a;
+  --green-darken-1: #43a047;
+  --green-darken-2: #388e3c;
+  --green-darken-3: #2e7d32;
+  --green-darken-4: #1b5e20;
+  --green-accent-1: #b9f6ca;
+  --green-accent-2: #69f0ae;
+  --green-accent-3: #00e676;
+  --green-accent-4: #00c853;
+}
+
+.bg-green {
+  background-color: var(--green) !important;
+}
+
+.bg-green-lighten-5 {
+  background-color: var(--green-lighten-5) !important;
+}
+
+.bg-green-lighten-4 {
+  background-color: var(--green-lighten-4) !important;
+}
+
+.bg-green-lighten-3 {
+  background-color: var(--green-lighten-3) !important;
+}
+
+.bg-green-lighten-2 {
+  background-color: var(--green-lighten-2) !important;
+}
+
+.bg-green-lighten-1 {
+  background-color: var(--green-lighten-1) !important;
+}
+
+.bg-green-darken-1 {
+  background-color: var(--green-darken-1) !important;
+}
+
+.bg-green-darken-2 {
+  background-color: var(--green-darken-2) !important;
+}
+
+.bg-green-darken-3 {
+  background-color: var(--green-darken-3) !important;
+}
+
+.bg-green-darken-4 {
+  background-color: var(--green-darken-4) !important;
+}
+
+.bg-green-accent-1 {
+  background-color: var(--green-accent-1) !important;
+}
+
+.bg-green-accent-2 {
+  background-color: var(--green-accent-2) !important;
+}
+
+.bg-green-accent-3 {
+  background-color: var(--green-accent-3) !important;
+}
+
+.bg-green-accent-4 {
+  background-color: var(--green-accent-4) !important;
+}
+
+.bg-green-hvr:hover {
+  background-color: var(--green) !important;
+}
+
+.bg-green-lighten-5-hvr:hover {
+  background-color: var(--green-lighten-5) !important;
+}
+
+.bg-green-lighten-4-hvr:hover {
+  background-color: var(--green-lighten-4) !important;
+}
+
+.bg-green-lighten-3-hvr:hover {
+  background-color: var(--green-lighten-3) !important;
+}
+
+.bg-green-lighten-2-hvr:hover {
+  background-color: var(--green-lighten-2) !important;
+}
+
+.bg-green-lighten-1-hvr:hover {
+  background-color: var(--green-lighten-1) !important;
+}
+
+.bg-green-darken-1-hvr:hover {
+  background-color: var(--green-darken-1) !important;
+}
+
+.bg-green-darken-2-hvr:hover {
+  background-color: var(--green-darken-2) !important;
+}
+
+.bg-green-darken-3-hvr:hover {
+  background-color: var(--green-darken-3) !important;
+}
+
+.bg-green-darken-4-hvr:hover {
+  background-color: var(--green-darken-4) !important;
+}
+
+.bg-green-accent-1-hvr:hover {
+  background-color: var(--green-accent-1) !important;
+}
+
+.bg-green-accent-2-hvr:hover {
+  background-color: var(--green-accent-2) !important;
+}
+
+.bg-green-accent-3-hvr:hover {
+  background-color: var(--green-accent-3) !important;
+}
+
+.bg-green-accent-4-hvr:hover {
+  background-color: var(--green-accent-4) !important;
+}
+
+.bg-green-fcs:focus {
+  background-color: var(--green) !important;
+}
+
+.bg-green-lighten-5-fcs:focus {
+  background-color: var(--green-lighten-5) !important;
+}
+
+.bg-green-lighten-4-fcs:focus {
+  background-color: var(--green-lighten-4) !important;
+}
+
+.bg-green-lighten-3-fcs:focus {
+  background-color: var(--green-lighten-3) !important;
+}
+
+.bg-green-lighten-2-fcs:focus {
+  background-color: var(--green-lighten-2) !important;
+}
+
+.bg-green-lighten-1-fcs:focus {
+  background-color: var(--green-lighten-1) !important;
+}
+
+.bg-green-darken-1-fcs:focus {
+  background-color: var(--green-darken-1) !important;
+}
+
+.bg-green-darken-2-fcs:focus {
+  background-color: var(--green-darken-2) !important;
+}
+
+.bg-green-darken-3-fcs:focus {
+  background-color: var(--green-darken-3) !important;
+}
+
+.bg-green-darken-4-fcs:focus {
+  background-color: var(--green-darken-4) !important;
+}
+
+.bg-green-accent-1-fcs:focus {
+  background-color: var(--green-accent-1) !important;
+}
+
+.bg-green-accent-2-fcs:focus {
+  background-color: var(--green-accent-2) !important;
+}
+
+.bg-green-accent-3-fcs:focus {
+  background-color: var(--green-accent-3) !important;
+}
+
+.bg-green-accent-4-fcs:focus {
+  background-color: var(--green-accent-4) !important;
+}

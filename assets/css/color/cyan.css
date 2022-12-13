@@ -1,0 +1,16 @@
+:root {
+  --cyan: #00bcd4;
+  --cyan-lighten-5: #e0f7fa;
+  --cyan-lighten-4: #b2ebf2;
+  --cyan-lighten-3: #80deea;
+  --cyan-lighten-2: #4dd0e1;
+  --cyan-lighten-1: #26c6da;
+  --cyan-darken-1: #00acc1;
+  --cyan-darken-2: #0097a7;
+  --cyan-darken-3: #00838f;
+  --cyan-darken-4: #006064;
+  --cyan-accent-1: #84ffff;
+  --cyan-accent-2: #18ffff;
+  --cyan-accent-3: #00e5ff;
+  --cyan-accent-4: #00b8d4;
+}

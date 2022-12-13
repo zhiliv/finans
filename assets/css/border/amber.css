@@ -1,0 +1,184 @@
+:root {
+  --amber: #ffc107;
+  --amber-lighten-5: #fff8e1;
+  --amber-lighten-4: #ffecb3;
+  --amber-lighten-3: #ffe082;
+  --amber-lighten-2: #ffd54f;
+  --amber-lighten-1: #ffca28;
+  --amber-darken-1: #ffb300;
+  --amber-darken-2: #ffa000;
+  --amber-darken-3: #ff8f00;
+  --amber-darken-4: #ff6f00;
+  --amber-accent-1: #ffe57f;
+  --amber-accent-2: #ffd740;
+  --amber-accent-3: #ffc400;
+  --amber-accent-4: #ffab00;
+}
+
+.border-amber {
+  border-color: var(--amber) !important;
+}
+
+.border-amber-lighten-5 {
+  border-color: var(--amber-lighten-5) !important;
+}
+
+.border-amber-lighten-4 {
+  border-color: var(--amber-lighten-4) !important;
+}
+
+.border-amber-lighten-3 {
+  border-color: var(--amber-lighten-3) !important;
+}
+
+.border-amber-lighten-2 {
+  border-color: var(--amber-lighten-2) !important;
+}
+
+.border-amber-lighten-1 {
+  border-color: var(--amber-lighten-1) !important;
+}
+
+.border-amber-darken-1 {
+  border-color: var(--amber-darken-1) !important;
+}
+
+.border-amber-darken-2 {
+  border-color: var(--amber-darken-2) !important;
+}
+
+.border-amber-darken-3 {
+  border-color: var(--amber-darken-3) !important;
+}
+
+.border-amber-darken-4 {
+  border-color: var(--amber-darken-4) !important;
+}
+
+.border-amber-accent-1 {
+  border-color: var(--amber-accent-1) !important;
+}
+
+.border-amber-accent-2 {
+  border-color: var(--amber-accent-2) !important;
+}
+
+.border-amber-accent-3 {
+  border-color: var(--amber-accent-3) !important;
+}
+
+.border-amber-accent-4 {
+  border-color: var(--amber-accent-4) !important;
+}
+
+.border-amber-hvr:hover {
+  border-color: var(--amber) !important;
+}
+
+.border-amber-lighten-5-hvr:hover {
+  border-color: var(--amber-lighten-5) !important;
+}
+
+.border-amber-lighten-4-hvr:hover {
+  border-color: var(--amber-lighten-4) !important;
+}
+
+.border-amber-lighten-3-hvr:hover {
+  border-color: var(--amber-lighten-3) !important;
+}
+
+.border-amber-lighten-2-hvr:hover {
+  border-color: var(--amber-lighten-2) !important;
+}
+
+.border-amber-lighten-1-hvr:hover {
+  border-color: var(--amber-lighten-1) !important;
+}
+
+.border-amber-darken-1-hvr:hover {
+  border-color: var(--amber-darken-1) !important;
+}
+
+.border-amber-darken-2-hvr:hover {
+  border-color: var(--amber-darken-2) !important;
+}
+
+.border-amber-darken-3-hvr:hover {
+  border-color: var(--amber-darken-3) !important;
+}
+
+.border-amber-darken-4-hvr:hover {
+  border-color: var(--amber-darken-4) !important;
+}
+
+.border-amber-accent-1-hvr:hover {
+  border-color: var(--amber-accent-1) !important;
+}
+
+.border-amber-accent-2-hvr:hover {
+  border-color: var(--amber-accent-2) !important;
+}
+
+.border-amber-accent-3-hvr:hover {
+  border-color: var(--amber-accent-3) !important;
+}
+
+.border-amber-accent-4-hvr:hover {
+  border-color: var(--amber-accent-4) !important;
+}
+
+.border-amber-fcs:focus {
+  border-color: var(--amber) !important;
+}
+
+.border-amber-lighten-5-fcs:focus {
+  border-color: var(--amber-lighten-5) !important;
+}
+
+.border-amber-lighten-4-fcs:focus {
+  border-color: var(--amber-lighten-4) !important;
+}
+
+.border-amber-lighten-3-fcs:focus {
+  border-color: var(--amber-lighten-3) !important;
+}
+
+.border-amber-lighten-2-fcs:focus {
+  border-color: var(--amber-lighten-2) !important;
+}
+
+.border-amber-lighten-1-fcs:focus {
+  border-color: var(--amber-lighten-1) !important;
+}
+
+.border-amber-darken-1-fcs:focus {
+  border-color: var(--amber-darken-1) !important;
+}
+
+.border-amber-darken-2-fcs:focus {
+  border-color: var(--amber-darken-2) !important;
+}
+
+.border-amber-darken-3-fcs:focus {
+  border-color: var(--amber-darken-3) !important;
+}
+
+.border-amber-darken-4-fcs:focus {
+  border-color: var(--amber-darken-4) !important;
+}
+
+.border-amber-accent-1-fcs:focus {
+  border-color: var(--amber-accent-1) !important;
+}
+
+.border-amber-accent-2-fcs:focus {
+  border-color: var(--amber-accent-2) !important;
+}
+
+.border-amber-accent-3-fcs:focus {
+  border-color: var(--amber-accent-3) !important;
+}
+
+.border-amber-accent-4-fcs:focus {
+  border-color: var(--amber-accent-4) !important;
+}

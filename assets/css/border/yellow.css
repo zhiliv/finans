@@ -1,0 +1,184 @@
+:root {
+  --yellow: #ffeb3b;
+  --yellow-lighten-5: #fffde7;
+  --yellow-lighten-4: #fff9c4;
+  --yellow-lighten-3: #fff59d;
+  --yellow-lighten-2: #fff176;
+  --yellow-lighten-1: #ffee58;
+  --yellow-darken-1: #fdd835;
+  --yellow-darken-2: #fbc02d;
+  --yellow-darken-3: #f9a825;
+  --yellow-darken-4: #f57f17;
+  --yellow-accent-1: #ffff8d;
+  --yellow-accent-2: #ffff00;
+  --yellow-accent-3: #ffea00;
+  --yellow-accent-4: #ffd600;
+}
+
+.border-yellow {
+  border-color: var(--yellow) !important;
+}
+
+.border-yellow-lighten-5 {
+  border-color: var(--yellow-lighten-5) !important;
+}
+
+.border-yellow-lighten-4 {
+  border-color: var(--yellow-lighten-4) !important;
+}
+
+.border-yellow-lighten-3 {
+  border-color: var(--yellow-lighten-3) !important;
+}
+
+.border-yellow-lighten-2 {
+  border-color: var(--yellow-lighten-2) !important;
+}
+
+.border-yellow-lighten-1 {
+  border-color: var(--yellow-lighten-1) !important;
+}
+
+.border-yellow-darken-1 {
+  border-color: var(--yellow-darken-1) !important;
+}
+
+.border-yellow-darken-2 {
+  border-color: var(--yellow-darken-2) !important;
+}
+
+.border-yellow-darken-3 {
+  border-color: var(--yellow-darken-3) !important;
+}
+
+.border-yellow-darken-4 {
+  border-color: var(--yellow-darken-4) !important;
+}
+
+.border-yellow-accent-1 {
+  border-color: var(--yellow-accent-1) !important;
+}
+
+.border-yellow-accent-2 {
+  border-color: var(--yellow-accent-2) !important;
+}
+
+.border-yellow-accent-3 {
+  border-color: var(--yellow-accent-3) !important;
+}
+
+.border-yellow-accent-4 {
+  border-color: var(--yellow-accent-4) !important;
+}
+
+.border-yellow-hvr:hover {
+  border-color: var(--yellow) !important;
+}
+
+.border-yellow-lighten-5-hvr:hover {
+  border-color: var(--yellow-lighten-5) !important;
+}
+
+.border-yellow-lighten-4-hvr:hover {
+  border-color: var(--yellow-lighten-4) !important;
+}
+
+.border-yellow-lighten-3-hvr:hover {
+  border-color: var(--yellow-lighten-3) !important;
+}
+
+.border-yellow-lighten-2-hvr:hover {
+  border-color: var(--yellow-lighten-2) !important;
+}
+
+.border-yellow-lighten-1-hvr:hover {
+  border-color: var(--yellow-lighten-1) !important;
+}
+
+.border-yellow-darken-1-hvr:hover {
+  border-color: var(--yellow-darken-1) !important;
+}
+
+.border-yellow-darken-2-hvr:hover {
+  border-color: var(--yellow-darken-2) !important;
+}
+
+.border-yellow-darken-3-hvr:hover {
+  border-color: var(--yellow-darken-3) !important;
+}
+
+.border-yellow-darken-4-hvr:hover {
+  border-color: var(--yellow-darken-4) !important;
+}
+
+.border-yellow-accent-1-hvr:hover {
+  border-color: var(--yellow-accent-1) !important;
+}
+
+.border-yellow-accent-2-hvr:hover {
+  border-color: var(--yellow-accent-2) !important;
+}
+
+.border-yellow-accent-3-hvr:hover {
+  border-color: var(--yellow-accent-3) !important;
+}
+
+.border-yellow-accent-4-hvr:hover {
+  border-color: var(--yellow-accent-4) !important;
+}
+
+.border-yellow-fcs:focus {
+  border-color: var(--yellow) !important;
+}
+
+.border-yellow-lighten-5-fcs:focus {
+  border-color: var(--yellow-lighten-5) !important;
+}
+
+.border-yellow-lighten-4-fcs:focus {
+  border-color: var(--yellow-lighten-4) !important;
+}
+
+.border-yellow-lighten-3-fcs:focus {
+  border-color: var(--yellow-lighten-3) !important;
+}
+
+.border-yellow-lighten-2-fcs:focus {
+  border-color: var(--yellow-lighten-2) !important;
+}
+
+.border-yellow-lighten-1-fcs:focus {
+  border-color: var(--yellow-lighten-1) !important;
+}
+
+.border-yellow-darken-1-fcs:focus {
+  border-color: var(--yellow-darken-1) !important;
+}
+
+.border-yellow-darken-2-fcs:focus {
+  border-color: var(--yellow-darken-2) !important;
+}
+
+.border-yellow-darken-3-fcs:focus {
+  border-color: var(--yellow-darken-3) !important;
+}
+
+.border-yellow-darken-4-fcs:focus {
+  border-color: var(--yellow-darken-4) !important;
+}
+
+.border-yellow-accent-1-fcs:focus {
+  border-color: var(--yellow-accent-1) !important;
+}
+
+.border-yellow-accent-2-fcs:focus {
+  border-color: var(--yellow-accent-2) !important;
+}
+
+.border-yellow-accent-3-fcs:focus {
+  border-color: var(--yellow-accent-3) !important;
+}
+
+.border-yellow-accent-4-fcs:focus {
+  border-color: var(--yellow-accent-4) !important;
+}

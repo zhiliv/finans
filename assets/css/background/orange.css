@@ -1,0 +1,184 @@
+:root {
+  --orange: #ff9800;
+  --orange-lighten-5: #fff3e0;
+  --orange-lighten-4: #ffe0b2;
+  --orange-lighten-3: #ffcc80;
+  --orange-lighten-2: #ffb74d;
+  --orange-lighten-1: #ffa726;
+  --orange-darken-1: #fb8c00;
+  --orange-darken-2: #f57c00;
+  --orange-darken-3: #ef6c00;
+  --orange-darken-4: #e65100;
+  --orange-accent-1: #ffd180;
+  --orange-accent-2: #ffab40;
+  --orange-accent-3: #ff9100;
+  --orange-accent-4: #ff6d00;
+}
+
+.bg-orange {
+  background-color: var(--orange) !important;
+}
+
+.bg-orange-lighten-5 {
+  background-color: var(--orange-lighten-5) !important;
+}
+
+.bg-orange-lighten-4 {
+  background-color: var(--orange-lighten-4) !important;
+}
+
+.bg-orange-lighten-3 {
+  background-color: var(--orange-lighten-3) !important;
+}
+
+.bg-orange-lighten-2 {
+  background-color: var(--orange-lighten-2) !important;
+}
+
+.bg-orange-lighten-1 {
+  background-color: var(--orange-lighten-1) !important;
+}
+
+.bg-orange-darken-1 {
+  background-color: var(--orange-darken-1) !important;
+}
+
+.bg-orange-darken-2 {
+  background-color: var(--orange-darken-2) !important;
+}
+
+.bg-orange-darken-3 {
+  background-color: var(--orange-darken-3) !important;
+}
+
+.bg-orange-darken-4 {
+  background-color: var(--orange-darken-4) !important;
+}
+
+.bg-orange-accent-1 {
+  background-color: var(--orange-accent-1) !important;
+}
+
+.bg-orange-accent-2 {
+  background-color: var(--orange-accent-2) !important;
+}
+
+.bg-orange-accent-3 {
+  background-color: var(--orange-accent-3) !important;
+}
+
+.bg-orange-accent-4 {
+  background-color: var(--orange-accent-4) !important;
+}
+
+.bg-orange-hvr:hover {
+  background-color: var(--orange) !important;
+}
+
+.bg-orange-lighten-5-hvr:hover {
+  background-color: var(--orange-lighten-5) !important;
+}
+
+.bg-orange-lighten-4-hvr:hover {
+  background-color: var(--orange-lighten-4) !important;
+}
+
+.bg-orange-lighten-3-hvr:hover {
+  background-color: var(--orange-lighten-3) !important;
+}
+
+.bg-orange-lighten-2-hvr:hover {
+  background-color: var(--orange-lighten-2) !important;
+}
+
+.bg-orange-lighten-1-hvr:hover {
+  background-color: var(--orange-lighten-1) !important;
+}
+
+.bg-orange-darken-1-hvr:hover {
+  background-color: var(--orange-darken-1) !important;
+}
+
+.bg-orange-darken-2-hvr:hover {
+  background-color: var(--orange-darken-2) !important;
+}
+
+.bg-orange-darken-3-hvr:hover {
+  background-color: var(--orange-darken-3) !important;
+}
+
+.bg-orange-darken-4-hvr:hover {
+  background-color: var(--orange-darken-4) !important;
+}
+
+.bg-orange-accent-1-hvr:hover {
+  background-color: var(--orange-accent-1) !important;
+}
+
+.bg-orange-accent-2-hvr:hover {
+  background-color: var(--orange-accent-2) !important;
+}
+
+.bg-orange-accent-3-hvr:hover {
+  background-color: var(--orange-accent-3) !important;
+}
+
+.bg-orange-accent-4-hvr:hover {
+  background-color: var(--orange-accent-4) !important;
+}
+
+.bg-orange-fcs:focus {
+  background-color: var(--orange) !important;
+}
+
+.bg-orange-lighten-5-fcs:focus {
+  background-color: var(--orange-lighten-5) !important;
+}
+
+.bg-orange-lighten-4-fcs:focus {
+  background-color: var(--orange-lighten-4) !important;
+}
+
+.bg-orange-lighten-3-fcs:focus {
+  background-color: var(--orange-lighten-3) !important;
+}
+
+.bg-orange-lighten-2-fcs:focus {
+  background-color: var(--orange-lighten-2) !important;
+}
+
+.bg-orange-lighten-1-fcs:focus {
+  background-color: var(--orange-lighten-1) !important;
+}
+
+.bg-orange-darken-1-fcs:focus {
+  background-color: var(--orange-darken-1) !important;
+}
+
+.bg-orange-darken-2-fcs:focus {
+  background-color: var(--orange-darken-2) !important;
+}
+
+.bg-orange-darken-3-fcs:focus {
+  background-color: var(--orange-darken-3) !important;
+}
+
+.bg-orange-darken-4-fcs:focus {
+  background-color: var(--orange-darken-4) !important;
+}
+
+.bg-orange-accent-1-fcs:focus {
+  background-color: var(--orange-accent-1) !important;
+}
+
+.bg-orange-accent-2-fcs:focus {
+  background-color: var(--orange-accent-2) !important;
+}
+
+.bg-orange-accent-3-fcs:focus {
+  background-color: var(--orange-accent-3) !important;
+}
+
+.bg-orange-accent-4-fcs:focus {
+  background-color: var(--orange-accent-4) !important;
+}

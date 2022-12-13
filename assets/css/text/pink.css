@@ -1,0 +1,181 @@
+:root {
+  --pink: #e91e63;
+  --pink-lighten-5: #fce4ec;
+  --pink-lighten-4: #f8bbd0;
+  --pink-lighten-3: #f48fb1;
+  --pink-lighten-2: #f06292;
+  --pink-lighten-1: #ec407a;
+  --pink-darken-1: #d81b60;
+  --pink-darken-2: #c2185b;
+  --pink-darken-3: #ad1457;
+  --pink-darken-4: #880e4f;
+  --pink-accent-1: #ff80ab;
+  --pink-accent-2: #ff4081;
+  --pink-accent-3: #f50057;
+  --pink-accent-4: #c51162;
+}
+
+.pink-text {
+  color: var(--pink) !important;
+}
+
+.pink-lighten-5-text {
+  color: var(--pink-lighten-5) !important;
+}
+
+.pink-lighten-4-text {
+  color: var(--pink-lighten-4) !important;
+}
+
+.pink-lighten-3-text {
+  color: var(--pink-lighten-3) !important;
+}
+
+.pink-lighten-2-text {
+  color: var(--pink-lighten-2) !important;
+}
+
+.pink-lighten-1-text {
+  color: var(--pink-lighten-1) !important;
+}
+
+.pink-darken-1-text {
+  color: var(--pink-darken-1) !important;
+}
+
+.pink-darken-2-text {
+  color: var(--pink-darken-2) !important;
+}
+
+.pink-darken-3-text {
+  color: var(--pink-darken-3) !important;
+}
+
+.pink-darken-4-text {
+  color: var(--pink-darken-4) !important;
+}
+.pink-accent-1-text {
+  color: var(--pink-accent-1) !important;
+}
+
+.pink-accent-2-text {
+  color: var(--pink-accent-2) !important;
+}
+
+.pink-accent-3-text {
+  color: var(--pink-accent-3) !important;
+}
+
+.pink-accent-4-text {
+  color: var(--pink-accent-4) !important;
+}
+
+.pink-text-hvr:hover {
+  color: var(--pink) !important;
+}
+
+.pink-lighten-5-text-hvr:hover {
+  color: var(--pink-lighten-5) !important;
+}
+
+.pink-lighten-4-text-hvr:hover {
+  color: var(--pink-lighten-4) !important;
+}
+
+.pink-lighten-3-text-hvr:hover {
+  color: var(--pink-lighten-3) !important;
+}
+
+.pink-lighten-2-text-hvr:hover {
+  color: var(--pink-lighten-2) !important;
+}
+
+.pink-lighten-1-text-hvr:hover {
+  color: var(--pink-lighten-1) !important;
+}
+
+.pink-darken-1-text-hvr:hover {
+  color: var(--pink-darken-1) !important;
+}
+
+.pink-darken-2-text-hvr:hover {
+  color: var(--pink-darken-2) !important;
+}
+
+.pink-darken-3-text-hvr:hover {
+  color: var(--pink-darken-3) !important;
+}
+
+.pink-darken-4-text-hvr:hover {
+  color: var(--pink-darken-4) !important;
+}
+.pink-accent-1-text-hvr:hover {
+  color: var(--pink-accent-1) !important;
+}
+
+.pink-accent-2-text-hvr:hover {
+  color: var(--pink-accent-2) !important;
+}
+
+.pink-accent-3-text-hvr:hover {
+  color: var(--pink-accent-3) !important;
+}
+
+.pink-accent-4-text-hvr:hover {
+  color: var(--pink-accent-4) !important;
+}
+
+.pink-text-fcs:focus {
+  color: var(--pink) !important;
+}
+
+.pink-lighten-5-text-fcs:focus {
+  color: var(--pink-lighten-5) !important;
+}
+
+.pink-lighten-4-text-fcs:focus {
+  color: var(--pink-lighten-4) !important;
+}
+
+.pink-lighten-3-text-fcs:focus {
+  color: var(--pink-lighten-3) !important;
+}
+
+.pink-lighten-2-text-fcs:focus {
+  color: var(--pink-lighten-2) !important;
+}
+
+.pink-lighten-1-text-fcs:focus {
+  color: var(--pink-lighten-1) !important;
+}
+
+.pink-darken-1-text-fcs:focus {
+  color: var(--pink-darken-1) !important;
+}
+
+.pink-darken-2-text-fcs:focus {
+  color: var(--pink-darken-2) !important;
+}
+
+.pink-darken-3-text-fcs:focus {
+  color: var(--pink-darken-3) !important;
+}
+
+.pink-darken-4-text-fcs:focus {
+  color: var(--pink-darken-4) !important;
+}
+.pink-accent-1-text-fcs:focus {
+  color: var(--pink-accent-1) !important;
+}
+
+.pink-accent-2-text-fcs:focus {
+  color: var(--pink-accent-2) !important;
+}
+
+.pink-accent-3-text-fcs:focus {
+  color: var(--pink-accent-3) !important;
+}
+
+.pink-accent-4-text-fcs:focus {
+  color: var(--pink-accent-4) !important;
+}

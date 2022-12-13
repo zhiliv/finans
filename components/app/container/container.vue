@@ -59,7 +59,7 @@ export default {
     classes() {
       const { sm, md, lg, xl, xxl, fluid } = this
       return {
-        container: !containerFluid, // установка класса container
+        container: !fluid, // установка класса container
         'container-fluid': !!fluid, // установка класса container-fluid
         'container-sm': !!sm, // установка класса container-sm
         'container-md': !!md, // установка класса container-md
@@ -71,7 +71,7 @@ export default {
   },
 }
 </script>
-<style>
+<style lang="scss">
   .container,
   .container-fluid,
   .container-xxl,
@@ -79,11 +79,11 @@ export default {
   .container-lg,
   .container-md,
   .container-sm {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
+    $bs-gutter-x: 1.5rem;
+    $bs-gutter-y: 0;
     width: 100%;
-    padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-right: calc(var($bs-gutter-x) * 0.5);
+    padding-left: calc(var($bs-gutter-x) * 0.5);
     margin-right: auto;
     margin-left: auto;
   }

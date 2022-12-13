@@ -348,7 +348,7 @@ export default {
       },
     },
     /*Классы align-item-* */
-    alignItem: {
+    alignItems: {
       type: String,
       default: null,
       validator(value) {
@@ -666,7 +666,7 @@ export default {
         justifyContentXl,
         justifyContentXxl,
       } = this
-      const { alignItem, alignItemsSm, alignItemsMd, alignItemsLg, alignItemsXl, alignItemsXxl } = this
+      const { alignItems, alignItemsSm, alignItemsMd, alignItemsLg, alignItemsXl, alignItemsXxl } = this
       const { alignContent, alignContentSm, alignContentMd, alignContentLg, alignContentXl, alignContentXxl } = this
       const { alignSelf, alignSelfSm, alignSelfMd, alignSelfLg, alignSelfXl, alignSelfXxl } = this
       const { flexNowrap, flexSmNowrap, flexMdNowrap, flexLgNowrap, flexXlNowrap, flexXxlNowrap } = this
