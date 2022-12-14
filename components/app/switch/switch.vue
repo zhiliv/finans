@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
   .form-check {
     display: block;
     min-height: 1.5rem;
@@ -56,13 +56,13 @@ export default {
     filter: brightness(90%);
   }
   .form-check-input:focus {
-    border-color: var($focus-form-control-shadow);
+    border-color: var(--focus-form-control-shadow);
     outline: 0;
-    box-shadow: 0 0 0 0.25rem var($focus-form-control-shadow);
+    box-shadow: 0 0 0 0.25rem var(--focus-form-control-shadow);
   }
   .form-check-input:checked {
-    background-color: var($focus-form-control);
-    border-color: var($focus-form-control-shadow);
+    background-color: var(--focus-form-control);
+    border-color: var(--focus-form-control-shadow);
   }
 
   .form-check-input:disabled {
@@ -115,8 +115,8 @@ export default {
   }
 
   .form-check-input[type='checkbox']:indeterminate {
-    background-color: var($focus-form-control);
-    border-color: var($focus-form-control);
+    background-color: var(--focus-form-control);
+    border-color: var(--focus-form-control);
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
   }
 

@@ -1,24 +1,13 @@
 export default defineNuxtConfig({
-  head: {
-    htmlAttrs: {
-      lang: 'ru',
-    },
-    title: 'CMS-ecommerce',
-    meta: [
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-  },
   ssr: true,
-  css: ['@/assets/scss/main.scss'],
+  css: ['@/assets/css/main.css', '@/assets/css/_variables.css'],
   build: {
 
   },
   nitro: {
     compressPublicAssets: true,
   },
-  modules: ['nuxt-purgecss', '@nuxtjs/critters'],
+  modules: ['nuxt-purgecss', '@nuxtjs/critters', 'nuxt-icons'],
   purgecss: {
     safelist: ['safe'],
     content:[
@@ -34,13 +23,13 @@ export default defineNuxtConfig({
     ],
     // whitelist: fs.readFileSync('./scripts/whitelist/whitelist.txt').toString().split(',')
   },
-  vite: {
+/*   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/assets/scss/_variables.scss";'
+          additionalData: '@import "@/assets/css/_variables.css";'
         }
       }
     },
-  },
+  }, */
 })

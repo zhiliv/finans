@@ -680,7 +680,7 @@ export default {
         flexXxlWrapReverse,
       } = this
       return {
-        'd-flex': String(inlineFlex) === 'false' && String(flex) === 'true',
+        'd-flex': (String(inlineFlex) === 'false' || !inlineFlex) && String(flex) === 'true',
         'd-sm-flex': !!smFlex,
         'd-md-flex': !!mdFlex,
         'd-lg-flex': !!lgFlex,
