@@ -168,7 +168,7 @@ export default {
     color: var(--light);
     border: 2px solid var(--light);
     margin-top: 8px;
-    margin-left: 3px;
+    margin-left: 1px;
     border-radius: 3px;
   }
 
