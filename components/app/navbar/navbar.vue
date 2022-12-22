@@ -1,135 +1,81 @@
 <template>
-  <nav class="sidebar">
-    <ul class="list">
-      <li style="display: flex" class="sidebar-item">
-          <nuxt-icon name="basic/stop"  filled  class="icon"></nuxt-icon>
-        <app-button class="sidebar-item-button sidebar-item-1">
-          <span>sdfsdf</span>
-        </app-button>
-      </li>
-      <li style="display: flex">
-        <app-button class="nav-icon">
-          <nuxt-icon name="basic/stop"  filled  class="icon"></nuxt-icon>
-        </app-button>
-        <app-button class="sidebar-item-button sidebar-item">
-          <span>sdfsdf</span>
-        </app-button>
-      </li>
-      <li style="display: flex">
-        <app-button class="nav-icon">
-          <nuxt-icon name="basic/stop"  filled  class="icon"></nuxt-icon>
-        </app-button>
-        <app-button class="sidebar-item-button sidebar-item">
-          <span>sdfsdf</span>
-        </app-button>
-      </li>
-      <li style="display: flex">
-        <app-button class="nav-icon">
-          <nuxt-icon name="basic/stop"  filled  class="icon"></nuxt-icon>
-        </app-button>
-        <app-button class="sidebar-item-button sidebar-item">
-          <span>sdfsdf</span>
-        </app-button>
-      </li>
-    </ul>
-  </nav>
+  <div>
+    <nav ref="nav" class="w-100 navbar position-absolute shadow-container">
+      <app-button size="sm" @click="tootleSidebar" class="button-burger">
+        <nuxt-icon name="basic/menu-hambuger" class="icon-burger" />
+      </app-button>
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <span class="navbar-title">{{title}}</span>
+      </div>
+    </nav>
+    <app-sidebar ref="sidebar" :menu="menu" />
+  </div>
 </template>
 
 <script>
 export default {
-  mounted() {
-    // this.$el.style.setProperty('--color', 'red')
+  props: {
+    title: {
+      // заголовок(используется для мобильной версии)
+      type: String,
+      default: null,
+    },
+    menu: {
+      // меню
+      type: Array,
+      default: () => [],
+    },
+  },
+  methods: {
+    /*
+     * Метод который показывает \ скрывает боковое меню
+     * @function tootleSidebar
+     */
+    tootleSidebar() {
+      const { $event } = useNuxtApp() // свойство для отправки событий через шину данных
+      $event('toggle-sidebar') // отправка события для открытия\закрытия боковой панели
+      this.$refs.nav.classList.toggle('shadow-container') // добавление\удаление теней
+    },
   },
 }
 </script>
 
 <style>
-  @media (min-width: 1400px) {
-    .sidebar {
-      width: 2.5%;
-      max-width: 65px;
+  @import '~/assets/css/position.css';
+  @import '~/assets/css/size.css';
+  @import '~/assets/css/flex.css';
+
+  @media (min-width: 992px) {
+    .navbar {
+      display: none !important;
     }
   }
-
-  @media (min-width: 1200px) and (max-width: 1399px) {
-    .sidebar {
-      width: 4%;
-    }
-  }
-
-  .list {
-    width: 100%;
-    padding: 0px;
-  }
-
-  .sidebar {
-    height: 100%;
-    position: absolute !important;
-    z-index: 1;
-    overflow: auto;
+  .navbar {
+    display: flex;
+    z-index: 100;
     background: var(--dark);
-    margin-left: -12px;
+    height: 50px;
+    margin: 0px;
   }
 
-  .sidebar:hover {
-    max-width: 100%;
-    width: 15%;
+  .icon-burger svg {
+    width: 30px !important;
+    height: 30px !important;
+    margin-top: 2px;
   }
 
-  .sidebar:hover .sidebar-item {
-    display: block !important;
+  .icon-burger svg > line {
+    stroke: var(--primary);
   }
 
-  .sidebar-item {
-    width: 100%;
-    display: block;
-    text-align: left;
-    border: none;
-    white-space: normal;
-    float: none;
-    outline: 0;
-    display: none;
+  .button-burger {
+    padding: 0.3em !important;
+    margin-top: 0.4em;
+    margin-left: 0.4em;
+    border-color: var(--primary);
   }
 
-  .sidebar-item-button {
-    width: 98%;
-    height: 40px;
-    border: 0px;
-    border-bottom: 1px solid silver;
-    border-radius: 0;
-    margin-left: 4px;
-  }
-
-  .sidebar-item-button span {
-    position: absolute;
-    left: 0;
-    bottom: 20%;
-    padding-left: 10px;
-    color: white;
-  }
-
-  .sidebar-item-button:hover {
-    background: var(--primary);
-    transition-property: background;
-    transition-duration: 0.4s;
-  }
-
-  .sidebar:hover .icon{
-    /* display: none; */
-  }
-
-  .sidebar-item-button:hover span {
-    color: var(--font-active-color);
-    transition-property: color;
-    transition-duration: 0.4s;
-  }
-
-  .nav-icon svg{
-    width: 40px !important;
-    height: 40px !important;
-  }
-
-  li{
-    height: 45px;
+  .navbar-title {
+    color: var(--light);
   }
 </style>
