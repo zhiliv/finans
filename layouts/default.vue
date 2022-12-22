@@ -1,28 +1,29 @@
 <template>
-  <app-container fluid="true" class="vh-100">
+  <app-container fluid="true" class="vh-100" style="padding: 0px;">
     <app-layout class="h-100" flex="true">
-      <app-navbar></app-navbar>
-      <app-row class="w-100">sdfsdfgdsfsgdfgsdfgfsd1231232342</app-row>
+      <app-navbar :menu="menu"/>
+
+<!--
+      <app-row class="" style="height: 80%; width:96%; margin-left: 3%;  border: 1px solid silver">
+
+      </app-row> -->
+
     </app-layout>
   </app-container>
 </template>
 <script>
-import menu from '~~/modules/menu/default-menu.json' // получение списка меню
 export default {
-  mounted() {
-    this.menu = menu // установка значения меню
-  },
   data() {
     return {
       isOpen: false,
-      menu: [], // меню
-      items: [
-        { title: 'Dashboard1', icon: 'mdi-view-dashboard' },
-        { title: 'Account', icon: 'mdi-account-box' },
-        { title: 'Settings', icon: 'mdi-cog' },
-      ],
+      menu: [
+        {name: 'Статистика'},
+        {name: 'Офферы', type: 'dropdown', list: [
+          {name: 'Новый'}
+        ]}
+      ], // меню
     }
-  },
+  }
 }
 </script>
 
