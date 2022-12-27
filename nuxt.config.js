@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
   },
-  modules: ['nuxt-purgecss', '@nuxtjs/critters', 'nuxt-icons'],
+  modules: ['nuxt-purgecss', '@nuxtjs/critters', 'nuxt-icon'],
   purgecss: {
     safelist: ['safe'],
     content:[

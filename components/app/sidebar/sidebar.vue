@@ -1,27 +1,40 @@
 <template>
-  <nav
-    class="sidebar shadow-container noselect h-98 position-absolute overflow-auto overflow-x-hidden"
-  >
-    <ul class="p-0 w-100">
+  <div class="sidebar shadow-container position-absolute noselect h-98 overflow-x-hidden">
+    <ul class="p-0 m-0 w-100">
       <template v-for="item in menu" :key="item.name">
-        <li class="d-flex sidebar-item w-100 text-start text-wrap">
-          <div v-if="item.type !== 'dropdown'" class="d-flex w-100 sidebar-item-button noselect">
-            <template v-if="item.icon">
-              <nuxt-icon :name="item.icon" class="sidebar-icon" />
-              <span class="sidebar-label d-none">{{item.name}}</span>
-            </template>
-            <template v-else>
-              <div class="block-icon position-relative">
-                <span class="sidebar-icon no-icon">{{getShort(item.name)}}</span>
-              </div>
-              <span class="sidebar-label d-none text-no-icon">{{item.name}}</span>
-            </template>
+        <li
+          v-if="item.type !== 'dropdown'"
+          class="d-flex text-wrap sidebar-item"
+          @click="item.click"
+        >
+          <div class="w-100 noselect position-relative">
+            <Icon
+              v-if="item.icon"
+              :name="item.icon"
+              size="50px"
+              color="var(--light)"
+              class="sidebar-icon"
+            />
+            <div v-else class="block-icon position-relative" style>
+              <span class="sidebar-short-text">{{getShort(item.name)}}</span>
+            </div>
+            <a
+              v-if="item.href"
+              class="d-none w-100 text-wrap position-absolute sidebar-link"
+              :href="item.href"
+            >{{item.name}}</a>
+            <span v-else class="text-no-icon" style>{{item.name}}</span>
           </div>
         </li>
-        <app-dropdown v-if="item.type === 'dropdown'" :list="item.list" />
+        <app-dropdown
+          v-if="item.type === 'dropdown'"
+          :list="item.list"
+          :icon="item.icon"
+          :name="item.name"
+        />
       </template>
     </ul>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -54,135 +67,124 @@ export default {
 
 <style>
   @import '~/assets/css/size.css';
+  @import '~/assets/css/flex.css';
+  @import '~/assets/css/align.css';
   @import '~/assets/css/padding.css';
+  @import '~/assets/css/margin.css';
   @import '~/assets/css/position.css';
   @import '~/assets/css/overflow.css';
   @import '~/assets/css/text/text.css';
 
-  .sidebar {
-    top: 1%;
-    z-index: 1;
-    background: var(--dark);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-
-  .sidebar.show {
-    color: var(--light-gray) !important;
-    display: block !important;
-    height: calc(100% - 60px);
-    margin-top: 40px;
-  }
-
-  .sidebar:hover {
-    max-width: 100%;
-    width: 15%;
-    transition-property: width;
-    transition-duration: 0.4s;
-  }
-
-  .sidebar:not(hover) {
-    max-width: 100%;
-    transition-property: width;
-    transition-duration: 0.4s;
-  }
-
-  @media (max-width: 575.9px) {
-    .sidebar-item-button {
-      justify-content: start !important;
-    }
-  }
-
   @media (max-width: 991.9px) {
-    .sidebar.show {
-      width: 100% !important;
-    }
-    .sidebar-item-button {
-      justify-content: start !important;
-    }
-  }
-
-  @media (max-width: 1199.9px) {
     .sidebar {
       display: none;
     }
   }
 
-  @media (min-width: 1200px) and (max-width: 1399.9px) {
+  @media (min-width: 992px) {
     .sidebar {
-      width: 4%;
+      overflow-y: hidden;
+    }
+
+    .sidebar:hover {
+      overflow-y: auto;
     }
   }
 
-  @media (min-width: 1400px) {
-    .sidebar {
-      width: 2%;
-      max-width: 65px;
+  .sidebar.show {
+    display: flex;
+    width: 100%;
+  }
+
+  .sidebar {
+    z-index: 300;
+    background: var(--dark);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 70px;
+  }
+
+  @media (min-width: 992px) {
+    .sidebar:hover {
+      width: 15%;
+      transition-property: width;
+      transition-duration: 0.4s;
     }
   }
 
-  .sidebar-label {
-    padding-top: 5px;
-    color: var(--light);
-  }
-
-  .sidebar:hover .sidebar-label,
-  .sidebar.show .sidebar-label {
-    display: block;
-  }
-
-  .sidebar-item {
-    border: none;
-  }
-
-  .sidebar-item-button {
-    justify-content: center;
-    height: 40px;
-  }
-
-  .sidebar:hover .sidebar-item-button {
-    justify-content: start;
-  }
-
-  .sidebar-item-button:hover,
-  .sidebar-item-list:hover {
-    background: var(--primary);
-    transition-property: background;
+  .sidebar:not(hover) {
+    transition-property: width;
     transition-duration: 0.4s;
   }
 
-  .sidebar-icon svg {
-    width: 30px !important;
-    height: 30px !important;
-    margin-top: 2px;
-  }
-
-  .sidebar-icon svg > * {
-    stroke: var(--light-gray);
-    color: var(--dark);
-  }
-
-  .block-icon {
-    height: 22px;
-    width: 22px;
+  .sidebar a {
+    font-size: 18px;
     color: var(--light);
-    border: 2px solid var(--light);
-    margin-top: 8px;
-    margin-left: 1px;
-    border-radius: 3px;
+    text-decoration: none;
   }
 
-  .no-icon {
-    margin-bottom: 22px !important;
-    font-size: 14px;
-    font-weight: 700;
+  .sidebar:hover a,
+  .sidebar.show a {
+    display: inline;
+  }
+
+  .sidebar-item:hover {
+    background: var(--primary);
+  }
+
+  @media (min-width: 992px) {
+    .sidebar {
+      top: 1%;
+    }
+  }
+
+  @media (max-width: 991.9px) {
+    .sidebar {
+      top: 50px;
+    }
+  }
+
+  .sidebar-short-text {
     position: absolute;
-    top: -2px;
-    left: 1px;
+    font-size: 20px;
+    color: var(--light);
+    margin-left: 3px;
+    height: 40px;
+    font-weight: 800;
   }
 
   .text-no-icon {
-    padding-left: 3px;
-    padding-top: 7px;
+    display: none;
+    position: absolute;
+    top: 11px;
+    font-size: 18px;
+    color: var(--light);
+    margin-left: 0px;
+  }
+
+  .sidebar:hover .text-no-icon,
+  .sidebar.show .text-no-icon {
+    display: inline-block;
+  }
+
+  .sidebar-icon {
+    min-width: 50px;
+    margin-left: 10px;
+  }
+
+  .block-icon {
+    display: inline-block;
+    border: 4px solid var(--light);
+    height: 36px;
+    width: 36px;
+    position: relative;
+    border-radius: 15%;
+    top: 2px;
+    margin: 3px 17px;
+    margin-right: 5px;
+  }
+
+  .sidebar-link{
+    top:11px;
   }
 </style>

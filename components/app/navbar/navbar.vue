@@ -2,7 +2,8 @@
   <div>
     <nav ref="nav" class="w-100 navbar position-absolute shadow-container">
       <app-button size="sm" @click="tootleSidebar" class="button-burger">
-        <nuxt-icon name="basic/menu-hambuger" class="icon-burger" />
+        <Icon name="Burger" class="burger" />
+        <!-- <nuxt-icon name="basic/menu-hambuger" class="icon-burger" /> -->
       </app-button>
       <div class="d-flex align-items-center justify-content-center w-100">
         <span class="navbar-title">{{title}}</span>
@@ -52,19 +53,19 @@ export default {
   }
   .navbar {
     display: flex;
-    z-index: 100;
+    z-index: 2;
     background: var(--dark);
     height: 50px;
     margin: 0px;
   }
 
-  .icon-burger svg {
+  .burger {
     width: 30px !important;
     height: 30px !important;
     margin-top: 2px;
   }
 
-  .icon-burger svg > line {
+  .burger > line {
     stroke: var(--primary);
   }
 
