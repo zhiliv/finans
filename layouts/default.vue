@@ -17,8 +17,27 @@ export default {
     return {
       isOpen: false,
       menu: [
-        {name: 'Статистика'},
-        {name: 'Офферы', type: 'dropdown', list: [
+      {name: 'Статистика1', href: 'https://yandex.ru', icon: 'Statistics'},
+      {name: 'Статистика', click: () => {alert(1)}},
+      {name: 'Статистика', click: 'https://yandex.ru'},
+      {name: 'Статистика', href: 'https://yandex.ru'},
+      {name: 'Статистика1', href: 'https://yandex.ru', icon: 'Statistics'},
+      {name: 'Статистика', click: () => {alert(1)}},
+      {name: 'Статистика', click: 'https://yandex.ru'},
+      {name: 'Статистика', href: 'https://yandex.ru'},
+      {name: 'Статистика1', href: 'https://yandex.ru', icon: 'Statistics'},
+      {name: 'Статистика', click: () => {alert(1)}},
+      {name: 'Статистика', click: 'https://yandex.ru'},
+      {name: 'Статистика', href: 'https://yandex.ru'},
+      {name: 'Статистика1', href: 'https://yandex.ru', icon: 'Statistics'},
+      {name: 'Статистика', click: () => {alert(1)}},
+      {name: 'Статистика', click: 'https://yandex.ru'},
+      {name: 'Статистика', href: 'https://yandex.ru'},
+      {name: 'Статистика1', href: 'https://yandex.ru', icon: 'Statistics'},
+      {name: 'Статистика', click: () => {alert(1)}},
+      {name: 'Статистика', click: 'https://yandex.ru'},
+      {name: 'Статистика', href: 'https://yandex.ru'},
+        {name: 'Офферы', type: 'dropdown', icon: 'Statistics', list: [
           {name: 'Новый'}
         ]}
       ], // меню

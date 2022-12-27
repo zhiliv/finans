@@ -1,20 +1,38 @@
 <template>
   <li class="p-0 m-0 sidebar-dropdown w-100 d-flex flex-column">
-    <div class="dropdown-item-list w-100 d-flex text-start" @click="toogleDropdown" style>
-      <nuxt-icon name="basic/stop" filled class="icon-dropdown"></nuxt-icon>
-      <span class="d-none sidebar-label w-100">qqqqq</span>
-      <div class="position-relative">
-        <nuxt-icon
-          v-if="!showList"
-          name="basic/chevron-down-arrow"
-          filled
-          class="icon-dropdown-open icon-dropdown-open-lg position-absolute"
-        ></nuxt-icon>
-        <nuxt-icon v-if="showList" name="basic/chevron-up-arrow" filled class="icon-dropdown-open"></nuxt-icon>
+    <div
+      class="dropdown-item-list w-100 d-flex text-start position-relative"
+      @click="toogleDropdown"
+    >
+      <Icon v-if="icon" :name="icon" size="50px" class="dropdown-icon" color="var(--light)" />
+      <span class="dropdown-label w-100">{{name}}</span>
+      <div class="position-relative w-100">
+        <client-only>
+          <Icon
+            v-show="!showList"
+            name="Chevrondown"
+            size="30px"
+            color="var(--light)"
+            class="dropdown-open"
+          />
+          <Icon
+            v-show="showList"
+            name="Chevronup"
+            size="30px"
+            color="var(--light)"
+            class="dropdown-open"
+          />
+        </client-only>
       </div>
     </div>
     <ul class="list-dropdown d-none w-100">
-      <li v-for="item in list" :key="item.name" class="sidebar-item-dropdown">{{item.name}}</li>
+      <li
+        v-for="item in list"
+        :key="item.name"
+        class="sidebar-item-dropdown w-100"
+      >
+        <span>- {{item.name}}</span>
+      </li>
     </ul>
   </li>
 </template>
@@ -27,6 +45,16 @@ export default {
       type: Array,
       default: () => [],
     },
+    icon: {
+      // иконка
+      type: String,
+      default: null,
+    },
+    name: {
+      // Наименование меню
+      type: String,
+      default: null,
+    },
   },
   methods: {
     /*
@@ -34,9 +62,10 @@ export default {
      * @function toogleDropdown
      */
     toogleDropdown() {
+      const { showList } = this
       const { classList } = this.$el.querySelector('.list-dropdown') //  свойства classList у списка
       classList.toggle('show') // добавление  / удаление класса
-      this.showList = !this.showList
+      this.showList = !showList
     },
   },
   data() {
@@ -55,22 +84,6 @@ export default {
   @import '~/assets/css/position.css';
   @import '~/assets/css/text/text.css';
 
-  @media (min-width: 992px) {
-    .dropdown-item-list {
-      justify-content: center;
-    }
-
-    .icon-dropdown-open-lg {
-      display: none;
-    }
-  }
-
-  @media (max-width: 991.9px) {
-    .icon-dropdown-open {
-      display: block;
-    }
-  }
-
   .list-dropdown {
     list-style-type: none;
   }
@@ -78,21 +91,12 @@ export default {
   .sidebar:hover .list-dropdown.show {
     display: flex;
     flex-direction: column;
+    padding: 0px;
   }
 
   .sidebar-dropdown {
     color: var(--light-gray);
-  }
-
-  .button-open-dropdown {
-    background: green;
-    height: 20px;
-    width: 20px;
-  }
-
-  .sidebar:hover .icon-dropdown-open,
-  .sidebar.show .icon-dropdown-open {
-    display: block;
+    min-height: 50px;
   }
 
   .sidebar-item-dropdown:hover {
@@ -102,29 +106,18 @@ export default {
   }
 
   .sidebar-item-dropdown {
-    height: 35px;
-    padding-top: 3px;
     margin-left: 0px;
     color: var(--light);
     padding-left: 10px;
-  }
-
-  .icon-dropdown svg {
-    width: 30px !important;
-    height: 30px !important;
-    margin-top: 2px;
-    color: var(--dark);
-  }
-
-  .icon-dropdown svg > *,
-  .icon-dropdown-open svg > * {
-    stroke: var(--light);
+    height: 50px;
+    font-size: 18px;
+    padding-top: 10px;
   }
 
   .dropdown-item-list {
     border: none;
     white-space: normal;
-    height: 40px;
+    height: 50px;
   }
 
   .dropdown-item-list:hover {
@@ -133,17 +126,37 @@ export default {
     transition-duration: 0.4s;
   }
 
-  .icon-dropdown-open {
-    display: none;
-    padding-top: 15%;
-    top: 10px;
-    right: 10px;
+  .sidebar:hover .dropdown-label,
+  .sidebar.show .dropdown-label {
+    display: flex;
   }
 
-  .icon-dropdown-open svg {
-    width: 20px !important;
-    height: 20px !important;
-    margin-top: 2px;
-    margin-right: 10px;
+  .dropdown-label {
+    display: none;
+    position: absolute;
+    top: 11px;
+    font-size: 18px;
+    color: var(--light);
+    margin-left: 60px;
+  }
+
+  .dropdown-open {
+    min-width: 50px;
+    float: right;
+    display: block;
+    margin-top: 10px;
+  }
+
+  .dropdown-open > * {
+    stroke: var(--light);
+  }
+
+  .dropdown-icon {
+    min-width: 50px;
+    margin-left: 10px;
+  }
+
+  .sidebar-item-dropdown span{
+    margin-left: 30px;
   }
 </style>
