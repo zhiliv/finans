@@ -45,7 +45,7 @@ export default {
   @import '~/assets/css/size.css';
   @import '~/assets/css/flex.css';
 
-  @media (min-width: 992px) {
+  @media (min-width: 991.9px) {
     .navbar {
       display: none !important;
     }

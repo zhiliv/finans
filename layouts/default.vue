@@ -1,8 +1,8 @@
 <template>
-  <app-container fluid="true" class="vh-100" style="padding: 0px;">
-    <app-layout class="h-100" flex="true">
+  <app-container fluid="true" class="vh-100 m-0 p-0 overflow-hidden w-100">
+    <app-layout class="h-100 w-100" flex="true">
       <app-navbar :menu="menu" />
-      <app-row class style="height: 100%; width:100%; margin-left: 80px;  border: 1px solid silver">
+      <app-row class="h-100 w-100 block-page">
         <router-view />
       </app-row>
     </app-layout>
@@ -14,9 +14,9 @@ export default {
     return {
       isOpen: false,
       menu: [
-        { name: 'Главная', href: '/', icon: 'Statistics' },
-        { name: 'Нажать', href: '/statistic1' },
-        { name: 'Статистика1', href: '/statistic', icon: 'Statistics' },
+        { name: 'Статистика', href: '/', icon: 'Statistics' },
+        { name: 'Офферы', type: 'dropdown'},
+        { name: 'Статистика1', href: '/statistic6', icon: 'Statistics' },
         {
           name: 'Клик',
           click: () => {
@@ -39,11 +39,6 @@ export default {
             { name: 'Старый', href: '/' },
           ],
         },
-        /*       {name: 'Статистика', click: () => {alert(1)}},
-      {name: 'Статистика', click: () => {alert(1)}},
-        {name: 'Офферы', type: 'dropdown', icon: 'Statistics', list: [
-          {name: 'Новый'}
-        ]} */
       ], // меню
     }
   },
@@ -53,12 +48,18 @@ export default {
 <style>
   @import '~/assets/css/size.css';
   @import '~/assets/css/padding.css';
+  @import '~/assets/css/margin.css';
+  @import '~/assets/css/overflow.css';
 
-  .h-90 {
-    height: 90%;
+  .block-page {
+    border: 1px solid silver;
+    margin-left: 80px;
   }
 
-  .test {
-    background: var(--secondary);
+  @media (max-width: 991.9px) {
+    .block-page {
+      margin-left: 0px;
+
+    }
   }
 </style>

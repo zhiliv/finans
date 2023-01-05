@@ -39,7 +39,7 @@
             <span class="text-no-icon p-l-2">{{item.name}}</span>
           </div>
         </li>
-        <app-dropdown
+        <app-sidebar-dropdown
           v-if="item.type === 'dropdown'"
           :list="item.list"
           :icon="item.icon"
