@@ -3,7 +3,6 @@
     <nav ref="nav" class="w-100 navbar position-absolute shadow-container">
       <app-button size="sm" @click="tootleSidebar" class="button-burger">
         <Icon name="Burger" class="burger" />
-        <!-- <nuxt-icon name="basic/menu-hambuger" class="icon-burger" /> -->
       </app-button>
       <div class="d-flex align-items-center justify-content-center w-100">
         <span class="navbar-title">{{title}}</span>

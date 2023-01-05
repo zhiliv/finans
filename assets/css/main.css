@@ -134,3 +134,7 @@ body {
 .d-block{
   display: block !important;
 }
+
+.flex-shrink-0 {
+  flex-shrink: 0 !important;
+}

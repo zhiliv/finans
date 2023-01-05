@@ -4,10 +4,28 @@
       <template v-for="item in menu" :key="item.name">
         <li
           v-if="item.type !== 'dropdown'"
-          class="d-flex text-wrap sidebar-item"
+          class="d-flex text-wrap sidebar-item w-100 flex-shrink-0"
           @click="item.click"
         >
-          <div class="w-100 noselect position-relative">
+          <NuxtLink v-if="item.href" :to="item.href" v-slot="{ href, navigate, isActive }" custom>
+            <div
+              :class="{'w-100': true, 'noselect': true, 'position-relative': true, 'flex-shrink-0': true, active: isActive}"
+            >
+              <Icon
+                v-if="item.icon"
+                :name="item.icon"
+                size="50px"
+                color="var(--light)"
+                class="sidebar-icon"
+              />
+              <div v-if="!item.icon" class="block-icon position-relative">
+                <span class="sidebar-short-text m-l-2">{{getShort(item.name)}}</span>
+              </div>
+              <!-- <span v-if="!item.icon" class="text-no-icon">{{item.name}}</span> -->
+              <a class="d-none text-no-icon w-100 link" :href="href" @click="navigate">{{item.name}}</a>
+            </div>
+          </NuxtLink>
+          <div v-if="item.click" class="w-100 noselect position-relative flex-shrink-0">
             <Icon
               v-if="item.icon"
               :name="item.icon"
@@ -15,15 +33,10 @@
               color="var(--light)"
               class="sidebar-icon"
             />
-            <div v-else class="block-icon position-relative" style>
-              <span class="sidebar-short-text">{{getShort(item.name)}}</span>
+            <div v-if="!item.icon" class="block-icon position-relative">
+              <span class="sidebar-short-text m-l-2">{{getShort(item.name)}}</span>
             </div>
-            <a
-              v-if="item.href"
-              class="d-none w-100 text-wrap position-absolute sidebar-link"
-              :href="item.href"
-            >{{item.name}}</a>
-            <span v-else class="text-no-icon" style>{{item.name}}</span>
+            <span class="text-no-icon p-l-2">{{item.name}}</span>
           </div>
         </li>
         <app-dropdown
@@ -128,8 +141,13 @@ export default {
     display: inline;
   }
 
-  .sidebar-item:hover {
-    background: var(--primary);
+  .sidebar-item:hover div {
+    background: var(--primary) !important;
+  }
+
+  .sidebar-item:hover a,
+  .sidebar-item:hover svg > * {
+    color: var(--light) !important;
   }
 
   @media (min-width: 992px) {
@@ -146,9 +164,9 @@ export default {
 
   .sidebar-short-text {
     position: absolute;
-    font-size: 20px;
+    font-size: 18px;
     color: var(--light);
-    margin-left: 3px;
+    margin-left: 4px;
     height: 40px;
     font-weight: 800;
   }
@@ -184,7 +202,27 @@ export default {
     margin-right: 5px;
   }
 
-  .sidebar-link{
-    top:11px;
+  .sidebar-link {
+    top: 11px;
+  }
+
+  .sidebar li .active {
+    background: var(--active);
+  }
+
+  .sidebar li .active .link {
+    color: var(--dark);
+  }
+
+  .sidebar li .active svg > * {
+    color: var(--dark);
+  }
+
+  .m-l-2 {
+    margin-left: 2px;
+  }
+
+  .p-l-2 {
+    padding-left: 2px;
   }
 </style>
