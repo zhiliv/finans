@@ -26,12 +26,20 @@
       </div>
     </div>
     <ul class="list-dropdown d-none w-100">
-      <li
-        v-for="item in list"
-        :key="item.name"
-        class="sidebar-item-dropdown w-100"
-      >
-        <span>- {{item.name}}</span>
+      <li v-for="item in list" :key="item.nme" class="sidebar-item-dropdown w-100">
+        <NuxtLink v-if="item.href" :to="item.href" v-slot="{ href, navigate, isActive }" custom>
+          <div
+            :class="{active: isActive, 'h-100': true, 'w-100': true, 'm-0': true, 'p-t-10': true }"
+          >
+            <a :href="href" @click="navigate">- {{item.name}}</a>
+          </div>
+        </NuxtLink>
+        <div
+          v-if="!item.href"
+          :class="{active: isActive, 'w-100': true, 'p-t-10': true}"
+        >
+          <span class="f-s-18">+ {{item.name}}</span>
+        </div>
       </li>
     </ul>
   </li>
@@ -71,6 +79,7 @@ export default {
   data() {
     return {
       showList: false, // свойство указывает отображается ли список или нет
+      isActive: false, // активный пункт меню
     }
   },
 }
@@ -108,10 +117,8 @@ export default {
   .sidebar-item-dropdown {
     margin-left: 0px;
     color: var(--light);
-    padding-left: 10px;
     height: 50px;
     font-size: 18px;
-    padding-top: 10px;
   }
 
   .dropdown-item-list {
@@ -156,7 +163,22 @@ export default {
     margin-left: 10px;
   }
 
-  .sidebar-item-dropdown span{
+  .sidebar-item-dropdown span {
     margin-left: 30px;
+  }
+
+  .p-t-10 {
+    padding-top: 10px;
+  }
+
+  .sidebar-item-dropdown a {
+    color: var(--light) !important;
+    padding-left: 32px;
+    min-width: 100% !important;
+    margin-top: 10px;
+  }
+
+  .f-s-18{
+    font-size: 18px
   }
 </style>
