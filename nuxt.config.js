@@ -4,10 +4,18 @@ export default defineNuxtConfig({
   build: {
 
   },
+  vSelect: {
+    component: {
+      as: 'AppSelect',
+      globalRegister: true,
+      includeCss: true
+    }
+    // extend(vSelect, vueApp) => void | Promise<void>
+  },
   nitro: {
     compressPublicAssets: true,
   },
-  modules: ['nuxt-purgecss', '@nuxtjs/critters', 'nuxt-icon'],
+  modules: ['nuxt-purgecss', '@nuxtjs/critters', 'nuxt-icon', '@whoj/nuxt3-vue-select'],
   purgecss: {
     safelist: ['safe'],
     content:[

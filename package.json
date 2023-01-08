@@ -6,6 +6,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "database": "node ./db-schemas/db.js",
     "generate-whitelist": "node ./scripts/whitelist/generator-whitelist.mjs",
     "lint": "eslint ."
   },
@@ -25,7 +26,11 @@
     "@nuxtjs/critters": "^0.4.0",
     "@vuelidate/core": "^2.0.0",
     "@vuelidate/validators": "^2.0.0",
+    "@whoj/nuxt3-vue-select": "^1.0.2",
+    "cli-color": "^2.0.3",
     "mitt": "^3.0.0",
-    "node-html-parser": "^6.1.4"
+    "node-html-parser": "^6.1.4",
+    "pg": "^8.8.0",
+    "uuid": "^9.0.0"
   }
 }

@@ -14,31 +14,9 @@ export default {
     return {
       isOpen: false,
       menu: [
-        { name: 'Статистика', href: '/', icon: 'Statistics' },
-        { name: 'Офферы', type: 'dropdown'},
-        { name: 'Статистика1', href: '/statistic6', icon: 'Statistics' },
-        {
-          name: 'Клик',
-          click: () => {
-            alert(1)
-          },
-        },
-        {
-          name: 'Кликстер',
-          icon: 'Statistics',
-          click: () => {
-            alert(1)
-          },
-        },
-        {
-          name: 'Офферы',
-          type: 'dropdown',
-          icon: 'Statistics',
-          list: [
-            { name: 'Новый', click: () => alert(2) },
-            { name: 'Старый', href: '/' },
-          ],
-        },
+        { name: 'Статистика', href: '/statistic', icon: 'Statistics' },
+        { name: 'Офферы', href: '/'}
+
       ], // меню
     }
   },

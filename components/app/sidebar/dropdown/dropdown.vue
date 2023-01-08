@@ -38,7 +38,7 @@
           </div>
         </NuxtLink>
         <div v-if="!item.href" :class="{active: isActive, 'w-100': true, 'p-t-10': true}">
-          <span class="f-s-18">+ {{item.name}}</span>
+          <span class="f-s-18">- {{item.name}}</span>
         </div>
       </li>
     </ul>
