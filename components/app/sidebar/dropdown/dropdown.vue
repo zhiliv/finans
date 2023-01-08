@@ -207,7 +207,7 @@ export default {
     position: absolute;
     font-size: 18px;
     color: var(--light);
-    margin-left: 0px;
+    margin-left: 2px;
     height: 40px;
     font-weight: 800;
   }
