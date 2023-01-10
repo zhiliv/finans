@@ -10,3 +10,369 @@
   --materialize-red-darken-3: #a21318;
   --materialize-red-darken-4: #8b1014;
 }
+
+
+
+.bg-materialize-red {
+  background-color: var(--materialize-red) !important;
+}
+
+.bg-materialize-red-lighten-5 {
+  background-color: var(--materialize-red-lighten-5) !important;
+}
+
+.bg-materialize-red-lighten-4 {
+  background-color: var(--materialize-red-lighten-4) !important;
+}
+
+.bg-materialize-red-lighten-3 {
+  background-color: var(--materialize-red-lighten-3) !important;
+}
+
+.bg-materialize-red-lighten-2 {
+  background-color: var(--materialize-red-lighten-2) !important;
+}
+
+.bg-materialize-red-lighten-1 {
+  background-color: var(--materialize-red-lighten-1) !important;
+}
+
+.bg-materialize-red-darken-1 {
+  background-color: var(--materialize-red-darken-1) !important;
+}
+
+.bg-materialize-red-darken-2 {
+  background-color: var(--materialize-red-darken-2) !important;
+}
+
+.bg-materialize-red-darken-3 {
+  background-color: var(--materialize-red-darken-3) !important;
+}
+
+.bg-materialize-red-darken-4 {
+  background-color: var(--materialize-red-darken-4) !important;
+}
+
+.bg-materialize-red-hvr:hover {
+  background-color: var(--materialize-red) !important;
+}
+
+.bg-materialize-red-lighten-5-hvr:hover {
+  background-color: var(--materialize-red-lighten-5) !important;
+}
+
+.bg-materialize-red-lighten-4-hvr:hover {
+  background-color: var(--materialize-red-lighten-4) !important;
+}
+
+.bg-materialize-red-lighten-3-hvr:hover {
+  background-color: var(--materialize-red-lighten-3) !important;
+}
+
+.bg-materialize-red-lighten-2-hvr:hover {
+  background-color: var(--materialize-red-lighten-2) !important;
+}
+
+.bg-materialize-red-lighten-1-hvr:hover {
+  background-color: var(--materialize-red-lighten-1) !important;
+}
+
+.bg-materialize-red-darken-1-hvr:hover {
+  background-color: var(--materialize-red-darken-1) !important;
+}
+
+.bg-materialize-red-darken-2-hvr:hover {
+  background-color: var(--materialize-red-darken-2) !important;
+}
+
+.bg-materialize-red-darken-3-hvr:hover {
+  background-color: var(--materialize-red-darken-3) !important;
+}
+
+.bg-materialize-red-darken-4-hvr:hover {
+  background-color: var(--materialize-red-darken-4) !important;
+}
+
+.bg-materialize-red-fcs:focus {
+  background-color: var(--materialize-red) !important;
+}
+
+.bg-materialize-red-lighten-5-fcs:focus {
+  background-color: var(--materialize-red-lighten-5) !important;
+}
+
+.bg-materialize-red-lighten-4-fcs:focus {
+  background-color: var(--materialize-red-lighten-4) !important;
+}
+
+.bg-materialize-red-lighten-3-fcs:focus {
+  background-color: var(--materialize-red-lighten-3) !important;
+}
+
+.bg-materialize-red-lighten-2-fcs:focus {
+  background-color: var(--materialize-red-lighten-2) !important;
+}
+
+.bg-materialize-red-lighten-1-fcs:focus {
+  background-color: var(--materialize-red-lighten-1) !important;
+}
+
+.bg-materialize-red-darken-1-fcs:focus {
+  background-color: var(--materialize-red-darken-1) !important;
+}
+
+.bg-materialize-red-darken-2-fcs:focus {
+  background-color: var(--materialize-red-darken-2) !important;
+}
+
+.bg-materialize-red-darken-3-fcs:focus {
+  background-color: var(--materialize-red-darken-3) !important;
+}
+
+.bg-materialize-red-darken-4-fcs:focus {
+  background-color: var(--materialize-red-darken-4) !important;
+}
+
+
+
+.border-materialize-red {
+  border-color: var(--materialize-red) !important;
+}
+
+.border-materialize-red-lighten-5 {
+  border-color: var(--materialize-red-lighten-5) !important;
+}
+
+.border-materialize-red-lighten-4 {
+  border-color: var(--materialize-red-lighten-4) !important;
+}
+
+.border-materialize-red-lighten-3 {
+  border-color: var(--materialize-red-lighten-3) !important;
+}
+
+.border-materialize-red-lighten-2 {
+  border-color: var(--materialize-red-lighten-2) !important;
+}
+
+.border-materialize-red-lighten-1 {
+  border-color: var(--materialize-red-lighten-1) !important;
+}
+
+.border-materialize-red-darken-1 {
+  border-color: var(--materialize-red-darken-1) !important;
+}
+
+.border-materialize-red-darken-2 {
+  border-color: var(--materialize-red-darken-2) !important;
+}
+
+.border-materialize-red-darken-3 {
+  border-color: var(--materialize-red-darken-3) !important;
+}
+
+.border-materialize-red-darken-4 {
+  border-color: var(--materialize-red-darken-4) !important;
+}
+
+.border-materialize-red-hvr:hover {
+  border-color: var(--materialize-red) !important;
+}
+
+.border-materialize-red-lighten-5-hvr:hover {
+  border-color: var(--materialize-red-lighten-5) !important;
+}
+
+.border-materialize-red-lighten-4-hvr:hover {
+  border-color: var(--materialize-red-lighten-4) !important;
+}
+
+.border-materialize-red-lighten-3-hvr:hover {
+  border-color: var(--materialize-red-lighten-3) !important;
+}
+
+.border-materialize-red-lighten-2-hvr:hover {
+  border-color: var(--materialize-red-lighten-2) !important;
+}
+
+.border-materialize-red-lighten-1-hvr:hover {
+  border-color: var(--materialize-red-lighten-1) !important;
+}
+
+.border-materialize-red-darken-1-hvr:hover {
+  border-color: var(--materialize-red-darken-1) !important;
+}
+
+.border-materialize-red-darken-2-hvr:hover {
+  border-color: var(--materialize-red-darken-2) !important;
+}
+
+.border-materialize-red-darken-3-hvr:hover {
+  border-color: var(--materialize-red-darken-3) !important;
+}
+
+.border-materialize-red-darken-4-hvr:hover {
+  border-color: var(--materialize-red-darken-4) !important;
+}
+
+.border-materialize-red-fcs:focus {
+  border-color: var(--materialize-red) !important;
+}
+
+.border-materialize-red-lighten-5-fcs:focus {
+  border-color: var(--materialize-red-lighten-5) !important;
+}
+
+.border-materialize-red-lighten-4-fcs:focus {
+  border-color: var(--materialize-red-lighten-4) !important;
+}
+
+.border-materialize-red-lighten-3-fcs:focus {
+  border-color: var(--materialize-red-lighten-3) !important;
+}
+
+.border-materialize-red-lighten-2-fcs:focus {
+  border-color: var(--materialize-red-lighten-2) !important;
+}
+
+.border-materialize-red-lighten-1-fcs:focus {
+  border-color: var(--materialize-red-lighten-1) !important;
+}
+
+.border-materialize-red-darken-1-fcs:focus {
+  border-color: var(--materialize-red-darken-1) !important;
+}
+
+.border-materialize-red-darken-2-fcs:focus {
+  border-color: var(--materialize-red-darken-2) !important;
+}
+
+.border-materialize-red-darken-3-fcs:focus {
+  border-color: var(--materialize-red-darken-3) !important;
+}
+
+.border-materialize-red-darken-4-fcs:focus {
+  border-color: var(--materialize-red-darken-4) !important;
+}
+
+
+
+.materialize-red-text {
+  color: var(--materialize-red) !important;
+}
+
+.materialize-red-lighten-5-text {
+  color: var(--materialize-red-lighten-5) !important;
+}
+
+.materialize-red-lighten-4-text {
+  color: var(--materialize-red-lighten-4) !important;
+}
+
+.materialize-red-lighten-3-text {
+  color: var(--materialize-red-lighten-3) !important;
+}
+
+.materialize-red-lighten-2-text {
+  color: var(--materialize-red-lighten-2) !important;
+}
+
+.materialize-red-lighten-1-text {
+  color: var(--materialize-red-lighten-1) !important;
+}
+
+.materialize-red-darken-1-text {
+  color: var(--materialize-red-darken-1) !important;
+}
+
+.materialize-red-darken-2-text {
+  color: var(--materialize-red-darken-2) !important;
+}
+
+.materialize-red-darken-3-text {
+  color: var(--materialize-red-darken-3) !important;
+}
+
+.materialize-red-darken-4-text {
+  color: var(--materialize-red-darken-4) !important;
+}
+
+.materialize-red-text-hvr:hover {
+  color: var(--materialize-red) !important;
+}
+
+.materialize-red-lighten-5-text-hvr:hover {
+  color: var(--materialize-red-lighten-5) !important;
+}
+
+.materialize-red-lighten-4-text-hvr:hover {
+  color: var(--materialize-red-lighten-4) !important;
+}
+
+.materialize-red-lighten-3-text-hvr:hover {
+  color: var(--materialize-red-lighten-3) !important;
+}
+
+.materialize-red-lighten-2-text-hvr:hover {
+  color: var(--materialize-red-lighten-2) !important;
+}
+
+.materialize-red-lighten-1-text-hvr:hover {
+  color: var(--materialize-red-lighten-1) !important;
+}
+
+.materialize-red-darken-1-text-hvr:hover {
+  color: var(--materialize-red-darken-1) !important;
+}
+
+.materialize-red-darken-2-text-hvr:hover {
+  color: var(--materialize-red-darken-2) !important;
+}
+
+.materialize-red-darken-3-text-hvr:hover {
+  color: var(--materialize-red-darken-3) !important;
+}
+
+.materialize-red-darken-4-text-hvr:hover {
+  color: var(--materialize-red-darken-4) !important;
+}
+
+.materialize-red-text-fcs:focus {
+  color: var(--materialize-red) !important;
+}
+
+.materialize-red-lighten-5-text-fcs:focus {
+  color: var(--materialize-red-lighten-5) !important;
+}
+
+.materialize-red-lighten-4-text-fcs:focus {
+  color: var(--materialize-red-lighten-4) !important;
+}
+
+.materialize-red-lighten-3-text-fcs:focus {
+  color: var(--materialize-red-lighten-3) !important;
+}
+
+.materialize-red-lighten-2-text-fcs:focus {
+  color: var(--materialize-red-lighten-2) !important;
+}
+
+.materialize-red-lighten-1-text-fcs:focus {
+  color: var(--materialize-red-lighten-1) !important;
+}
+
+.materialize-red-darken-1-text-fcs:focus {
+  color: var(--materialize-red-darken-1) !important;
+}
+
+.materialize-red-darken-2-text-fcs:focus {
+  color: var(--materialize-red-darken-2) !important;
+}
+
+.materialize-red-darken-3-text-fcs:focus {
+  color: var(--materialize-red-darken-3) !important;
+}
+
+.materialize-red-darken-4-text-fcs:focus {
+  color: var(--materialize-red-darken-4) !important;
+}

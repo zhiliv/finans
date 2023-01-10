@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   ssr: true,
-  css: ['@/assets/css/main.css', '@/assets/css/_variables.css'],
+  css: ['@/assets/css/main.css'],
   build: {
 
   },

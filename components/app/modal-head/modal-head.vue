@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style>
-  @import './../../../assets/css/text/text.css';
+  @import './../../../assets/css/text.css';
   .cursor-default {
     cursor: default;
   }

@@ -1,12 +1,9 @@
 <template>
   <div>
     <ul class="list-group m-0">
-      <li v-for="item in list" :key="item.name">{{item.name}}</li>
+      <li v-for="item in list" :key="item[value]">{{item[text]}}</li>
     </ul>
-    <app-spinner
-      v-if="showSpinner && !isLoad"
-      class="relative top-50 start-50"
-    />
+    <app-spinner v-if="showSpinner && !isLoad" class="relative top-50 start-50" />
   </div>
 </template>
 
@@ -35,13 +32,18 @@ export default {
         return String(value) === 'true' || String(value) === 'false' || value === true || value === false
       },
     },
+    /* Значение строки */
+    value: {
+      type: String,
+      default: 'id'
+    },
+    text: {
+      type: String,
+      default: 'name'
+    }
   },
-  mounted() {
-
-  },
-  methods: {
-
-  }
+  mounted() {},
+  methods: {},
 }
 </script>
 

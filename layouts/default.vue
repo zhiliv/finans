@@ -15,7 +15,10 @@ export default {
       isOpen: false,
       menu: [
         { name: 'Статистика', href: '/statistic', icon: 'Statistics' },
-        { name: 'Офферы', href: '/'}
+        { name: 'Офферы', href: '/'},
+        { name: 'Справочники', type: 'dropdown', list: [
+          { name: 'Типы документов', href: '/guides/type_docs'}
+        ]}
 
       ], // меню
     }

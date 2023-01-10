@@ -14,3 +14,512 @@
   --light-green-accent-3: #76ff03;
   --light-green-accent-4: #64dd17;
 }
+
+
+.bg-light-green {
+  background-color: var(--light-green) !important;
+}
+
+.bg-light-green-lighten-5 {
+  background-color: var(--light-green-lighten-5) !important;
+}
+
+.bg-light-green-lighten-4 {
+  background-color: var(--light-green-lighten-4) !important;
+}
+
+.bg-light-green-lighten-3 {
+  background-color: var(--light-green-lighten-3) !important;
+}
+
+.bg-light-green-lighten-2 {
+  background-color: var(--light-green-lighten-2) !important;
+}
+
+.bg-light-green-lighten-1 {
+  background-color: var(--light-green-lighten-1) !important;
+}
+
+.bg-light-green-darken-1 {
+  background-color: var(--light-green-darken-1) !important;
+}
+
+.bg-light-green-darken-2 {
+  background-color: var(--light-green-darken-2) !important;
+}
+
+.bg-light-green-darken-3 {
+  background-color: var(--light-green-darken-3) !important;
+}
+
+.bg-light-green-darken-4 {
+  background-color: var(--light-green-darken-4) !important;
+}
+
+.bg-light-green-accent-1 {
+  background-color: var(--light-green-accent-1) !important;
+}
+
+.bg-light-green-accent-2 {
+  background-color: var(--light-green-accent-2) !important;
+}
+
+.bg-light-green-accent-3 {
+  background-color: var(--light-green-accent-3) !important;
+}
+
+.bg-light-green-accent-4 {
+  background-color: var(--light-green-accent-4) !important;
+}
+
+.bg-light-green-hvr:hover {
+  background-color: var(--light-green) !important;
+}
+
+.bg-light-green-lighten-5-hvr:hover {
+  background-color: var(--light-green-lighten-5) !important;
+}
+
+.bg-light-green-lighten-4-hvr:hover {
+  background-color: var(--light-green-lighten-4) !important;
+}
+
+.bg-light-green-lighten-3-hvr:hover {
+  background-color: var(--light-green-lighten-3) !important;
+}
+
+.bg-light-green-lighten-2-hvr:hover {
+  background-color: var(--light-green-lighten-2) !important;
+}
+
+.bg-light-green-lighten-1-hvr:hover {
+  background-color: var(--light-green-lighten-1) !important;
+}
+
+.bg-light-green-darken-1-hvr:hover {
+  background-color: var(--light-green-darken-1) !important;
+}
+
+.bg-light-green-darken-2-hvr:hover {
+  background-color: var(--light-green-darken-2) !important;
+}
+
+.bg-light-green-darken-3-hvr:hover {
+  background-color: var(--light-green-darken-3) !important;
+}
+
+.bg-light-green-darken-4-hvr:hover {
+  background-color: var(--light-green-darken-4) !important;
+}
+
+.bg-light-green-accent-1-hvr:hover {
+  background-color: var(--light-green-accent-1) !important;
+}
+
+.bg-light-green-accent-2-hvr:hover {
+  background-color: var(--light-green-accent-2) !important;
+}
+
+.bg-light-green-accent-3-hvr:hover {
+  background-color: var(--light-green-accent-3) !important;
+}
+
+.bg-light-green-accent-4-hvr:hover {
+  background-color: var(--light-green-accent-4) !important;
+}
+
+.bg-light-green-fcs:focus {
+  background-color: var(--light-green) !important;
+}
+
+.bg-light-green-lighten-5-fcs:focus {
+  background-color: var(--light-green-lighten-5) !important;
+}
+
+.bg-light-green-lighten-4-fcs:focus {
+  background-color: var(--light-green-lighten-4) !important;
+}
+
+.bg-light-green-lighten-3-fcs:focus {
+  background-color: var(--light-green-lighten-3) !important;
+}
+
+.bg-light-green-lighten-2-fcs:focus {
+  background-color: var(--light-green-lighten-2) !important;
+}
+
+.bg-light-green-lighten-1-fcs:focus {
+  background-color: var(--light-green-lighten-1) !important;
+}
+
+.bg-light-green-darken-1-fcs:focus {
+  background-color: var(--light-green-darken-1) !important;
+}
+
+.bg-light-green-darken-2-fcs:focus {
+  background-color: var(--light-green-darken-2) !important;
+}
+
+.bg-light-green-darken-3-fcs:focus {
+  background-color: var(--light-green-darken-3) !important;
+}
+
+.bg-light-green-darken-4-fcs:focus {
+  background-color: var(--light-green-darken-4) !important;
+}
+
+.bg-light-green-accent-1-fcs:focus {
+  background-color: var(--light-green-accent-1) !important;
+}
+
+.bg-light-green-accent-2-fcs:focus {
+  background-color: var(--light-green-accent-2) !important;
+}
+
+.bg-light-green-accent-3-fcs:focus {
+  background-color: var(--light-green-accent-3) !important;
+}
+
+.bg-light-green-accent-4-fcs:focus {
+  background-color: var(--light-green-accent-4) !important;
+}
+
+
+
+.border-light-green {
+  border-color: var(--light-green) !important;
+}
+
+.border-light-green-lighten-5 {
+  border-color: var(--light-green-lighten-5) !important;
+}
+
+.border-light-green-lighten-4 {
+  border-color: var(--light-green-lighten-4) !important;
+}
+
+.border-light-green-lighten-3 {
+  border-color: var(--light-green-lighten-3) !important;
+}
+
+.border-light-green-lighten-2 {
+  border-color: var(--light-green-lighten-2) !important;
+}
+
+.border-light-green-lighten-1 {
+  border-color: var(--light-green-lighten-1) !important;
+}
+
+.border-light-green-darken-1 {
+  border-color: var(--light-green-darken-1) !important;
+}
+
+.border-light-green-darken-2 {
+  border-color: var(--light-green-darken-2) !important;
+}
+
+.border-light-green-darken-3 {
+  border-color: var(--light-green-darken-3) !important;
+}
+
+.border-light-green-darken-4 {
+  border-color: var(--light-green-darken-4) !important;
+}
+
+.border-light-green-accent-1 {
+  border-color: var(--light-green-accent-1) !important;
+}
+
+.border-light-green-accent-2 {
+  border-color: var(--light-green-accent-2) !important;
+}
+
+.border-light-green-accent-3 {
+  border-color: var(--light-green-accent-3) !important;
+}
+
+.border-light-green-accent-4 {
+  border-color: var(--light-green-accent-4) !important;
+}
+
+.border-light-green-hvr:hover {
+  border-color: var(--light-green) !important;
+}
+
+.border-light-green-lighten-5-hvr:hover {
+  border-color: var(--light-green-lighten-5) !important;
+}
+
+.border-light-green-lighten-4-hvr:hover {
+  border-color: var(--light-green-lighten-4) !important;
+}
+
+.border-light-green-lighten-3-hvr:hover {
+  border-color: var(--light-green-lighten-3) !important;
+}
+
+.border-light-green-lighten-2-hvr:hover {
+  border-color: var(--light-green-lighten-2) !important;
+}
+
+.border-light-green-lighten-1-hvr:hover {
+  border-color: var(--light-green-lighten-1) !important;
+}
+
+.border-light-green-darken-1-hvr:hover {
+  border-color: var(--light-green-darken-1) !important;
+}
+
+.border-light-green-darken-2-hvr:hover {
+  border-color: var(--light-green-darken-2) !important;
+}
+
+.border-light-green-darken-3-hvr:hover {
+  border-color: var(--light-green-darken-3) !important;
+}
+
+.border-light-green-darken-4-hvr:hover {
+  border-color: var(--light-green-darken-4) !important;
+}
+
+.border-light-green-accent-1-hvr:hover {
+  border-color: var(--light-green-accent-1) !important;
+}
+
+.border-light-green-accent-2-hvr:hover {
+  border-color: var(--light-green-accent-2) !important;
+}
+
+.border-light-green-accent-3-hvr:hover {
+  border-color: var(--light-green-accent-3) !important;
+}
+
+.border-light-green-accent-4-hvr:hover {
+  border-color: var(--light-green-accent-4) !important;
+}
+
+.border-light-green-fcs:focus {
+  border-color: var(--light-green) !important;
+}
+
+.border-light-green-lighten-5-fcs:focus {
+  border-color: var(--light-green-lighten-5) !important;
+}
+
+.border-light-green-lighten-4-fcs:focus {
+  border-color: var(--light-green-lighten-4) !important;
+}
+
+.border-light-green-lighten-3-fcs:focus {
+  border-color: var(--light-green-lighten-3) !important;
+}
+
+.border-light-green-lighten-2-fcs:focus {
+  border-color: var(--light-green-lighten-2) !important;
+}
+
+.border-light-green-lighten-1-fcs:focus {
+  border-color: var(--light-green-lighten-1) !important;
+}
+
+.border-light-green-darken-1-fcs:focus {
+  border-color: var(--light-green-darken-1) !important;
+}
+
+.border-light-green-darken-2-fcs:focus {
+  border-color: var(--light-green-darken-2) !important;
+}
+
+.border-light-green-darken-3-fcs:focus {
+  border-color: var(--light-green-darken-3) !important;
+}
+
+.border-light-green-darken-4-fcs:focus {
+  border-color: var(--light-green-darken-4) !important;
+}
+
+.border-light-green-accent-1-fcs:focus {
+  border-color: var(--light-green-accent-1) !important;
+}
+
+.border-light-green-accent-2-fcs:focus {
+  border-color: var(--light-green-accent-2) !important;
+}
+
+.border-light-green-accent-3-fcs:focus {
+  border-color: var(--light-green-accent-3) !important;
+}
+
+.border-light-green-accent-4-fcs:focus {
+  border-color: var(--light-green-accent-4) !important;
+}
+
+
+
+.light-green-text {
+  color: var(--light-green) !important;
+}
+
+.light-green-lighten-5-text {
+  color: var(--light-green-lighten-5) !important;
+}
+
+.light-green-lighten-4-text {
+  color: var(--light-green-lighten-4) !important;
+}
+
+.light-green-lighten-3-text {
+  color: var(--light-green-lighten-3) !important;
+}
+
+.light-green-lighten-2-text {
+  color: var(--light-green-lighten-2) !important;
+}
+
+.light-green-lighten-1-text {
+  color: var(--light-green-lighten-1) !important;
+}
+
+.light-green-darken-1-text {
+  color: var(--light-green-darken-1) !important;
+}
+
+.light-green-darken-2-text {
+  color: var(--light-green-darken-2) !important;
+}
+
+.light-green-darken-3-text {
+  color: var(--light-green-darken-3) !important;
+}
+
+.light-green-darken-4-text {
+  color: var(--light-green-darken-4) !important;
+}
+
+.light-green-accent-1-text {
+  color: var(--light-green-accent-1) !important;
+}
+
+.light-green-accent-2-text {
+  color: var(--light-green-accent-2) !important;
+}
+
+.light-green-accent-3-text {
+  color: var(--light-green-accent-3) !important;
+}
+
+.light-green-accent-4-text {
+  color: var(--light-green-accent-4) !important;
+}
+
+.light-green-text-hvr:hover {
+  color: var(--light-green) !important;
+}
+
+.light-green-lighten-5-text-hvr:hover {
+  color: var(--light-green-lighten-5) !important;
+}
+
+.light-green-lighten-4-text-hvr:hover {
+  color: var(--light-green-lighten-4) !important;
+}
+
+.light-green-lighten-3-text-hvr:hover {
+  color: var(--light-green-lighten-3) !important;
+}
+
+.light-green-lighten-2-text-hvr:hover {
+  color: var(--light-green-lighten-2) !important;
+}
+
+.light-green-lighten-1-text-hvr:hover {
+  color: var(--light-green-lighten-1) !important;
+}
+
+.light-green-darken-1-text-hvr:hover {
+  color: var(--light-green-darken-1) !important;
+}
+
+.light-green-darken-2-text-hvr:hover {
+  color: var(--light-green-darken-2) !important;
+}
+
+.light-green-darken-3-text-hvr:hover {
+  color: var(--light-green-darken-3) !important;
+}
+
+.light-green-darken-4-text-hvr:hover {
+  color: var(--light-green-darken-4) !important;
+}
+
+.light-green-accent-1-text-hvr:hover {
+  color: var(--light-green-accent-1) !important;
+}
+
+.light-green-accent-2-text-hvr:hover {
+  color: var(--light-green-accent-2) !important;
+}
+
+.light-green-accent-3-text-hvr:hover {
+  color: var(--light-green-accent-3) !important;
+}
+
+.light-green-accent-4-text-hvr:hover {
+  color: var(--light-green-accent-4) !important;
+}
+
+.light-green-text-fcs:focus {
+  color: var(--light-green) !important;
+}
+
+.light-green-lighten-5-text-fcs:focus {
+  color: var(--light-green-lighten-5) !important;
+}
+
+.light-green-lighten-4-text-fcs:focus {
+  color: var(--light-green-lighten-4) !important;
+}
+
+.light-green-lighten-3-text-fcs:focus {
+  color: var(--light-green-lighten-3) !important;
+}
+
+.light-green-lighten-2-text-fcs:focus {
+  color: var(--light-green-lighten-2) !important;
+}
+
+.light-green-lighten-1-text-fcs:focus {
+  color: var(--light-green-lighten-1) !important;
+}
+
+.light-green-darken-1-text-fcs:focus {
+  color: var(--light-green-darken-1) !important;
+}
+
+.light-green-darken-2-text-fcs:focus {
+  color: var(--light-green-darken-2) !important;
+}
+
+.light-green-darken-3-text-fcs:focus {
+  color: var(--light-green-darken-3) !important;
+}
+
+.light-green-darken-4-text-fcs:focus {
+  color: var(--light-green-darken-4) !important;
+}
+
+.light-green-accent-1-text-fcs:focus {
+  color: var(--light-green-accent-1) !important;
+}
+
+.light-green-accent-2-text-fcs:focus {
+  color: var(--light-green-accent-2) !important;
+}
+
+.light-green-accent-3-text-fcs:focus {
+  color: var(--light-green-accent-3) !important;
+}
+
+.light-green-accent-4-text-fcs:focus {
+  color: var(--light-green-accent-4) !important;
+}

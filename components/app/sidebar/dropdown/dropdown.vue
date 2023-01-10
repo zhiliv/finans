@@ -103,7 +103,7 @@ export default {
   @import '~/assets/css/margin.css';
   @import '~/assets/css/flex.css';
   @import '~/assets/css/position.css';
-  @import '~/assets/css/text/text.css';
+  @import '~/assets/css/text.css';
 
   .sidebar .list-dropdown {
     list-style-type: none;

@@ -86,7 +86,7 @@ export default {
   @import '~/assets/css/margin.css';
   @import '~/assets/css/position.css';
   @import '~/assets/css/overflow.css';
-  @import '~/assets/css/text/text.css';
+  @import '~/assets/css/text.css';
 
   @media (max-width: 991.9px) {
     .sidebar {
