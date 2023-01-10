@@ -174,10 +174,43 @@ body {
   background: var(--primary);
 }
 
+.success {
+  background: var(--success);
+}
+
+.info {
+  background: var(--info);
+}
+
+.warning {
+  background: var(--warning);
+}
+
+.danger {
+  background: var(--danger);
+}
+
+.light {
+  background: var(--light);
+}
+
+.dark {
+  background: var(--dark);
+}
+
+.gray {
+  background: var(--gray);
+}
+
+.light-gray {
+  background: var(--light-gray);
+}
+
+
 .hover:hover {
   filter: contrast(180%);
 }
 
-.text-light{
-  color:  var(--light)!important
+.text-light {
+  color: var(--light) !important
 }

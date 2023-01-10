@@ -1,6 +1,6 @@
 <template>
   <app-container fluid="true" class="vh-100 m-0 p-0 overflow-hidden w-100">
-    <app-layout class="h-100 w-100" flex="true">
+    <app-layout class="h-100 w-100 layout-main" flex="true">
       <app-navbar :menu="menu" />
       <app-row class="h-100 w-100 block-page">
         <router-view />
@@ -15,11 +15,8 @@ export default {
       isOpen: false,
       menu: [
         { name: 'Статистика', href: '/statistic', icon: 'Statistics' },
-        { name: 'Офферы', href: '/'},
-        { name: 'Справочники', type: 'dropdown', list: [
-          { name: 'Типы документов', href: '/guides/type_docs'}
-        ]}
-
+        { name: 'Офферы', href: '/' },
+        { name: 'Справочники', type: 'dropdown', list: [{ name: 'Типы документов', href: '/guides/type_docs' }] },
       ], // меню
     }
   },
@@ -33,14 +30,26 @@ export default {
   @import '~/assets/css/overflow.css';
 
   .block-page {
-    border: 1px solid silver;
     margin-left: 80px;
   }
 
   @media (max-width: 991.9px) {
     .block-page {
       margin-left: 0px;
+    }
+  }
 
+  @media (max-width: 767.9px) {
+    .layout-main {
+      width: 100vw;
+    }
+
+    .block-page .row:first-child {
+      margin: 0px;
+    }
+
+    .block-page .row div:last-child {
+      height: 120px;
     }
   }
 </style>

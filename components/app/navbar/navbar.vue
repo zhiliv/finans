@@ -73,6 +73,7 @@ export default {
     margin-top: 0.4em;
     margin-left: 0.4em;
     border-color: var(--primary);
+    background: var(--dark);
   }
 
   .navbar-title {

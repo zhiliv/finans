@@ -81,7 +81,6 @@ export default {
 <style>
   @import '~/assets/css/size.css';
   @import '~/assets/css/flex.css';
-  @import '~/assets/css/align.css';
   @import '~/assets/css/padding.css';
   @import '~/assets/css/margin.css';
   @import '~/assets/css/position.css';
