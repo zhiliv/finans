@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="list-group m-0">
+    <ul class="list-group m-0 h-100">
       <li v-for="item in list" :key="item[value]">{{item[text]}}</li>
     </ul>
     <app-spinner v-if="showSpinner && !isLoad" class="relative top-50 start-50" />
@@ -35,12 +35,12 @@ export default {
     /* Значение строки */
     value: {
       type: String,
-      default: 'id'
+      default: 'id',
     },
     text: {
       type: String,
-      default: 'name'
-    }
+      default: 'name',
+    },
   },
   mounted() {},
   methods: {},

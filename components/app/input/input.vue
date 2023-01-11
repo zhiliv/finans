@@ -11,7 +11,7 @@ export default {
       type: [String, Boolean],
       default: true,
       validator(value) {
-        return value === 'false' || value === 'true'
+        return value === 'false' || value === 'true' || value === true
       },
     },
     /* Значение поля */
@@ -37,8 +37,9 @@ export default {
     },
   },
   mounted() {
+    const { $listen } = useNuxtApp() // свойство для прослушивания события шины данных
     /* Прослушивание события об ошибке валидации */
-    this.$on('is-invalid', value => {
+    $listen('is-invalid', value => {
       const el = this.$el // элемент
       value ? el.classList.add('is-invalid') : el.classList.remove('is-invalid') // добавление / удаление класса невалидного элемента
     })
@@ -47,7 +48,8 @@ export default {
 </script>
 
 <style>
-  @import './../../../assets/css/valid.css';
+  @import '~/assets/css/valid.css';
+  @import '~/assets/css/form-control.css';
   input {
     margin: 0;
     font-family: inherit;

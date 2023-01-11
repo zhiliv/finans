@@ -3,6 +3,7 @@
 @import '~/assets/css/color/blue.css';
 @import '~/assets/css/color/grey.css';
 @import '~/assets/css/color/materialize-red.css';
+@import '~/assets/css/border.css';
 
 :root {
   --primary: var(--amber-darken-3);

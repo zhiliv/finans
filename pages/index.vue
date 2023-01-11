@@ -1,8 +1,8 @@
 <template>
-  <app-row class="d-flex w-100">
-    <app-col col="12" class="d-flex w-100 page-data">
-      <app-row class="h-100">
-        <app-listbox-items></app-listbox-items>
+  <app-row class="d-flex w-100 main-page">
+    <app-col col="12" class="d-flex flex-100 w-100 page-data">
+      <app-row class="h-100 d-flex flex-100">
+        <sub-type-docs></sub-type-docs>
       </app-row>
     </app-col>
     <sub-control :on-save="onSave" :on-new="onNew"></sub-control>
@@ -11,12 +11,14 @@
 
 <script>
 import subControl from '~/pages/sub/control.vue'
+import subTypeDocs from '~/pages/sub/type-docs.vue'
 export default {
   head: {
     title: 'Управление оферами',
   },
   components: {
     'sub-control': subControl, // подключение панели кнопок
+    'sub-type-docs': subTypeDocs,
   },
   methods: {
     /* Сохранение данных */
@@ -34,6 +36,11 @@ export default {
   @media (max-width: 767.9px) and (orientation: portrait) {
     .page-data {
       height: calc(100% - 160px);
+      padding: 0px;
+    }
+
+    .main-page {
+      padding: 0px;
     }
   }
 
@@ -41,6 +48,5 @@ export default {
     .page-data {
       height: calc(100% - 60px);
     }
-
   }
 </style>

@@ -11,7 +11,6 @@
   --grey-darken-4: #212121;
 }
 
-
 .bg-grey {
   background-color: var(--grey) !important;
 }
@@ -133,128 +132,125 @@
   background-color: var(--grey-darken-4) !important;
 }
 
-
 .border-grey {
-  border-color: var(--grey) !important;
+  --border-color: var(--grey) !important;
 }
 
 .border-grey-lighten-5 {
-  border-color: var(--grey-lighten-5) !important;
+  --border-color: var(--grey-lighten-5) !important;
 }
 
 .border-grey-lighten-4 {
-  border-color: var(--grey-lighten-4) !important;
+  --border-color: var(--grey-lighten-4) !important;
 }
 
 .border-grey-lighten-3 {
-  border-color: var(--grey-lighten-3) !important;
+  --border-color: var(--grey-lighten-3) !important;
 }
 
 .border-grey-lighten-2 {
-  border-color: var(--grey-lighten-2) !important;
+  --border-color: var(--grey-lighten-2) !important;
 }
 
 .border-grey-lighten-1 {
-  border-color: var(--grey-lighten-1) !important;
+  --border-color: var(--grey-lighten-1) !important;
 }
 
 .border-grey-darken-1 {
-  border-color: var(--grey-darken-1) !important;
+  --border-color: var(--grey-darken-1) !important;
 }
 
 .border-grey-darken-2 {
-  border-color: var(--grey-darken-2) !important;
+  --border-color: var(--grey-darken-2) !important;
 }
 
 .border-grey-darken-3 {
-  border-color: var(--grey-darken-3) !important;
+  --border-color: var(--grey-darken-3) !important;
 }
 
 .border-grey-darken-4 {
-  border-color: var(--grey-darken-4) !important;
+  --border-color: var(--grey-darken-4) !important;
 }
 
 .border-grey-hvr:hover {
-  border-color: var(--grey) !important;
+  --border-color: var(--grey) !important;
 }
 
 .border-grey-lighten-5-hvr:hover {
-  border-color: var(--grey-lighten-5) !important;
+  --border-color: var(--grey-lighten-5) !important;
 }
 
 .border-grey-lighten-4-hvr:hover {
-  border-color: var(--grey-lighten-4) !important;
+  --border-color: var(--grey-lighten-4) !important;
 }
 
 .border-grey-lighten-3-hvr:hover {
-  border-color: var(--grey-lighten-3) !important;
+  --border-color: var(--grey-lighten-3) !important;
 }
 
 .border-grey-lighten-2-hvr:hover {
-  border-color: var(--grey-lighten-2) !important;
+  --border-color: var(--grey-lighten-2) !important;
 }
 
 .border-grey-lighten-1-hvr:hover {
-  border-color: var(--grey-lighten-1) !important;
+  --border-color: var(--grey-lighten-1) !important;
 }
 
 .border-grey-darken-1-hvr:hover {
-  border-color: var(--grey-darken-1) !important;
+  --border-color: var(--grey-darken-1) !important;
 }
 
 .border-grey-darken-2-hvr:hover {
-  border-color: var(--grey-darken-2) !important;
+  --border-color: var(--grey-darken-2) !important;
 }
 
 .border-grey-darken-3-hvr:hover {
-  border-color: var(--grey-darken-3) !important;
+  --border-color: var(--grey-darken-3) !important;
 }
 
 .border-grey-darken-4-hvr:hover {
-  border-color: var(--grey-darken-4) !important;
+  --border-color: var(--grey-darken-4) !important;
 }
 
 .border-grey-fcs:focus {
-  border-color: var(--grey) !important;
+  --border-color: var(--grey) !important;
 }
 
 .border-grey-lighten-5-fcs:focus {
-  border-color: var(--grey-lighten-5) !important;
+  --border-color: var(--grey-lighten-5) !important;
 }
 
 .border-grey-lighten-4-fcs:focus {
-  border-color: var(--grey-lighten-4) !important;
+  --border-color: var(--grey-lighten-4) !important;
 }
 
 .border-grey-lighten-3-fcs:focus {
-  border-color: var(--grey-lighten-3) !important;
+  --border-color: var(--grey-lighten-3) !important;
 }
 
 .border-grey-lighten-2-fcs:focus {
-  border-color: var(--grey-lighten-2) !important;
+  --border-color: var(--grey-lighten-2) !important;
 }
 
 .border-grey-lighten-1-fcs:focus {
-  border-color: var(--grey-lighten-1) !important;
+  --border-color: var(--grey-lighten-1) !important;
 }
 
 .border-grey-darken-1-fcs:focus {
-  border-color: var(--grey-darken-1) !important;
+  --border-color: var(--grey-darken-1) !important;
 }
 
 .border-grey-darken-2-fcs:focus {
-  border-color: var(--grey-darken-2) !important;
+  --border-color: var(--grey-darken-2) !important;
 }
 
 .border-grey-darken-3-fcs:focus {
-  border-color: var(--grey-darken-3) !important;
+  --border-color: var(--grey-darken-3) !important;
 }
 
 .border-grey-darken-4-fcs:focus {
-  border-color: var(--grey-darken-4) !important;
+  --border-color: var(--grey-darken-4) !important;
 }
-
-
 
 .grey-text {
   color: var(--grey) !important;
