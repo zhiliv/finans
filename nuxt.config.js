@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   ssr: true,
   css: ['@/assets/css/main.css'],
   build: {
-
+    target: 'esnext'
   },
   vSelect: {
     component: {
