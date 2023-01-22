@@ -215,3 +215,12 @@ body {
 .text-light {
   color: var(--light) !important
 }
+
+/* Сокращение длинного текста */
+.short-text{
+  white-space: nowrap; /* Отменяем перенос текста */
+  overflow: hidden; /* Обрезаем содержимое */
+  padding-right: 5px; /* Поля */
+  max-width: 100%;
+  text-overflow: ellipsis; /* Многоточие */
+}
