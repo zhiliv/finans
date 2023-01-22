@@ -29,7 +29,7 @@
       </div>
     </div>
     <ul class="list-dropdown d-none w-100">
-      <li v-for="item in list" :key="item.nme" class="sidebar-item-dropdown w-100">
+      <li v-for="item in list" :key="item.name" class="sidebar-item-dropdown w-100">
         <NuxtLink v-if="item.href" :to="item.href" v-slot="{ href, navigate, isActive }" custom>
           <div
             :class="{active: isActive, 'h-100': true, 'w-100': true, 'm-0': true, 'p-t-10': true }"
@@ -83,16 +83,39 @@ export default {
     getShort(name) {
       if (name) return name.substr(0, 2)
     },
+
+    /*
+     * Открытие списка, если вложенный пункт
+     * @function openDropDown
+     */
+    openDropDown() {
+      const { list } = this
+      const url = window.location.pathname // получение ссылки открытой в браузере
+      const index = list.findIndex(el => el.href === url)
+      this.activeDropDown = index >= 0
+    },
+  },
+  watch: {
+    /*
+     * Отслеживание изменение выпадающего списка, если ссылка в адресной строке совпадает с пунктом выпадающего списка
+     * @function activeDropDown
+     * @param {Boolean} newVal - Новое значение
+     */
+    activeDropDown(newVal) {
+      if (newVal) this.toogleDropdown()
+    },
   },
   data() {
     return {
       showList: false, // свойство указывает отображается ли список или нет
       isActive: false, // активный пункт меню
+      activeDropDown: false, // Статус активности выпадающего списка
     }
   },
   mounted() {
     const { list, name } = this
     if (!list.length) console.warn(`Список ${name} пуст`) // если список пустЮ выводится уведомление
+    this.openDropDown()
   },
 }
 </script>
