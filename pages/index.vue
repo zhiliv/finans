@@ -11,7 +11,7 @@
 
 <script>
 import subControl from '~/pages/sub/control.vue'
-import subTypeDocs from '~/pages/sub/type-docs.vue'
+import subTypeDocs from '~/pages/sub/sub_form_type_docs.vue'
 export default {
   head: {
     title: 'Управление оферами',
