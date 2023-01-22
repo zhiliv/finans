@@ -6,17 +6,23 @@
         <router-view />
       </app-row>
     </app-layout>
+    <app-modal></app-modal>
   </app-container>
+
 </template>
 <script>
+import appModal from '~/pages/modal.vue'
 export default {
+  components: {
+    'app-modal': appModal,
+  },
   data() {
     return {
       isOpen: false,
       menu: [
         { name: 'Статистика', href: '/statistic', icon: 'Statistics' },
         { name: 'Офферы', href: '/' },
-        { name: 'Справочники', type: 'dropdown', list: [{ name: 'Типы документов', href: '/guides/type_docs' }] },
+        { name: 'Справочники', type: 'dropdown', list: [{ name: 'Типы документов', href: '/guides/page_type_docs' }] },
       ], // меню
     }
   },
