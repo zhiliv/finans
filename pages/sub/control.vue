@@ -1,19 +1,20 @@
 <template>
   <app-col col="12" class="d-flex align-self-end w-100 flex-100 control-sub-page">
-  <app-layout class="flex-100 align-content-center align-items-center group-button-control">
-    <div class="d-flex w-100 left-control-button">
-      <app-button class="primary text-light w-p-120 me-2" @click="onNew">Новый</app-button>
-    </div>
-    <div class="d-flex align-items-end right-control-button">
-      <app-button class="danger text-light w-p-120 me-2" @click="onSave">Отмена</app-button>
-      <app-button class="success text-light w-p-120 me-2" @click="onSave">Сохранить</app-button>
-    </div>
-  </app-layout>
-</app-col>
+    <app-layout class="flex-100 align-content-center align-items-center group-button-control">
+      <div class="d-flex w-100 left-control-button">
+        <app-button class="primary text-light w-p-120 me-2" @click="onNew">Новый</app-button>
+      </div>
+      <div class="d-flex align-items-end right-control-button">
+        <app-button class="danger text-light w-p-120 me-2" @click="onSave">Отмена</app-button>
+        <app-button class="success text-light w-p-120 me-2" @click="onSave">Сохранить</app-button>
+      </div>
+    </app-layout>
+  </app-col>
 </template>
 
 <script>
 export default {
+  emits: ['update:modelvalue'],
   props: {
     /* Метод для сохранения данных */
     onSave: {
@@ -25,7 +26,13 @@ export default {
       type: Function,
       default: () => ({}),
     },
+    /* Входные данные */
+    modelValue: {
+      type: Object,
+      default: {}
+    }
   },
+
 }
 </script>
 
@@ -74,7 +81,6 @@ export default {
     }
 
     .control-sub-page {
-
       height: 50px;
     }
   }
