@@ -1,6 +1,10 @@
-<!-- eslint-disable vue/no-mutating-props -->
 <template>
-  <input :value="value" :class="classes" type="text" @input="$emit('input', $event.target.value)" />
+  <input
+    :value="modelValue"
+    :class="classes"
+    type="text"
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
 </template>
 
 <script>
@@ -15,7 +19,7 @@ export default {
       },
     },
     /* Значение поля */
-    value: {
+    modelValue: {
       type: [String, Number],
       default: '',
     },
@@ -28,6 +32,7 @@ export default {
       }
     } */
   },
+  emits: ['update:modelValue'],
   computed: {
     classes() {
       const { formControl } = this
