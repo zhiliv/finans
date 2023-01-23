@@ -57,11 +57,9 @@ export default {
      * @function onNew
      */
     async onNew() {
-      const result = await this.$showModal('modal_type_docs', { modalTitle: 'Создание нового типа документа' })
-      console.log('🚀 -> onNew -> result', result)
-      const response = await $fetch('/api/type-docs/add', { method: 'POST', body: result })
-      this.list.push(response)
-      console.log('response', response)
+      const result = await this.$showModal('modal_type_docs', { modalTitle: 'Создание нового типа документа' }) // отображение модального окна
+      const response = await $fetch('/api/type-docs/add', { method: 'POST', body: result }) // отправка запроса для создания новой записи
+      this.list.push(response) // добавление результата в список
     },
 
     /*
@@ -69,7 +67,7 @@ export default {
      * @function getList
      */
     async getList() {
-      const result = await $fetch('/api/type-docs/list', { method: 'GET' })
+      const result = await $fetch('/api/type-docs/list', { method: 'GET' }) // отправка запроса для получения всего списка
       return result
     },
   },
@@ -80,18 +78,16 @@ export default {
       isLoadList: false, // статус загрузки данных
       dataPage: {}, // данные страницы
       index: -1, // индекс выделенного элемента
-      statusLoadList: false
+      statusLoadList: false // статус загрузки списка
     }
   },
 
   async beforeMount() {
     const { getList } = this
     const result = await getList() // получение списка типа документов
-    this.list = result.rows // установка значения в список
+    this.list = result // установка значения в список
     this.statusLoadList = true // скрытие спиннера загрузки в списке
   },
-
-  mounted() {},
 }
 </script>
 

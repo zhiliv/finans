@@ -8,7 +8,7 @@
         <app-button class="danger text-light" @click="onCancel">Отмена</app-button>
       </div>
       <div class="d-flex align-items-end right-control-button">
-        <app-button class="success text-light" @click="onCreate">Создать</app-button>
+        <app-button class="success text-light" @click="onCreate" :disabled="disCreate">Создать</app-button>
       </div>
     </app-layout>
   </app-col>
@@ -27,6 +27,11 @@ export default {
       type: Object,
       default: {},
     },
+    /* Активность кнопки "Создать  */
+    disCreate: {
+      type: Boolean,
+      default: true
+    }
   },
   methods: {
     /*

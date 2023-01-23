@@ -24,20 +24,21 @@ export default {
       default: '',
     },
     /* Ошибка валидации */
-    /* isInvalid: {
+    isInvalid: {
       type: [String, Boolean],
       default: false,
-      validator(value){
+      validator(value) {
         return value === 'true' || value === 'false' || value === true || value === false
-      }
-    } */
+      },
+    },
   },
   emits: ['update:modelValue'],
   computed: {
     classes() {
-      const { formControl } = this
+      const { formControl, isInvalid } = this
       return {
         'form-control': !!formControl,
+        'invalid': isInvalid
       }
     },
   },
@@ -60,5 +61,9 @@ export default {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+  }
+
+  input.invalid {
+    border-color: rgba(220, 53, 69, 0.9) !important;
   }
 </style>

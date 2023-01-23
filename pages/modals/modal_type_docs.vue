@@ -1,6 +1,6 @@
 <template>
   <sub-form v-model="dataForm" is-modal="true" />
-  <sub-control-new :on-create="onCreate" :data-form="inputData" />
+  <sub-control-new :on-create="onCreate" :data-form="inputData" :dis-create="disCreate" />
 </template>
 
 <script>
@@ -22,13 +22,19 @@ export default {
     },
   },
 
-  setup() {
-    /* Инициализация отслеживаемого объекта  данных формы */
+  /* setup() {
+
     const dataForm = reactive({
       name: null, // значение поля "Наименование"
     }) // данные формы
     return {
       dataForm,
+    }
+  }, */
+  data(){
+    return {
+      disCreate: true,
+      dataForm: {}
     }
   },
 
@@ -48,6 +54,16 @@ export default {
       this.$event(`close-modal-${dataForm.formUuid}`, obj) // открытие модальной формы
     },
   },
+
+  watch: {
+    dataForm: {
+      handler(newValue){
+        this.disCreate = newValue && newValue.name && newValue.name.length < 3 // установка минимальной длины поля "Наименование"
+      },
+      deep: true
+    }
+  }
+
 }
 </script>
 <style>
