@@ -66,7 +66,7 @@ export default {
 
   mounted() {
     this.$listen('show-confirm', event => {
-      const { message, cancelText, confirmText } = this // получение переменных
+      const {message, cancelText, confirmText } = event
       if (cancelText) this.cancelText = cancelText // установка значения текста кнопки отмены
       if (confirmText) this.confirmText = confirmText // установка значения текста кнопки подтверждения
       this.message = event && message ? message : 'Подтвердить?' // установка значения сообщения
