@@ -7,14 +7,17 @@
       </app-row>
     </app-layout>
     <app-modal></app-modal>
+    <app-confirm></app-confirm>
   </app-container>
 
 </template>
 <script>
 import appModal from '~/pages/modal.vue'
+import appConfirm from '~/pages/modals/confirm-modal.vue'
 export default {
   components: {
     'app-modal': appModal,
+    'app-confirm': appConfirm
   },
   data() {
     return {
