@@ -31,9 +31,23 @@ export default defineNuxtPlugin(() => {
     return result
   }
 
+  const showConfirm = async (...args) => {
+    emitter.emit('show-confirm', args[1])
+    const listenCloseConfirm = () => {
+      return new Promise((resolve, reject) => {
+        emitter.on('close-confirm', response => {
+          resolve(response)
+        })
+      })
+    }
+    const result = await listenCloseConfirm()
+    return result
+  }
+
   return {
     provide: {
       showModal,
+      showConfirm,
       event: emitter.emit, // Will emit an event
       listen: emitter.on, // Will register a listener for an event
     },
