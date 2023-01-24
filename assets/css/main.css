@@ -224,3 +224,15 @@ body {
   max-width: 100%;
   text-overflow: ellipsis; /* Многоточие */
 }
+
+@media (max-width: 767.9px){
+  .btn-control{
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px){
+  .btn-control{
+    width: 120px;
+  }
+}
