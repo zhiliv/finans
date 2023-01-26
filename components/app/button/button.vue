@@ -50,9 +50,9 @@ export default {
      * @property {Object} event - Данные события
      */
     handleClick(event) {
-      const { toogle } = this
-      toogle === true || toogle === 'true' ? (this.isActive = !this.isActive) : (this.isActive = false) // добавляем / удаляем класс если включен признак toogle
-      this.$emit('click', event)
+      const { toogle, isActive, $emit } = this
+      toogle === true || toogle === 'true' ? (isActive = !isActive) : (isActive = false) // добавляем / удаляем класс если включен признак toogle
+      $emit('click', event)
     },
   },
 }
@@ -107,7 +107,7 @@ export default {
     --bs-btn-border-color: transparent;
     --bs-btn-border-radius: 0.375rem;
     --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
-    --bs-btn-disabled-opacity: 0.40;
+    --bs-btn-disabled-opacity: 0.4;
     --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), 0.5);
     display: inline-block;
     padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);

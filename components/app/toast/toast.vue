@@ -2,14 +2,15 @@
 <template>
   <div aria-live="polite" aria-atomic="true" class="position-absolute end-0 bottom-0 toast-list">
     <div class="toast-container top-0 end-0 p-2" style>
-      <app-body-toast
+      <app-toast-body
         v-for="item in listToast"
         :id="item.id"
         :key="item.id"
         :title="item.title"
         :message="item.message"
-        :toast-color="item.type"
-      ></app-body-toast>
+        :timer="item.timer"
+        :toast-color="item.color"
+      ></app-toast-body>
     </div>
   </div>
 </template>
@@ -21,12 +22,14 @@ export default {
       listToast: [], // список уведомлений
     }
   },
-  mounted() {
+  beforeMount() {
     let ind = 0
-    this.$nuxt.$on('show-toast', event => {
-      const { params } = event // получения объекта уведомления
-      params.id = ind++ // установка идентификатора
-      this.listToast.push(params) // добавление уведомления в массив
+    const { $listen } = this
+    $listen('show-toast', params => {
+      if (params) {
+        params.id = ind++ // установка идентификатора
+        this.listToast.push(params) // добавление уведомления в массив
+      }
     })
   },
 }

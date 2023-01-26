@@ -50,7 +50,8 @@ export default {
      * @function onConfirm
      */
     onConfirm() {
-      this.$event(`close-confirm`, true) // Событие при подтверждении1
+      const {$event} = this
+      $event(`close-confirm`, true) // Событие при подтверждении1
       this.isShow = false
     },
 
@@ -59,13 +60,15 @@ export default {
     @ function onCancel
     */
     onCancel() {
-      this.$event(`close-confirm`, false) // Событие при подтверждении1
+      const {$event} = this
+      $event(`close-confirm`, false) // Событие при подтверждении1
       this.isShow = false
     },
   },
 
   mounted() {
-    this.$listen('show-confirm', event => {
+    const {$listen} = this
+    $listen('show-confirm', event => {
       const {message, cancelText, confirmText } = event
       if (cancelText) this.cancelText = cancelText // установка значения текста кнопки отмены
       if (confirmText) this.confirmText = confirmText // установка значения текста кнопки подтверждения

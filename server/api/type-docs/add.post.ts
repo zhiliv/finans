@@ -1,8 +1,21 @@
 import { sequelize } from '~/server/db.js'
-import {QueryTypes } from 'sequelize'
 
 export default defineEventHandler(async event => {
   const body = await readBody(event) // параметры запроса
-  const result = await sequelize.models.type_docs.create(body) /// добавление данных
+  let result // переменная для получения  результата
+  try {
+    const optionsWhere = {where: {
+      name: body.name
+    }}
+    const count = await sequelize.models.type_docs.count(optionsWhere) // получение количества записей с таким наименованием
+    result = count === 0
+      ? await sequelize.models.type_docs.create(body) /// добавление данных
+      : {warning: 'Запись с таким наименование уже существует'}
+  } catch (error) {
+    result =
+      error && error.errors && error.errors.length && error.errors[0].message
+        ? { error: error.errors[0].message }
+        : { error }
+  }
   return result
 })

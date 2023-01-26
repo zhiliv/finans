@@ -2,16 +2,21 @@
 Содержит кнопки: "Отменить" и Создать
 -->
 <template>
-  <app-col col="12" class="d-flex align-self-end w-100 flex-100 control-sub-page-control-new pt-2">
-    <app-layout class="flex-100 align-content-center align-items-center group-button-control-new">
-      <div class="d-flex w-100 left-control-button">
-        <app-button class="danger text-light" @click="onCancel">Отмена</app-button>
-      </div>
-      <div class="d-flex align-items-end right-control-button">
-        <app-button class="success text-light" @click="onCreate" :disabled="disCreate">Создать</app-button>
-      </div>
-    </app-layout>
-  </app-col>
+  <app-row>
+    <app-col
+      col="12"
+      class="d-flex align-self-end w-100 flex-100 control-sub-page-control-new pt-2"
+    >
+      <app-layout class="flex-100 align-content-center align-items-center group-button-control-new">
+        <div class="d-flex w-100 left-control-button">
+          <app-button class="danger text-light btn-control" @click="onCancel">Отмена</app-button>
+        </div>
+        <div class="d-flex align-items-end right-control-button">
+          <app-button class="success text-light btn-control" @click="onCreate" :disabled="disCreate">Создать</app-button>
+        </div>
+      </app-layout>
+    </app-col>
+  </app-row>
 </template>
 
 <script>
@@ -30,8 +35,8 @@ export default {
     /* Активность кнопки "Создать  */
     disCreate: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   methods: {
     /*

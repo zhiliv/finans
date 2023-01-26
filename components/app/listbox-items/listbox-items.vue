@@ -4,6 +4,7 @@
       <li
         class="border-bottom border-1px border-grey-lighten-2 no-select short-text"
         v-for="item in list"
+        alt="asdfgsdtghdfgb"
         :key="item[value]"
         @click="onSelect($event, item)"
       >{{item[text]}}</li>
@@ -69,12 +70,12 @@ export default {
      * @param {Object} event - Объект события
      */
     onSelect(event, item) {
-      const { list } = this
-      const listEl = this.$el.querySelectorAll('li') // получение списка элементов списка
+      const { list, $el, $emit, getIndex, cloneObject } = this
+      const listEl = $el.querySelectorAll('li') // получение списка элементов списка
       listEl.forEach(el => el.classList.remove('active')) // удаление у всех элементов списка класса "active"
       event.target.classList.add('active') // добавление класса выделенному элемента
-      this.$emit('update:modelValue', this.cloneObject(item)) // отправка события для обновления модели данных
-      if (list.length) this.getIndex(item) // получение индекса
+      $emit('update:modelValue', cloneObject(item)) // отправка события для обновления модели данных
+      if (list.length) getIndex(item) // получение индекса
     },
     /*
      * Получение индекса выделенного элемента
@@ -82,9 +83,9 @@ export default {
      * @param {Object} item - Объект выделенной строки
      */
     getIndex(item) {
-      const { list } = this // получение переменной со списком
+      const { list, $emit } = this // получение переменной со списком
       const index = list.findIndex(el => JSON.stringify(el) == JSON.stringify(item)) // поиск индекса элемента
-      this.$emit('update:index', index) // отправка данных индекса выделенного элемента
+      $emit('update:index', index) // отправка данных индекса выделенного элемента
     },
   },
 
@@ -96,10 +97,11 @@ export default {
      * @param {Object} oldValue - Старое значение
      */
     list(newValue, oldValue) {
+      const { $nextTick, $el } = this
       if (!oldValue.length && newValue.length) {
-        this.$nextTick(() => {
+        $nextTick(() => {
           // ожидание заполнения DOM
-          this.$el.querySelector('li').click() // эмуляция нажатия списка жары
+          $el.querySelector('li').click() // эмуляция нажатия списка жары
         })
       }
     },
@@ -118,7 +120,7 @@ export default {
     padding-left: 0;
     margin-bottom: 0;
     border-radius: var(--bs-list-group-border-radius);
-    overflow-y: scroll
+    overflow-y: scroll;
   }
 
   .list-group li {

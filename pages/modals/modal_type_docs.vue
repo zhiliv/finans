@@ -49,9 +49,9 @@ export default {
      * @function onCreate
      */
     async onCreate() {
-      const { dataForm, inputData } = this
+      const { dataForm, inputData, $event } = this
       const obj = Object.assign(dataForm, inputData) // объединение объектов
-      this.$event(`close-modal-${dataForm.formUuid}`, obj) // открытие модальной формы
+      $event(`close-modal-${dataForm.formUuid}`, obj) // открытие модальной формы
     },
   },
 

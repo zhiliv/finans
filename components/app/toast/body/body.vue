@@ -62,8 +62,9 @@ export default {
     },
   },
   mounted() {
+    const { timer, onClose } = this
     /* Установка интервала, через которое удаляется сообщение */
-    setTimeout(() => this.onClose(), this.timer)
+    setTimeout(() => onClose(), timer)
   },
   methods: {
     /*
@@ -71,8 +72,10 @@ export default {
      * @function onClose
      */
     onClose() {
-      const index = this.$parent._data.listToast.findIndex(el => el.id === this.id) // поиск индекса уведомления
-      this.$parent._data.listToast.splice(index, 1) // удаление из списка
+      const { $parent } = this
+      console.log('🚀 -> onClose -> $parent', $parent)
+      const index = $parent.listToast.findIndex(el => el.id === this.id) // поиск индекса уведомления
+      this.$parent.listToast.splice(index, 1) // удаление из списка
     },
   },
 }

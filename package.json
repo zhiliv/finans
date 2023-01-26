@@ -7,7 +7,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "database": "node ./db-schemas/db.js",
-    "generate-whitelist": "node ./scripts/whitelist/generator-whitelist.mjs",
+    "generate-schemas-orm": "node_modules/.bin/sequelize-auto -o './server/db-models' -d finance -h localhost -u postgres -p 5432 -x 1 -e postgres -l esm",
+    "generate-whitelist": "node ./modules/whitelist/generator-whitelist.mjs",
     "lint": "eslint ."
   },
   "devDependencies": {

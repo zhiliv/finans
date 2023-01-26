@@ -14,7 +14,7 @@ export default class type_docs extends Model {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       comment: "Наименование типа документа"
     }
   }, {

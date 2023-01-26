@@ -44,7 +44,8 @@ export default {
   watch: {
     modelValue: {
       handler(newValue) {
-        this.$emit('update:modelValue', newValue) // отправка события обновления данных
+        const {$emit} = this
+        $emit('update:modelValue', newValue) // отправка события обновления данных
         this.validName = newValue && newValue.name && (newValue.name.length < 3 && newValue.name.length) || Number.isInteger(+newValue.name) ? true : false // подсветка поля если количество символов менее 3х и введенное значение не число
       },
       deep: true,

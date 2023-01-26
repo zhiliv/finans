@@ -32,7 +32,7 @@ export default defineNuxtPlugin(() => {
   }
 
   const showConfirm = async (...args) => {
-    emitter.emit('show-confirm', args[1])
+    emitter.emit('show-confirm', args[1] || {})
     const listenCloseConfirm = () => {
       return new Promise((resolve, reject) => {
         emitter.on('close-confirm', response => {
@@ -44,10 +44,16 @@ export default defineNuxtPlugin(() => {
     return result
   }
 
+  const showToast = async (args) => {
+    console.log('отпрвка', args)
+    emitter.emit('show-toast', args)
+  }
+
   return {
     provide: {
       showModal,
       showConfirm,
+      showToast,
       event: emitter.emit, // Will emit an event
       listen: emitter.on, // Will register a listener for an event
     },

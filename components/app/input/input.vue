@@ -46,8 +46,8 @@ export default {
     const { $listen } = useNuxtApp() // свойство для прослушивания события шины данных
     /* Прослушивание события об ошибке валидации */
     $listen('is-invalid', value => {
-      const el = this.$el // элемент
-      value ? el.classList.add('is-invalid') : el.classList.remove('is-invalid') // добавление / удаление класса невалидного элемента
+      const {$el} = this // элемент
+      value ? $el.classList.add('is-invalid') : $el.classList.remove('is-invalid') // добавление / удаление класса невалидного элемента
     })
   },
 }

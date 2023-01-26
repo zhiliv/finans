@@ -1,6 +1,6 @@
 <template>
   <div class="modal-mask" v-show="isShow && bodyModal">
-    <div class="modal-wrapper" style="padding: 6%">
+    <div class="modal-wrapper">
       <div class="modal-container">
         <div class="m-0 p-0 modal-title">
           <h2 class="m-0">{{dataForm.modalTitle}}</h2>
@@ -26,11 +26,12 @@ export default {
   },
 
   mounted() {
-    this.$listen('show-modal', event => {
+    const {$listen} = this
+    $listen('show-modal', event => {
       this.dataForm = event // присвоение объекту формы переданного значения
       this.bodyModal = markRaw(defineAsyncComponent(() => import(`./modals/${event.form}.vue`))) // получение тела формы
       this.isShow = true // отображение окна
-      this.$listen(`destroy-modal-${event.formUuid}`, event => {
+      $listen(`destroy-modal-${event.formUuid}`, event => {
         this.bodyModal = null // скрытие модального окна
       })
     })
@@ -55,6 +56,7 @@ export default {
   .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
+    padding: 6%;
   }
 
   .modal-container {

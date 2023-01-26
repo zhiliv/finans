@@ -1,9 +1,6 @@
-import fs from 'fs' // модуль для работы с файловой системой
 import Sequelize from 'sequelize'
 import initModels from './db-models/init-models'
-
-let config = fs.readFileSync('config.json').toString() // чтение конфигурации
-config = JSON.parse(config) // преобразование в JSON
+const config = useRuntimeConfig()
 
 export const sequelize = new Sequelize(config.database.database, config.database.username, config.database.password, {
   host: config.database.host,

@@ -6,8 +6,9 @@
         <router-view />
       </app-row>
     </app-layout>
-    <app-modal></app-modal>
-    <app-confirm></app-confirm>
+    <app-modal />
+    <app-confirm />
+    <app-toast />
   </app-container>
 
 </template>
