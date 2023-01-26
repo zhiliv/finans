@@ -19,7 +19,7 @@
                 class="sidebar-icon"
               />
               <div v-if="!item.icon" class="block-icon position-relative">
-                <span class="sidebar-short-text m-l-2">{{getShort(item.name)}}</span>
+                <span class="sidebar-short-text m-l-0">{{getShort(item.name)}}</span>
               </div>
               <!-- <span v-if="!item.icon" class="text-no-icon">{{item.name}}</span> -->
               <a class="d-none text-no-icon w-100 link" :href="href" @click="navigate">{{item.name}}</a>
@@ -39,7 +39,7 @@
             <span class="text-no-icon p-l-2">{{item.name}}</span>
           </div>
         </li>
-        <app-dropdown
+        <app-sidebar-dropdown
           v-if="item.type === 'dropdown'"
           :list="item.list"
           :icon="item.icon"
@@ -81,12 +81,11 @@ export default {
 <style>
   @import '~/assets/css/size.css';
   @import '~/assets/css/flex.css';
-  @import '~/assets/css/align.css';
   @import '~/assets/css/padding.css';
   @import '~/assets/css/margin.css';
   @import '~/assets/css/position.css';
   @import '~/assets/css/overflow.css';
-  @import '~/assets/css/text/text.css';
+  @import '~/assets/css/text.css';
 
   @media (max-width: 991.9px) {
     .sidebar {
@@ -218,8 +217,16 @@ export default {
     color: var(--dark);
   }
 
-  .m-l-2 {
-    margin-left: 2px;
+  .sidebar li .active .block-icon {
+    border-color: var(--dark);
+  }
+
+  .sidebar li .active .block-icon span {
+    color: var(--dark);
+  }
+
+  .m-l-0 {
+    margin-left: 0px;
   }
 
   .p-l-2 {

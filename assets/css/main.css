@@ -1,4 +1,35 @@
-@import '~/assets/css/flex.css';
+@import '~/assets/css/color/amber.css';
+@import '~/assets/css/color/green.css';
+@import '~/assets/css/color/blue.css';
+@import '~/assets/css/color/grey.css';
+@import '~/assets/css/color/materialize-red.css';
+@import '~/assets/css/border.css';
+
+:root {
+  --primary: var(--amber-darken-3);
+  --secondary: var(--blue-darken-2);
+  --active: var(--amber);
+  --success: var(--green-darken-2);
+  --info: #00bcd4;
+  --warning: var(--amber-lighten-4);
+  --danger: var(--materialize-red-darken-3);
+  --light: #fff8e1;
+  --dark: var(--grey-darken-4);
+  --gray: var(--grey-lighten-1);
+  --light-gray: var(--grey-lighten-4);
+  --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans',
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --focus-form-control: var(--amber);
+  --focus-form-control-shadow: var(--amber-lighten-3);
+  --bs-highlight-bg: var(--amber-lighten-5);
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-line-height: 1.5;
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 400;
+  --bs-body-color: #212529;
+  --font-active-color: var(--dark);
+}
 
 *,
 *::before,
@@ -131,10 +162,77 @@ body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-.d-block{
+.d-block {
   display: block !important;
 }
 
-.flex-shrink-0 {
-  flex-shrink: 0 !important;
+
+.flex-100 {
+  flex: 0 0 100%;
+}
+
+.primary {
+  background: var(--primary);
+}
+
+.success {
+  background: var(--success);
+}
+
+.info {
+  background: var(--info);
+}
+
+.warning {
+  background: var(--warning);
+}
+
+.danger {
+  background: var(--danger);
+}
+
+.light {
+  background: var(--light);
+}
+
+.dark {
+  background: var(--dark);
+}
+
+.gray {
+  background: var(--gray);
+}
+
+.light-gray {
+  background: var(--light-gray);
+}
+
+
+.hover:hover {
+  filter: contrast(180%);
+}
+
+.text-light {
+  color: var(--light) !important
+}
+
+/* Сокращение длинного текста */
+.short-text{
+  white-space: nowrap; /* Отменяем перенос текста */
+  overflow: hidden; /* Обрезаем содержимое */
+  padding-right: 5px; /* Поля */
+  max-width: 100%;
+  text-overflow: ellipsis; /* Многоточие */
+}
+
+@media (max-width: 767.9px){
+  .btn-control{
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px){
+  .btn-control{
+    width: 120px;
+  }
 }

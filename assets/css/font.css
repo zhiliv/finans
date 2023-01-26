@@ -23,6 +23,10 @@
   font-size: 1rem !important;
 }
 
+.fs-18px{
+  font-size: 18px;;
+}
+
 
 .fst-italic {
   font-style: italic !important;
@@ -32,7 +36,7 @@
   font-style: normal !important;
 }
 
-.fw-light {
+.fw-300 {
   font-weight: 300 !important;
 }
 
@@ -40,15 +44,15 @@
   font-weight: lighter !important;
 }
 
-.fw-normal {
+.fw-400 {
   font-weight: 400 !important;
 }
 
-.fw-bold {
+.fw-700 {
   font-weight: 700 !important;
 }
 
-.fw-semibold {
+.fw-600 {
   font-weight: 600 !important;
 }
 

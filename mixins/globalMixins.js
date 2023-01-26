@@ -100,8 +100,18 @@ export default {
      */
     checkEmptyObject(obj) {
       // eslint-disable-next-line no-unreachable-loop
-      if (obj && typeof obj1 === 'object') for (const key in obj) return false
+      if (obj && typeof obj === 'object') for (const key in obj) return false
       return true
+    },
+
+
+    /*
+     * Проверка что параметр - объект
+     * @function checkObject
+     * @param {Any} obj - Проверяемые данные
+     */
+    checkObject(obj) {
+      return typeof obj === 'object'
     },
 
     /*
@@ -112,18 +122,10 @@ export default {
      * @param {Object} obj2 - Второй объект для сравнения
      */
     withObject(obj1, obj2) {
-      return obj1 && obj2 && checkObject(obj1) && checkObject(obj2)
+      return obj1 && obj2 && this.checkObject(obj1) && this.checkObject(obj2)
         ? JSON.stringify(obj1) === JSON.stringify(obj2)
         : false
     },
 
-    /*
-     * Проверка что параметр - объект
-     * @function checkObject
-     * @param {Any} obj - Проверяемые данные
-     */
-    checkObject(obj) {
-      return typeof obj === 'object'
-    },
   },
 }

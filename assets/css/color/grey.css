@@ -10,3 +10,364 @@
   --grey-darken-3: #424242;
   --grey-darken-4: #212121;
 }
+
+.bg-grey {
+  background-color: var(--grey) !important;
+}
+
+.bg-grey-lighten-5 {
+  background-color: var(--grey-lighten-5) !important;
+}
+
+.bg-grey-lighten-4 {
+  background-color: var(--grey-lighten-4) !important;
+}
+
+.bg-grey-lighten-3 {
+  background-color: var(--grey-lighten-3) !important;
+}
+
+.bg-grey-lighten-2 {
+  background-color: var(--grey-lighten-2) !important;
+}
+
+.bg-grey-lighten-1 {
+  background-color: var(--grey-lighten-1) !important;
+}
+
+.bg-grey-darken-1 {
+  background-color: var(--grey-darken-1) !important;
+}
+
+.bg-grey-darken-2 {
+  background-color: var(--grey-darken-2) !important;
+}
+
+.bg-grey-darken-3 {
+  background-color: var(--grey-darken-3) !important;
+}
+
+.bg-grey-darken-4 {
+  background-color: var(--grey-darken-4) !important;
+}
+
+.bg-grey-hvr:hover {
+  background-color: var(--grey) !important;
+}
+
+.bg-grey-lighten-5-hvr:hover {
+  background-color: var(--grey-lighten-5) !important;
+}
+
+.bg-grey-lighten-4-hvr:hover {
+  background-color: var(--grey-lighten-4) !important;
+}
+
+.bg-grey-lighten-3-hvr:hover {
+  background-color: var(--grey-lighten-3) !important;
+}
+
+.bg-grey-lighten-2-hvr:hover {
+  background-color: var(--grey-lighten-2) !important;
+}
+
+.bg-grey-lighten-1-hvr:hover {
+  background-color: var(--grey-lighten-1) !important;
+}
+
+.bg-grey-darken-1-hvr:hover {
+  background-color: var(--grey-darken-1) !important;
+}
+
+.bg-grey-darken-2-hvr:hover {
+  background-color: var(--grey-darken-2) !important;
+}
+
+.bg-grey-darken-3-hvr:hover {
+  background-color: var(--grey-darken-3) !important;
+}
+
+.bg-grey-darken-4-hvr:hover {
+  background-color: var(--grey-darken-4) !important;
+}
+
+
+.bg-grey-fcs:focus {
+  background-color: var(--grey) !important;
+}
+
+.bg-grey-lighten-5-fcs:focus {
+  background-color: var(--grey-lighten-5) !important;
+}
+
+.bg-grey-lighten-4-fcs:focus {
+  background-color: var(--grey-lighten-4) !important;
+}
+
+.bg-grey-lighten-3-fcs:focus {
+  background-color: var(--grey-lighten-3) !important;
+}
+
+.bg-grey-lighten-2-fcs:focus {
+  background-color: var(--grey-lighten-2) !important;
+}
+
+.bg-grey-lighten-1-fcs:focus {
+  background-color: var(--grey-lighten-1) !important;
+}
+
+.bg-grey-darken-1-fcs:focus {
+  background-color: var(--grey-darken-1) !important;
+}
+
+.bg-grey-darken-2-fcs:focus {
+  background-color: var(--grey-darken-2) !important;
+}
+
+.bg-grey-darken-3-fcs:focus {
+  background-color: var(--grey-darken-3) !important;
+}
+
+.bg-grey-darken-4-fcs:focus {
+  background-color: var(--grey-darken-4) !important;
+}
+
+.border-grey {
+  --border-color: var(--grey) !important;
+}
+
+.border-grey-lighten-5 {
+  --border-color: var(--grey-lighten-5) !important;
+}
+
+.border-grey-lighten-4 {
+  --border-color: var(--grey-lighten-4) !important;
+}
+
+.border-grey-lighten-3 {
+  --border-color: var(--grey-lighten-3) !important;
+}
+
+.border-grey-lighten-2 {
+  --border-color: var(--grey-lighten-2) !important;
+}
+
+.border-grey-lighten-1 {
+  --border-color: var(--grey-lighten-1) !important;
+}
+
+.border-grey-darken-1 {
+  --border-color: var(--grey-darken-1) !important;
+}
+
+.border-grey-darken-2 {
+  --border-color: var(--grey-darken-2) !important;
+}
+
+.border-grey-darken-3 {
+  --border-color: var(--grey-darken-3) !important;
+}
+
+.border-grey-darken-4 {
+  --border-color: var(--grey-darken-4) !important;
+}
+
+.border-grey-hvr:hover {
+  --border-color: var(--grey) !important;
+}
+
+.border-grey-lighten-5-hvr:hover {
+  --border-color: var(--grey-lighten-5) !important;
+}
+
+.border-grey-lighten-4-hvr:hover {
+  --border-color: var(--grey-lighten-4) !important;
+}
+
+.border-grey-lighten-3-hvr:hover {
+  --border-color: var(--grey-lighten-3) !important;
+}
+
+.border-grey-lighten-2-hvr:hover {
+  --border-color: var(--grey-lighten-2) !important;
+}
+
+.border-grey-lighten-1-hvr:hover {
+  --border-color: var(--grey-lighten-1) !important;
+}
+
+.border-grey-darken-1-hvr:hover {
+  --border-color: var(--grey-darken-1) !important;
+}
+
+.border-grey-darken-2-hvr:hover {
+  --border-color: var(--grey-darken-2) !important;
+}
+
+.border-grey-darken-3-hvr:hover {
+  --border-color: var(--grey-darken-3) !important;
+}
+
+.border-grey-darken-4-hvr:hover {
+  --border-color: var(--grey-darken-4) !important;
+}
+
+.border-grey-fcs:focus {
+  --border-color: var(--grey) !important;
+}
+
+.border-grey-lighten-5-fcs:focus {
+  --border-color: var(--grey-lighten-5) !important;
+}
+
+.border-grey-lighten-4-fcs:focus {
+  --border-color: var(--grey-lighten-4) !important;
+}
+
+.border-grey-lighten-3-fcs:focus {
+  --border-color: var(--grey-lighten-3) !important;
+}
+
+.border-grey-lighten-2-fcs:focus {
+  --border-color: var(--grey-lighten-2) !important;
+}
+
+.border-grey-lighten-1-fcs:focus {
+  --border-color: var(--grey-lighten-1) !important;
+}
+
+.border-grey-darken-1-fcs:focus {
+  --border-color: var(--grey-darken-1) !important;
+}
+
+.border-grey-darken-2-fcs:focus {
+  --border-color: var(--grey-darken-2) !important;
+}
+
+.border-grey-darken-3-fcs:focus {
+  --border-color: var(--grey-darken-3) !important;
+}
+
+.border-grey-darken-4-fcs:focus {
+  --border-color: var(--grey-darken-4) !important;
+}
+
+.grey-text {
+  color: var(--grey) !important;
+}
+
+.grey-lighten-5-text {
+  color: var(--grey-lighten-5) !important;
+}
+
+.grey-lighten-4-text {
+  color: var(--grey-lighten-4) !important;
+}
+
+.grey-lighten-3-text {
+  color: var(--grey-lighten-3) !important;
+}
+
+.grey-lighten-2-text {
+  color: var(--grey-lighten-2) !important;
+}
+
+.grey-lighten-1-text {
+  color: var(--grey-lighten-1) !important;
+}
+
+.grey-darken-1-text {
+  color: var(--grey-darken-1) !important;
+}
+
+.grey-darken-2-text {
+  color: var(--grey-darken-2) !important;
+}
+
+.grey-darken-3-text {
+  color: var(--grey-darken-3) !important;
+}
+
+.grey-darken-4-text {
+  color: var(--grey-darken-4) !important;
+}
+
+.grey-text-hvr:hover {
+  color: var(--grey) !important;
+}
+
+.grey-lighten-5-text-hvr:hover {
+  color: var(--grey-lighten-5) !important;
+}
+
+.grey-lighten-4-text-hvr:hover {
+  color: var(--grey-lighten-4) !important;
+}
+
+.grey-lighten-3-text-hvr:hover {
+  color: var(--grey-lighten-3) !important;
+}
+
+.grey-lighten-2-text-hvr:hover {
+  color: var(--grey-lighten-2) !important;
+}
+
+.grey-lighten-1-text-hvr:hover {
+  color: var(--grey-lighten-1) !important;
+}
+
+.grey-darken-1-text-hvr:hover {
+  color: var(--grey-darken-1) !important;
+}
+
+.grey-darken-2-text-hvr:hover {
+  color: var(--grey-darken-2) !important;
+}
+
+.grey-darken-3-text-hvr:hover {
+  color: var(--grey-darken-3) !important;
+}
+
+.grey-darken-4-text-hvr:hover {
+  color: var(--grey-darken-4) !important;
+}
+
+.grey-text-fcs:focus {
+  color: var(--grey) !important;
+}
+
+.grey-lighten-5-text-fcs:focus {
+  color: var(--grey-lighten-5) !important;
+}
+
+.grey-lighten-4-text-fcs:focus {
+  color: var(--grey-lighten-4) !important;
+}
+
+.grey-lighten-3-text-fcs:focus {
+  color: var(--grey-lighten-3) !important;
+}
+
+.grey-lighten-2-text-fcs:focus {
+  color: var(--grey-lighten-2) !important;
+}
+
+.grey-lighten-1-text-fcs:focus {
+  color: var(--grey-lighten-1) !important;
+}
+
+.grey-darken-1-text-fcs:focus {
+  color: var(--grey-darken-1) !important;
+}
+
+.grey-darken-2-text-fcs:focus {
+  color: var(--grey-darken-2) !important;
+}
+
+.grey-darken-3-text-fcs:focus {
+  color: var(--grey-darken-3) !important;
+}
+
+.grey-darken-4-text-fcs:focus {
+  color: var(--grey-darken-4) !important;
+}

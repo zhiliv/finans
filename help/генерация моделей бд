@@ -1,0 +1,1 @@
+node_modules\.bin\sequelize-auto -o "./server/db-models" -d finance -h localhost -u postgres -p 5432 -x 1 -e postgres -l esm

@@ -14,3 +14,507 @@
   --blue-accent-3: #2979ff;
   --blue-accent-4: #2962ff;
 }
+
+.bg-blue {
+  background-color: var(--blue) !important;
+}
+
+.bg-blue-lighten-5 {
+  background-color: var(--blue-lighten-5) !important;
+}
+
+.bg-blue-lighten-4 {
+  background-color: var(--blue-lighten-4) !important;
+}
+
+.bg-blue-lighten-3 {
+  background-color: var(--blue-lighten-3) !important;
+}
+
+.bg-blue-lighten-2 {
+  background-color: var(--blue-lighten-2) !important;
+}
+
+.bg-blue-lighten-1 {
+  background-color: var(--blue-lighten-1) !important;
+}
+
+.bg-blue-darken-1 {
+  background-color: var(--blue-darken-1) !important;
+}
+
+.bg-blue-darken-2 {
+  background-color: var(--blue-darken-2) !important;
+}
+
+.bg-blue-darken-3 {
+  background-color: var(--blue-darken-3) !important;
+}
+
+.bg-blue-darken-4 {
+  background-color: var(--blue-darken-4) !important;
+}
+
+.bg-blue-accent-1 {
+  background-color: var(--blue-accent-1) !important;
+}
+
+.bg-blue-accent-2 {
+  background-color: var(--blue-accent-2) !important;
+}
+
+.bg-blue-accent-3 {
+  background-color: var(--blue-accent-3) !important;
+}
+
+.bg-blue-accent-4 {
+  background-color: var(--blue-accent-4) !important;
+}
+
+.bg-blue-hvr:hover {
+  background-color: var(--blue) !important;
+}
+
+.bg-blue-lighten-5-hvr:hover {
+  background-color: var(--blue-lighten-5) !important;
+}
+
+.bg-blue-lighten-4-hvr:hover {
+  background-color: var(--blue-lighten-4) !important;
+}
+
+.bg-blue-lighten-3-hvr:hover {
+  background-color: var(--blue-lighten-3) !important;
+}
+
+.bg-blue-lighten-2-hvr:hover {
+  background-color: var(--blue-lighten-2) !important;
+}
+
+.bg-blue-lighten-1-hvr:hover {
+  background-color: var(--blue-lighten-1) !important;
+}
+
+.bg-blue-darken-1-hvr:hover {
+  background-color: var(--blue-darken-1) !important;
+}
+
+.bg-blue-darken-2-hvr:hover {
+  background-color: var(--blue-darken-2) !important;
+}
+
+.bg-blue-darken-3-hvr:hover {
+  background-color: var(--blue-darken-3) !important;
+}
+
+.bg-blue-darken-4-hvr:hover {
+  background-color: var(--blue-darken-4) !important;
+}
+
+.bg-blue-accent-1-hvr:hover {
+  background-color: var(--blue-accent-1) !important;
+}
+
+.bg-blue-accent-2-hvr:hover {
+  background-color: var(--blue-accent-2) !important;
+}
+
+.bg-blue-accent-3-hvr:hover {
+  background-color: var(--blue-accent-3) !important;
+}
+
+.bg-blue-accent-4-hvr:hover {
+  background-color: var(--blue-accent-4) !important;
+}
+
+.bg-blue-fcs:focus {
+  background-color: var(--blue) !important;
+}
+
+.bg-blue-lighten-5-fcs:focus {
+  background-color: var(--blue-lighten-5) !important;
+}
+
+.bg-blue-lighten-4-fcs:focus {
+  background-color: var(--blue-lighten-4) !important;
+}
+
+.bg-blue-lighten-3-fcs:focus {
+  background-color: var(--blue-lighten-3) !important;
+}
+
+.bg-blue-lighten-2-fcs:focus {
+  background-color: var(--blue-lighten-2) !important;
+}
+
+.bg-blue-lighten-1-fcs:focus {
+  background-color: var(--blue-lighten-1) !important;
+}
+
+.bg-blue-darken-1-fcs:focus {
+  background-color: var(--blue-darken-1) !important;
+}
+
+.bg-blue-darken-2-fcs:focus {
+  background-color: var(--blue-darken-2) !important;
+}
+
+.bg-blue-darken-3-fcs:focus {
+  background-color: var(--blue-darken-3) !important;
+}
+
+.bg-blue-darken-4-fcs:focus {
+  background-color: var(--blue-darken-4) !important;
+}
+
+.bg-blue-accent-1-fcs:focus {
+  background-color: var(--blue-accent-1) !important;
+}
+
+.bg-blue-accent-2-fcs:focus {
+  background-color: var(--blue-accent-2) !important;
+}
+
+.bg-blue-accent-3-fcs:focus {
+  background-color: var(--blue-accent-3) !important;
+}
+
+.bg-blue-accent-4-fcs:focus {
+  background-color: var(--blue-accent-4) !important;
+}
+
+.border-blue {
+  --border-color: var(--blue) !important;
+}
+
+.border-blue-lighten-5 {
+  --border-color: var(--blue-lighten-5) !important;
+}
+
+.border-blue-lighten-4 {
+  --border-color: var(--blue-lighten-4) !important;
+}
+
+.border-blue-lighten-3 {
+  --border-color: var(--blue-lighten-3) !important;
+}
+
+.border-blue-lighten-2 {
+  --border-color: var(--blue-lighten-2) !important;
+}
+
+.border-blue-lighten-1 {
+  --border-color: var(--blue-lighten-1) !important;
+}
+
+.border-blue-darken-1 {
+  --border-color: var(--blue-darken-1) !important;
+}
+
+.border-blue-darken-2 {
+  --border-color: var(--blue-darken-2) !important;
+}
+
+.border-blue-darken-3 {
+  --border-color: var(--blue-darken-3) !important;
+}
+
+.border-blue-darken-4 {
+  --border-color: var(--blue-darken-4) !important;
+}
+
+.border-blue-accent-1 {
+  --border-color: var(--blue-accent-1) !important;
+}
+
+.border-blue-accent-2 {
+  --border-color: var(--blue-accent-2) !important;
+}
+
+.border-blue-accent-3 {
+  --border-color: var(--blue-accent-3) !important;
+}
+
+.border-blue-accent-4 {
+  --border-color: var(--blue-accent-4) !important;
+}
+
+.border-blue-hvr:hover {
+  --border-color: var(--blue) !important;
+}
+
+.border-blue-lighten-5-hvr:hover {
+  --border-color: var(--blue-lighten-5) !important;
+}
+
+.border-blue-lighten-4-hvr:hover {
+  --border-color: var(--blue-lighten-4) !important;
+}
+
+.border-blue-lighten-3-hvr:hover {
+  --border-color: var(--blue-lighten-3) !important;
+}
+
+.border-blue-lighten-2-hvr:hover {
+  --border-color: var(--blue-lighten-2) !important;
+}
+
+.border-blue-lighten-1-hvr:hover {
+  --border-color: var(--blue-lighten-1) !important;
+}
+
+.border-blue-darken-1-hvr:hover {
+  --border-color: var(--blue-darken-1) !important;
+}
+
+.border-blue-darken-2-hvr:hover {
+  --border-color: var(--blue-darken-2) !important;
+}
+
+.border-blue-darken-3-hvr:hover {
+  --border-color: var(--blue-darken-3) !important;
+}
+
+.border-blue-darken-4-hvr:hover {
+  --border-color: var(--blue-darken-4) !important;
+}
+
+.border-blue-accent-1-hvr:hover {
+  --border-color: var(--blue-accent-1) !important;
+}
+
+.border-blue-accent-2-hvr:hover {
+  --border-color: var(--blue-accent-2) !important;
+}
+
+.border-blue-accent-3-hvr:hover {
+  --border-color: var(--blue-accent-3) !important;
+}
+
+.border-blue-accent-4-hvr:hover {
+  --border-color: var(--blue-accent-4) !important;
+}
+
+.border-blue-fcs:focus {
+  --border-color: var(--blue) !important;
+}
+
+.border-blue-lighten-5-fcs:focus {
+  --border-color: var(--blue-lighten-5) !important;
+}
+
+.border-blue-lighten-4-fcs:focus {
+  --border-color: var(--blue-lighten-4) !important;
+}
+
+.border-blue-lighten-3-fcs:focus {
+  --border-color: var(--blue-lighten-3) !important;
+}
+
+.border-blue-lighten-2-fcs:focus {
+  --border-color: var(--blue-lighten-2) !important;
+}
+
+.border-blue-lighten-1-fcs:focus {
+  --border-color: var(--blue-lighten-1) !important;
+}
+
+.border-blue-darken-1-fcs:focus {
+  --border-color: var(--blue-darken-1) !important;
+}
+
+.border-blue-darken-2-fcs:focus {
+  --border-color: var(--blue-darken-2) !important;
+}
+
+.border-blue-darken-3-fcs:focus {
+  --border-color: var(--blue-darken-3) !important;
+}
+
+.border-blue-darken-4-fcs:focus {
+  --border-color: var(--blue-darken-4) !important;
+}
+
+.border-blue-accent-1-fcs:focus {
+  --border-color: var(--blue-accent-1) !important;
+}
+
+.border-blue-accent-2-fcs:focus {
+  --border-color: var(--blue-accent-2) !important;
+}
+
+.border-blue-accent-3-fcs:focus {
+  --border-color: var(--blue-accent-3) !important;
+}
+
+.border-blue-accent-4-fcs:focus {
+  --border-color: var(--blue-accent-4) !important;
+}
+
+.blue-text {
+  color: var(--blue) !important;
+}
+
+.blue-lighten-5-text {
+  color: var(--blue-lighten-5) !important;
+}
+
+.blue-lighten-4-text {
+  color: var(--blue-lighten-4) !important;
+}
+
+.blue-lighten-3-text {
+  color: var(--blue-lighten-3) !important;
+}
+
+.blue-lighten-2-text {
+  color: var(--blue-lighten-2) !important;
+}
+
+.blue-lighten-1-text {
+  color: var(--blue-lighten-1) !important;
+}
+
+.blue-darken-1-text {
+  color: var(--blue-darken-1) !important;
+}
+
+.blue-darken-2-text {
+  color: var(--blue-darken-2) !important;
+}
+
+.blue-darken-3-text {
+  color: var(--blue-darken-3) !important;
+}
+
+.blue-darken-4-text {
+  --bs-color: var(--blue-darken-4) !important;
+}
+
+.blue-accent-1-text {
+  color: var(--blue-accent-1) !important;
+}
+
+.blue-accent-2-text {
+  color: var(--blue-accent-2) !important;
+}
+
+.blue-accent-3-text {
+  color: var(--blue-accent-3) !important;
+}
+
+.blue-accent-4-text {
+  color: var(--blue-accent-4) !important;
+}
+
+.blue-text-hvr:hover {
+  color: var(--blue) !important;
+}
+
+.blue-lighten-5-text-hvr:hover {
+  color: var(--blue-lighten-5) !important;
+}
+
+.blue-lighten-4-text-hvr:hover {
+  color: var(--blue-lighten-4) !important;
+}
+
+.blue-lighten-3-text-hvr:hover {
+  color: var(--blue-lighten-3) !important;
+}
+
+.blue-lighten-2-text-hvr:hover {
+  color: var(--blue-lighten-2) !important;
+}
+
+.blue-lighten-1-text-hvr:hover {
+  color: var(--blue-lighten-1) !important;
+}
+
+.blue-darken-1-text-hvr:hover {
+  color: var(--blue-darken-1) !important;
+}
+
+.blue-darken-2-text-hvr:hover {
+  color: var(--blue-darken-2) !important;
+}
+
+.blue-darken-3-text-hvr:hover {
+  color: var(--blue-darken-3) !important;
+}
+
+.blue-darken-4-text-hvr:hover {
+  color: var(--blue-darken-4) !important;
+}
+
+.blue-accent-1-text-hvr:hover {
+  color: var(--blue-accent-1) !important;
+}
+
+.blue-accent-2-text-hvr:hover {
+  color: var(--blue-accent-2) !important;
+}
+
+.blue-accent-3-text-hvr:hover {
+  color: var(--blue-accent-3) !important;
+}
+
+.blue-accent-4-text-hvr:hover {
+  color: var(--blue-accent-4) !important;
+}
+
+.blue-text-fcs:focus {
+  color: var(--blue) !important;
+}
+
+.blue-lighten-5-text-fcs:focus {
+  color: var(--blue-lighten-5) !important;
+}
+
+.blue-lighten-4-text-fcs:focus {
+  color: var(--blue-lighten-4) !important;
+}
+
+.blue-lighten-3-text-fcs:focus {
+  color: var(--blue-lighten-3) !important;
+}
+
+.blue-lighten-2-text-fcs:focus {
+  color: var(--blue-lighten-2) !important;
+}
+
+.blue-lighten-1-text-fcs:focus {
+  color: var(--blue-lighten-1) !important;
+}
+
+.blue-darken-1-text-fcs:focus {
+  color: var(--blue-darken-1) !important;
+}
+
+.blue-darken-2-text-fcs:focus {
+  color: var(--blue-darken-2) !important;
+}
+
+.blue-darken-3-text-fcs:focus {
+  color: var(--blue-darken-3) !important;
+}
+
+.blue-darken-4-text-fcs:focus {
+  color: var(--blue-darken-4) !important;
+}
+
+.blue-accent-1-text-fcs:focus {
+  color: var(--blue-accent-1) !important;
+}
+
+.blue-accent-2-text-fcs:focus {
+  color: var(--blue-accent-2) !important;
+}
+
+.blue-accent-3-text-fcs:focus {
+  color: var(--blue-accent-3) !important;
+}
+
+.blue-accent-4-text-fcs:focus {
+  color: var(--blue-accent-4) !important;
+}

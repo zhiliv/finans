@@ -14,3 +14,510 @@
   --deep-orange-accent-3: #ff3d00;
   --deep-orange-accent-4: #dd2c00;
 }
+
+
+.bg-deep-orange {
+  background-color: var(--deep-orange) !important;
+}
+
+.bg-deep-orange-lighten-5 {
+  background-color: var(--deep-orange-lighten-5) !important;
+}
+
+.bg-deep-orange-lighten-4 {
+  background-color: var(--deep-orange-lighten-4) !important;
+}
+
+.bg-deep-orange-lighten-3 {
+  background-color: var(--deep-orange-lighten-3) !important;
+}
+
+.bg-deep-orange-lighten-2 {
+  background-color: var(--deep-orange-lighten-2) !important;
+}
+
+.bg-deep-orange-lighten-1 {
+  background-color: var(--deep-orange-lighten-1) !important;
+}
+
+.bg-deep-orange-darken-1 {
+  background-color: var(--deep-orange-darken-1) !important;
+}
+
+.bg-deep-orange-darken-2 {
+  background-color: var(--deep-orange-darken-2) !important;
+}
+
+.bg-deep-orange-darken-3 {
+  background-color: var(--deep-orange-darken-3) !important;
+}
+
+.bg-deep-orange-darken-4 {
+  background-color: var(--deep-orange-darken-4) !important;
+}
+
+.bg-deep-orange-accent-1 {
+  background-color: var(--deep-orange-accent-1) !important;
+}
+
+.bg-deep-orange-accent-2 {
+  background-color: var(--deep-orange-accent-2) !important;
+}
+
+.bg-deep-orange-accent-3 {
+  background-color: var(--deep-orange-accent-3) !important;
+}
+
+.bg-deep-orange-accent-4 {
+  background-color: var(--deep-orange-accent-4) !important;
+}
+
+.bg-deep-orange-hvr:hover {
+  background-color: var(--deep-orange) !important;
+}
+
+.bg-deep-orange-lighten-5-hvr:hover {
+  background-color: var(--deep-orange-lighten-5) !important;
+}
+
+.bg-deep-orange-lighten-4-hvr:hover {
+  background-color: var(--deep-orange-lighten-4) !important;
+}
+
+.bg-deep-orange-lighten-3-hvr:hover {
+  background-color: var(--deep-orange-lighten-3) !important;
+}
+
+.bg-deep-orange-lighten-2-hvr:hover {
+  background-color: var(--deep-orange-lighten-2) !important;
+}
+
+.bg-deep-orange-lighten-1-hvr:hover {
+  background-color: var(--deep-orange-lighten-1) !important;
+}
+
+.bg-deep-orange-darken-1-hvr:hover {
+  background-color: var(--deep-orange-darken-1) !important;
+}
+
+.bg-deep-orange-darken-2-hvr:hover {
+  background-color: var(--deep-orange-darken-2) !important;
+}
+
+.bg-deep-orange-darken-3-hvr:hover {
+  background-color: var(--deep-orange-darken-3) !important;
+}
+
+.bg-deep-orange-darken-4-hvr:hover {
+  background-color: var(--deep-orange-darken-4) !important;
+}
+
+.bg-deep-orange-accent-1-hvr:hover {
+  background-color: var(--deep-orange-accent-1) !important;
+}
+
+.bg-deep-orange-accent-2-hvr:hover {
+  background-color: var(--deep-orange-accent-2) !important;
+}
+
+.bg-deep-orange-accent-3-hvr:hover {
+  background-color: var(--deep-orange-accent-3) !important;
+}
+
+.bg-deep-orange-accent-4-hvr:hover {
+  background-color: var(--deep-orange-accent-4) !important;
+}
+
+.bg-deep-orange-fcs:focus {
+  background-color: var(--deep-orange) !important;
+}
+
+.bg-deep-orange-lighten-5-fcs:focus {
+  background-color: var(--deep-orange-lighten-5) !important;
+}
+
+.bg-deep-orange-lighten-4-fcs:focus {
+  background-color: var(--deep-orange-lighten-4) !important;
+}
+
+.bg-deep-orange-lighten-3-fcs:focus {
+  background-color: var(--deep-orange-lighten-3) !important;
+}
+
+.bg-deep-orange-lighten-2-fcs:focus {
+  background-color: var(--deep-orange-lighten-2) !important;
+}
+
+.bg-deep-orange-lighten-1-fcs:focus {
+  background-color: var(--deep-orange-lighten-1) !important;
+}
+
+.bg-deep-orange-darken-1-fcs:focus {
+  background-color: var(--deep-orange-darken-1) !important;
+}
+
+.bg-deep-orange-darken-2-fcs:focus {
+  background-color: var(--deep-orange-darken-2) !important;
+}
+
+.bg-deep-orange-darken-3-fcs:focus {
+  background-color: var(--deep-orange-darken-3) !important;
+}
+
+.bg-deep-orange-darken-4-fcs:focus {
+  background-color: var(--deep-orange-darken-4) !important;
+}
+
+.bg-deep-orange-accent-1-fcs:focus {
+  background-color: var(--deep-orange-accent-1) !important;
+}
+
+.bg-deep-orange-accent-2-fcs:focus {
+  background-color: var(--deep-orange-accent-2) !important;
+}
+
+.bg-deep-orange-accent-3-fcs:focus {
+  background-color: var(--deep-orange-accent-3) !important;
+}
+
+.bg-deep-orange-accent-4-fcs:focus {
+  background-color: var(--deep-orange-accent-4) !important;
+}
+
+
+.border-deep-orange {
+  --border-color: var(--deep-orange) !important;
+}
+
+.border-deep-orange-lighten-5 {
+  --border-color: var(--deep-orange-lighten-5) !important;
+}
+
+.border-deep-orange-lighten-4 {
+  --border-color: var(--deep-orange-lighten-4) !important;
+}
+
+.border-deep-orange-lighten-3 {
+  --border-color: var(--deep-orange-lighten-3) !important;
+}
+
+.border-deep-orange-lighten-2 {
+  --border-color: var(--deep-orange-lighten-2) !important;
+}
+
+.border-deep-orange-lighten-1 {
+  --border-color: var(--deep-orange-lighten-1) !important;
+}
+
+.border-deep-orange-darken-1 {
+  --border-color: var(--deep-orange-darken-1) !important;
+}
+
+.border-deep-orange-darken-2 {
+  --border-color: var(--deep-orange-darken-2) !important;
+}
+
+.border-deep-orange-darken-3 {
+  --border-color: var(--deep-orange-darken-3) !important;
+}
+
+.border-deep-orange-darken-4 {
+  --border-color: var(--deep-orange-darken-4) !important;
+}
+
+.border-deep-orange-accent-1 {
+  --border-color: var(--deep-orange-accent-1) !important;
+}
+
+.border-deep-orange-accent-2 {
+  --border-color: var(--deep-orange-accent-2) !important;
+}
+
+.border-deep-orange-accent-3 {
+  --border-color: var(--deep-orange-accent-3) !important;
+}
+
+.border-deep-orange-accent-4 {
+  --border-color: var(--deep-orange-accent-4) !important;
+}
+
+.border-deep-orange-hvr:hover {
+  --border-color: var(--deep-orange) !important;
+}
+
+.border-deep-orange-lighten-5-hvr:hover {
+  --border-color: var(--deep-orange-lighten-5) !important;
+}
+
+.border-deep-orange-lighten-4-hvr:hover {
+  --border-color: var(--deep-orange-lighten-4) !important;
+}
+
+.border-deep-orange-lighten-3-hvr:hover {
+  --border-color: var(--deep-orange-lighten-3) !important;
+}
+
+.border-deep-orange-lighten-2-hvr:hover {
+  --border-color: var(--deep-orange-lighten-2) !important;
+}
+
+.border-deep-orange-lighten-1-hvr:hover {
+  --border-color: var(--deep-orange-lighten-1) !important;
+}
+
+.border-deep-orange-darken-1-hvr:hover {
+  --border-color: var(--deep-orange-darken-1) !important;
+}
+
+.border-deep-orange-darken-2-hvr:hover {
+  --border-color: var(--deep-orange-darken-2) !important;
+}
+
+.border-deep-orange-darken-3-hvr:hover {
+  --border-color: var(--deep-orange-darken-3) !important;
+}
+
+.border-deep-orange-darken-4-hvr:hover {
+  --border-color: var(--deep-orange-darken-4) !important;
+}
+
+.border-deep-orange-accent-1-hvr:hover {
+  --border-color: var(--deep-orange-accent-1) !important;
+}
+
+.border-deep-orange-accent-2-hvr:hover {
+  --border-color: var(--deep-orange-accent-2) !important;
+}
+
+.border-deep-orange-accent-3-hvr:hover {
+  --border-color: var(--deep-orange-accent-3) !important;
+}
+
+.border-deep-orange-accent-4-hvr:hover {
+  --border-color: var(--deep-orange-accent-4) !important;
+}
+
+.border-deep-orange-fcs:focus {
+  --border-color: var(--deep-orange) !important;
+}
+
+.border-deep-orange-lighten-5-fcs:focus {
+  --border-color: var(--deep-orange-lighten-5) !important;
+}
+
+.border-deep-orange-lighten-4-fcs:focus {
+  --border-color: var(--deep-orange-lighten-4) !important;
+}
+
+.border-deep-orange-lighten-3-fcs:focus {
+  --border-color: var(--deep-orange-lighten-3) !important;
+}
+
+.border-deep-orange-lighten-2-fcs:focus {
+  --border-color: var(--deep-orange-lighten-2) !important;
+}
+
+.border-deep-orange-lighten-1-fcs:focus {
+  --border-color: var(--deep-orange-lighten-1) !important;
+}
+
+.border-deep-orange-darken-1-fcs:focus {
+  --border-color: var(--deep-orange-darken-1) !important;
+}
+
+.border-deep-orange-darken-2-fcs:focus {
+  --border-color: var(--deep-orange-darken-2) !important;
+}
+
+.border-deep-orange-darken-3-fcs:focus {
+  --border-color: var(--deep-orange-darken-3) !important;
+}
+
+.border-deep-orange-darken-4-fcs:focus {
+  --border-color: var(--deep-orange-darken-4) !important;
+}
+
+.border-deep-orange-accent-1-fcs:focus {
+  --border-color: var(--deep-orange-accent-1) !important;
+}
+
+.border-deep-orange-accent-2-fcs:focus {
+  --border-color: var(--deep-orange-accent-2) !important;
+}
+
+.border-deep-orange-accent-3-fcs:focus {
+  --border-color: var(--deep-orange-accent-3) !important;
+}
+
+.border-deep-orange-accent-4-fcs:focus {
+  --border-color: var(--deep-orange-accent-4) !important;
+}
+
+
+.deep-orange-text {
+  color: var(--deep-orange) !important;
+}
+
+.deep-orange-lighten-5-text {
+  color: var(--deep-orange-lighten-5) !important;
+}
+
+.deep-orange-lighten-4-text {
+  color: var(--deep-orange-lighten-4) !important;
+}
+
+.deep-orange-lighten-3-text {
+  color: var(--deep-orange-lighten-3) !important;
+}
+
+.deep-orange-lighten-2-text {
+  color: var(--deep-orange-lighten-2) !important;
+}
+
+.deep-orange-lighten-1-text {
+  color: var(--deep-orange-lighten-1) !important;
+}
+
+.deep-orange-darken-1-text {
+  color: var(--deep-orange-darken-1) !important;
+}
+
+.deep-orange-darken-2-text {
+  color: var(--deep-orange-darken-2) !important;
+}
+
+.deep-orange-darken-3-text {
+  color: var(--deep-orange-darken-3) !important;
+}
+
+.deep-orange-darken-4-text {
+  color: var(--deep-orange-darken-4) !important;
+}
+
+.deep-orange-accent-1-text {
+  color: var(--deep-orange-accent-1) !important;
+}
+
+.deep-orange-accent-2-text {
+  color: var(--deep-orange-accent-2) !important;
+}
+
+.deep-orange-accent-3-text {
+  color: var(--deep-orange-accent-3) !important;
+}
+
+.deep-orange-accent-4-text {
+  color: var(--deep-orange-accent-4) !important;
+}
+
+.deep-orange-text-hvr:hover {
+  color: var(--deep-orange) !important;
+}
+
+.deep-orange-lighten-5-text-hvr:hover {
+  color: var(--deep-orange-lighten-5) !important;
+}
+
+.deep-orange-lighten-4-text-hvr:hover {
+  color: var(--deep-orange-lighten-4) !important;
+}
+
+.deep-orange-lighten-3-text-hvr:hover {
+  color: var(--deep-orange-lighten-3) !important;
+}
+
+.deep-orange-lighten-2-text-hvr:hover {
+  color: var(--deep-orange-lighten-2) !important;
+}
+
+.deep-orange-lighten-1-text-hvr:hover {
+  color: var(--deep-orange-lighten-1) !important;
+}
+
+.deep-orange-darken-1-text-hvr:hover {
+  color: var(--deep-orange-darken-1) !important;
+}
+
+.deep-orange-darken-2-text-hvr:hover {
+  color: var(--deep-orange-darken-2) !important;
+}
+
+.deep-orange-darken-3-text-hvr:hover {
+  color: var(--deep-orange-darken-3) !important;
+}
+
+.deep-orange-darken-4-text-hvr:hover {
+  color: var(--deep-orange-darken-4) !important;
+}
+
+.deep-orange-accent-1-text-hvr:hover {
+  color: var(--deep-orange-accent-1) !important;
+}
+
+.deep-orange-accent-2-text-hvr:hover {
+  color: var(--deep-orange-accent-2) !important;
+}
+
+.deep-orange-accent-3-text-hvr:hover {
+  color: var(--deep-orange-accent-3) !important;
+}
+
+.deep-orange-accent-4-text-hvr:hover {
+  color: var(--deep-orange-accent-4) !important;
+}
+
+.deep-orange-text-fcs:focus {
+  color: var(--deep-orange) !important;
+}
+
+.deep-orange-lighten-5-text-fcs:focus {
+  color: var(--deep-orange-lighten-5) !important;
+}
+
+.deep-orange-lighten-4-text-fcs:focus {
+  color: var(--deep-orange-lighten-4) !important;
+}
+
+.deep-orange-lighten-3-text-fcs:focus {
+  color: var(--deep-orange-lighten-3) !important;
+}
+
+.deep-orange-lighten-2-text-fcs:focus {
+  color: var(--deep-orange-lighten-2) !important;
+}
+
+.deep-orange-lighten-1-text-fcs:focus {
+  color: var(--deep-orange-lighten-1) !important;
+}
+
+.deep-orange-darken-1-text-fcs:focus {
+  color: var(--deep-orange-darken-1) !important;
+}
+
+.deep-orange-darken-2-text-fcs:focus {
+  color: var(--deep-orange-darken-2) !important;
+}
+
+.deep-orange-darken-3-text-fcs:focus {
+  color: var(--deep-orange-darken-3) !important;
+}
+
+.deep-orange-darken-4-text-fcs:focus {
+  color: var(--deep-orange-darken-4) !important;
+}
+
+.deep-orange-accent-1-text-fcs:focus {
+  color: var(--deep-orange-accent-1) !important;
+}
+
+.deep-orange-accent-2-text-fcs:focus {
+  color: var(--deep-orange-accent-2) !important;
+}
+
+.deep-orange-accent-3-text-fcs:focus {
+  color: var(--deep-orange-accent-3) !important;
+}
+
+.deep-orange-accent-4-text-fcs:focus {
+  color: var(--deep-orange-accent-4) !important;
+}

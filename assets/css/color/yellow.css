@@ -14,3 +14,514 @@
   --yellow-accent-3: #ffea00;
   --yellow-accent-4: #ffd600;
 }
+
+
+
+
+.bg-yellow-hvr:hover {
+  background-color: var(--yellow) !important;
+}
+
+.bg-yellow-lighten-5-hvr:hover {
+  background-color: var(--yellow-lighten-5) !important;
+}
+
+.bg-yellow-lighten-4-hvr:hover {
+  background-color: var(--yellow-lighten-4) !important;
+}
+
+.bg-yellow-lighten-3-hvr:hover {
+  background-color: var(--yellow-lighten-3) !important;
+}
+
+.bg-yellow-lighten-2-hvr:hover {
+  background-color: var(--yellow-lighten-2) !important;
+}
+
+.bg-yellow-lighten-1-hvr:hover {
+  background-color: var(--yellow-lighten-1) !important;
+}
+
+.bg-yellow-darken-1-hvr:hover {
+  background-color: var(--yellow-darken-1) !important;
+}
+
+.bg-yellow-darken-2-hvr:hover {
+  background-color: var(--yellow-darken-2) !important;
+}
+
+.bg-yellow-darken-3-hvr:hover {
+  background-color: var(--yellow-darken-3) !important;
+}
+
+.bg-yellow-darken-4-hvr:hover {
+  background-color: var(--yellow-darken-4) !important;
+}
+
+.bg-yellow-accent-1-hvr:hover {
+  background-color: var(--yellow-accent-1) !important;
+}
+
+.bg-yellow-accent-2-hvr:hover {
+  background-color: var(--yellow-accent-2) !important;
+}
+
+.bg-yellow-accent-3-hvr:hover {
+  background-color: var(--yellow-accent-3) !important;
+}
+
+.bg-yellow-accent-4-hvr:hover {
+  background-color: var(--yellow-accent-4) !important;
+}
+
+.bg-yellow-fcs:focus {
+  background-color: var(--yellow) !important;
+}
+
+.bg-yellow-lighten-5-fcs:focus {
+  background-color: var(--yellow-lighten-5) !important;
+}
+
+.bg-yellow-lighten-4-fcs:focus {
+  background-color: var(--yellow-lighten-4) !important;
+}
+
+.bg-yellow-lighten-3-fcs:focus {
+  background-color: var(--yellow-lighten-3) !important;
+}
+
+.bg-yellow-lighten-2-fcs:focus {
+  background-color: var(--yellow-lighten-2) !important;
+}
+
+.bg-yellow-lighten-1-fcs:focus {
+  background-color: var(--yellow-lighten-1) !important;
+}
+
+.bg-yellow-darken-1-fcs:focus {
+  background-color: var(--yellow-darken-1) !important;
+}
+
+.bg-yellow-darken-2-fcs:focus {
+  background-color: var(--yellow-darken-2) !important;
+}
+
+.bg-yellow-darken-3-fcs:focus {
+  background-color: var(--yellow-darken-3) !important;
+}
+
+.bg-yellow-darken-4-fcs:focus {
+  background-color: var(--yellow-darken-4) !important;
+}
+
+.bg-yellow-accent-1-fcs:focus {
+  background-color: var(--yellow-accent-1) !important;
+}
+
+.bg-yellow-accent-2-fcs:focus {
+  background-color: var(--yellow-accent-2) !important;
+}
+
+.bg-yellow-accent-3-fcs:focus {
+  background-color: var(--yellow-accent-3) !important;
+}
+
+.bg-yellow-accent-4-fcs:focus {
+  background-color: var(--yellow-accent-4) !important;
+}
+
+.bg-yellow {
+  background-color: var(--yellow) !important;
+}
+
+.bg-yellow-lighten-5 {
+  background-color: var(--yellow-lighten-5) !important;
+}
+
+.bg-yellow-lighten-4 {
+  background-color: var(--yellow-lighten-4) !important;
+}
+
+.bg-yellow-lighten-3 {
+  background-color: var(--yellow-lighten-3) !important;
+}
+
+.bg-yellow-lighten-2 {
+  background-color: var(--yellow-lighten-2) !important;
+}
+
+.bg-yellow-lighten-1 {
+  background-color: var(--yellow-lighten-1) !important;
+}
+
+.bg-yellow-darken-1 {
+  background-color: var(--yellow-darken-1) !important;
+}
+
+.bg-yellow-darken-2 {
+  background-color: var(--yellow-darken-2) !important;
+}
+
+.bg-yellow-darken-3 {
+  background-color: var(--yellow-darken-3) !important;
+}
+
+.bg-yellow-darken-4 {
+  background-color: var(--yellow-darken-4) !important;
+}
+
+.bg-yellow-accent-1 {
+  background-color: var(--yellow-accent-1) !important;
+}
+
+.bg-yellow-accent-2 {
+  background-color: var(--yellow-accent-2) !important;
+}
+
+.bg-yellow-accent-3 {
+  background-color: var(--yellow-accent-3) !important;
+}
+
+.bg-yellow-accent-4 {
+  background-color: var(--yellow-accent-4) !important;
+}
+
+
+
+.border-yellow {
+  --border-color: var(--yellow) !important;
+}
+
+.border-yellow-lighten-5 {
+  --border-color: var(--yellow-lighten-5) !important;
+}
+
+.border-yellow-lighten-4 {
+  --border-color: var(--yellow-lighten-4) !important;
+}
+
+.border-yellow-lighten-3 {
+  --border-color: var(--yellow-lighten-3) !important;
+}
+
+.border-yellow-lighten-2 {
+  --border-color: var(--yellow-lighten-2) !important;
+}
+
+.border-yellow-lighten-1 {
+  --border-color: var(--yellow-lighten-1) !important;
+}
+
+.border-yellow-darken-1 {
+  --border-color: var(--yellow-darken-1) !important;
+}
+
+.border-yellow-darken-2 {
+  --border-color: var(--yellow-darken-2) !important;
+}
+
+.border-yellow-darken-3 {
+  --border-color: var(--yellow-darken-3) !important;
+}
+
+.border-yellow-darken-4 {
+  --border-color: var(--yellow-darken-4) !important;
+}
+
+.border-yellow-accent-1 {
+  --border-color: var(--yellow-accent-1) !important;
+}
+
+.border-yellow-accent-2 {
+  --border-color: var(--yellow-accent-2) !important;
+}
+
+.border-yellow-accent-3 {
+  --border-color: var(--yellow-accent-3) !important;
+}
+
+.border-yellow-accent-4 {
+  --border-color: var(--yellow-accent-4) !important;
+}
+
+.border-yellow-hvr:hover {
+  --border-color: var(--yellow) !important;
+}
+
+.border-yellow-lighten-5-hvr:hover {
+  --border-color: var(--yellow-lighten-5) !important;
+}
+
+.border-yellow-lighten-4-hvr:hover {
+  --border-color: var(--yellow-lighten-4) !important;
+}
+
+.border-yellow-lighten-3-hvr:hover {
+  --border-color: var(--yellow-lighten-3) !important;
+}
+
+.border-yellow-lighten-2-hvr:hover {
+  --border-color: var(--yellow-lighten-2) !important;
+}
+
+.border-yellow-lighten-1-hvr:hover {
+  --border-color: var(--yellow-lighten-1) !important;
+}
+
+.border-yellow-darken-1-hvr:hover {
+  --border-color: var(--yellow-darken-1) !important;
+}
+
+.border-yellow-darken-2-hvr:hover {
+  --border-color: var(--yellow-darken-2) !important;
+}
+
+.border-yellow-darken-3-hvr:hover {
+  --border-color: var(--yellow-darken-3) !important;
+}
+
+.border-yellow-darken-4-hvr:hover {
+  --border-color: var(--yellow-darken-4) !important;
+}
+
+.border-yellow-accent-1-hvr:hover {
+  --border-color: var(--yellow-accent-1) !important;
+}
+
+.border-yellow-accent-2-hvr:hover {
+  --border-color: var(--yellow-accent-2) !important;
+}
+
+.border-yellow-accent-3-hvr:hover {
+  --border-color: var(--yellow-accent-3) !important;
+}
+
+.border-yellow-accent-4-hvr:hover {
+  --border-color: var(--yellow-accent-4) !important;
+}
+
+.border-yellow-fcs:focus {
+  --border-color: var(--yellow) !important;
+}
+
+.border-yellow-lighten-5-fcs:focus {
+  --border-color: var(--yellow-lighten-5) !important;
+}
+
+.border-yellow-lighten-4-fcs:focus {
+  --border-color: var(--yellow-lighten-4) !important;
+}
+
+.border-yellow-lighten-3-fcs:focus {
+  --border-color: var(--yellow-lighten-3) !important;
+}
+
+.border-yellow-lighten-2-fcs:focus {
+  --border-color: var(--yellow-lighten-2) !important;
+}
+
+.border-yellow-lighten-1-fcs:focus {
+  --border-color: var(--yellow-lighten-1) !important;
+}
+
+.border-yellow-darken-1-fcs:focus {
+  --border-color: var(--yellow-darken-1) !important;
+}
+
+.border-yellow-darken-2-fcs:focus {
+  --border-color: var(--yellow-darken-2) !important;
+}
+
+.border-yellow-darken-3-fcs:focus {
+  --border-color: var(--yellow-darken-3) !important;
+}
+
+.border-yellow-darken-4-fcs:focus {
+  --border-color: var(--yellow-darken-4) !important;
+}
+
+.border-yellow-accent-1-fcs:focus {
+  --border-color: var(--yellow-accent-1) !important;
+}
+
+.border-yellow-accent-2-fcs:focus {
+  --border-color: var(--yellow-accent-2) !important;
+}
+
+.border-yellow-accent-3-fcs:focus {
+  --border-color: var(--yellow-accent-3) !important;
+}
+
+.border-yellow-accent-4-fcs:focus {
+  --border-color: var(--yellow-accent-4) !important;
+}
+
+
+
+.yellow-text {
+  color: var(--yellow) !important;
+}
+
+.yellow-lighten-5-text {
+  color: var(--yellow-lighten-5) !important;
+}
+
+.yellow-lighten-4-text {
+  color: var(--yellow-lighten-4) !important;
+}
+
+.yellow-lighten-3-text {
+  color: var(--yellow-lighten-3) !important;
+}
+
+.yellow-lighten-2-text {
+  color: var(--yellow-lighten-2) !important;
+}
+
+.yellow-lighten-1-text {
+  color: var(--yellow-lighten-1) !important;
+}
+
+.yellow-darken-1-text {
+  color: var(--yellow-darken-1) !important;
+}
+
+.yellow-darken-2-text {
+  color: var(--yellow-darken-2) !important;
+}
+
+.yellow-darken-3-text {
+  color: var(--yellow-darken-3) !important;
+}
+
+.yellow-darken-4-text {
+  color: var(--yellow-darken-4) !important;
+}
+
+.yellow-accent-1-text {
+  color: var(--yellow-accent-1) !important;
+}
+
+.yellow-accent-2-text {
+  color: var(--yellow-accent-2) !important;
+}
+
+.yellow-accent-3-text {
+  color: var(--yellow-accent-3) !important;
+}
+
+.yellow-accent-4-text {
+  color: var(--yellow-accent-4) !important;
+}
+
+.yellow-text-hvr:hover {
+  color: var(--yellow) !important;
+}
+
+.yellow-lighten-5-text-hvr:hover {
+  color: var(--yellow-lighten-5) !important;
+}
+
+.yellow-lighten-4-text-hvr:hover {
+  color: var(--yellow-lighten-4) !important;
+}
+
+.yellow-lighten-3-text-hvr:hover {
+  color: var(--yellow-lighten-3) !important;
+}
+
+.yellow-lighten-2-text-hvr:hover {
+  color: var(--yellow-lighten-2) !important;
+}
+
+.yellow-lighten-1-text-hvr:hover {
+  color: var(--yellow-lighten-1) !important;
+}
+
+.yellow-darken-1-text-hvr:hover {
+  color: var(--yellow-darken-1) !important;
+}
+
+.yellow-darken-2-text-hvr:hover {
+  color: var(--yellow-darken-2) !important;
+}
+
+.yellow-darken-3-text-hvr:hover {
+  color: var(--yellow-darken-3) !important;
+}
+
+.yellow-darken-4-text-hvr:hover {
+  color: var(--yellow-darken-4) !important;
+}
+
+.yellow-accent-1-text-hvr:hover {
+  color: var(--yellow-accent-1) !important;
+}
+
+.yellow-accent-2-text-hvr:hover {
+  color: var(--yellow-accent-2) !important;
+}
+
+.yellow-accent-3-text-hvr:hover {
+  color: var(--yellow-accent-3) !important;
+}
+
+.yellow-accent-4-text-hvr:hover {
+  color: var(--yellow-accent-4) !important;
+}
+
+.yellow-text-fcs:focus {
+  color: var(--yellow) !important;
+}
+
+.yellow-lighten-5-text-fcs:focus {
+  color: var(--yellow-lighten-5) !important;
+}
+
+.yellow-lighten-4-text-fcs:focus {
+  color: var(--yellow-lighten-4) !important;
+}
+
+.yellow-lighten-3-text-fcs:focus {
+  color: var(--yellow-lighten-3) !important;
+}
+
+.yellow-lighten-2-text-fcs:focus {
+  color: var(--yellow-lighten-2) !important;
+}
+
+.yellow-lighten-1-text-fcs:focus {
+  color: var(--yellow-lighten-1) !important;
+}
+
+.yellow-darken-1-text-fcs:focus {
+  color: var(--yellow-darken-1) !important;
+}
+
+.yellow-darken-2-text-fcs:focus {
+  color: var(--yellow-darken-2) !important;
+}
+
+.yellow-darken-3-text-fcs:focus {
+  color: var(--yellow-darken-3) !important;
+}
+
+.yellow-darken-4-text-fcs:focus {
+  color: var(--yellow-darken-4) !important;
+}
+
+.yellow-accent-1-text-fcs:focus {
+  color: var(--yellow-accent-1) !important;
+}
+
+.yellow-accent-2-text-fcs:focus {
+  color: var(--yellow-accent-2) !important;
+}
+
+.yellow-accent-3-text-fcs:focus {
+  color: var(--yellow-accent-3) !important;
+}
+
+.yellow-accent-4-text-fcs:focus {
+  color: var(--yellow-accent-4) !important;
+}
