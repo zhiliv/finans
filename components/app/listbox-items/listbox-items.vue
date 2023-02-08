@@ -1,15 +1,37 @@
 <template>
-  <div class="position-relative">
-    <ul class="list-group m-0 h-100">
+  <div class="h-full relative w-full shadow-2xl shadow-zinc-300/30" :class="$attrs.class">
+    <ul ref="list" class="list-group h-full absolute w-full overflow-y-scroll overflow-x-hidden">
       <li
-        class="border-bottom border-1px border-grey-lighten-2 no-select short-text"
-        v-for="item in list"
-        alt="asdfgsdtghdfgb"
+        v-for="item in listItems"
+        class="min-h-[35px]  border-b border-zinc-300/10"
+        :class="{'active': item.isActive}"
         :key="item[value]"
-        @click="onSelect($event, item)"
-      >{{item[text]}}</li>
+        @click="onSelect(item)"
+      >
+        {{item[text]}}
+        <button
+          v-if="onDelete"
+          class="btn btn-xs btn-square btn-outline absolute right-0 mr-1"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            @click="onDelete(item)"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </li>
     </ul>
-    <app-spinner class="position-absolute top-50 start-50" v-if="showSpinner && !isLoad" />
+    <app-spinner v-if="isLoad" />
   </div>
 </template>
 
@@ -21,26 +43,21 @@ export default {
   mixins: [mixinFunction],
   /* Установка события */
   // emits: [['update:modelValue']],
-  emits: ['update:modelValue', 'update:index'],
+  emits: ['update:modelValue'],
+
+  computed: {
+    /* Вычисление списка для отображения */
+    listItems() {
+      const { list } = this
+      return list
+    },
+  },
 
   props: {
     /* Список */
     list: {
       type: Array,
       default: () => [],
-    },
-    /* Признак заполнения списка */
-    isLoad: {
-      type: [String, Boolean],
-      default: false,
-    },
-    /* Отображать ли спиннер при отображении компонента */
-    showSpinner: {
-      type: [String, Boolean],
-      default: false,
-      validator(value) {
-        return String(value) === 'true' || String(value) === 'false' || value === true || value === false
-      },
     },
     /* Значение строки */
     value: {
@@ -57,9 +74,18 @@ export default {
       type: Object,
       default: {},
     },
-    index: {
-      type: Number,
-      default: -1,
+    /* Статус загрузки */
+    isLoad: {
+      type: [String, Boolean],
+      default: true,
+      validator(value) {
+        return value === true || value === false || value === 'true' || value === 'false'
+      },
+    },
+    /* Удаление элемента */
+    onDelete: {
+      type: Function,
+      default: () => ({}),
     },
   },
 
@@ -69,39 +95,24 @@ export default {
      * @function onSelect
      * @param {Object} event - Объект события
      */
-    onSelect(event, item) {
-      const { list, $el, $emit, getIndex, cloneObject } = this
-      const listEl = $el.querySelectorAll('li') // получение списка элементов списка
-      listEl.forEach(el => el.classList.remove('active')) // удаление у всех элементов списка класса "active"
-      event.target.classList.add('active') // добавление класса выделенному элемента
-      $emit('update:modelValue', cloneObject(item)) // отправка события для обновления модели данных
-      if (list.length) getIndex(item) // получение индекса
-    },
-    /*
-     * Получение индекса выделенного элемента
-     * @function getIndex
-     * @param {Object} item - Объект выделенной строки
-     */
-    getIndex(item) {
-      const { list, $emit } = this // получение переменной со списком
-      const index = list.findIndex(el => JSON.stringify(el) == JSON.stringify(item)) // поиск индекса элемента
-      $emit('update:index', index) // отправка данных индекса выделенного элемента
+    onSelect(item) {
+      const { listItems, cloneObject, $emit } = this
+      listItems.forEach(el => (el.isActive = false)) // удаление класса активности со всех элементов
+      item.isActive = true // установка активности для выделенного пункта
+      const obj = cloneObject(item) // клонирование выделенного объекта
+      delete obj.isActive // удаление свойства
+      $emit('update:modelValue', obj) // отправка события для обновления модели данных
     },
   },
 
   watch: {
-    /*
-     * Отслеживание изменения списка
-     * @function list
-     * @param {Object} newValue - Новое значение
-     * @param {Object} oldValue - Старое значение
-     */
-    list(newValue, oldValue) {
-      const { $nextTick, $el } = this
-      if (!oldValue.length && newValue.length) {
+    isLoad(newVal) {
+      const { listItems, $nextTick } = this
+      if (!newVal && listItems.length) {
+        // проверка что список загружен и список имеет элементы
         $nextTick(() => {
-          // ожидание заполнения DOM
-          $el.querySelector('li').click() // эмуляция нажатия списка жары
+          // ожидаем рендеринга страницы
+          this.$refs.list.querySelector('li').click() // эмуляция нажатия на первый элемент
         })
       }
     },
@@ -110,22 +121,7 @@ export default {
 </script>
 
 <style>
-  @import '~/assets/css/position.css';
-  @import '~/assets/css/border.css';
-  @import '~/assets/css/margin.css';
-  @import '~/assets/css/position.css';
-  .list-group {
-    display: flex;
-    flex-direction: column;
-    padding-left: 0;
-    margin-bottom: 0;
-    border-radius: var(--bs-list-group-border-radius);
-    overflow-y: scroll;
-  }
-
   .list-group li {
-    min-height: 35px;
-    list-style-type: none;
     padding-left: 0.5em;
     padding-top: 0.25em;
     font-size: 18px;
@@ -137,6 +133,6 @@ export default {
   }
 
   .list-group li.active {
-    background: var(--active);
+    background: #b45309;
   }
 </style>

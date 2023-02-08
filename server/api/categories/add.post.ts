@@ -9,10 +9,10 @@ export default defineEventHandler(async event => {
         name: body.name,
       },
     }
-    const count = await sequelize.models.type_docs.count(optionsWhere) // получение количества записей с таким наименованием
+    const count = await sequelize.models.categories.count(optionsWhere) // получение количества записей с таким наименованием
     result =
       count === 0
-        ? await sequelize.models.type_docs.create(body) /// добавление данных
+        ? await sequelize.models.categories.create(body) /// добавление данных
         : { warning: 'Запись с таким наименование уже существует' }
   } catch (error) {
     result =

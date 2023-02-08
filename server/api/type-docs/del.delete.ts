@@ -4,16 +4,13 @@ export default defineEventHandler(async event => {
   const body = await readBody(event) // параметры запроса
   let result // переменная для получения  результата
   try {
-    const optionsWhere = {
-      where: {
-        name: body.name,
-      },
-    }
+    const optionsWhere = {where: {
+      id: +body
+    }}
     const count = await sequelize.models.type_docs.count(optionsWhere) // получение количества записей с таким наименованием
-    result =
-      count === 0
-        ? await sequelize.models.type_docs.create(body) /// добавление данных
-        : { warning: 'Запись с таким наименование уже существует' }
+    result = count === 0
+      ? {message: 'Записи с таким идентификатором не существует'}
+      : await sequelize.models.type_docs.destroy(optionsWhere) /// добавление данных
   } catch (error) {
     result =
       error && error.errors && error.errors.length && error.errors[0].message

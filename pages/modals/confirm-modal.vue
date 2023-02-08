@@ -1,31 +1,21 @@
 <template>
   <div class="modal-confirm-mask" v-show="isShow">
     <div class="modal-confirm-wrapper">
-      <div class="modal-confirm-container">
-        <div class="body-confirm-modal">
-          <app-row>
-            <app-col col="12">
-              <div class="p-2" style>
-                <app-label class="m-0 fs-18px">{{message}}</app-label>
-              </div>
-            </app-col>
-          </app-row>
-          <app-col col="12" class="d-flex align-self-end w-100 pt-1">
-            <app-layout
-              class="flex-100 align-content-center align-items-center"
-              style="border-top: 1px solid silver; padding : 1%; padding-bottom: 0px;"
-            >
-              <div class="d-flex w-100">
-                <app-button class="danger text-light btn-control" @click="onCancel">{{cancelText}}</app-button>
-              </div>
-              <div class="d-flex align-items-end right-control-button">
-                <app-button
-                  class="success text-light btn-control"
-                  @click="onConfirm"
-                >{{confirmText}}</app-button>
-              </div>
-            </app-layout>
-          </app-col>
+      <div class="modal-confirm-container border-2 border-zinc-500">
+        <div class="body-confirm-modal bg-zinc-600">
+          <div class="h-auto bg-zinc-700 p-1 text-center border-b-2 border-zinc-500">
+            <h4 class="text-amber-600 px-4">{{message}}</h4>
+          </div>
+          <div class="p-3 flex flex-col lg:flex-row justify-between items-center h-full">
+            <app-button
+              class="btn btn-error w-full lg:btn-wide m-2"
+              @click="onCancel"
+            >{{cancelText}}</app-button>
+            <app-button
+              class="btn btn-success w-full lg:btn-wide m-2"
+              @click="onConfirm"
+            >{{confirmText}}</app-button>
+          </div>
         </div>
       </div>
     </div>
@@ -50,9 +40,9 @@ export default {
      * @function onConfirm
      */
     onConfirm() {
-      const {$event} = this
+      const { $event } = this
       $event(`close-confirm`, true) // Событие при подтверждении1
-      this.isShow = false
+      this.isShow = false // скрытие окна
     },
 
     /*
@@ -60,16 +50,17 @@ export default {
     @ function onCancel
     */
     onCancel() {
-      const {$event} = this
+      const { $event } = this
       $event(`close-confirm`, false) // Событие при подтверждении1
-      this.isShow = false
+      this.isShow = false // скрытие окна
     },
   },
 
   mounted() {
-    const {$listen} = this
+    const { $listen } = this
     $listen('show-confirm', event => {
-      const {message, cancelText, confirmText } = event
+      // Прослушивание события открытия окна
+      const { message, cancelText, confirmText } = event
       if (cancelText) this.cancelText = cancelText // установка значения текста кнопки отмены
       if (confirmText) this.confirmText = confirmText // установка значения текста кнопки подтверждения
       this.message = event && message ? message : 'Подтвердить?' // установка значения сообщения
@@ -79,8 +70,6 @@ export default {
 }
 </script>
 <style>
-  @import '~/assets/css/padding.css';
-  @import '~/assets/css/margin.css';
   .modal-confirm-mask {
     position: fixed;
     z-index: 9998;
@@ -111,9 +100,5 @@ export default {
     .modal-confirm-container {
       width: 100%;
     }
-  }
-
-  .body-confirm-modal {
-    padding: 0 1% 1% 1%;
   }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <div class="modal-mask" v-show="isShow && bodyModal">
     <div class="modal-wrapper">
-      <div class="modal-container">
-        <div class="m-0 p-0 modal-title">
-          <h2 class="m-0">{{dataForm.modalTitle}}</h2>
-        </div>
-        <div class="body-modal">
-          <keep-alive v-if="bodyModal" :input-data="dataForm">
-            <component :is="bodyModal" v-bind="dataForm" />
+      <div class="modal-container border-2 border-zinc-500">
+        <div class="body-modal bg-zinc-600">
+          <div class="h-auto bg-zinc-700 p-1 text-center border-b-2 border-zinc-500">
+            <h4 class="text-amber-600 px-4">{{valueModel.modalTitle}}</h4>
+          </div>
+          <keep-alive v-if="bodyModal" :input-data="valueModel">
+            <component :is="bodyModal" v-bind="valueModel" />
           </keep-alive>
         </div>
       </div>
@@ -21,27 +21,26 @@ export default {
       isShow: false, // статус отображения модального окна
       bodyModal: null, // тело модального окна
       formUuid: null, // уникальный идентификатор формы
-      dataForm: {}, // объект данных формы
+      valueModel: {}, // объект данных формы
     }
   },
 
   mounted() {
-    const {$listen} = this
+    const { $listen } = this
     $listen('show-modal', event => {
-      this.dataForm = event // присвоение объекту формы переданного значения
+      this.valueModel = event // присвоение объекту формы переданного значения
       this.bodyModal = markRaw(defineAsyncComponent(() => import(`./modals/${event.form}.vue`))) // получение тела формы
       this.isShow = true // отображение окна
       $listen(`destroy-modal-${event.formUuid}`, event => {
         this.bodyModal = null // скрытие модального окна
       })
     })
+
   },
 }
 </script>
 
 <style>
-  @import '~/assets/css/padding.css';
-  @import '~/assets/css/margin.css';
   .modal-mask {
     position: fixed;
     z-index: 9998;
@@ -60,7 +59,7 @@ export default {
   }
 
   .modal-container {
-    width: 40%;
+    width: 50%;
     margin: 0px auto;
     background-color: #fff;
     border-radius: 2px;
@@ -75,15 +74,4 @@ export default {
     }
   }
 
-  .modal-title {
-    border-bottom: 1px solid var(--dark);
-  }
-
-  .body-modal {
-    padding: 0 1% 1% 1%;
-  }
-
-  .modal-title h2 {
-    padding-left: 1%;
-  }
 </style>

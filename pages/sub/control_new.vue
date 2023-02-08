@@ -2,21 +2,14 @@
 Содержит кнопки: "Отменить" и Создать
 -->
 <template>
-  <app-row>
-    <app-col
-      col="12"
-      class="d-flex align-self-end w-100 flex-100 control-sub-page-control-new pt-2"
-    >
-      <app-layout class="flex-100 align-content-center align-items-center group-button-control-new">
-        <div class="d-flex w-100 left-control-button">
-          <app-button class="danger text-light btn-control" @click="onCancel">Отмена</app-button>
-        </div>
-        <div class="d-flex align-items-end right-control-button">
-          <app-button class="success text-light btn-control" @click="onCreate" :disabled="disCreate">Создать</app-button>
-        </div>
-      </app-layout>
-    </app-col>
-  </app-row>
+  <div class="p-3 flex flex-col lg:flex-row justify-between items-center h-full">
+    <app-button class="btn w-full lg:btn-wide btn-error mx-2" @click="onCancel">Отмена</app-button>
+    <app-button
+    :class="{'btn-disabled': disabledCreate}"
+      class="btn w-full lg:btn-wide btn-success m-2"
+      @click="onCreate"
+    >Создать</app-button>
+  </div>
 </template>
 
 <script>
@@ -33,7 +26,7 @@ export default {
       default: {},
     },
     /* Активность кнопки "Создать  */
-    disCreate: {
+    disabledCreate: {
       type: Boolean,
       default: true,
     },
@@ -49,64 +42,3 @@ export default {
   },
 }
 </script>
-
-<style>
-  @import '~/assets/css/margin.css';
-  @import '~/assets/css/padding.css';
-  @import '~/assets/css/size.css';
-
-  .w-p-120 {
-    width: 190px;
-  }
-
-  @media (max-width: 767.9px) and (orientation: portrait) {
-    .group-button-control-new {
-      padding-top: 3px;
-      flex-direction: column;
-      justify-content: start;
-    }
-
-    .group-button-control-new .btn {
-      margin: 0.2em;
-      width: 100%;
-    }
-
-    .left-control-button {
-      width: 100%;
-    }
-
-    .right-control-button {
-      flex-direction: column;
-      width: 100%;
-      padding-left: 6px;
-    }
-
-    .right-control-button .btn {
-      width: 100%;
-    }
-
-    .control-sub-page-control-new {
-      height: 140px !important;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .group-button-control-new {
-      justify-content: start;
-    }
-
-    .control-sub-page-control-new {
-      height: 50px;
-    }
-  }
-
-  .control-sub-page-control-new {
-    padding-bottom: 0px;
-    height: auto !important;
-  }
-
-  .group-button-control-new {
-    padding-left: 9px;
-    padding-right: 9px;
-  }
-</style>
