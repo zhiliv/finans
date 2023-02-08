@@ -3,18 +3,19 @@
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
     <div class="drawer-side">
       <label for="my-drawer-2" class="drawer-overlay"></label>
-      <ul class="menu px-2 w-80 bg-zinc-800 text-base-content pt-2">
+      <ul class="menu px-2 w-80 bg-zinc-800 text-base-content pt-1">
         <template v-for="item in menu" :key="item.name">
-          <li v-if="!item.dropdown">
+          <li class="pt-2" v-if="!item.dropdown">
             <NuxtLink :to="item.href" v-slot="{ href, navigate, isActive }" custom>
               <a :class="{'active': isActive}" :href="href" @click="navigate">{{item.name}}</a>
             </NuxtLink>
           </li>
           <template v-if="item.dropdown">
-            <li class="font-bold text-zinc-500 py-1 border-t-2 border-zinc-400 first">{{item.name}}</li>
+            <li class="font-bold text-zinc-500 py-1 border-t-2 border-zinc-400 first pt-1">{{item.name}}</li>
             <li
               v-for="(itemList, index) in item.list"
               :key="itemList.name"
+              class="mt-1"
               :class="item.list.length-1 === index ? 'border-b-2 border-zinc-400 last' : ''"
             >
               <NuxtLink :to="itemList.href" v-slot="{ href, navigate, isActive }" custom>
@@ -97,11 +98,13 @@ export default {
       type: Array,
       default: () => [],
     },
+
   },
   mounted() {
     const { setParentActive } = this
     setParentActive()
   },
+
   methods: {
     /*
      * Установка активности для родительского элемента списка для мобильных устройств
@@ -110,6 +113,27 @@ export default {
     setParentActive() {
       const el = this.$refs.navbar.querySelector('.parent-sidenav-list .active')
       if (el) el.parentNode.parentNode.parentNode.querySelector('a').classList.add('active')
+    },
+  },
+
+  computed: {
+    route() {
+      return this.$route
+    },
+  },
+
+  watch: {
+    route: {
+      immediate: true,
+      handler(newValue) {
+        const {menu, $emit} = this
+        const arr = [] // массив для хранения развернутого списка
+        menu.forEach(el => !el.list ? arr.push(el) : arr.push(...el.list))
+        const selectItem = arr.find(el => el.href === newValue.fullPath)
+        $emit('title', selectItem.name)
+
+      },
+
     },
   },
 }

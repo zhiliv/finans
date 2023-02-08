@@ -4,10 +4,10 @@
       <div class="modal-container border-2 border-zinc-500">
         <div class="body-modal bg-zinc-600">
           <div class="h-auto bg-zinc-700 p-1 text-center border-b-2 border-zinc-500">
-            <h4 class="text-amber-600 px-4">{{dataForm.modalTitle}}</h4>
+            <h4 class="text-amber-600 px-4">{{valueModel.modalTitle}}</h4>
           </div>
-          <keep-alive v-if="bodyModal" :input-data="dataForm">
-            <component :is="bodyModal" v-bind="dataForm" />
+          <keep-alive v-if="bodyModal" :input-data="valueModel">
+            <component :is="bodyModal" v-bind="valueModel" />
           </keep-alive>
         </div>
       </div>
@@ -21,14 +21,14 @@ export default {
       isShow: false, // статус отображения модального окна
       bodyModal: null, // тело модального окна
       formUuid: null, // уникальный идентификатор формы
-      dataForm: {}, // объект данных формы
+      valueModel: {}, // объект данных формы
     }
   },
 
   mounted() {
     const { $listen } = this
     $listen('show-modal', event => {
-      this.dataForm = event // присвоение объекту формы переданного значения
+      this.valueModel = event // присвоение объекту формы переданного значения
       this.bodyModal = markRaw(defineAsyncComponent(() => import(`./modals/${event.form}.vue`))) // получение тела формы
       this.isShow = true // отображение окна
       $listen(`destroy-modal-${event.formUuid}`, event => {

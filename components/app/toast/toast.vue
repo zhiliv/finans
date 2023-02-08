@@ -1,15 +1,15 @@
 <!-- eslint-disable vue/valid-v-for -->
 <template>
   <div class="absolute right-4 bottom-4">
-      <app-toast-body
-        v-for="item in listToast"
-        :id="item.id"
-        :key="item.id"
-        :title="item.title"
-        :message="item.message"
-        :timer="item.timer"
-        :class="item.class"
-      ></app-toast-body>
+    <app-toast-body
+      v-for="item in listToast"
+      :id="item.id"
+      :key="item.id"
+      :title="item.title"
+      :message="item.message"
+      :timer="item.timer"
+      :class="item.class"
+    ></app-toast-body>
   </div>
 </template>
 
@@ -32,7 +32,3 @@ export default {
   },
 }
 </script>
-
-<style>
-
-</style>

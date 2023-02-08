@@ -3,7 +3,7 @@
     <ul ref="list" class="list-group h-full absolute w-full overflow-y-scroll overflow-x-hidden">
       <li
         v-for="item in listItems"
-        class="min-h-[35px] border-b border-zinc-300/10"
+        class="min-h-[35px]  border-b border-zinc-300/10"
         :class="{'active': item.isActive}"
         :key="item[value]"
         @click="onSelect(item)"

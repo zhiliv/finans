@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import appSub from '~/pages/sub/sub_type_docs.vue' // подключение саб формы
+import appSub from '~/pages/sub/sub_categories.vue' // подключение саб формы
 import appControlButton from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
 import mixinFunction from '~/mixins/globalMixins'
 export default {
@@ -42,7 +42,7 @@ export default {
 
   data() {
     return {
-      list: [], // список типов документов
+      list: [], // список категорий
       isLoadList: true, // статус загрузки данных
       valueModel: {}, // данные страницы
       title: 'ываыва',
@@ -52,21 +52,21 @@ export default {
   },
 
   async beforeMount() {
-    const { pending, data: list } = await useFetch('/api/type-docs/all') // получение данных списка
+    const { pending, data: list } = await useFetch('/api/categories/all') // получение данных списка
     this.isLoadList = pending // установка статуса загрузки
     this.list = list // установка списка
   },
 
   methods: {
     /*
-     * Создание нового типа документа
+     * Создание новой категории
      * @function onNew
      */
     async onNew() {
       const { $showModal, $nextTick, list } = this
-      const result = await $showModal('modal_type_docs', { modalTitle: 'Создание нового типа документа' })
+      const result = await $showModal('modal_type_docs', { modalTitle: 'Создание новой категории' })
       if (result) {
-        const response = await useFetch('/api/type-docs/add', { method: 'POST', body: result }) // получение данных списка
+        const response = await useFetch('/api/categories/add', { method: 'POST', body: result }) // получение данных списка
         if (response) {
           this.list.push(response.data.value)
           const index = list.findIndex(el => el.id === response.data.value.id)
@@ -90,12 +90,12 @@ export default {
     async onDeleteItem(item) {
       const { list, $showConfirm } = this
       const options = {
-        message: 'Удалить тип документа?',
+        message: 'Удалить категорию?',
       } // опции формы подтверждения
       const confirm = await $showConfirm(options) // открытие окна подтверждение
       if (confirm) {
         const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
-        const response = await useFetch('/api/type-docs/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
+        const response = await useFetch('/api/categories/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
         if (response.data != 1)
           this.$showToast({
             title: '',
@@ -136,7 +136,7 @@ export default {
       const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
       if (confirm) {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
-        const response = await useFetch('/api/type-docs/edit', { method: 'POST', body: valueModel }) // получение данных списка
+        const response = await useFetch('/api/categories/edit', { method: 'POST', body: valueModel }) // получение данных списка
         if (response) {
           this.$showToast({
             title: '',
