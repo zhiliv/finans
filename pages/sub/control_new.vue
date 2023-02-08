@@ -2,21 +2,14 @@
 Содержит кнопки: "Отменить" и Создать
 -->
 <template>
-  <app-row>
-    <app-col
-      col="12"
-      class="d-flex align-self-end w-100 flex-100 control-sub-page-control-new pt-2"
-    >
-      <app-layout class="flex-100 align-content-center align-items-center group-button-control-new">
-        <div class="d-flex w-100 left-control-button">
-          <app-button class="danger text-light btn-control" @click="onCancel">Отмена</app-button>
-        </div>
-        <div class="d-flex align-items-end right-control-button">
-          <app-button class="success text-light btn-control" @click="onCreate" :disabled="disCreate">Создать</app-button>
-        </div>
-      </app-layout>
-    </app-col>
-  </app-row>
+  <div class="p-3 flex flex-col lg:flex-row justify-between items-center h-full">
+    <app-button class="btn w-full lg:btn-wide btn-error mx-2" @click="onCancel">Отмена</app-button>
+    <app-button
+    :class="{'btn-disabled': disabledCreate}"
+      class="btn w-full lg:btn-wide btn-success m-2"
+      @click="onCreate"
+    >Создать</app-button>
+  </div>
 </template>
 
 <script>
@@ -33,7 +26,7 @@ export default {
       default: {},
     },
     /* Активность кнопки "Создать  */
-    disCreate: {
+    disabledCreate: {
       type: Boolean,
       default: true,
     },
@@ -51,10 +44,6 @@ export default {
 </script>
 
 <style>
-  @import '~/assets/css/margin.css';
-  @import '~/assets/css/padding.css';
-  @import '~/assets/css/size.css';
-
   .w-p-120 {
     width: 190px;
   }

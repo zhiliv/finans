@@ -1,178 +1,177 @@
 <template>
-  <app-row class="d-flex w-100 main-page">
-    <app-col col="12" class="d-flex flex-100 w-100 page-data">
-      <app-row class="h-100 d-flex flex-100">
-        <div class="d-flex w-100 data-document h-100 flex-column">
-          <div class="w-100 h-100">
-            <h2
-              class="border-bottom border-1px border-solid border-grey-lighten-3 w-100 m-0"
-            >Типы документов</h2>
-            <app-row class="h-90 overflow-auto type-docs-page">
-              <app-col col-sm="12" col-md="12" col-lg="3" col-xl="3" col-xxl="2" class="h-100">
-                <app-listbox-items
-                  ref="list"
-                  :list="list"
-                  v-model="dataPage"
-                  v-model:index="selectIndex"
-                  :show-spinner="true"
-                  :is-load="statusLoadList"
-                  class="h-95 shadow-container border border-1px border-solid border-grey-lighten-2 border-radius-5px m-t-05em"
-                ></app-listbox-items>
-              </app-col>
-              <app-col col-sm="12" col-md="12" col-lg="9" col-xl="9" col-xxl="10" class>
-                <div
-                  class="shadow-container h-95 w-100 border border-1px border-solid border-grey-lighten-2 border-radius border-radius-5px m-t-05em"
-                >
-                  <data-form v-model="dataPage" />
-                </div>
-              </app-col>
-            </app-row>
+  <div class="w-full h-[calc(100vh-28px-70px)] items-start lg:py-0 py-1 bg-stone-800">
+    <div class="items-start h-full">
+      <div class="grid grid-cols-12 h-full">
+        <div class="lg:col-span-3 col-span-12 h-full mx-4 lg:mx-0">
+          <app-listbox-items
+            :list="list"
+            class="border border-gray-400 bg-stone-700"
+            v-model="valueModel"
+            :is-load="isLoadList"
+            ref="list"
+            :on-delete="onDeleteItem"
+          />
+        </div>
+        <div class="lg:col-span-9 col-span-12 w-full">
+          <div class="grid grid-cols-12">
+            <app-sub @invalid="getInvalid" v-model="valueModel" />
           </div>
         </div>
-      </app-row>
-    </app-col>
-    <sub-control
-      v-model="dataPage"
-      :on-save="onSave"
-      :on-new="onNew"
-      :disabled-control="disControl"
-    />
-  </app-row>
+      </div>
+    </div>
+  </div>
+  <app-control-buttons
+    :disabled-save="disabledSave"
+    :on-save="onSave"
+    :on-cancel="onCancel"
+    :on-new="onNew"
+    :disabled-cancel="disabledCancel"
+  />
 </template>
 
 <script>
-import dataForm from '~/pages/sub/sub_form_type_docs.vue'
-import subControl from '~/pages/sub/control.vue'
+import appSub from '~/pages/sub/sub_type_docs.vue' // подключение саб формы
+import appControlButton from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
 import mixinFunction from '~/mixins/globalMixins'
-
 export default {
   mixins: [mixinFunction],
-
   components: {
-    'data-form': dataForm,
-    'sub-control': subControl, // подключение панели кнопок
-  },
-
-  methods: {
-    /* Сохранение данных
-     * @function onSave
-     */
-    async onSave() {
-      let test = await this.$showConfirm('confirm', { message: 'Хотите ли вы?', confirmText: 'НЕЕЕЕ' })
-      console.log('🚀 -> onSave -> test', test)
-    },
-
-    /* Создание нового набора данных
-     * @function onNew
-     */
-    async onNew() {
-      const { clickElList, $showModal, list, $refs, $nextTick, $el, $showToast } = this
-      const result = await $showModal('modal_type_docs', { modalTitle: 'Создание нового типа документа' }) // отображение модального окна
-      const response = await $fetch('/api/type-docs/add', { method: 'POST', body: result }) // отправка запроса для создания новой записи
-      if (response && response.error)
-        $showToast({
-          title: 'Произошла ошибка при добавлении записи',
-          message: response.error,
-          timer: 7000,
-          color: 'danger',
-        })
-      // отображение уведомления об ошибке
-      else if (response && response.warning)
-        $showToast({
-          title: 'Внимание',
-          message: response.warning,
-          timer: 7000,
-          color: 'warning',
-        })
-      else {
-        this.list.push(response) // добавление результата в список
-        clickElList(list.length - 1) // выбор добавленного элемента
-        $nextTick(() => {
-          const options = {
-            top: $el.offsetWidth, // значение сдвига скролла от верха
-            behavior: 'smooth', // тип анимации
-          }
-          $refs.list.$el.querySelector('ul').scroll(options) // прокрутка списка
-        })
-        $showToast({ title: 'Успех', message: 'Запись успешно добавлена', timer: 5000, color: 'success' }) // отображение уведомления об успешном добавлении
-      }
-    },
-
-    /*
-     * Получение списка типов документов
-     * @function getList
-     */
-    async getList() {
-      const result = await $fetch('/api/type-docs/all', { method: 'GET' }) // отправка запроса для получения всего списка
-      return result
-    },
-
-    /*
-     * Выбор элемента списка по передаваемому индексу
-     * @function clickElList
-     * @param {Number} index - Индекс элемента, который необходимо выбрать
-     */
-    clickElList(index) {
-      const { $refs, $nextTick } = this
-      $nextTick(() => {
-        const els = $refs.list.$el.querySelectorAll('li') // получение  всех DOM элементов списка
-        els.forEach((el, ind) => {
-          if (ind === index) el.click()
-        }) // обход списка и поиск нужного элемента и эмитации его нажатия
-      })
-    },
+    'app-sub': appSub,
+    'app-control-buttons': appControlButton,
   },
 
   data() {
     return {
       list: [], // список типов документов
-      isLoadList: false, // статус загрузки данных
-      dataPage: {}, // данные страницы
-      selectIndex: null, // индекс выделяемого элемента
-      statusLoadList: false, // статус загрузки списка
-      disControl: true, // Активность кнопок "Отменить" и "Сохранить"
-      selectItem: {}, // объект выделенной строки
+      isLoadList: true, // статус загрузки данных
+      valueModel: {}, // данные страницы
+      title: 'ываыва',
+      disabledSave: true, // доступность кнопки "Сохранить"
+      disabledCancel: true, // доступность кнопки "Отменить"
     }
   },
 
   async beforeMount() {
-    const { getList } = this
-    const result = await getList() // получение списка типа документов
-    this.list = result // установка значения в список
-    this.statusLoadList = true // скрытие спиннера загрузки в списке
+    const { pending, data: list } = await useFetch('/api/type-docs/all') // получение данных списка
+    this.isLoadList = pending // установка статуса загрузки
+    this.list = list // установка списка
+  },
+
+  methods: {
+    /*
+    * Создание нового типа документа
+    * @function onNew
+    */
+    async onNew(){
+      const {$showModal, $nextTick, list} = this
+      const result = await $showModal('modal_type_docs', { modalTitle: 'Создание нового типа документа' })
+      if(result){
+        const response = await useFetch('/api/type-docs/add', { method: 'POST', body: result}) // получение данных списка
+        this.list.push(response.data.value)
+        const index = list.findIndex(el => el.id ===response.data.value.id)
+        $nextTick(() => {
+          this.$refs.list.$el.querySelectorAll('li')[index].click() // эмуляция клика по элементу
+        })
+      }
+    },
+    /*
+     * Удаление типа документа
+     * @function onDeleteItem
+     * @param {Object} item - элемент
+     */
+    async onDeleteItem(item) {
+      const { list, $showConfirm } = this
+      const options = {
+        message: 'Удалить тип документа?',
+      } // опции формы подтверждения
+      const confirm = await $showConfirm(options) // открытие окна подтверждение
+      if (confirm) {
+        const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
+        const response = await useFetch('/api/type-docs/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
+        if (response.data != 1)
+          this.$showToast({
+            title: '',
+            message: 'Запись удалена успешно',
+            timer: 5000,
+            class: 'alert-warning',
+          })
+        else
+          this.$showToast({
+            title: 'Ошибка: ',
+            message: 'response.errror',
+            timer: 5000,
+            class: 'alert-error',
+          })
+
+        list.splice(index, 1) // удаление элемента из списка
+        setTimeout(() => {
+          this.$refs.list.$el.querySelectorAll('li')[index].click() // эмуляция клика по элементу
+        }, 1)
+      }
+    },
+    /*
+     * Получение значения валидности полей
+     * @function getInvalid
+     * @param {invalid} Boolean - Значение валидности
+     */
+    getInvalid(invalid) {
+      this.disabledSave = this.disabledSave || invalid
+    },
+    /*
+     * Сохранение данных
+     * При нажатии на кнопку "Сохранить"
+     * @function onSave
+     */
+    async onSave() {
+      const  {$showConfirm, list, valueModel} = this
+      const optionsConfirm = {
+        message: 'Есть не сохраненные данные, отменить изменения?'
+      }
+      const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
+      if (confirm) {
+        const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
+        const response = await useFetch('/api/type-docs/edit', { method: 'POST', body: valueModel }) // получение данных списка
+        this.list[index] = this.valueModel // Изменение объекта выделенного элемента в списка
+        this.$nextTick(() => {
+          // после рендеринга
+          this.$refs.list.$el.querySelectorAll('li')[index].click() // эмуляция клика по элементу
+        })
+      }
+    },
+
+    /*
+     * Отмена изменения данных
+     * @function onCancel
+     */
+    async onCancel() {
+      const { $showConfirm, list, valueModel } = this
+      const optionsConfirm = {
+        message: 'Есть не сохраненные данные, отменить изменения?'
+      }
+      const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
+      if (confirm) {
+        // если нажата кнока "Да"
+        const index = list.findIndex(el => el.id === valueModel.id) // получение индекса элемента в списке
+        const item = this.cloneObject(list[index]) // клонирование элемента в объектную модель
+        delete item.isActive // удаление свойства
+        this.valueModel = item // установка значения данных модели
+      }
+    },
   },
 
   watch: {
-    dataPage: {
-      async handler(newValue, oldValue) {
-        const { selectIndex, list, checkEmptyObject, withObject, clickElList, $showConfirm, cloneObject } = this
-        if (
-          !checkEmptyObject(newValue) && // проверка что объект нового значения не пустой
-          !checkEmptyObject(oldValue) && // проверка что объект старого значения не пустой
-          newValue.id === oldValue.id && // проверка на идентичность идентификаторов
-          !withObject(oldValue, newValue) &&
-          !withObject(oldValue, list[selectIndex]) // сравнение объектов
-        )
-          this.dataPage = oldValue // обработка когда данные страницы изменены, но выбран тот же пункт в списке, который и был, данные не затираются
-        const index = list.findIndex(el => el.id === oldValue.id) // получение индекса предыдушего выбранного элемента
-
-        if (
-          !checkEmptyObject(newValue) && // проверка что объект нового значения не пустой
-          !checkEmptyObject(oldValue) && // проверка что объект старого значения не пустой
-          newValue.id !== oldValue.id && // проверка на идентичность идентификаторов
-          !withObject(oldValue, list[index])
-        ) {
-          // проверка на то что запись была изменена и пытается выбраться другая запись в списке
-          let confirm = await $showConfirm('confirm', {
-            message: 'Имеются не сохраненные данные, выбрать другую запись?',
-          }) // получение подтверждения \ отмены операции выбора элемента списка
-          if (confirm) this.dataPage = cloneObject(list[selectIndex])
-          // если бала нажата кнопка "да", то присваиваем данным формы из объекта списка
-          else {
-            clickElList(index) // выбора из списка элемента
-            this.dataPage = oldValue // установка значения страны(прошлое значение )
-          }
-        }
+    /* Наблюдение за изменением выделенного элемента */
+    valueModel: {
+      handler(newValue) {
+        const { checkEmptyObject, valueModel, list, withObject, cloneObject } = this
+        if (!checkEmptyObject(valueModel)) {
+          // проверка что объект не пустой
+          const index = list.findIndex(el => el.id === valueModel.id) // получение индекса элемента
+          const obj = cloneObject(list[index]) // клонирование объекта
+          delete obj.isActive // удаление свойства isActive
+          this.disabledSave = withObject(valueModel, obj) // установка доступности кнопки "Сохранить"
+          this.disabledCancel = withObject(valueModel, obj) // установка доступности кнопки "Отменить"
+        } else this.disabledSave = true
       },
       deep: true,
     },
@@ -181,42 +180,6 @@ export default {
 </script>
 
 <style>
-  @import '~/assets/css/size.css';
-  @import '~/assets/css/margin.css';
-  @import '~/assets/css/overflow.css';
-  @import '~/assets/css/font.css';
-  @import '~/assets/css/padding.css';
-  @media (max-width: 767.9px) {
-    .data-document {
-      margin-top: 50px;
-      padding-right: 7%;
-    }
-  }
-
-  @media (max-width: 767.9px) and (orientation: portrait) {
-    .page-data {
-      height: calc(100% - 160px);
-      padding: 0px;
-    }
-
-    .main-page {
-      padding: 0px;
-    }
-
-    .type-docs-page {
-      max-height: 72vh;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .page-data {
-      height: calc(100% - 60px);
-    }
-
-    .type-docs-page {
-      max-height: 87vh;
-    }
-  }
 </style>
 
 

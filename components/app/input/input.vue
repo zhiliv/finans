@@ -1,8 +1,10 @@
 <template>
+  <label class="label py-0 px-2">{{label}}</label>
   <input
     :value="modelValue"
-    :class="classes"
     type="text"
+    class="input my-1"
+    :class="[$attrs.class, {'input-success': valid === 'success', 'input-error': valid === 'error'}]"
     @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
@@ -23,47 +25,30 @@ export default {
       type: [String, Number],
       default: '',
     },
-    /* Ошибка валидации */
-    isInvalid: {
-      type: [String, Boolean],
-      default: false,
+    valid: {
+      type: String,
+      default: null,
       validator(value) {
-        return value === 'true' || value === 'false' || value === true || value === false
+        return value === 'error' || 'success'
       },
+    },
+    /* Подпись поля */
+    label: {
+      type: String,
+      default: null,
     },
   },
   emits: ['update:modelValue'],
   computed: {
     classes() {
-      const { formControl, isInvalid } = this
+      const { invalid } = this
       return {
-        'form-control': !!formControl,
-        'invalid': isInvalid
+        'input-error': invalid,
       }
     },
-  },
-  mounted() {
-    const { $listen } = useNuxtApp() // свойство для прослушивания события шины данных
-    /* Прослушивание события об ошибке валидации */
-    $listen('is-invalid', value => {
-      const {$el} = this // элемент
-      value ? $el.classList.add('is-invalid') : $el.classList.remove('is-invalid') // добавление / удаление класса невалидного элемента
-    })
   },
 }
 </script>
 
 <style>
-  @import '~/assets/css/valid.css';
-  @import '~/assets/css/form-control.css';
-  input {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-  }
-
-  input.invalid {
-    border-color: rgba(220, 53, 69, 0.9) !important;
-  }
 </style>

@@ -1,6 +1,4 @@
-
-import fs from 'fs';
-import whitelist from './modules/whitelist/result-whitelist.json'
+// import whitelist from './modules/whitelist/result-whitelist.json'
 export default defineNuxtConfig({
   runtimeConfig: {
     database: {
@@ -11,9 +9,24 @@ export default defineNuxtConfig({
       database: 'finance',
     },
   },
+  app: {
+    head: {
+      bodyAttrs: {
+        class: '',
+      },
+    },
+  },
   ssr: false,
   css: ['@/assets/css/main.css'],
   build: {
+    postcss: {
+      postcssOptions: {
+        plugins: {
+          tailwindcss: {},
+          autoprefixer: {},
+        },
+      },
+    },
     target: 'esnext',
   },
   vSelect: {
@@ -27,7 +40,7 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
   },
-  modules: ['nuxt-purgecss', '@nuxtjs/critters', 'nuxt-icon', '@whoj/nuxt3-vue-select'],
+  modules: ['nuxt-purgecss', '@nuxtjs/critters', '@whoj/nuxt3-vue-select', '@nuxtjs/tailwindcss'],
   purgecss: {
     safelist: ['safe'],
     content: [
@@ -41,7 +54,6 @@ export default defineNuxtConfig({
       './pages/**/**/*.vue',
       './pages/*.vue',
     ],
-    whitelist
   },
   /*   vite: {
     css: {

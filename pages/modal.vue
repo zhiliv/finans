@@ -1,11 +1,11 @@
 <template>
   <div class="modal-mask" v-show="isShow && bodyModal">
     <div class="modal-wrapper">
-      <div class="modal-container">
-        <div class="m-0 p-0 modal-title">
-          <h2 class="m-0">{{dataForm.modalTitle}}</h2>
-        </div>
-        <div class="body-modal">
+      <div class="modal-container border-2 border-zinc-500">
+        <div class="body-modal bg-zinc-600">
+          <div class="h-auto bg-zinc-700 p-1 text-center border-b-2 border-zinc-500">
+            <h4 class="text-amber-600 px-4">{{dataForm.modalTitle}}</h4>
+          </div>
           <keep-alive v-if="bodyModal" :input-data="dataForm">
             <component :is="bodyModal" v-bind="dataForm" />
           </keep-alive>
@@ -26,7 +26,7 @@ export default {
   },
 
   mounted() {
-    const {$listen} = this
+    const { $listen } = this
     $listen('show-modal', event => {
       this.dataForm = event // присвоение объекту формы переданного значения
       this.bodyModal = markRaw(defineAsyncComponent(() => import(`./modals/${event.form}.vue`))) // получение тела формы
@@ -35,13 +35,12 @@ export default {
         this.bodyModal = null // скрытие модального окна
       })
     })
+
   },
 }
 </script>
 
 <style>
-  @import '~/assets/css/padding.css';
-  @import '~/assets/css/margin.css';
   .modal-mask {
     position: fixed;
     z-index: 9998;
@@ -60,7 +59,7 @@ export default {
   }
 
   .modal-container {
-    width: 40%;
+    width: 50%;
     margin: 0px auto;
     background-color: #fff;
     border-radius: 2px;
@@ -75,15 +74,4 @@ export default {
     }
   }
 
-  .modal-title {
-    border-bottom: 1px solid var(--dark);
-  }
-
-  .body-modal {
-    padding: 0 1% 1% 1%;
-  }
-
-  .modal-title h2 {
-    padding-left: 1%;
-  }
 </style>

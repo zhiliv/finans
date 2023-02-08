@@ -1,22 +1,12 @@
 <template>
-  <div :class="[{toast: true}, classes]" role="alert" aria-live="assertive" aria-atomic="true">
-    <div :class="[{'toast-header': true}, classes]">
-      <strong class="me-auto">{{title}}</strong>
-      <small class="text-muted">{{new Date().toLocaleTimeString()}}</small>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="toast"
-        aria-label="Close"
-        @click="onClose"
-      ></button>
+  <div class="alert alert-info m-2" @click="onClose">
+    <div>
+      <span>{{title}} {{message}}</span>
     </div>
-    <div class="toast-body">{{message}}</div>
   </div>
 </template>
 
 <script>
-import validColor from '~/modules/validator/color.json'
 export default {
   props: {
     /* Идентификатор уведомления */
@@ -27,38 +17,17 @@ export default {
     /* Заголовок */
     title: {
       type: String,
-      required: true,
-      default: null,
+      default: '',
     },
     /* Текст сообщения */
     message: {
       type: String,
-      default: null,
-    },
-    /* Цвет уведомления */
-    toastColor: {
-      type: String,
-      default: 'light',
-      validator(value) {
-        return validColor.includes(value)
-      },
+      default: '',
     },
     /* Время через которое будет удалено сообщение */
     timer: {
       type: [String, Number],
       default: 5000,
-    },
-  },
-  computed: {
-    /*
-     * Установка классов
-     * @function classes
-     */
-    classes() {
-      const { toastColor } = this
-      return {
-        [`toast-${toastColor}`]: !!toastColor,
-      }
     },
   },
   mounted() {
@@ -73,7 +42,6 @@ export default {
      */
     onClose() {
       const { $parent } = this
-      console.log('🚀 -> onClose -> $parent', $parent)
       const index = $parent.listToast.findIndex(el => el.id === this.id) // поиск индекса уведомления
       this.$parent.listToast.splice(index, 1) // удаление из списка
     },

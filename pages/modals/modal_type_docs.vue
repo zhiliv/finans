@@ -1,10 +1,10 @@
 <template>
   <sub-form v-model="dataForm" is-modal="true" />
-  <sub-control-new :on-create="onCreate" :data-form="inputData" :dis-create="disCreate" />
+  <sub-control-new :on-create="onCreate" :data-form="inputData" :disabled-create="disabledCreate" />
 </template>
 
 <script>
-import subForm from '~/pages/sub/sub_form_type_docs.vue'
+import subForm from '~/pages/sub/sub_type_docs.vue'
 import subControlNew from '~/pages/sub/control_new.vue'
 export default {
   components: {
@@ -21,19 +21,9 @@ export default {
       default: {},
     },
   },
-
-  /* setup() {
-
-    const dataForm = reactive({
-      name: null, // значение поля "Наименование"
-    }) // данные формы
-    return {
-      dataForm,
-    }
-  }, */
   data(){
     return {
-      disCreate: true,
+      disabledCreate: true,
       dataForm: {}
     }
   },
@@ -58,7 +48,7 @@ export default {
   watch: {
     dataForm: {
       handler(newValue){
-        this.disCreate = newValue && newValue.name && newValue.name.length < 3 // установка минимальной длины поля "Наименование"
+        this.disabledCreate = newValue && newValue.name && newValue.name.length < 3 // установка минимальной длины поля "Наименование"
       },
       deep: true
     }
