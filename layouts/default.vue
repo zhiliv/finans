@@ -38,6 +38,8 @@ export default {
           list: [
             { name: 'Типы документов', href: '/guides/page_type_docs' },
             { name: 'Категории', href: '/guides/page_categories' },
+            { name: 'Партнерские программы', href: '/guides/page_cpa' },
+            { name: 'Типы периодов', href: '/guides/page_types_period' },
           ],
         },
       ], // меню

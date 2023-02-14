@@ -47,7 +47,7 @@ export default {
      * @return {Boolean} Результат проверки
      */
     isNumber(data) {
-      return Number.isInteger(+data)
+      return data !== null || data !== undefined || data !== '' ? Number.isInteger(+data) : false
     },
 
     /*
@@ -104,7 +104,6 @@ export default {
       return true
     },
 
-
     /*
      * Проверка что параметр - объект
      * @function checkObject
@@ -126,6 +125,5 @@ export default {
         ? JSON.stringify(obj1) === JSON.stringify(obj2)
         : false
     },
-
   },
 }

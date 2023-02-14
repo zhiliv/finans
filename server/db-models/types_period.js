@@ -14,12 +14,12 @@ export default class types_period extends Model {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       comment: "Наименование типа периода"
     },
     mnosh: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       comment: "Множественное число "
     }
   }, {

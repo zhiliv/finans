@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import appSub from '~/pages/sub/sub_categories.vue' // подключение саб формы
+import appSub from '~/pages/sub/sub_name.vue' // подключение саб формы
 import appControlButton from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
 import mixinFunction from '~/mixins/globalMixins'
 export default {
@@ -64,7 +64,7 @@ export default {
      */
     async onNew() {
       const { $showModal, $nextTick, list } = this
-      const result = await $showModal('modal_type_docs', { modalTitle: 'Создание новой категории' })
+      const result = await $showModal('modal_name', { modalTitle: 'Создание новой категории' })
       if (result) {
         const response = await useFetch('/api/categories/add', { method: 'POST', body: result }) // получение данных списка
         if (response) {

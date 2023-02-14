@@ -1,5 +1,6 @@
 // import whitelist from './modules/whitelist/result-whitelist.json'
 export default defineNuxtConfig({
+  dev: true,
   runtimeConfig: {
     database: {
       username: 'postgres',
