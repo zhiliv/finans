@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import subForm from '~/pages/sub/sub_type_docs.vue'
+import subForm from '~/pages/sub/sub_name.vue'
 import subControlNew from '~/pages/sub/control_new.vue'
 export default {
   components: {

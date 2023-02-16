@@ -47,7 +47,7 @@ export default {
      * @return {Boolean} Результат проверки
      */
     isNumber(data) {
-      return Number.isInteger(+data)
+      return data !== null || data !== undefined || data !== '' ? Number.isInteger(+data) : false
     },
 
     /*
@@ -104,7 +104,6 @@ export default {
       return true
     },
 
-
     /*
      * Проверка что параметр - объект
      * @function checkObject
@@ -127,5 +126,13 @@ export default {
         : false
     },
 
+    /*
+     * Преобразование первого символа строки в верхний регистр
+     * @function capitalize
+     * @param {String} string - Текст
+     */
+    capitalize(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    },
   },
 }

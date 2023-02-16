@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import appSub from '~/pages/sub/sub_name.vue' // подключение саб формы
+import appSub from '~/pages/sub/sub_types_period.vue' // подключение саб формы
 import appControlButton from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
 import mixinFunction from '~/mixins/globalMixins'
 export default {
@@ -42,7 +42,7 @@ export default {
 
   data() {
     return {
-      list: [], // список категорий
+      list: [], // список типов периодов
       isLoadList: true, // статус загрузки данных
       valueModel: {}, // данные страницы
       title: 'ываыва',
@@ -52,22 +52,24 @@ export default {
   },
 
   async beforeMount() {
-    const { pending, data: list } = await useFetch('/api/categories/all') // получение данных списка
+    const { pending, data: list } = await useFetch('/api/types-period/all') // получение данных списка
     this.isLoadList = pending // установка статуса загрузки
     this.list = list // установка списка
   },
 
   methods: {
     /*
-     * Создание новой категории
+     * Создание нового типа периода
      * @function onNew
      */
     async onNew() {
       const { $showModal, $nextTick, list, capitalize } = this
-      const result = await $showModal('modal_name', { modalTitle: 'Создание новой категории' })
+      const result = await $showModal('modal_types_period', { modalTitle: 'Создание нового типа периода' })
       if (result) {
         result.name = capitalize(result.name)
-        const response = await useFetch('/api/categories/add', { method: 'POST', body: result }) // получение данных списка
+        result.padez = capitalize(result.padez)
+        result.mnozh = capitalize(result.mnozh)
+        const response = await useFetch('/api/types-period/add', { method: 'POST', body: result }) // получение данных списка
         if (response) {
           this.list.push(response.data.value)
           const index = list.findIndex(el => el.id === response.data.value.id)
@@ -84,19 +86,19 @@ export default {
       }
     },
     /*
-     * Удаление типа документа
+     * Удаление типа периода
      * @function onDeleteItem
      * @param {Object} item - элемент
      */
     async onDeleteItem(item) {
       const { list, $showConfirm } = this
       const options = {
-        message: 'Удалить категорию?',
+        message: 'Удалить тип периода?',
       } // опции формы подтверждения
       const confirm = await $showConfirm(options) // открытие окна подтверждение
       if (confirm) {
         const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
-        const response = await useFetch('/api/categories/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
+        const response = await useFetch('/api/types-period/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
         if (response.data != 1)
           this.$showToast({
             title: '',
@@ -130,7 +132,7 @@ export default {
      * @function onSave
      */
     async onSave() {
-      const { $showConfirm, valueModel, cloneObject, capitalize } = this
+      const { $showConfirm,  cloneObject } = this
       const optionsConfirm = {
         message: 'Есть не сохраненные данные, отменить изменения?',
       }
@@ -138,8 +140,10 @@ export default {
       if (confirm) {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
         const params = cloneObject(this.valueModel)
-        params.name = capitalize(params.name)
-        const response = await useFetch('/api/categories/edit', { method: 'POST', body: params }) // получение данных списка
+        params.name = this.capitalize(params.name)
+        params.padez = this.capitalize(params.padez)
+        params.mnozh = this.capitalize(params.mnozh)
+        const response = await useFetch('/api/types-period/edit', { method: 'POST', body: params }) // получение данных списка
         if (response) {
           this.$showToast({
             title: '',

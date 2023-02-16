@@ -14,13 +14,18 @@ export default class types_period extends Model {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       comment: "Наименование типа периода"
     },
-    mnosh: {
+    padez: {
       type: DataTypes.STRING,
-      allowNull: true,
-      comment: "Множественное число "
+      allowNull: false,
+      comment: "Родительский падеж"
+    },
+    mnozh: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: "Множественное число"
     }
   }, {
     sequelize,

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import appSub from '~/pages/sub/sub_type_docs.vue' // подключение саб формы
+import appSub from '~/pages/sub/sub_name.vue' // подключение саб формы
 import appControlButton from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
 import mixinFunction from '~/mixins/globalMixins'
 export default {
@@ -63,9 +63,10 @@ export default {
      * @function onNew
      */
     async onNew() {
-      const { $showModal, $nextTick, list } = this
-      const result = await $showModal('modal_type_docs', { modalTitle: 'Создание нового типа документа' })
+      const { $showModal, $nextTick, list, capitalize } = this
+      const result = await $showModal('modal_name', { modalTitle: 'Создание нового типа документа' })
       if (result) {
+        result.name = capitalize(result.name)
         const response = await useFetch('/api/type-docs/add', { method: 'POST', body: result }) // получение данных списка
         if (response) {
           this.list.push(response.data.value)
@@ -121,7 +122,7 @@ export default {
      * @param {invalid} Boolean - Значение валидности
      */
     getInvalid(invalid) {
-      this.disabledSave = this.disabledSave || invalid
+      this.disabledSave = this.disabledSave || invalid || !this.valueModel.id
     },
     /*
      * Сохранение данных
@@ -129,14 +130,16 @@ export default {
      * @function onSave
      */
     async onSave() {
-      const { $showConfirm, list, valueModel } = this
+      const { $showConfirm, valueModel, capitalize, cloneObject } = this
       const optionsConfirm = {
         message: 'Есть не сохраненные данные, отменить изменения?',
       }
       const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
       if (confirm) {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
-        const response = await useFetch('/api/type-docs/edit', { method: 'POST', body: valueModel }) // получение данных списка
+        const params = cloneObject(this.valueModel)
+        params.name = capitalize(params.name)
+        const response = await useFetch('/api/type-docs/edit', { method: 'POST', body: params }) // получение данных списка
         if (response) {
           this.$showToast({
             title: '',
