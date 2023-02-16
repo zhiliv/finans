@@ -17,10 +17,15 @@ export default class types_period extends Model {
       allowNull: false,
       comment: "Наименование типа периода"
     },
-    mnosh: {
+    padez: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "Множественное число "
+      comment: "Родительский падеж"
+    },
+    mnozh: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: "Множественное число"
     }
   }, {
     sequelize,

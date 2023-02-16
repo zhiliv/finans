@@ -63,9 +63,12 @@ export default {
      * @function onNew
      */
     async onNew() {
-      const { $showModal, $nextTick, list } = this
-      const result = await $showModal('modal_name', { modalTitle: 'Создание нового типа периода' })
+      const { $showModal, $nextTick, list, capitalize } = this
+      const result = await $showModal('modal_types_period', { modalTitle: 'Создание нового типа периода' })
       if (result) {
+        result.name = capitalize(result.name)
+        result.padez = capitalize(result.padez)
+        result.mnozh = capitalize(result.mnozh)
         const response = await useFetch('/api/types-period/add', { method: 'POST', body: result }) // получение данных списка
         if (response) {
           this.list.push(response.data.value)
@@ -121,7 +124,7 @@ export default {
      * @param {invalid} Boolean - Значение валидности
      */
     getInvalid(invalid) {
-      this.disabledSave = this.disabledSave || invalid
+      this.disabledSave = this.disabledSave || invalid || !this.valueModel.id
     },
     /*
      * Сохранение данных
@@ -129,14 +132,18 @@ export default {
      * @function onSave
      */
     async onSave() {
-      const { $showConfirm, list, valueModel } = this
+      const { $showConfirm,  cloneObject } = this
       const optionsConfirm = {
         message: 'Есть не сохраненные данные, отменить изменения?',
       }
       const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
       if (confirm) {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
-        const response = await useFetch('/api/types-period/edit', { method: 'POST', body: valueModel }) // получение данных списка
+        const params = cloneObject(this.valueModel)
+        params.name = this.capitalize(params.name)
+        params.padez = this.capitalize(params.padez)
+        params.mnozh = this.capitalize(params.mnozh)
+        const response = await useFetch('/api/types-period/edit', { method: 'POST', body: params }) // получение данных списка
         if (response) {
           this.$showToast({
             title: '',

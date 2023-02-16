@@ -42,7 +42,7 @@ export default {
 
   data() {
     return {
-      list: [], // список категорий
+      list: [], // список методов получения денег
       isLoadList: true, // статус загрузки данных
       valueModel: {}, // данные страницы
       title: 'ываыва',
@@ -52,22 +52,22 @@ export default {
   },
 
   async beforeMount() {
-    const { pending, data: list } = await useFetch('/api/categories/all') // получение данных списка
+    const { pending, data: list } = await useFetch('/api/method-get-money/all') // получение данных списка
     this.isLoadList = pending // установка статуса загрузки
     this.list = list // установка списка
   },
 
   methods: {
     /*
-     * Создание новой категории
+     * Создание нового способа получения денег
      * @function onNew
      */
     async onNew() {
       const { $showModal, $nextTick, list, capitalize } = this
-      const result = await $showModal('modal_name', { modalTitle: 'Создание новой категории' })
+      const result = await $showModal('modal_name', { modalTitle: 'Создание нового способа получения денег' })
       if (result) {
         result.name = capitalize(result.name)
-        const response = await useFetch('/api/categories/add', { method: 'POST', body: result }) // получение данных списка
+        const response = await useFetch('/api/method-get-money/add', { method: 'POST', body: result }) // получение данных списка
         if (response) {
           this.list.push(response.data.value)
           const index = list.findIndex(el => el.id === response.data.value.id)
@@ -84,19 +84,19 @@ export default {
       }
     },
     /*
-     * Удаление типа документа
+     * Удаление способа получения денег
      * @function onDeleteItem
      * @param {Object} item - элемент
      */
     async onDeleteItem(item) {
       const { list, $showConfirm } = this
       const options = {
-        message: 'Удалить категорию?',
+        message: 'Удалить способ получения денег?',
       } // опции формы подтверждения
       const confirm = await $showConfirm(options) // открытие окна подтверждение
       if (confirm) {
         const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
-        const response = await useFetch('/api/categories/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
+        const response = await useFetch('/api/method-get-money/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
         if (response.data != 1)
           this.$showToast({
             title: '',
@@ -130,7 +130,7 @@ export default {
      * @function onSave
      */
     async onSave() {
-      const { $showConfirm, valueModel, cloneObject, capitalize } = this
+      const { $showConfirm,  capitalize, cloneObject } = this
       const optionsConfirm = {
         message: 'Есть не сохраненные данные, отменить изменения?',
       }
@@ -139,7 +139,7 @@ export default {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
         const params = cloneObject(this.valueModel)
         params.name = capitalize(params.name)
-        const response = await useFetch('/api/categories/edit', { method: 'POST', body: params }) // получение данных списка
+        const response = await useFetch('/api/method-get-money/edit', { method: 'POST', body: params }) // получение данных списка
         if (response) {
           this.$showToast({
             title: '',

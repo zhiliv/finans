@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-mask" v-show="isShow && bodyModal">
+  <div class="modal-mask select-none" v-show="isShow && bodyModal">
     <div class="modal-wrapper">
       <div class="modal-container border-2 border-zinc-500">
         <div class="body-modal bg-zinc-600">

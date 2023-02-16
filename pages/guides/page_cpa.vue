@@ -63,8 +63,9 @@ export default {
      * @function onNew
      */
     async onNew() {
-      const { $showModal, $nextTick, list } = this
+      const { $showModal, $nextTick, list, capitelize} = this
       const result = await $showModal('modal_name', { modalTitle: 'Создание новой партнерской программы' })
+      result.name = capitelize(result.name)
       if (result) {
         const response = await useFetch('/api/cpa/add', { method: 'POST', body: result }) // получение данных списка
         if (response) {
@@ -121,7 +122,7 @@ export default {
      * @param {invalid} Boolean - Значение валидности
      */
     getInvalid(invalid) {
-      this.disabledSave = this.disabledSave || invalid
+      this.disabledSave = this.disabledSave || invalid || !this.valueModel.id
     },
     /*
      * Сохранение данных
@@ -129,14 +130,16 @@ export default {
      * @function onSave
      */
     async onSave() {
-      const { $showConfirm, list, valueModel } = this
+      const { $showConfirm, valueModel, cloneObject, capitalize } = this
       const optionsConfirm = {
         message: 'Есть не сохраненные данные, отменить изменения?',
       }
       const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
       if (confirm) {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
-        const response = await useFetch('/api/cpa/edit', { method: 'POST', body: valueModel }) // получение данных списка
+        const params = cloneObject(this.valueModel)
+        params.name = capitalize(params.name)
+        const response = await useFetch('/api/cpa/edit', { method: 'POST', body: params }) // получение данных списка
         if (response) {
           this.$showToast({
             title: '',

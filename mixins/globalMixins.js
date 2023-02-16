@@ -125,5 +125,14 @@ export default {
         ? JSON.stringify(obj1) === JSON.stringify(obj2)
         : false
     },
+
+    /*
+     * Преобразование первого символа строки в верхний регистр
+     * @function capitalize
+     * @param {String} string - Текст
+     */
+    capitalize(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    },
   },
 }
