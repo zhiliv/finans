@@ -3,7 +3,7 @@
   <input
     :value="modelValue"
     type="text"
-    class="input my-1"
+    class="input"
     :class="[$attrs.class, {'input-success': valid === 'success', 'input-error': valid === 'error'}]"
     @input="$emit('update:modelValue', $event.target.value)"
   />
@@ -49,6 +49,3 @@ export default {
   },
 }
 </script>
-
-<style>
-</style>

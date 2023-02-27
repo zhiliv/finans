@@ -11,7 +11,7 @@ export default defineEventHandler(async event => {
     } // параметры условий обновления
     delete body.id
     delete body.isActive
-    result = await sequelize.models.method_get_money.update(body, optionWhere) // выполнение обновления записи=
+    result = await sequelize.models.offers.update(body, optionWhere) // выполнение обновления записи=
   } catch (error) {
     result =
       error && error.error && error.error.length && error.error[0].message

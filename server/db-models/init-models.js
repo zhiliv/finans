@@ -9,6 +9,7 @@ import _method_get_money from  "./method_get_money.js";
 import _offers from  "./offers.js";
 import _regions from  "./regions.js";
 import _type_docs from  "./type_docs.js";
+import _type_profit from  "./type_profit.js";
 import _types_period from  "./types_period.js";
 import _users from  "./users.js";
 
@@ -22,6 +23,7 @@ export default function initModels(sequelize) {
   const offers = _offers.init(sequelize, DataTypes);
   const regions = _regions.init(sequelize, DataTypes);
   const type_docs = _type_docs.init(sequelize, DataTypes);
+  const type_profit = _type_profit.init(sequelize, DataTypes);
   const types_period = _types_period.init(sequelize, DataTypes);
   const users = _users.init(sequelize, DataTypes);
 
@@ -64,6 +66,7 @@ export default function initModels(sequelize) {
     offers,
     regions,
     type_docs,
+    type_profit,
     types_period,
     users,
   };

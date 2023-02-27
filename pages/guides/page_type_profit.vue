@@ -42,10 +42,10 @@ export default {
 
   data() {
     return {
-      list: [], // список типов документов
+      list: [], // список типов профитов
       isLoadList: false, // статус загрузки данных
       valueModel: {}, // данные страницы
-      title: 'Типы документов', // Заголовок формы
+      title: 'Типы профитов', // Заголовок формы
       disabledSave: true, // доступность кнопки "Сохранить"
       disabledCancel: true, // доступность кнопки "Отменить"
     }
@@ -58,28 +58,29 @@ export default {
 
   methods: {
     /*
-     * Получение списка типов документов
+     * Получение списка типов профитов
      * @function getList
      */
     async getList() {
       const { processingListResponse } = this
-      const { pending, data: list, error } = await useFetch('/api/type-docs/all') // получение данных списка
+      const { pending, data: list, error } = await useFetch('/api/type-profit/all') // получение данных списка
       if (processingListResponse(error)) {
         this.list = list // установка списка
         this.isLoadList = !!pending // установка статуса загрузки
       }
     },
+
     /*
-     * Создание нового типа документа
+     * Создание нового профита
      * @function onNew
      */
     async onNew() {
       const { $showModal, list, capitalize, selectItem, processResponse } = this
-      const body = await $showModal('modal_name', { modalTitle: 'Создание нового типа документа' })
+      const body = await $showModal('modal_name', { modalTitle: 'Создание нового типа профита' })
       if (body) {
         body.name = capitalize(body.name)
         const paramsQuery = { method: 'POST', body } // параметры запроса
-        const response = await useFetch('/api/type-docs/add', paramsQuery) // получение данных списка
+        const response = await useFetch('/api/type-profit/add', paramsQuery) // получение данных списка
         if (processResponse(response)) {
           this.list.push(response.data.value.data)
           const index = list.findIndex(el => el.id === response.data.value.data.id)
@@ -101,7 +102,7 @@ export default {
       if (confirm) {
         const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
         const paramsQuery = { method: 'DELETE', body: list[index].id } // параметры запроса
-        const response = await useFetch('/api/type-docs/del', paramsQuery) // получение данных списка
+        const response = await useFetch('/api/type-profit/del', paramsQuery) // получение данных списка
         if (processResponse(response)) {
           list.splice(index, 1) // удаление элемента из списка
           if (list.length) selectItem()
@@ -133,7 +134,7 @@ export default {
         const body = cloneObject(this.valueModel)
         body.name = capitalize(body.name)
         const paramsQuery = { method: 'POST', body } // параметры запроса
-        const response = await useFetch('/api/type-docs/edit', paramsQuery) // получение данных списка
+        const response = await useFetch('/api/type-profit/edit', paramsQuery) // получение данных списка
         if (processResponse(response)) {
           this.list[index] = this.valueModel // Изменение объекта выделенного элемента в списка
           selectItem(index)
@@ -177,7 +178,7 @@ export default {
   watch: {
     /* Наблюдение за изменением выделенного элемента */
     valueModel: {
-      handler(newValue) {
+      handler() {
         const { checkEmptyObject, valueModel, list, withObject, cloneObject } = this
         if (!checkEmptyObject(valueModel)) {
           // проверка что объект не пустой
@@ -191,10 +192,11 @@ export default {
       deep: true,
     },
     /* Наблюдение за статусом загрузкой списка */
-    isLoadList(newValue) {
+    isLoadList() {
       const { selectItem } = this
       selectItem()
     },
   },
 }
 </script>
+

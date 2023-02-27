@@ -8,11 +8,11 @@
           </div>
           <div class="p-3 flex flex-col lg:flex-row justify-between items-center h-full">
             <app-button
-              class="btn btn-error w-full lg:btn-wide m-2"
+              class="btn-error w-full lg:btn-wide m-2"
               @click="onCancel"
             >{{cancelText}}</app-button>
             <app-button
-              class="btn btn-success w-full lg:btn-wide m-2"
+              class="btn-success w-full lg:btn-wide m-2"
               @click="onConfirm"
             >{{confirmText}}</app-button>
           </div>

@@ -1,6 +1,13 @@
 // import whitelist from './modules/whitelist/result-whitelist.json'
+const path = require('path')
 export default defineNuxtConfig({
-  dev: true,
+  env: {
+    tokenLeads: 'c8e2d508767bd48d929b8d63641eaf80'
+  },
+  mode: 'spa',
+  tailwindcss: {
+    jit: true,
+  },
   runtimeConfig: {
     database: {
       username: 'postgres',
@@ -20,42 +27,46 @@ export default defineNuxtConfig({
   ssr: false,
   css: ['@/assets/css/main.css'],
   build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
+    chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString()
+          }
         },
+      },
+    },
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        tailwindcss: path.resolve(__dirname, './tailwind.config.js'),
+        'postcss-nested': {},
       },
     },
     target: 'esnext',
   },
-  vSelect: {
-    component: {
-      as: 'AppSelect',
-      globalRegister: true,
-      includeCss: true,
+  preset: {
+    stage: 1, // see https://tailwindcss.com/docs/using-with-preprocessors#future-css-featuress
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        tailwindConfig: {
+          test: /tailwind\.config/,
+          chunks: 'all',
+          priority: 10,
+          name: true,
+        },
+      },
     },
-    // extend(vSelect, vueApp) => void | Promise<void>
   },
   nitro: {
     compressPublicAssets: true,
+    plugins: ['~/server/index.js'],
   },
-  modules: ['nuxt-purgecss', '@nuxtjs/critters', '@whoj/nuxt3-vue-select', '@nuxtjs/tailwindcss'],
-  purgecss: {
-    safelist: ['safe'],
-    content: [
-      './components/**/**/**/*.vue',
-      './components/**/**/*.vue',
-      './components/**/*.vue',
-      './components/app/*.vue',
-      './layouts/**/*.vue',
-      './layouts/*.vue',
-      './pages/**/*.vue',
-      './pages/**/**/*.vue',
-      './pages/*.vue',
-    ],
-  },
+  modules: ['@nuxtjs/tailwindcss'],
+
   /*   vite: {
     css: {
       preprocessorOptions: {

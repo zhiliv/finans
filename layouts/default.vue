@@ -1,4 +1,7 @@
 <template>
+  <head>
+    <title>{{title}}</title>
+  </head>
   <div class="min-w-screen min-h-screen select-none">
     <div class="h-full w-full flex flex-col lg:flex-row">
       <app-sidenav :menu="menu" class="min-h-screen" @title="getTitle" />
@@ -32,6 +35,7 @@ export default {
       isOpen: false,
       menu: [
         { name: 'Статистика', href: '/' },
+        {name: 'Офферы', href: '/offers/page_offers'},
         {
           name: 'Справочники',
           dropdown: true,
@@ -41,11 +45,13 @@ export default {
             { name: 'Партнерские программы', href: '/guides/page_cpa' },
             { name: 'Типы периодов', href: '/guides/page_types_period' },
             { name: 'Способы получения денег', href: '/guides/page_method_get_money' },
+            { name: 'Типы профитов', href: '/guides/page_type_profit' },
           ],
         },
       ], // меню
     }
   },
+
 
   methods: {
     /*
@@ -59,6 +65,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

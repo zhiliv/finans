@@ -30,7 +30,7 @@
   <div ref="navbar" class="navbar bg-zinc-800 lg:hidden h-10 w-full">
     <div class="navbar-start">
       <div class="dropdown flex">
-        <label tabindex="0" class="btn btn-ghost lg:hidden content-end">
+        <label tabindex="0" class="btn-ghost lg:hidden content-end">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-8 w-8"

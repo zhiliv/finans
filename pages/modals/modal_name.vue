@@ -21,10 +21,10 @@ export default {
       default: {},
     },
   },
-  data(){
+  data() {
     return {
       disabledCreate: true,
-      dataForm: {}
+      dataForm: {},
     }
   },
 
@@ -47,14 +47,11 @@ export default {
 
   watch: {
     dataForm: {
-      handler(newValue){
+      handler(newValue) {
         this.disabledCreate = newValue && newValue.name && newValue.name.length < 3 // установка минимальной длины поля "Наименование"
       },
-      deep: true
-    }
-  }
-
+      deep: true,
+    },
+  },
 }
 </script>
-<style>
-</style>

@@ -7,10 +7,10 @@ export default defineEventHandler(async event => {
     const optionsWhere = {where: {
       id: +body
     }}
-    const count = await sequelize.models.type_docs.count(optionsWhere) // получение количества записей с таким наименованием
+    const count = await sequelize.models.offers.count(optionsWhere) // получение количества записей с таким наименованием
     result = count === 0
       ? {message: 'Записи с таким идентификатором не существует'}
-      : await sequelize.models.type_docs.destroy(optionsWhere) /// добавление данных
+      : await sequelize.models.offers.destroy(optionsWhere) /// добавление данных
   } catch (error) {
     result =
       error && error.errors && error.errors.length && error.errors[0].message

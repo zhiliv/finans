@@ -9,18 +9,10 @@
   </div>
   <div class="lg:col-span-4 col-span-12 mx-4">
     <app-input
-      v-model.trim="modelValue.padez"
+      v-model.trim="modelValue.site"
       class="input-bordered w-full"
-      :valid="validPadez"
-      label="Родительский падеж"
-    />
-  </div>
-  <div class="lg:col-span-4 col-span-12 mx-4">
-    <app-input
-      v-model.trim="modelValue.mnozh"
-      class="input-bordered w-full"
-      :valid="validMnozh"
-      label="Множественное число"
+      :valid="validSite"
+      label="Сайт"
     />
   </div>
 </template>
@@ -34,8 +26,7 @@ export default {
       type: Object,
       default: {
         name: null, // значение поля "Наименование"
-        padez: null, // Родительский падеж
-        mnozh: null, // Множественное число
+        site: null, // поле "Сайт"
       },
     },
   },
@@ -53,36 +44,29 @@ export default {
           (newValue && (!newValue.name || !newValue.name.length || newValue.name.length < 2)) || isNumber(newValue.name)
             ? 'error'
             : 'success' // подсветка поля если количество символов менее 3х и введенное значение не число
-        this.validPadez =
-          (newValue && (!newValue.padez || !newValue.padez.length || newValue.padez.length < 2)) ||
-          isNumber(newValue.padez)
+        this.validSite =
+          (newValue && (!newValue.site || !newValue.site.length || newValue.site.length < 2)) || isNumber(newValue.site)
             ? 'error'
             : 'success' // подсветка поля если количество символов менее 3х и введенное значение не число
-        this.validMnozh =
-          (newValue && (!newValue.mnozh || !newValue.mnozh.length || newValue.mnozh.length < 2)) ||
-          isNumber(newValue.mnozh)
-            ? 'error'
-            : 'success' // подсветка поля если количество символов менее 3х и введенное значение не число
-        $emit(
-          'invalid',
-          this.validName === 'success' && this.validPadez === 'success' && this.validMnozh === 'success' ? false : true,
-        )
+        $emit('invalid', this.validName === 'success' && this.validSite === 'success' ? false : true)
       },
       deep: true,
     },
   },
 
   mounted() {
-    const { $emit, validName, validPadez, validMnozh } = this
-    $emit('invalid', validName === 'error' || validPadez === 'error' || validMnozh === 'error' ? true : false)
+    const { $emit, validName, validSite } = this
+    $emit('invalid', validName === 'error' || validSite === 'error' ? true : false)
   },
 
   data() {
     return {
       validName: 'error',
-      validPadez: 'error',
-      validMnozh: 'error',
+      validSite: 'error',
     }
   },
 }
 </script>
+
+<style>
+</style>

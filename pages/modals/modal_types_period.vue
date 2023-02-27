@@ -1,5 +1,5 @@
 <template>
-  <sub-form v-model="dataForm" is-modal="true" />
+  <sub-form v-model="dataForm" />
   <sub-control-new :on-create="onCreate" :data-form="inputData" :disabled-create="disabledCreate" />
 </template>
 
@@ -64,5 +64,3 @@ export default {
   },
 }
 </script>
-<style>
-</style>

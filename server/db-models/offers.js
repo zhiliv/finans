@@ -212,6 +212,17 @@ export default class offers extends Model {
         model: 'users',
         key: 'id'
       }
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+      comment: "Состояние оффера"
+    },
+    type_profit: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      comment: "Тип профита"
     }
   }, {
     sequelize,

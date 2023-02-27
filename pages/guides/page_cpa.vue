@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import appSub from '~/pages/sub/sub_name.vue' // подключение саб формы
+import appSub from '~/pages/sub/sub_cpa.vue' // подключение саб формы
 import appControlButton from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
 import mixinFunction from '~/mixins/globalMixins'
 export default {
@@ -43,77 +43,72 @@ export default {
   data() {
     return {
       list: [], // список партнерских программ
-      isLoadList: true, // статус загрузки данных
+      isLoadList: false, // статус загрузки данных
       valueModel: {}, // данные страницы
-      title: 'ываыва',
+      title: 'Партнерские программы', // Заголовок формы
       disabledSave: true, // доступность кнопки "Сохранить"
       disabledCancel: true, // доступность кнопки "Отменить"
     }
   },
 
-  async beforeMount() {
-    const { pending, data: list } = await useFetch('/api/cpa/all') // получение данных списка
-    this.isLoadList = pending // установка статуса загрузки
-    this.list = list // установка списка
+  mounted() {
+    const { getList } = this
+    getList()
   },
 
   methods: {
+    /*
+     * Получение списка партнерских программ
+     * @function getList
+     */
+    async getList() {
+      const { processingListResponse } = this
+      const { pending, data: list, error } = await useFetch('/api/cpa/all') // получение данных списка
+      if (processingListResponse(error)) {
+        this.list = list // установка списка
+        this.isLoadList = !!pending // установка статуса загрузки
+      }
+    },
+
     /*
      * Создание новой партнерской программы
      * @function onNew
      */
     async onNew() {
-      const { $showModal, $nextTick, list, capitelize} = this
-      const result = await $showModal('modal_name', { modalTitle: 'Создание новой партнерской программы' })
-      result.name = capitelize(result.name)
-      if (result) {
-        const response = await useFetch('/api/cpa/add', { method: 'POST', body: result }) // получение данных списка
-        if (response) {
-          this.list.push(response.data.value)
-          const index = list.findIndex(el => el.id === response.data.value.id)
-          $nextTick(() => {
-            this.$refs.list.$el.querySelectorAll('li')[index].click() // эмуляция клика по элементу
-          })
-          this.$showToast({
-            title: '',
-            message: 'Запись успешно создана',
-            timer: 5000,
-            class: 'alert-success',
-          })
+      const { $showModal, list, capitalize, selectItem, processResponse } = this
+      const body = await $showModal('modal_name', { modalTitle: 'Создание новой партнерской программы' })
+      if (body) {
+        body.name = capitalize(body.name)
+        const paramsQuery = { method: 'POST', body } // параметры запроса
+        const response = await useFetch('/api/cpa/add', paramsQuery) // получение данных списка
+        console.log('🚀 -> onNew -> response:', response)
+        if (processResponse(response)) {
+          this.list.push(response.data.value.data)
+          const index = list.findIndex(el => el.id === response.data.value.data.id)
+          selectItem(index) // выбор элемента списка
         }
       }
     },
     /*
-     * Удаление партнерской программы
+     * Удаление типа документа
      * @function onDeleteItem
      * @param {Object} item - элемент
      */
     async onDeleteItem(item) {
-      const { list, $showConfirm } = this
+      const { list, $showConfirm, selectItem, processResponse } = this
       const options = {
-        message: 'Удалить партнерскую программу?',
+        message: 'Удалить запись?',
       } // опции формы подтверждения
       const confirm = await $showConfirm(options) // открытие окна подтверждение
       if (confirm) {
         const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
-        const response = await useFetch('/api/cpa/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
-        if (response.data != 1)
-          this.$showToast({
-            title: '',
-            message: 'Запись удалена успешно',
-            timer: 5000,
-            class: 'alert-warning',
-          })
-        else
-          this.$showToast({
-            title: 'Ошибка: ',
-            message: 'response.errror',
-            timer: 5000,
-            class: 'alert-error',
-          })
-
-        list.splice(index, 1) // удаление элемента из списка
-        this.$refs.list.$el.querySelectorAll('li')[index - 1].click() // эмуляция клика по элементу
+        const paramsQuery = { method: 'DELETE', body: list[index].id } // параметры запроса
+        const response = await useFetch('/api/cpa/del', paramsQuery) // получение данных списка
+        if (processResponse(response)) {
+          list.splice(index, 1) // удаление элемента из списка
+          if (list.length) selectItem()
+          else this.valueModel.name = null
+        }
       }
     },
     /*
@@ -130,28 +125,20 @@ export default {
      * @function onSave
      */
     async onSave() {
-      const { $showConfirm, valueModel, cloneObject, capitalize } = this
+      const { $showConfirm, cloneObject, capitalize, selectItem, processResponse } = this
       const optionsConfirm = {
-        message: 'Есть не сохраненные данные, отменить изменения?',
+        message: 'Сохранить изменения?',
       }
       const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
       if (confirm) {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
-        const params = cloneObject(this.valueModel)
-        params.name = capitalize(params.name)
-        const response = await useFetch('/api/cpa/edit', { method: 'POST', body: params }) // получение данных списка
-        if (response) {
-          this.$showToast({
-            title: '',
-            message: 'Данные записи успешно обновлены',
-            timer: 5000,
-            class: 'alert-success',
-          })
+        const body = cloneObject(this.valueModel)
+        body.name = capitalize(body.name)
+        const paramsQuery = { method: 'POST', body } // параметры запроса
+        const response = await useFetch('/api/cpa/edit', paramsQuery) // получение данных списка
+        if (processResponse(response)) {
           this.list[index] = this.valueModel // Изменение объекта выделенного элемента в списка
-          this.$nextTick(() => {
-            // после рендеринга
-            this.$refs.list.$el.querySelectorAll('li')[index].click() // эмуляция клика по элементу
-          })
+          selectItem(index)
         }
       }
     },
@@ -174,6 +161,19 @@ export default {
         this.valueModel = item // установка значения данных модели
       }
     },
+
+    /*
+     * Выделение элемента списка
+     * @function selectItem
+     * @param {Number} index Индекс выделяемого элемента
+     */
+    selectItem(index) {
+      const { $nextTick, list, $refs } = this
+      if (list.length)
+        $nextTick(() => {
+          $refs.list.$el.querySelectorAll('li')[index ? index : 0].click() // эмуляция клика по элементу
+        })
+    },
   },
 
   watch: {
@@ -192,11 +192,11 @@ export default {
       },
       deep: true,
     },
+    /* Наблюдение за статусом загрузкой списка */
+    isLoadList(newValue) {
+      const { selectItem } = this
+      selectItem()
+    },
   },
 }
 </script>
-
-<style>
-</style>
-
-

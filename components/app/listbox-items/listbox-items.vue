@@ -3,7 +3,7 @@
     <ul ref="list" class="list-group h-full absolute w-full overflow-y-scroll overflow-x-hidden">
       <li
         v-for="item in listItems"
-        class="min-h-[35px]  border-b border-zinc-300/10"
+        class="min-h-[35px] border-b border-zinc-300/10 hover:bg-amber-700"
         :class="{'active': item.isActive}"
         :key="item[value]"
         @click="onSelect(item)"
@@ -11,7 +11,7 @@
         {{item[text]}}
         <button
           v-if="onDelete"
-          class="btn btn-xs btn-square btn-outline absolute right-0 mr-1"
+          class="btn-xs btn-square btn-outline absolute right-0 mr-1"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@
         </button>
       </li>
     </ul>
-    <app-spinner v-if="isLoad" />
+    <app-spinner v-if="isLoad === false || isLoad === 'false'" />
   </div>
 </template>
 
@@ -77,7 +77,7 @@ export default {
     /* Статус загрузки */
     isLoad: {
       type: [String, Boolean],
-      default: true,
+      default: false,
       validator(value) {
         return value === true || value === false || value === 'true' || value === 'false'
       },
@@ -134,5 +134,9 @@ export default {
 
   .list-group li.active {
     background: #b45309;
+  }
+
+  .list-group li.active:hover {
+    background: #d97706;
   }
 </style>
