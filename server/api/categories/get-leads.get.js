@@ -3,13 +3,13 @@ import { sequelize } from '~/server/db.js'
 const config = useRuntimeConfig()
 
 /*
- * Получение данных о способах получения денег по api Leads.su
+ * Получение данных о категорий по api Leads.su
  * @function getList
  */
 const getList = async () => {
   return new Promise((resolve, reject) => {
     let result = '' // результат полученных данных
-    const url = 'http://api.leads.su/webmaster/dictionary/paymentTypes?token=' // ссылка для получения способов получения денег
+    const url = 'http://api.leads.su/webmaster/dictionary/categories?token=' // ссылка для получения способов получения денег
     const token = config.token_leads // получение токена из файла конфигурации процесса
 
     /* Получение данных по ссылке */
@@ -41,8 +41,8 @@ const addItems = async  (list) => {
         name: item.name,
       },
     }
-    const count = await sequelize.models.method_get_money.count(optionsWhere) // получение количества записей с таким наименованием
-    if (count === 0) await sequelize.models.method_get_money.create(item) // создание записи
+    const count = await sequelize.models.categories.count(optionsWhere) // получение количества записей с таким наименованием
+    if (count === 0) await sequelize.models.categories.create(item) // создание записи
   }
 }
 

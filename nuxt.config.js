@@ -2,7 +2,7 @@
 const path = require('path')
 export default defineNuxtConfig({
   env: {
-    tokenLeads: 'c8e2d508767bd48d929b8d63641eaf80'
+    tokenLeads: 'c8e2d508767bd48d929b8d63641eaf80',
   },
   mode: 'spa',
   tailwindcss: {
@@ -16,6 +16,7 @@ export default defineNuxtConfig({
       port: 5432,
       database: 'finance',
     },
+    token_leads: 'c8e2d508767bd48d929b8d63641eaf80'
   },
   app: {
     head: {

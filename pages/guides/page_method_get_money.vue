@@ -2,7 +2,7 @@
   <div class="w-full h-[calc(100vh-28px-70px)] items-start lg:py-0 py-1 bg-stone-800">
     <div class="items-start h-full">
       <div class="grid grid-cols-12 h-full">
-        <div class="lg:col-span-3 col-span-12 mx-4 lg:mx-0 h-[80%]">
+        <div class="lg:col-span-3 col-span-12 mx-4 lg:mx-0 h-[calc(100%-70px)]">
           <app-listbox-items
             :list="list"
             class="border border-gray-400 bg-stone-700"
@@ -13,7 +13,7 @@
           />
           <app-spinner v-if="isLoadLeads" class="absolute top-0 left-[50%]" />
           <div class="w-full flex justify-center align-content-center">
-            <app-button class="mt-2 btn-info" @click="getLisLeads">Получение с Leads.su</app-button>
+            <app-button class="mt-2 btn-info btn-wide" @click="getLisLeads">Получение с Leads.su</app-button>
           </div>
         </div>
 
@@ -53,7 +53,7 @@ export default {
       title: 'Способы получения денег', // Заголовок формы
       disabledSave: true, // доступность кнопки "Сохранить"
       disabledCancel: true, // доступность кнопки "Отменить"
-      isLoadLeads: false // статус списка при получении списка с leads.su
+      isLoadLeads: false, // статус списка при получении списка с leads.su
     }
   },
 
@@ -68,7 +68,7 @@ export default {
      * @function getLisLeads
      */
     async getLisLeads() {
-      const {getList, selectItem} = this
+      const { getList, selectItem } = this
       const { pending } = await useFetch('/api/method-get-money/get-leads') // получение данных
       this.isLoadLeads = pending
       await getList()

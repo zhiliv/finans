@@ -315,11 +315,10 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
     const { $emit, validName, getCategories, getCPA, getTypePeriod } = this
-    getCategories() // получение список категорий
-    getCPA() // получение списка партнерских программ
-    getTypePeriod() // получение типов периодов
+    await Promise.all([getTypePeriod(), getCategories(), getCPA()])
+
     $emit('invalid', validName === 'error')
   },
 

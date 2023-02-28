@@ -56,7 +56,7 @@ export default {
         free_period: null, // беспроцентный период
         type_free_period: null, // тип беспроцентного периода
         period_min: null, // минимальный период
-        type_period_max: null // тип максимального периода
+        type_period_max: null, // тип максимального периода
       }, // данные страницы
       title: 'Офферы',
       disabledSave: true, // доступность кнопки "Сохранить"
@@ -64,35 +64,41 @@ export default {
     }
   },
 
-  async beforeMount() {
-    const { pending, data: list } = await useFetch('/api/offers/all') // получение данных списка
-    this.isLoadList = !!pending // установка статуса загрузки
-    this.list = list // установка списка
+  mount() {
+    const { getList } = this
+    getList()
   },
 
   methods: {
+    /*
+     * Получение списка офферов
+     * @function getList
+     */
+    async getList() {
+      const { processingListResponse } = this
+      const { pending, data: list, error } = await useFetch('/api/offers/all') // получение данных списка
+      console.log('🚀 -> getList -> pending:', pending)
+      if (processingListResponse(error)) {
+        this.list = list // установка списка
+        this.isLoadList = !!pending // установка статуса загрузки
+      }
+    },
+
     /*
      * Создание нового оффера
      * @function onNew
      */
     async onNew() {
-      const { $showModal, list, capitalize, selectItem, $showToast } = this
+      const { $showModal, list, capitalize, selectItem, processResponse } = this
       const body = await $showModal('modal_name', { modalTitle: 'Создание нового оффера' })
       if (body) {
         body.name = capitalize(body.name)
-        const paramsResponse = { method: 'POST', body }
-        const response = await useFetch('/api/offers/add', paramsResponse) // получение данных списка
-        if (response) {
-          this.list.push(response.data.value)
-          const index = list.findIndex(el => el.id === response.data.value.id)
-          selectItem(index)
-          const paramsToast = {
-            title: '',
-            message: 'Запись успешно создана',
-            timer: 5000,
-            class: 'alert-success',
-          }
-          $showToast(paramsToast)
+        const paramsQuery = { method: 'POST', body } // параметры запроса
+        const response = await useFetch('/api/offers/add', paramsQuery) // получение данных списка
+        if (processResponse(response)) {
+          this.list.push(response.data.value.data)
+          const index = list.findIndex(el => el.id === response.data.value.data.id)
+          selectItem(index) // выбор элемента списка
         }
       }
     },
@@ -102,35 +108,23 @@ export default {
      * @param {Object} item - элемент
      */
     async onDeleteItem(item) {
-      const { list, $showConfirm, selectItem, $showToast } = this
+      const { list, $showConfirm, selectItem, processResponse } = this
       const options = {
-        message: 'Удалить оффер?',
+        message: 'Удалить запись?',
       } // опции формы подтверждения
       const confirm = await $showConfirm(options) // открытие окна подтверждение
       if (confirm) {
         const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
-        const paramsResponse = { method: 'DELETE', body: list[index].id }
-        const response = await useFetch('/api/offers/del', paramsResponse) // получение данных списка
-        let paramsToast
-        if (response.data != 1)
-          paramsToast = {
-            title: '',
-            message: 'Запись удалена успешно',
-            timer: 5000,
-            class: 'alert-warning',
-          }
-        else
-          paramsToast = {
-            title: 'Ошибка: ',
-            message: 'response.errror',
-            timer: 5000,
-            class: 'alert-error',
-          }
-        $showToast(paramsToast)
-        list.splice(index, 1) // удаление элемента из списка
-        selectItem()
+        const paramsQuery = { method: 'DELETE', body: list[index].id } // параметры запроса
+        const response = await useFetch('/api/offers/del', paramsQuery) // получение данных списка
+        if (processResponse(response)) {
+          list.splice(index, 1) // удаление элемента из списка
+          if (list.length) selectItem()
+          else this.valueModel.name = null
+        }
       }
     },
+
     /*
      * Получение значения валидности полей
      * @function getInvalid
@@ -145,25 +139,18 @@ export default {
      * @function onSave
      */
     async onSave() {
-      const { $showConfirm, cloneObject, capitalize, selectItem, $showToast } = this
+      const { $showConfirm, cloneObject, capitalize, selectItem, processResponse } = this
       const optionsConfirm = {
-        message: 'Есть не сохраненные данные, отменить изменения?',
+        message: 'Сохрнать изменения?',
       }
       const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
       if (confirm) {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
         const body = cloneObject(this.valueModel)
         body.name = capitalize(body.name)
-        const paramsResponse = { method: 'POST', body }
-        const response = await useFetch('/api/offers/edit', paramsResponse) // получение данных списка
-        if (response) {
-          const paramsToast = {
-            title: '',
-            message: 'Данные записи успешно обновлены',
-            timer: 5000,
-            class: 'alert-success',
-          }
-          $showToast(paramsToast)
+        const paramsQuery = { method: 'POST', body } // параметры запроса
+        const response = await useFetch('/api/offers/edit', paramsQuery) // получение данных списка
+        if (processResponse(response)) {
           this.list[index] = this.valueModel // Изменение объекта выделенного элемента в списка
           selectItem(index)
         }
@@ -218,6 +205,11 @@ export default {
         } else this.disabledSave = true
       },
       deep: true,
+    },
+    /* Наблюдение за статусом загрузкой списка */
+    isLoadList(newValue) {
+      const { selectItem } = this
+      selectItem()
     },
   },
 }
