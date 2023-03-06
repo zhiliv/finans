@@ -1,26 +1,16 @@
 <template>
-  <div class="relative" :class="[$attrs.class, {'px-2': $attrs.multiple}]">
-    <app-spinner
-      v-if="isLoad === false || isLoad === 'false'"
-      class="absolute top-[0.5em]"
-      :class="{'left-[50%]': $attrs.multiple}"
-    />
+  <div class="relative" :class="$attrs.class">
+    <app-spinner v-if="isLoad === false || isLoad === 'false'" class="absolute top-[0.5em]" />
     <label class="label py-0 px-4">{{label}}</label>
-    <select
-      :multiple="$attrs.multiple"
-      v-model="selected"
-      :disabled="$attrs.disabled"
-      class="select select-bordered w-full"
-      :class="[$attrs['select-class'], {'mt-3': $attrs.multiple}]"
-    >
+    <select v-model="selected" class="select select-bordered w-full" :class="$attrs['select-class']">
       <option v-if="!options.length" disabled>Список пуст</option>
       <option v-if="options.length && required" disabled>Выберите значение</option>
-      <option
+      <div
         v-for="item in options"
         :key="item[value]"
         :value="item[value]"
         class="text-[1.35em]"
-      >{{item[text]}}</option>
+      >{{item[text]}}</div>
     </select>
   </div>
 </template>
@@ -66,14 +56,14 @@ export default {
     },
     /* Индекс выделяемого элемента */
     selectValue: {
-      type: [Number, String, Boolean, Object, Array],
-      default: null,
-    },
+      type: [Number, String],
+      default: null
+    }
   },
-  emits: ['update:modelValue', 'update:selectValue'],
+  emits: ['update:modelValue'],
   data() {
     return {
-      selected: this.$attrs.multiple ? [] : null, // выделенная строка
+      selected: null, // выделенная строка
       valueModel: null, // модель данных
     }
   },
@@ -90,13 +80,12 @@ export default {
     },
 
     /*
-     * Отслеживание изменений передаваемого индекса
-     * @function selectValue
-     */
-    selectValue(newValue) {
-      if (newValue) this.selected = newValue
-      else if (newValue === false) this.selected = newValue
-    },
+    * Отслеживание изменений передаваемого индекса
+    * @function selectIndex
+    */
+    selectValue(newValue){
+      if(newValue) this.selected = +newValue
+    }
   },
 }
 </script>

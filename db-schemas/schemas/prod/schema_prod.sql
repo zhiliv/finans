@@ -102,7 +102,7 @@ CREATE TABLE prod.offers (
 	percent_max float4 NULL, -- Максимальная процентная ставка
 	type_percent_max int4 NULL, -- Тип максимальной процентной ставки
 	profit varchar NULL, -- Размер вознаграждения
-	desription_profit varchar NULL, -- Описание для получения вознаграждения
+	description_profit varchar NULL, -- Описание для получения вознаграждения
 	url_offer varchar NULL, -- Ссылка на оффер
 	site varchar NULL, -- Ссылка на сайт
 	cr float4 NULL, -- Количество уникальных конверсий / Количество уникальных кликов на баннеры
@@ -141,7 +141,7 @@ COMMENT ON COLUMN prod.offers.type_percent_min IS 'Тип минимальной
 COMMENT ON COLUMN prod.offers.percent_max IS 'Максимальная процентная ставка';
 COMMENT ON COLUMN prod.offers.type_percent_max IS 'Тип максимальной процентной ставки';
 COMMENT ON COLUMN prod.offers.profit IS 'Размер вознаграждения';
-COMMENT ON COLUMN prod.offers.desription_profit IS 'Описание для получения вознаграждения';
+COMMENT ON COLUMN prod.offers.description_profit IS 'Описание для получения вознаграждения';
 COMMENT ON COLUMN prod.offers.url_offer IS 'Ссылка на оффер';
 COMMENT ON COLUMN prod.offers.site IS 'Ссылка на сайт';
 COMMENT ON COLUMN prod.offers.cr IS 'Количество уникальных конверсий / Количество уникальных кликов на баннеры';

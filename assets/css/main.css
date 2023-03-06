@@ -109,3 +109,15 @@ h6,
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(58, 58, 58);
 }
+
+.multiselect__tags{
+  background: #212121  !important;
+  height: 48px !important;
+  max-height: 48px !important;
+
+}
+
+.multiselect__content-wrapper{
+  background: #212121  !important;
+  color: #d3d3d3;
+}

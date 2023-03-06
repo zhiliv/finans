@@ -4,6 +4,7 @@ import _baners from  "./baners.js";
 import _categories from  "./categories.js";
 import _cities from  "./cities.js";
 import _cpa from  "./cpa.js";
+import _link_categories from  "./link_categories.js";
 import _link_get_money from  "./link_get_money.js";
 import _method_get_money from  "./method_get_money.js";
 import _offers from  "./offers.js";
@@ -18,6 +19,7 @@ export default function initModels(sequelize) {
   const categories = _categories.init(sequelize, DataTypes);
   const cities = _cities.init(sequelize, DataTypes);
   const cpa = _cpa.init(sequelize, DataTypes);
+  const link_categories = _link_categories.init(sequelize, DataTypes);
   const link_get_money = _link_get_money.init(sequelize, DataTypes);
   const method_get_money = _method_get_money.init(sequelize, DataTypes);
   const offers = _offers.init(sequelize, DataTypes);
@@ -29,14 +31,16 @@ export default function initModels(sequelize) {
 
   cities.belongsTo(regions, { as: "region", foreignKey: "region_id"});
   regions.hasMany(cities, { as: "cities", foreignKey: "region_id"});
-  offers.belongsTo(categories, { as: "id_category_category", foreignKey: "id_category"});
-  categories.hasMany(offers, { as: "offers", foreignKey: "id_category"});
+  link_categories.belongsTo(categories, { as: "id_category_category", foreignKey: "id_category"});
+  categories.hasMany(link_categories, { as: "link_categories", foreignKey: "id_category"});
   offers.belongsTo(cpa, { as: "id_cpa_cpa", foreignKey: "id_cpa"});
   cpa.hasMany(offers, { as: "offers", foreignKey: "id_cpa"});
   link_get_money.belongsTo(method_get_money, { as: "id_method_get_money_method_get_money", foreignKey: "id_method_get_money"});
   method_get_money.hasMany(link_get_money, { as: "link_get_moneys", foreignKey: "id_method_get_money"});
   baners.belongsTo(offers, { as: "id_offer_offer", foreignKey: "id_offer"});
   offers.hasMany(baners, { as: "baners", foreignKey: "id_offer"});
+  link_categories.belongsTo(offers, { as: "id_offer_offer", foreignKey: "id_offer"});
+  offers.hasMany(link_categories, { as: "link_categories", foreignKey: "id_offer"});
   link_get_money.belongsTo(offers, { as: "id_offer_offer", foreignKey: "id_offer"});
   offers.hasMany(link_get_money, { as: "link_get_moneys", foreignKey: "id_offer"});
   offers.belongsTo(types_period, { as: "type_free_period_types_period", foreignKey: "type_free_period"});
@@ -61,6 +65,7 @@ export default function initModels(sequelize) {
     categories,
     cities,
     cpa,
+    link_categories,
     link_get_money,
     method_get_money,
     offers,

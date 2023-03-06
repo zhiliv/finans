@@ -6,19 +6,25 @@
       <ul class="menu px-2 w-80 bg-zinc-800 text-base-content pt-1">
         <template v-for="item in menu" :key="item.name">
           <li class="pt-2" v-if="!item.dropdown">
-            <NuxtLink :to="item.href" v-slot="{ href, navigate, isActive }" custom>
+            <NuxtLink active-class="active" :to="item.href" v-slot="{ href, navigate, isActive }">
               <a :class="{'active': isActive}" :href="href" @click="navigate">{{item.name}}</a>
             </NuxtLink>
           </li>
           <template v-if="item.dropdown">
-            <li class="font-bold text-zinc-500 py-1 border-t-2 border-zinc-400 first pt-1">{{item.name}}</li>
+            <li
+              class="font-bold text-zinc-500 py-1 border-t-2 border-zinc-400 first pt-1"
+            >{{item.name}}</li>
             <li
               v-for="(itemList, index) in item.list"
               :key="itemList.name"
               class="mt-1"
               :class="item.list.length-1 === index ? 'border-b-2 border-zinc-400 last' : ''"
             >
-              <NuxtLink :to="itemList.href" v-slot="{ href, navigate, isActive }" custom>
+              <NuxtLink
+                active-class="active"
+                :to="itemList.href"
+                v-slot="{ href, navigate, isActive }"
+              >
                 <a :class="{'active': isActive}" :href="href" @click="navigate">{{itemList.name}}</a>
               </NuxtLink>
             </li>
@@ -52,7 +58,7 @@
         >
           <template v-for="item in menu" :key="item.name">
             <li v-if="!item.dropdown">
-              <NuxtLink :to="item.href" v-slot="{ href, navigate, isActive }" custom>
+              <NuxtLink active-class="active" :to="item.href" v-slot="{ href, navigate, isActive }">
                 <a :class="{'active': isActive}" :href="href" @click="navigate">{{item.name}}</a>
               </NuxtLink>
             </li>
@@ -72,7 +78,11 @@
                 </a>
                 <ul class="list-navbar p-2 bg-zinc-700">
                   <li v-for="itemList in item.list" :key="itemList.name">
-                    <NuxtLink :to="itemList.href" v-slot="{ href, navigate, isActive }" custom>
+                    <NuxtLink
+                      active-class="active"
+                      :to="itemList.href"
+                      v-slot="{ href, navigate, isActive }"
+                    >
                       <a
                         :class="{'active': isActive}"
                         :href="href"
@@ -98,7 +108,6 @@ export default {
       type: Array,
       default: () => [],
     },
-
   },
   mounted() {
     const { setParentActive } = this
@@ -126,14 +135,12 @@ export default {
     route: {
       immediate: true,
       handler(newValue) {
-        const {menu, $emit} = this
+        const { menu, $emit } = this
         const arr = [] // массив для хранения развернутого списка
-        menu.forEach(el => !el.list ? arr.push(el) : arr.push(...el.list))
+        menu.forEach(el => (!el.list ? arr.push(el) : arr.push(...el.list)))
         const selectItem = arr.find(el => el.href === newValue.fullPath)
         $emit('title', selectItem.name)
-
       },
-
     },
   },
 }

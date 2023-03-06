@@ -53,6 +53,8 @@ export default {
       disabledSave: true, // доступность кнопки "Сохранить"
       disabledCancel: true, // доступность кнопки "Отменить"
       isLoadLeads: false, // статус списка при получении списка с leads.su
+      status: () => []
+
     }
   },
 
@@ -143,7 +145,7 @@ export default {
     async onSave() {
       const { $showConfirm, cloneObject, capitalize, selectItem, processResponse } = this
       const optionsConfirm = {
-        message: 'Сохрнать изменения?',
+        message: 'Сохранить изменения?',
       }
       const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
       if (confirm) {

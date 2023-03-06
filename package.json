@@ -19,7 +19,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "eslint": "^8.29.0",
     "node-sass": "^8.0.0",
-    "nuxt": "^3.1.2",
+    "nuxt": "^3.2.3",
     "postcss-import": "^15.1.0",
     "postcss-nested": "^6.0.0",
     "sass-loader": "^13.2.0",
@@ -30,18 +30,20 @@
   "dependencies": {
     "@nuxt-modules/compression": "^0.1.0",
     "@nuxt/devalue": "^2.0.0",
-    "@nuxt/kit": "3.1.2",
+    "@nuxt/kit": "3.2.3",
     "@nuxt/ui-templates": "npm:@nuxt/ui-templates-edge@latest",
     "@vuelidate/core": "^2.0.0",
     "@vuelidate/validators": "^2.0.0",
     "autoprefixer": "^10.4.13",
     "cli-color": "^2.0.3",
-    "daisyui": "^2.51.1",
+    "daisyui": "^2.51.3",
     "mitt": "^3.0.0",
     "pg": "^8.9.0",
     "pg-hstore": "^2.3.4",
     "postcss": "^8.4.21",
-    "sequelize": "^6.28.0",
+    "sequelize": "^6.29.0",
+    "vue-multiselect": "^3.0.0-beta.1",
+    "vue-the-mask": "^0.11.1",
     "vue-uuid": "^3.0.0"
   }
 }

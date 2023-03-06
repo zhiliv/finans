@@ -17,15 +17,6 @@ export default class offers extends Model {
       allowNull: false,
       comment: "Наименование оффера"
     },
-    id_category: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Идентификатор категории",
-      references: {
-        model: 'categories',
-        key: 'id'
-      }
-    },
     id_cpa: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -154,7 +145,7 @@ export default class offers extends Model {
       allowNull: true,
       comment: "Размер вознаграждения"
     },
-    desription_profit: {
+    description_profit: {
       type: DataTypes.STRING,
       allowNull: true,
       comment: "Описание для получения вознаграждения"
@@ -190,14 +181,9 @@ export default class offers extends Model {
       defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "Дата создания"
     },
-    update_dt: {
-      type: DataTypes.DATEONLY,
-      allowNull: true,
-      comment: "Дата последнего обновления"
-    },
     user_create: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       comment: "Пользователь создавший запись",
       references: {
         model: 'users',
@@ -228,7 +214,6 @@ export default class offers extends Model {
     sequelize,
     tableName: 'offers',
     schema: 'prod',
-    hasTrigger: true,
     timestamps: false,
     indexes: [
       {
