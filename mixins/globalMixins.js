@@ -134,5 +134,67 @@ export default {
     capitalize(string) {
       return string.charAt(0).toUpperCase() + string.slice(1)
     },
+
+    /*
+     * Обработка ошибок при получении запросов
+     * @function processResponse
+     * @param {Object} response - Данные ответа запроса
+     */
+    processResponse(response) {
+      const { $showToast } = this
+      const toastParams = {
+        title: '', // заголовок сообщения
+        timer: 5000, // таймер срабатывания
+      } // параметры уведомления
+      let status = false // статус обработки ответа
+      if (response && response.error && response.error.value && response.error.value.status === 400) {
+        toastParams.title = 'Ошибка: ' // заголовок сообщения
+        toastParams.message = response.error.value.data.message // текст сообщения
+        toastParams.class = 'alert-error' // тип сообщения
+        console.error('Произошла ошибка при выполнении запроса: ', response)
+      } else if (response && response.data && response.data.value && response.data.value.status === 200) {
+        toastParams.class = response.data.value.typeMessage
+          ? `alert-${response.data.value.typeMessage}`
+          : 'alert-warning' // установка типа сообщения
+        toastParams.message = response.data.value.message ? response.data.value.message : 'Успешно' // установка текста сообщения
+        status = true // установка статуса обработки
+      } else if (response && response.data && response.data.value && response.data.value.status === 217) {
+        toastParams.class = response.data.value.typeMessage
+          ? `alert-${response.data.value.typeMessage}`
+          : 'alert-warning' // установка типа сообщения
+        toastParams.message = response.data.value.message
+          ? response.data.value.message
+          : 'Внимание, операция не удалась' // установка текста сообщения
+        console.warn('Операция не удалась: ', response)
+      } else if (response && response.data && response.data.value && response.data.value.status === 202) {
+        toastParams.class = 'alert-error'
+        toastParams.message = response.data.value.message ? response.data.value.message : 'Успешно' // установка текста сообщения
+      } else {
+        toastParams.message = 'Неизвестная ошибка'
+        toastParams.class = 'alert-error'
+      }
+      $showToast(toastParams) // отображение сообщения
+      return status
+    },
+
+    /*
+     * Обработка ошибок при получении списка через http-запрос
+     * @function processingListResponse
+     * @param {Object} error
+     */
+    processingListResponse(error) {
+      const { $showToast } = this
+      const toastParams = {
+        title: 'Ошибка: ',
+        timer: 5000,
+        class: 'alert-error',
+      }
+      if (error && error.value && error.value.data.message) {
+        toastParams.message = error.value.data.message
+        $showToast(toastParams) // отображение сообщения
+        return false
+      } else return true
+    },
+
   },
 }

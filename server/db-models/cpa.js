@@ -16,6 +16,11 @@ export default class cpa extends Model {
       type: DataTypes.STRING,
       allowNull: false,
       comment: "Наименование партнерской программы"
+    },
+    site: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: "Адрес сайта"
     }
   }, {
     sequelize,

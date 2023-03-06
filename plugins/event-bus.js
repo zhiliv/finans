@@ -16,9 +16,10 @@ export default defineNuxtPlugin(() => {
     event.form = nameForm // Передача значения имени формы
     emitter.emit(`show-modal`, event) // Отправка события для показа модального окна
     /* Создание ожидания ответа закрытия модального окна для возврата результата */
-    const listenCloseModal = () =>{
+    const listenCloseModal = () => {
       return new Promise((resolve, reject) => {
-        emitter.on(`close-modal-${event.formUuid}`, eventClose => { // прослушивание уникального события закрытия окна
+        emitter.on(`close-modal-${event.formUuid}`, eventClose => {
+          // прослушивание уникального события закрытия окна
           emitter.emit(`destroy-modal-${event.formUuid}`) // отправка события для скрытия окна
           delete eventClose.modalTitle
           delete eventClose.formUuid
@@ -31,7 +32,12 @@ export default defineNuxtPlugin(() => {
     return result
   }
 
-  const showConfirm = async (args) => {
+  /*
+   * Отображение модального окна подтверждения действия
+   * @function showConfirm
+   * @param {Object} args - Аргументы
+   */
+  const showConfirm = async args => {
     emitter.emit('show-confirm', args || {})
     const listenCloseConfirm = () => {
       return new Promise((resolve, reject) => {
@@ -44,7 +50,30 @@ export default defineNuxtPlugin(() => {
     return result
   }
 
-  const showToast = async (args) => {
+  /*
+   * Отображение модального окна для отображения списка с мульти-выбором
+   * @function showMultiSelect
+   * @param {Object} args - Аргументы
+   */
+  const showMultiSelect = async args => {
+    emitter.emit('show-multiselect', args || {})
+    const listenCloseConfirm = () => {
+      return new Promise((resolve, reject) => {
+        emitter.on('close-multiselect', response => {
+          resolve(response)
+        })
+      })
+    }
+    const result = await listenCloseConfirm()
+    return result
+  }
+
+  /*
+   * Отображение уведомления
+   * @function showToast
+   * @param {Object} args - Аргументы
+   */
+  const showToast = async args => {
     emitter.emit('show-toast', args)
   }
 
@@ -53,6 +82,7 @@ export default defineNuxtPlugin(() => {
       showModal,
       showConfirm,
       showToast,
+      showMultiSelect,
       event: emitter.emit, // Will emit an event
       listen: emitter.on, // Will register a listener for an event
     },

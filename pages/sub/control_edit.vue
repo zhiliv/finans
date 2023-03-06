@@ -3,14 +3,19 @@
     <div
       class="flex flex-col lg:flex-row justify-between items-center py-2 px-3 bg-zinc-700 h-full"
     >
-      <app-button class="btn w-full lg:btn-wide btn-warning my-2 mx-2" @click="onNew">Новый</app-button>
+      <app-button
+        class="w-full lg:btn-wide btn-warning my-2 mx-2 hover:bg-amber-700"
+        @click="onNew"
+      >Новый</app-button>
       <div class="w-full lg:w-auto">
         <app-button
-          :class="['btn', 'w-full', 'lg:btn-wide', 'btn-error', 'lg:mx-2', 'my-2', 'lg:m-0', {'btn-disabled': disabledCancel}]"
+          class="btn w-full lg:btn-wide btn-error lg:mx-2 my-2 lg:m-0 hover:bg-red-700"
+          :class="{'btn-disabled': disabledCancel}"
           @click="onCancel"
         >Отменить</app-button>
         <app-button
-          :class="['btn', 'w-full', 'lg:btn-wide', 'btn-success', 'lg:mx-2', 'my-2',  'lg:m-0', {'btn-disabled': disabledSave}]"
+          class="'btn w-full lg:btn-wide btn-success lg:mx-2 my-2 lg:m-0 hover:bg-green-700"
+          :class="{'btn-disabled': disabledSave}"
           @click="onSave"
         >Сохранить</app-button>
       </div>
@@ -63,6 +68,3 @@ export default {
   },
 }
 </script>
-
-<style>
-</style>

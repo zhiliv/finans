@@ -1,17 +1,21 @@
 <template>
-  <div class="col-span-12 lg:col-span-6 mx-4">
+  <div class="lg:col-span-4 col-span-12 mx-4">
     <app-input
       v-model.trim="modelValue.name"
       class="input-bordered w-full"
       :valid="validName"
       label="Наименование"
     />
+  </div>
+  <div class="lg:col-span-4 col-span-12 mx-4">
     <app-input
       v-model.trim="modelValue.padez"
       class="input-bordered w-full"
       :valid="validPadez"
       label="Родительский падеж"
     />
+  </div>
+  <div class="lg:col-span-4 col-span-12 mx-4">
     <app-input
       v-model.trim="modelValue.mnozh"
       class="input-bordered w-full"

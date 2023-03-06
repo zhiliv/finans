@@ -43,45 +43,49 @@ export default {
   data() {
     return {
       list: [], // список типов периодов
-      isLoadList: true, // статус загрузки данных
+      isLoadList: false, // статус загрузки данных
       valueModel: {}, // данные страницы
-      title: 'ываыва',
+      title: 'Типы периодов',
       disabledSave: true, // доступность кнопки "Сохранить"
       disabledCancel: true, // доступность кнопки "Отменить"
     }
   },
 
-  async beforeMount() {
-    const { pending, data: list } = await useFetch('/api/types-period/all') // получение данных списка
-    this.isLoadList = pending // установка статуса загрузки
-    this.list = list // установка списка
+  mounted() {
+    const { getList } = this
+    getList()
   },
 
   methods: {
+    /*
+     * Получение списка типов документов
+     * @function getList
+     */
+    async getList() {
+      const { processingListResponse } = this
+      const { pending, data: list, error } = await useFetch('/api/types-period/all') // получение данных списка
+      if (processingListResponse(error)) {
+        this.list = list // установка списка
+        this.isLoadList = !!pending // установка статуса загрузки
+      }
+    },
     /*
      * Создание нового типа периода
      * @function onNew
      */
     async onNew() {
-      const { $showModal, $nextTick, list, capitalize } = this
-      const result = await $showModal('modal_types_period', { modalTitle: 'Создание нового типа периода' })
-      if (result) {
-        result.name = capitalize(result.name)
-        result.padez = capitalize(result.padez)
-        result.mnozh = capitalize(result.mnozh)
-        const response = await useFetch('/api/types-period/add', { method: 'POST', body: result }) // получение данных списка
-        if (response) {
-          this.list.push(response.data.value)
-          const index = list.findIndex(el => el.id === response.data.value.id)
-          $nextTick(() => {
-            this.$refs.list.$el.querySelectorAll('li')[index].click() // эмуляция клика по элементу
-          })
-          this.$showToast({
-            title: '',
-            message: 'Запись успешно создана',
-            timer: 5000,
-            class: 'alert-success',
-          })
+      const { $showModal, list, capitalize, selectItem, processResponse } = this
+      const body = await $showModal('modal_types_period', { modalTitle: 'Создание нового типа периода' })
+      if (body) {
+        body.name = capitalize(body.name)
+        body.padez = capitalize(body.padez)
+        body.mnozh = capitalize(body.mnozh)
+        const paramsQuery = { method: 'POST', body } // параметры запроса
+        const response = await useFetch('/api/types-period/add', paramsQuery) // получение данных списка
+        if (processResponse(response)) {
+          this.list.push(response.data.value.data)
+          const index = list.findIndex(el => el.id === response.data.value.data.id)
+          selectItem(index) // выбор элемента списка
         }
       }
     },
@@ -91,31 +95,20 @@ export default {
      * @param {Object} item - элемент
      */
     async onDeleteItem(item) {
-      const { list, $showConfirm } = this
+      const { list, $showConfirm, selectItem, processResponse } = this
       const options = {
-        message: 'Удалить тип периода?',
+        message: 'Удалить запись?',
       } // опции формы подтверждения
       const confirm = await $showConfirm(options) // открытие окна подтверждение
       if (confirm) {
         const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
-        const response = await useFetch('/api/types-period/del', { method: 'DELETE', body: list[index].id }) // получение данных списка
-        if (response.data != 1)
-          this.$showToast({
-            title: '',
-            message: 'Запись удалена успешно',
-            timer: 5000,
-            class: 'alert-warning',
-          })
-        else
-          this.$showToast({
-            title: 'Ошибка: ',
-            message: 'response.errror',
-            timer: 5000,
-            class: 'alert-error',
-          })
-
-        list.splice(index, 1) // удаление элемента из списка
-        this.$refs.list.$el.querySelectorAll('li')[index - 1].click() // эмуляция клика по элементу
+        const paramsQuery = { method: 'DELETE', body: list[index].id } // параметры запроса
+        const response = await useFetch('/api/types-period/del', paramsQuery) // получение данных списка
+        if (processResponse(response)) {
+          list.splice(index, 1) // удаление элемента из списка
+          if (list.length) selectItem()
+          else this.valueModel.name = null
+        }
       }
     },
     /*
@@ -132,30 +125,21 @@ export default {
      * @function onSave
      */
     async onSave() {
-      const { $showConfirm,  cloneObject } = this
+      const { $showConfirm, cloneObject, capitalize, selectItem, processResponse } = this
       const optionsConfirm = {
-        message: 'Есть не сохраненные данные, отменить изменения?',
+        message: 'Сохранить изменения?',
       }
       const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
       if (confirm) {
         const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
-        const params = cloneObject(this.valueModel)
-        params.name = this.capitalize(params.name)
-        params.padez = this.capitalize(params.padez)
-        params.mnozh = this.capitalize(params.mnozh)
-        const response = await useFetch('/api/types-period/edit', { method: 'POST', body: params }) // получение данных списка
-        if (response) {
-          this.$showToast({
-            title: '',
-            message: 'Данные записи успешно обновлены',
-            timer: 5000,
-            class: 'alert-success',
-          })
+        const body = cloneObject(this.valueModel)
+        body.name = this.capitalize(body.name)
+        body.padez = this.capitalize(body.padez)
+        body.mnozh = this.capitalize(body.mnozh)
+        const response = await useFetch('/api/types-period/edit', { method: 'POST', body }) // получение данных списка
+        if (processResponse(response)) {
           this.list[index] = this.valueModel // Изменение объекта выделенного элемента в списка
-          this.$nextTick(() => {
-            // после рендеринга
-            this.$refs.list.$el.querySelectorAll('li')[index].click() // эмуляция клика по элементу
-          })
+          selectItem(index)
         }
       }
     },
@@ -178,6 +162,19 @@ export default {
         this.valueModel = item // установка значения данных модели
       }
     },
+
+    /*
+     * Выделение элемента списка
+     * @function selectItem
+     * @param {Number} index Индекс выделяемого элемента
+     */
+    selectItem(index) {
+      const { $nextTick, list, $refs } = this
+      if (list.length)
+        $nextTick(() => {
+          $refs.list.$el.querySelectorAll('li')[index ? index : 0].click() // эмуляция клика по элементу
+        })
+    },
   },
 
   watch: {
@@ -196,11 +193,11 @@ export default {
       },
       deep: true,
     },
+    /* Наблюдение за статусом загрузкой списка */
+    isLoadList(newValue) {
+      const { selectItem } = this
+      selectItem()
+    },
   },
 }
 </script>
-
-<style>
-</style>
-
-
