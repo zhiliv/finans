@@ -1,7 +1,7 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class offers extends Model {
+export default class organizations extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
@@ -15,37 +15,46 @@ export default class offers extends Model {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "Наименование оффера"
+      comment: "Наименование"
+    },
+    short_description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      comment: "Короткое описание "
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: true,
-      comment: "Описание оффера"
-    },
-    short_description: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      comment: "Короткое описание оффера"
+      comment: "Полное описание"
     },
     site: {
       type: DataTypes.STRING,
       allowNull: true,
-      comment: "Ссылка на сайт"
+      comment: "Сайт организации"
     },
-    create_dt: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-      comment: "Дата создания"
+    img_organization__id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      comment: "Банер по умолчанию",
+      references: {
+        model: 'img_organization',
+        key: 'id'
+      }
     }
   }, {
     sequelize,
-    tableName: 'offers',
+    tableName: 'organizations',
     schema: 'prod',
     timestamps: false,
     indexes: [
       {
-        name: "offers_pk",
+        name: "organuzation_id_idx",
+        fields: [
+          { name: "id" },
+        ]
+      },
+      {
+        name: "organuzation_pk",
         unique: true,
         fields: [
           { name: "id" },

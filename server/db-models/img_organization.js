@@ -1,7 +1,7 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class users extends Model {
+export default class img_organization extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
@@ -9,39 +9,47 @@ export default class users extends Model {
       autoIncrementIdentity: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      comment: "Идентификатор пользователя",
+      comment: "Идентификатор",
       primaryKey: true
     },
-    name: {
-      type: DataTypes.STRING,
+    id_organization: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      comment: "Имя пользователя"
+      comment: "Идентификактор организации",
+      references: {
+        model: 'organizations',
+        key: 'id'
+      }
     },
-    password_hash: {
+    path: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "Пароль пользователя"
+      comment: "Путь к файлу"
     },
     created_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-      comment: "Дата создания"
+      comment: "Дата создания записи"
     },
     update_date: {
       type: DataTypes.DATE,
+      allowNull: false,
+      comment: "Дата обнолвения "
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
       allowNull: true,
-      comment: "Дата обновления записи"
+      comment: "Статус банера"
     }
   }, {
     sequelize,
-    tableName: 'users',
-    schema: 'controls',
+    tableName: 'img_organization',
+    schema: 'prod',
     hasTrigger: true,
     timestamps: false,
     indexes: [
       {
-        name: "users_pk",
+        name: "banners_organization_pk",
         unique: true,
         fields: [
           { name: "id" },

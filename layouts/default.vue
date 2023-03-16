@@ -39,6 +39,7 @@ export default {
       menu: [
         { name: 'Статистика', href: '/' },
         { name: 'Офферы', href: '/offers/page_offers' },
+        {name: 'Организации', href: '/organizations/page_organizations'},
         {
           name: 'Справочники',
           dropdown: true,
@@ -49,6 +50,7 @@ export default {
             { name: 'Типы периодов', href: '/guides/page_types_period' },
             { name: 'Способы получения денег', href: '/guides/page_method_get_money' },
             { name: 'Типы профитов', href: '/guides/page_type_profit' },
+
           ],
         },
       ], // меню
