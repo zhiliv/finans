@@ -1,7 +1,7 @@
 <template>
-  <div class="modal-mask select-none" v-show="isShow && bodyModal">
+  <div class="modal-mask select-none" v-show="isShow && bodyModal" >
     <div class="modal-wrapper">
-      <div class="modal-container border-2 border-zinc-500">
+      <div class="modal-container border-2 border-zinc-500" :class="valueModel.width ? valueModel.width : 'w-[50%]'">
         <div class="body-modal bg-zinc-600">
           <div class="h-auto bg-zinc-700 p-1 text-center border-b-2 border-zinc-500">
             <h4 class="text-amber-600 px-4">{{valueModel.modalTitle}}</h4>
@@ -28,6 +28,7 @@ export default {
   mounted() {
     const { $listen } = this
     $listen('show-modal', event => {
+      console.log('🚀 -> mounted -> event:', event)
       this.valueModel = event // присвоение объекту формы переданного значения
       this.bodyModal = markRaw(defineAsyncComponent(() => import(`./modals/${event.form}.vue`))) // получение тела формы
       this.isShow = true // отображение окна
@@ -37,6 +38,7 @@ export default {
     })
 
   },
+
 }
 </script>
 
@@ -59,7 +61,6 @@ export default {
   }
 
   .modal-container {
-    width: 50%;
     margin: 0px auto;
     background-color: #fff;
     border-radius: 2px;

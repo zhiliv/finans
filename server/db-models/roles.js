@@ -1,7 +1,7 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class users extends Model {
+export default class roles extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
@@ -9,39 +9,42 @@ export default class users extends Model {
       autoIncrementIdentity: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      comment: "Идентификатор пользователя",
+      comment: "Идентификатор",
       primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "Имя пользователя"
-    },
-    password_hash: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      comment: "Пароль пользователя"
+      comment: "Наименование роли"
     },
     created_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-      comment: "Дата создания"
+      comment: "Дата создания записи"
     },
     update_date: {
       type: DataTypes.DATE,
       allowNull: true,
-      comment: "Дата обновления записи"
+      comment: "Дата обновлбения роли"
+    },
+    created_user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      comment: "Создавший пользователь",
+      references: {
+        model: 'users',
+        key: 'id'
+      }
     }
   }, {
     sequelize,
-    tableName: 'users',
+    tableName: 'roles',
     schema: 'controls',
     hasTrigger: true,
     timestamps: false,
     indexes: [
       {
-        name: "users_pk",
+        name: "roles_pk",
         unique: true,
         fields: [
           { name: "id" },
