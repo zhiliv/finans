@@ -23,11 +23,14 @@ module.exports = {
       width: {
         92: '23em',
       },
+      zIndex: {
+        '100': '100'
+      }
     },
   },
+
   daisyui: {
     themes: ['halloween'],
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
-
 }

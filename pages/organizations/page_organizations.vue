@@ -9,8 +9,7 @@
             v-model="selectedItem"
             :is-load="isLoadList"
             ref="list"
-            :on-delete="onDeleteItem"
-          />
+            :on-delete="onDeleteItem" />
         </div>
         <div class="lg:col-span-9 col-span-12 w-full overflow-y-scroll min-h-full">
           <div class="grid grid-cols-12 min-h-full">
@@ -22,7 +21,7 @@
                       <h5>Изображения</h5>
                     </div>
                     <div class="col-span-12 flex justify-center">
-                      <img src alt class="w-[150px] h-[150px] border" />
+                      <nuxt-img v-if="valueModel.image" :src="valueModel.image" alt class="w-[150px] h-[150px] border" />
                     </div>
                     <div class="col-span-12 justify-center">
                       <app-button class="btn-sm mt-2 btn-warning" @click="addImage">Добавить</app-button>
@@ -32,13 +31,12 @@
                         <nuxt-img
                           v-for="item in images"
                           :key="item.path"
-                          :src="'organizations/' + item.path"
+                          :src="item.path"
                           :filename="item.path"
                           alt
-                          width="150"
-                          :class="['m-2', 'border', {'border-green-500 border-2': item.isActiveImage}]"
-                          @click="selectImage"
-                        />
+                          width="100"
+                          :class="['m-2', 'border', { 'border-green-500 border-2': item.isActiveImage }]"
+                          @click="selectImage" />
                       </div>
                     </div>
                   </div>
@@ -52,26 +50,32 @@
                   <app-input
                     v-model.trim="valueModel.name"
                     class="input-bordered w-full"
-                    :class="{'input-success': valueModel.name && valueModel.name.length > 2, 'input-error': !valueModel.name || valueModel.name.length < 3,}"
-                    label="Наименование"
-                  />
+                    :class="{
+                      'input-success': valueModel.name && valueModel.name.length > 2,
+                      'input-error': !valueModel.name || valueModel.name.length < 3,
+                    }"
+                    label="Наименование" />
                 </div>
                 <div class="xl:col-span-6 col-span-12 mx-4 py-1">
                   <app-input
                     v-model.trim="valueModel.site"
                     class="input-bordered w-full"
-                    :class="{'input-success': valueModel.site && valueModel.site.length > 2, 'input-error': !valueModel.site || valueModel.site.length < 5,}"
-                    label="Сайт организации"
-                  />
+                    :class="{
+                      'input-success': valueModel.site && valueModel.site.length > 2,
+                      'input-error': !valueModel.site || valueModel.site.length < 5,
+                    }"
+                    label="Сайт организации" />
                 </div>
                 <div class="col-span-12 mx-4">
                   <label class="label py-0 px-2">Короткое описание</label>
                   <textarea
                     v-model.trim="valueModel.short_description"
                     class="textarea textarea-bordered h-52 w-full my-2"
-                    :class="{'textarea-success': valueModel.short_description, 'textarea-error': !valueModel.short_description}"
-                    placeholder="Короткое описание"
-                  />
+                    :class="{
+                      'textarea-success': valueModel.short_description,
+                      'textarea-error': !valueModel.short_description,
+                    }"
+                    placeholder="Короткое описание" />
                 </div>
               </div>
             </div>
@@ -81,9 +85,8 @@
               <textarea
                 v-model.trim="valueModel.description"
                 class="textarea textarea-bordered h-60 w-full my-2"
-                :class="{'textarea-success': valueModel.description, 'textarea-error': !valueModel.description}"
-                placeholder="Описание"
-              />
+                :class="{ 'textarea-success': valueModel.description, 'textarea-error': !valueModel.description }"
+                placeholder="Описание" />
             </div>
           </div>
         </div>
@@ -95,8 +98,7 @@
     :on-save="onSave"
     :on-cancel="onCancel"
     :on-new="onNew"
-    :disabled-cancel="disabledCancel"
-  />
+    :disabled-cancel="disabledCancel" />
 </template>
 
 <script>
@@ -121,6 +123,7 @@ export default {
         description: null, // описание
         short_description: null, // короткое описание
         site: null,
+        image: null, // имя файла изображения
       }, // данные страницы
       title: 'Организации',
       images: [], // изображения организации
@@ -143,8 +146,12 @@ export default {
     selectImage(event) {
       const filename = event.target.attributes.filename.nodeValue // получение имени файла
       let index
-      if (filename) index = this.images.findIndex(el => el.path === filename)
-      if (index !== -1) this.images[index].isActiveImage = true
+      if (filename) index = this.images.findIndex(el => el.path === filename) // Получение индекса выделенного изображения
+      if (index >= 0){
+        this.images.forEach(el => el.isActiveImage = false)
+        this.images[index].isActiveImage = true
+        this.valueModel.image = this.images[index].path
+      }
     },
 
     /*
@@ -152,14 +159,14 @@ export default {
      * @function addImage
      */
     async addImage() {
-      const { $showModal } = this
+      const { $showModal, valueModel } = this
       const body = await $showModal('upload-file', {
         modalTitle: 'Загрузка изображения',
-        width: 'w-[500px]',
-        path: 'organizations/load-image',
+        width: 'w-[600px]',
+        url: `/api/organizations/load-image?id=${valueModel.id}`,
+        name: valueModel.id,
       })
-      this.images.push({ path: `${body.name}` })
-      console.log('images', this.images)
+      this.images.push({ path: body.path })
     },
     /*
      * Сохранение данных
@@ -194,7 +201,7 @@ export default {
       const { processingListResponse } = this
       const { pending, data: list, error } = await useFetch('/api/organizations/all') // получение данных списка
       if (processingListResponse(error)) {
-        this.list = list // установка списка
+        this.list = list.value[0] // установка списка
         this.isLoadList = !!pending // установка статуса загрузки
       }
     },
@@ -329,14 +336,15 @@ export default {
     valueModel: {
       handler(newValue) {
         const { validateForm, withObject, selectedItem } = this
+        this.images = []
         this.disabledSave = validateForm(newValue) || withObject(newValue, selectedItem) // установка активности кнопки "Сохранить"
-        this.disabledCancel = withObject(newValue, selectedItem)
-      },
-      deep: true,
-    },
-    methodGetMoney: {
-      handler(newVal) {
-        console.log('🚀 -> handler -> newVal:', newVal)
+        this.disabledCancel = withObject(newValue, selectedItem) // установка активности кнопки "Отменить"
+        if(newValue.images) {
+          const arr = Object.values(newValue.images) // преобразование значений объекта в массив
+          this.images = arr.map(el => {return {path: el}})  // формирование массива с изображениями
+          const index = this.images.findIndex(el => el.path === newValue.image) // Поиск индекса изображения организации
+          if(index >= 0) this.images[index].isActiveImage = true // установка активности для изображения из списка
+        }
       },
       deep: true,
     },

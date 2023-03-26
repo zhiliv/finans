@@ -1,32 +1,23 @@
 <template>
   <div class="grid grid-cols-12 min-h-full">
     <div class="col-span-12 flex justify-center">
-      <vue-dropzone
-        id="dropzone"
-        :options="dropzoneOptions"
-        v-on:vdropzone-sending="sendingEvent"
-        @vdropzone-error="uploadError"
-        @vdropzone-success="onSuccess"
-      />
+      <input
+        ref="file"
+        type="file"
+        class="file-input file-input-bordered file-input-primary w-full max-w-xs my-4"
+        @change="onFileChanged($event)" />
     </div>
   </div>
-  <div class="flex justify-center p-2 flex-col xl:flex-row">
-    <app-button class="btn-error w-full xl:w-[120px]" @click="onCancel" v-show="!file">Отмена</app-button>
-    <app-button
-      v-show="file"
-      :class="{'btn-disabled': disabledLoad}"
-      class="btn-success my-2 xl:my-0 w-full xl:w-[120px]"
-      @click="onClose"
-    >Загрузить</app-button>
+  <div class="p-3 flex flex-col lg:flex-row justify-between items-center h-full">
+    <app-button class="btn-error w-full lg:btn-wide m-2" @click="onCancel">Отменить</app-button>
+    <app-button class="btn-success w-full lg:btn-wide m-2" @click="onUpload" :disabled="disabledLoad">Загрузить</app-button>
   </div>
 </template>
 
 <script>
-import vueDropzone from 'vue2-dropzone-vue3'
+import mixinFunction from '~/mixins/globalMixins'
 export default {
-  components: {
-    vueDropzone,
-  },
+  mixins: [mixinFunction],
   inheritAttrs: false, // отключение наследования аттрибутов
 
   props: {
@@ -40,53 +31,37 @@ export default {
 
   data() {
     return {
-      disabledLoad: true,
-      file: null, // загружаемый файл
-      dropzoneOptions: {
-        url: `/api/${this.inputData.path}`,
-        maxFilesize: 10,
-        dictFileTooBig:
-          'Допустимый размер файла: {{maxFilesize}} MB текущий файл имеет размер \n(size: {{filesize}} MB)',
-        dictDefaultMessage: 'Выберите файл за загрузки',
-      },
+      disabledLoad: true, // активность кнопки "Загрузить"
+      formData: null, // загружаемый файл
+      file: null, // данные о файле
     }
   },
 
   methods: {
     /*
-     * Закрытие формы и передача данных о файле в родительскую форму
-     * @function onClose
+     * При выборе файла
+     * @function onFileChanged
+     * @param {Object} event - Данные события
      */
-    onClose() {
-      const { $event, inputData, file } = this
-      $event(`close-modal-${inputData.formUuid}`, file) // открытие модальной формы
+    onFileChanged(event) {
+      this.formData = new FormData() // создание объекта данных формы
+      this.file = event.target.files[0] // получение данных файла
+      this.formData.append('file', this.file) // добавление в объект данных формы информации о файле
     },
 
     /*
-     * При успешном добавлении
-     * @function onSuccess
+     *  @function  onUpload
      */
-    onSuccess(file, response) {
-      this.file = file
-    },
-
-    /*
-     * Добавление свойства имени файла
-     * @function  sendingEvent
-     */
-    sendingEvent(file, xhr, formData) {
-      formData.append('name', file.name)
-    },
-
-    /*
-     * При ошибке отображать сообщение
-     * @function uploadError
-     */
-    uploadError(file, message, xhr) {
-      if (message instanceof Object) {
-        file.previewElement.querySelectorAll('.dz-error-message span')[0].textContent = message.message
+    async onUpload() {
+      const { $event, inputData, formData, processResponse } = this
+      const paramsQuery = { method: 'POST', body: formData } // параметры запроса
+      const response = await useFetch(inputData.url, paramsQuery) // получение данных списка
+      if(processResponse(response)){
+        $event(`close-modal-${inputData.formUuid}`, {path: response.data.value.path ? response.data.value.path : null}) // открытие модальной формы
       }
+
     },
+
     /*
      * События нажатия кнопки "Отмена"
      */

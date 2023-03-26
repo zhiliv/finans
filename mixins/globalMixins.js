@@ -152,13 +152,23 @@ export default {
         toastParams.message = response.error.value.data.message // текст сообщения
         toastParams.class = 'alert-error' // тип сообщения
         console.error('Произошла ошибка при выполнении запроса: ', response)
-      } else if (response && response.data && response.data.value && response.data.value.status === 200) {
+      } else if (
+        response &&
+        response.data &&
+        response.data.value &&
+        (response.data.value.status === 200 || response.data.value.status === 'success')
+      ) {
         toastParams.class = response.data.value.typeMessage
           ? `alert-${response.data.value.typeMessage}`
           : 'alert-warning' // установка типа сообщения
         toastParams.message = response.data.value.message ? response.data.value.message : 'Успешно' // установка текста сообщения
         status = true // установка статуса обработки
-      } else if (response && response.data && response.data.value && response.data.value.status === 217) {
+      } else if (
+        response &&
+        response.data &&
+        response.data.value &&
+        (response.data.value.status === 217 || response.data.value.status === 'warning')
+      ) {
         toastParams.class = response.data.value.typeMessage
           ? `alert-${response.data.value.typeMessage}`
           : 'alert-warning' // установка типа сообщения
@@ -195,6 +205,5 @@ export default {
         return false
       } else return true
     },
-
   },
 }

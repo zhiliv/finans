@@ -1,18 +1,6 @@
 <template>
   <label class="label py-0 px-2">{{label}}</label>
   <input
-    v-if="$attrs.mask"
-    :value="modelValue"
-    type="text"
-    class="input"
-    v-mask="`${$attrs.mask}`"
-    :pattern="$attrs.patterns"
-    :maxlength="$attrs.maxlength"
-    :class="[$attrs.class, {'input-success': valid === 'success', 'input-error': valid === 'error'}]"
-    @input="$emit('update:modelValue', $event.target.value ? $event.target.value : null)"
-  />
-  <input
-    v-if="!$attrs.mask"
     :value="modelValue"
     type="text"
     class="input"

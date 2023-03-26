@@ -61,8 +61,8 @@ export default function initModels(sequelize) {
   regions.hasMany(cities, { as: "cities", foreignKey: "region_id"});
   link_categories.belongsTo(categories, { as: "id_category_category", foreignKey: "id_category"});
   categories.hasMany(link_categories, { as: "link_categories", foreignKey: "id_category"});
-  organizations.belongsTo(img_organization, { as: "img_organization_", foreignKey: "img_organization__id"});
-  img_organization.hasMany(organizations, { as: "organizations", foreignKey: "img_organization__id"});
+  organizations.belongsTo(img_organization, { as: "img_organization_img_organization", foreignKey: "img_organization_id"});
+  img_organization.hasMany(organizations, { as: "organizations", foreignKey: "img_organization_id"});
   link_get_money.belongsTo(method_get_money, { as: "id_method_get_money_method_get_money", foreignKey: "id_method_get_money"});
   method_get_money.hasMany(link_get_money, { as: "link_get_moneys", foreignKey: "id_method_get_money"});
   img_offers.belongsTo(offers, { as: "id_offer_offer", foreignKey: "id_offer"});
