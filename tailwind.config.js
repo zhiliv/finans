@@ -22,6 +22,7 @@ module.exports = {
       },
       width: {
         92: '23em',
+        '50%': '50%',
       },
       zIndex: {
         '100': '100'

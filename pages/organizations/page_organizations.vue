@@ -21,22 +21,29 @@
                       <h5>Изображения</h5>
                     </div>
                     <div class="col-span-12 flex justify-center">
-                      <nuxt-img v-if="valueModel.image" :src="valueModel.image" alt class="w-[150px] h-[150px] border" />
+                      <nuxt-img
+                        v-if="valueModel.image"
+                        :src="valueModel.image"
+                        alt
+                        class="w-[150px] h-[150px] border" />
                     </div>
                     <div class="col-span-12 justify-center">
                       <app-button class="btn-sm mt-2 btn-warning" @click="addImage">Добавить</app-button>
                     </div>
                     <div class="col-span-12 justify-center">
                       <div class="flex max-w-full overflow-x-auto h-full">
-                        <nuxt-img
-                          v-for="item in images"
-                          :key="item.path"
-                          :src="item.path"
-                          :filename="item.path"
-                          alt
-                          width="100"
-                          :class="['m-2', 'border', { 'border-green-500 border-2': item.isActiveImage }]"
-                          @click="selectImage" />
+                        <template v-for="item in images" :key="item.path">
+                          <div class="relative min-w-[100px] min-h-[100px] p-2 m-1">
+                            <nuxt-img
+                              :src="item.path"
+                              :filename="item.path"
+                              alt
+                              width="100"
+                              :class="['m-2', 'border', 'w-[100px]', 'h-[100px]', { 'border-green-500 border-2': item.isActiveImage }]"
+                              @click="selectImage" />
+                            <button class="absolute top-2">X</button>
+                          </div>
+                        </template>
                       </div>
                     </div>
                   </div>
@@ -147,8 +154,8 @@ export default {
       const filename = event.target.attributes.filename.nodeValue // получение имени файла
       let index
       if (filename) index = this.images.findIndex(el => el.path === filename) // Получение индекса выделенного изображения
-      if (index >= 0){
-        this.images.forEach(el => el.isActiveImage = false)
+      if (index >= 0) {
+        this.images.forEach(el => (el.isActiveImage = false))
         this.images[index].isActiveImage = true
         this.valueModel.image = this.images[index].path
       }
@@ -339,11 +346,13 @@ export default {
         this.images = []
         this.disabledSave = validateForm(newValue) || withObject(newValue, selectedItem) // установка активности кнопки "Сохранить"
         this.disabledCancel = withObject(newValue, selectedItem) // установка активности кнопки "Отменить"
-        if(newValue.images) {
+        if (newValue.images) {
           const arr = Object.values(newValue.images) // преобразование значений объекта в массив
-          this.images = arr.map(el => {return {path: el}})  // формирование массива с изображениями
+          this.images = arr.map(el => {
+            return { path: el }
+          }) // формирование массива с изображениями
           const index = this.images.findIndex(el => el.path === newValue.image) // Поиск индекса изображения организации
-          if(index >= 0) this.images[index].isActiveImage = true // установка активности для изображения из списка
+          if (index >= 0) this.images[index].isActiveImage = true // установка активности для изображения из списка
         }
       },
       deep: true,

@@ -44,6 +44,7 @@ export default defineNuxtConfig({
   modules: [
     '@sidebase/nuxt-auth',
     '@nuxt/image-edge',
+    'nuxt-icons',
     '@nuxt-modules/compression',
     ['nuxt-purgecss', {
       enabled: true,
