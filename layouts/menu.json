@@ -4,12 +4,12 @@
     "href": "/"
   },
   {
-    "name": "Офферы",
-    "href": "/offers/page_offers"
-  },
-  {
     "name": "Организации",
     "href": "/organizations/page_organizations"
+  },
+  {
+    "name": "Офферы",
+    "href": "/offers/page_offers"
   },
   {
     "name": "Справочники",

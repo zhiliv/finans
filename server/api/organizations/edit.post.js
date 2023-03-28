@@ -6,7 +6,6 @@ export default defineEventHandler(async event => {
   if(body && body.image){
     const image = await sequelize.models.img_organization.findOne({where: {id_organization: body.id, path: body.image}})
     body.img_organization_id = image.id
-    console.log('🚀 -> body.img_organization_id:', body.img_organization_id)
   }
   const result = {}
   try {

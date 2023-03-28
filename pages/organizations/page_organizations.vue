@@ -39,9 +39,20 @@
                               :filename="item.path"
                               alt
                               width="100"
-                              :class="['m-2', 'border', 'w-[100px]', 'h-[100px]', { 'border-green-500 border-2': item.isActiveImage }]"
+                              :class="[
+                                'm-2',
+                                'border',
+                                'w-[100px]',
+                                'h-[100px]',
+                                { 'border-green-500 border-2': item.isActiveImage },
+                              ]"
                               @click="selectImage" />
-                            <button class="absolute top-2">X</button>
+                            <button
+                              class="absolute top-5 right-0 h-6"
+                              @click="deleteImage(item)"
+                              v-if="item.path !== valueModel.image">
+                              <nuxt-icon name="mdi/mdi-delete" style="font-size: 1.2em" />
+                            </button>
                           </div>
                         </template>
                       </div>
@@ -147,6 +158,27 @@ export default {
 
   methods: {
     /*
+     * Удаление выбранного изображения
+     * @function deleteImage
+     * @param {Object} image - Объект изображения
+     */
+    async deleteImage(image) {
+      const { $showConfirm, processResponse, valueModel, images } = this
+      const optionsConfirm = {
+        message: 'Удалить выбранное изображение?',
+      } // опции формы подтверждения
+      const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
+      if (confirm) {
+        const paramsQuery = { method: 'POST', body: { id_organization: valueModel.id, path: image.path } } // параметры запроса
+        const response = await useFetch('/api/organizations/delete-image', paramsQuery) // отправка запроса для удаления изображения
+        if (processResponse(response)) {
+          const index = images.findIndex(el => el.path === image.path)
+          this.images.splice(index, 1)
+        }
+      }
+    },
+
+    /*
      * Выбор изображения
      * @function selectImage
      */
@@ -222,7 +254,7 @@ export default {
       const body = await $showModal('modal_name', { modalTitle: 'Создание новой организации' })
       if (body) {
         body.name = capitalize(body.name)
-        const paramsQuery = { method: 'POST', body } // параметры запроса
+        const paramsQuery = { method: 'PUT', body } // параметры запроса
         const response = await useFetch('/api/organizations/add', paramsQuery) // получение данных списка
         if (processResponse(response)) {
           this.list.push(response.data.value.data)

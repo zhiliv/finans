@@ -81,7 +81,6 @@ export default {
         body.name = capitalize(body.name)
         const paramsQuery = { method: 'POST', body } // параметры запроса
         const response = await useFetch('/api/cpa/add', paramsQuery) // получение данных списка
-        console.log('🚀 -> onNew -> response:', response)
         if (processResponse(response)) {
           this.list.push(response.data.value.data)
           const index = list.findIndex(el => el.id === response.data.value.data.id)

@@ -28,7 +28,6 @@ export default {
   mounted() {
     const { $listen } = this
     $listen('show-modal', event => {
-      console.log('🚀 -> mounted -> event:', event)
       this.valueModel = event // присвоение объекту формы переданного значения
       this.bodyModal = markRaw(defineAsyncComponent(() => import(`./modals/${event.form}.vue`))) // получение тела формы
       this.isShow = true // отображение окна

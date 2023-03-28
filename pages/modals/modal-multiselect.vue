@@ -103,7 +103,6 @@ export default {
       if (event.key) this.key = event.key // установка ключа
       if (event.text) this.key = event.text // установка свойства текстового отображения
       this.list = event.list // установка списка
-      console.log(event)
       if(event.selected && event.selected.length) this.valueModel = event.selected // установка значения активных чекбоксов
       this.isShow = true // установка статуса показа окна
     })

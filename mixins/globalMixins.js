@@ -141,6 +141,7 @@ export default {
      * @param {Object} response - Данные ответа запроса
      */
     processResponse(response) {
+      console.log('🚀 -> processResponse -> response:', response)
       const { $showToast } = this
       const toastParams = {
         title: '', // заголовок сообщения
@@ -163,6 +164,9 @@ export default {
           : 'alert-warning' // установка типа сообщения
         toastParams.message = response.data.value.message ? response.data.value.message : 'Успешно' // установка текста сообщения
         status = true // установка статуса обработки
+      } else if (response && response.data && response.data.value && response.data.value.toString().includes('<!DOCTYPE html>')) {
+        toastParams.message = 'Неизвестная ошибка'
+        toastParams.class = 'alert-error'
       } else if (
         response &&
         response.data &&
