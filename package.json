@@ -32,7 +32,7 @@
     "bcrypt": "^5.1.0",
     "busboy": "^1.6.0",
     "cli-color": "^2.0.3",
-    "daisyui": "^2.51.3",
+    "daisyui": "^2.51.5",
     "mitt": "^3.0.0",
     "moment": "^2.29.4",
     "next-auth": "^4.20.1",

@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     database: {
       username: 'postgres',
-      password: 1,
+      password: "1",
       host: '127.0.0.1',
       port: 5432,
       database: 'finance',

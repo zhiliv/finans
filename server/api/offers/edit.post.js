@@ -3,6 +3,10 @@ import { sequelize } from '~/server/db.js'
 export default defineEventHandler(async event => {
   const t = await sequelize.transaction()
   const body = await readBody(event) // получение параметров
+  if(body && body.image){
+    const image = await sequelize.models.img_offers.findOne({where: {id_offer: body.id, path: body.image}})
+    body.img_offer_id = image.id
+  }
   const result = {}
   try {
     const fields = [
@@ -35,9 +39,11 @@ export default defineEventHandler(async event => {
       'epc',
       'status',
       'type_profit',
+      'img_offer_id'
     ]
     const params = { transaction: t, where: { id: body.id }, fields, returning: true }
     const offer = await sequelize.models.offers.update(body, params)
+    console.log('🚀 -> offer:', offer)
 
     await t.commit()
     result.status = 200

@@ -2,89 +2,150 @@
   <div class="w-full h-[calc(100vh-28px-70px)] items-start lg:py-0 py-1 bg-stone-800">
     <div class="items-start h-full">
       <div class="grid grid-cols-12 h-full">
-        <div class="lg:col-span-3 col-span-12 h-full mx-4 lg:mx-0 min-h-[150px]">
+        <div class="lg:col-span-3 col-span-12 h-full mx-4 lg:mx-0 min-h-[300px]">
           <app-listbox-items
             :list="list"
             class="border border-gray-400 bg-stone-700 min-h-[100%]"
             v-model="selectedItem"
             :is-load="isLoadList"
             ref="list"
-            :on-delete="onDeleteItem"
-          />
+            :on-delete="onDeleteItem" />
         </div>
+
         <div class="lg:col-span-9 col-span-12 w-full overflow-y-scroll">
-          <div class="grid grid-cols-12">
+          <div class="tabs">
+            <div :class="['tab', 'tab-bordered', { 'tab-active': activeTab === 'main' }]" @click="selectTab('main')">
+              Основные данные
+            </div>
+            <div :class="['tab', 'tab-bordered', { 'tab-active': activeTab === 'value' }]" @click="selectTab('value')">
+              Значения оффера
+            </div>
+          </div>
+          <div class="grid grid-cols-12 my-2" v-show="activeTab === 'main'">
             <div class="xl:col-span-3 col-span-12 mx-4">
               <app-input
                 v-model.trim="valueModel.name"
                 class="input-bordered w-full"
-                :class="{'input-success': valueModel.name && valueModel.name.length > 2, 'input-error': !valueModel.name || valueModel.name.length < 3,}"
-                label="Наименование"
-              />
+                :class="{
+                  'input-success': valueModel.name && valueModel.name.length > 2,
+                  'input-error': !valueModel.name || valueModel.name.length < 3,
+                }"
+                label="Наименование" />
             </div>
             <div class="xl:col-span-2 col-span-12 mx-4">
               <app-select
                 label="Статус"
-                :select-class="{'select-success': valueModel.status, 'select-error': valueModel.status === null, 'select-warning': valueModel.status === false}"
+                :select-class="{
+                  'select-success': valueModel.status,
+                  'select-error': valueModel.status === null,
+                  'select-warning': valueModel.status === false,
+                }"
                 v-model="valueModel.status"
                 :options="listStatus"
                 required="true"
                 value="value"
                 is-load="true"
-                :select-value="valueModel.status"
-              />
+                :select-value="valueModel.status" />
             </div>
             <div class="xl:col-span-3 col-span-12 mx-4">
               <div class="w-full flex relative">
                 <app-select
                   class="w-[calc(100%-44px)]"
-                  :select-class="{'select-success': valueModel.id_cpa, 'select-error': !valueModel.id_cpa}"
+                  :select-class="{ 'select-success': valueModel.id_cpa, 'select-error': !valueModel.id_cpa }"
                   label="Партнерская программа"
                   v-model.number="valueModel.id_cpa"
                   :options="listCPA"
                   :is-load="isLoadCPA"
-                  :select-value="valueModel.id_cpa"
-                />
+                  :select-value="valueModel.id_cpa" />
                 <app-button
                   @click="onNewCPA"
-                  class="btn-sm btn-warning absolute top-[1.5em] right-0 font-bold hover:bg-amber-700 text-xl h-1/2"
-                >+</app-button>
+                  class="btn-sm btn-warning absolute top-7 right-0 font-bold hover:bg-amber-700 text-xl h-1/2"
+                  >+</app-button
+                >
               </div>
             </div>
             <div class="xl:col-span-2 col-span-12 mx-4">
-              <app-button
-                class="my-3 xl:mt-6 btn-warning font-bold hover:bg-amber-700 w-full"
-                @click="onSetCategory"
-              >Категории</app-button>
+              <app-button class="my-3 xl:mt-6 btn-warning font-bold hover:bg-amber-700 w-full" @click="onSetCategory"
+                >Категории</app-button
+              >
             </div>
             <div class="xl:col-span-2 col-span-12 mx-4">
               <app-button
                 class="my-3 xl:mt-6 btn-warning font-bold hover:bg-amber-700 w-full"
                 @click="onSetMethodGetMoney"
-              >Способы получения денег</app-button>
+                >Способы получения денег</app-button
+              >
             </div>
-            <div class="col-span-12 mx-4">
-              <label class="label py-0 px-2" v-if="valueModel.short_description">Короткое описание</label>
-              <textarea
-                v-model.trim="valueModel.short_description"
-                class="textarea textarea-bordered h-20 w-full my-2"
-                :class="{'textarea-success': valueModel.short_description, 'textarea-error': !valueModel.short_description}"
-                placeholder="Короткое описание"
-              />
+            <div class="col-span-12 mx-2">
+              <div class="grid grid-cols-12 min-h-full">
+                <div class="col-span-12 xl:col-span-4 mx-2 border border-zinc-600 rounded-md min-h-[300px]">
+                  <div class="grid grid-cols-12 text-center w-full">
+                    <div class="col-span-12 flex justify-center">
+                      <h5>Изображения</h5>
+                    </div>
+                    <div class="col-span-12 flex justify-center">
+                      <nuxt-img
+                        v-if="valueModel.image"
+                        :src="valueModel.image"
+                        alt
+                        class="w-[150px] h-[150px] border" />
+                    </div>
+                    <div class="col-span-12 justify-center">
+                      <app-button class="btn-sm mt-2 btn-warning" @click="addImage">Добавить</app-button>
+                    </div>
+                    <div class="col-span-12 justify-center">
+                      <div class="flex max-w-full overflow-x-auto h-full">
+                        <template v-for="item in images" :key="item.path">
+                          <div class="relative min-w-[100px] min-h-[100px] p-2 m-1">
+                            <nuxt-img
+                              :src="item.path"
+                              :filename="item.path"
+                              alt
+                              width="100"
+                              :class="[
+                                'm-2',
+                                'border',
+                                'w-[100px]',
+                                'h-[100px]',
+                                { 'border-green-500 border-2': item.isActiveImage },
+                              ]"
+                              @click="selectImage" />
+                            <button
+                              class="absolute top-5 right-0 h-6"
+                              @click="deleteImage(item)"
+                              v-if="item.path !== valueModel.image">
+                              <nuxt-icon name="mdi/mdi-delete" style="font-size: 1.2em" />
+                            </button>
+                          </div>
+                        </template>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-span-12 xl:col-span-8 px-2">
+                  <label class="label py-0 px-2" v-if="valueModel.short_description">Короткое описание</label>
+                  <textarea
+                    v-model.trim="valueModel.short_description"
+                    class="textarea textarea-bordered h-[270px] w-full"
+                    :class="{
+                      'textarea-success': valueModel.short_description,
+                      'textarea-error': !valueModel.short_description,
+                    }"
+                    placeholder="Короткое описание" />
+                </div>
+              </div>
             </div>
             <div class="col-span-12 mx-4">
               <label class="label py-0 px-2" v-if="valueModel.description">Описание</label>
               <textarea
                 v-model.trim="valueModel.description"
                 class="textarea textarea-bordered h-60 w-full my-2"
-                :class="{'textarea-success': valueModel.description, 'textarea-error': !valueModel.description}"
-                placeholder="Описание"
-              />
+                :class="{ 'textarea-success': valueModel.description, 'textarea-error': !valueModel.description }"
+                placeholder="Описание" />
             </div>
-            <div class="col-span-12 mx-4 my-4">
-              <hr class="w-full" />
-            </div>
-
+          </div>
+          <div class="grid grid-cols-12" v-show="activeTab === 'value'">
             <div class="xl:col-span-3 col-span-12 border border-zinc-700 m-2 p-2">
               <div class="grid grid-cols-12">
                 <div class="col-span-12 text-center border-b border-zinc-600">
@@ -95,18 +156,16 @@
                     v-model.number="valueModel.sum_start"
                     class="input-bordered w-full"
                     mask="##########"
-                    :class="{'input-success': valueModel.sum_start, 'input-warning': !valueModel.sum_start}"
-                    label="Мин."
-                  />
+                    :class="{ 'input-success': valueModel.sum_start, 'input-warning': !valueModel.sum_start }"
+                    label="Мин." />
                 </div>
                 <div class="xl:col-span-6 col-span-12 mx-4">
                   <app-input
                     v-model.number="valueModel.sum_end"
                     class="input-bordered w-full"
                     mask="##########"
-                    :class="{'input-success': valueModel.sum_end, 'input-warning': !valueModel.sum_end}"
-                    label="Макс."
-                  />
+                    :class="{ 'input-success': valueModel.sum_end, 'input-warning': !valueModel.sum_end }"
+                    label="Макс." />
                 </div>
               </div>
             </div>
@@ -121,21 +180,22 @@
                     v-model.number="valueModel.free_period"
                     class="input-bordered w-full"
                     mask="###"
-                    :class="{'input-success': valueModel.free_period, 'input-warning': !valueModel.free_period}"
-                    label="Период"
-                  />
+                    :class="{ 'input-success': valueModel.free_period, 'input-warning': !valueModel.free_period }"
+                    label="Период" />
                 </div>
                 <div class="xl:col-span-8 col-span-12 mx-4">
                   <app-select
                     class="w-full"
-                    :select-class="{'select-success': valueModel.type_free_period, 'select-error': valueModel.free_period && !valueModel.type_free_period}"
+                    :select-class="{
+                      'select-success': valueModel.type_free_period,
+                      'select-error': valueModel.free_period && !valueModel.type_free_period,
+                    }"
                     label="Тип"
                     :disabled="valueModel.free_period === null"
                     v-model="valueModel.type_free_period"
                     :options="listTypePeriod"
                     :is-load="isLoadTypePeriod"
-                    :select-value="valueModel.type_free_period"
-                  />
+                    :select-value="valueModel.type_free_period" />
                 </div>
               </div>
             </div>
@@ -149,42 +209,44 @@
                     v-model.number="valueModel.period_min"
                     class="input-bordered w-full"
                     mask="###"
-                    :class="{'input-success': valueModel.period_min, 'input-warning': !valueModel.period_min}"
-                    label="Мин"
-                  />
+                    :class="{ 'input-success': valueModel.period_min, 'input-warning': !valueModel.period_min }"
+                    label="Мин" />
                 </div>
                 <div class="xl:col-span-4 col-span-12 mx-4">
                   <app-select
                     class="w-full"
-                    :select-class="{'select-success': valueModel.type_period_min, 'select-error': valueModel.period_min && !valueModel.type_period_min}"
+                    :select-class="{
+                      'select-success': valueModel.type_period_min,
+                      'select-error': valueModel.period_min && !valueModel.type_period_min,
+                    }"
                     label="Тип(мин.)"
                     :disabled="valueModel.period_min === null"
                     v-model="valueModel.type_period_min"
                     :options="listTypePeriod"
                     :is-load="isLoadTypePeriod"
-                    :select-value="valueModel.type_period_min"
-                  />
+                    :select-value="valueModel.type_period_min" />
                 </div>
                 <div class="xl:col-span-2 col-span-12 mx-4">
                   <app-input
                     v-model.number="valueModel.period_max"
                     class="input-bordered w-full"
                     mask="###"
-                    :class="{'input-success': valueModel.period_max, 'input-warning': !valueModel.period_max}"
-                    label="Макс"
-                  />
+                    :class="{ 'input-success': valueModel.period_max, 'input-warning': !valueModel.period_max }"
+                    label="Макс" />
                 </div>
                 <div class="xl:col-span-4 col-span-12 mx-4">
                   <app-select
                     class="w-full"
-                    :select-class="{'select-success': valueModel.type_period_max, 'select-error': valueModel.period_max && !valueModel.type_period_max}"
+                    :select-class="{
+                      'select-success': valueModel.type_period_max,
+                      'select-error': valueModel.period_max && !valueModel.type_period_max,
+                    }"
                     label="Тип(макс.)"
                     :disabled="valueModel.period_max === null"
                     v-model="valueModel.type_period_max"
                     :options="listTypePeriod"
                     :is-load="isLoadTypePeriod"
-                    :select-value="valueModel.type_period_max"
-                  />
+                    :select-value="valueModel.type_period_max" />
                 </div>
               </div>
             </div>
@@ -199,21 +261,22 @@
                     v-model.number="valueModel.review_time"
                     class="input-bordered w-full"
                     mask="###"
-                    :class="{'input-success': valueModel.review_time, 'input-warning': !valueModel.review_time}"
-                    label="Значение"
-                  />
+                    :class="{ 'input-success': valueModel.review_time, 'input-warning': !valueModel.review_time }"
+                    label="Значение" />
                 </div>
                 <div class="xl:col-span-8 col-span-12 mx-4">
                   <app-select
                     class="w-full"
-                    :select-class="{'select-success': valueModel.type_review_time, 'select-error': valueModel.review_time && !valueModel.type_review_time}"
+                    :select-class="{
+                      'select-success': valueModel.type_review_time,
+                      'select-error': valueModel.review_time && !valueModel.type_review_time,
+                    }"
                     label="Тип(макс.)"
                     :disabled="valueModel.review_time === null"
                     v-model="valueModel.type_review_time"
                     :options="listTypePeriod"
                     :is-load="isLoadTypePeriod"
-                    :select-value="valueModel.type_review_time"
-                  />
+                    :select-value="valueModel.type_review_time" />
                 </div>
               </div>
             </div>
@@ -227,18 +290,16 @@
                     v-model.number="valueModel.age_start"
                     class="input-bordered w-full"
                     mask="##"
-                    :class="{'input-success': valueModel.age_start, 'input-warning': !valueModel.age_start}"
-                    label="Мин."
-                  />
+                    :class="{ 'input-success': valueModel.age_start, 'input-warning': !valueModel.age_start }"
+                    label="Мин." />
                 </div>
                 <div class="xl:col-span-6 col-span-12 mx-4">
                   <app-input
                     v-model.number="valueModel.age_end"
                     class="input-bordered w-full"
                     mask="##"
-                    :class="{'input-success': valueModel.age_end, 'input-warning': !valueModel.age_end}"
-                    label="Макс."
-                  />
+                    :class="{ 'input-success': valueModel.age_end, 'input-warning': !valueModel.age_end }"
+                    label="Макс." />
                 </div>
               </div>
             </div>
@@ -253,42 +314,44 @@
                     v-model.number="valueModel.percent_min"
                     class="input-bordered w-full"
                     mask="###"
-                    :class="{'input-success': valueModel.percent_min, 'input-warning': !valueModel.percent_min}"
-                    label="Мин"
-                  />
+                    :class="{ 'input-success': valueModel.percent_min, 'input-warning': !valueModel.percent_min }"
+                    label="Мин" />
                 </div>
                 <div class="xl:col-span-4 col-span-12 mx-4">
                   <app-select
                     class="w-full"
-                    :select-class="{'select-success': valueModel.type_percent_min, 'select-error': valueModel.percent_min && !valueModel.type_percent_min}"
+                    :select-class="{
+                      'select-success': valueModel.type_percent_min,
+                      'select-error': valueModel.percent_min && !valueModel.type_percent_min,
+                    }"
                     label="Тип(мин.)"
                     v-model="valueModel.type_percent_min"
                     :disabled="valueModel.percent_min === null"
                     :options="listTypePeriod"
                     :is-load="isLoadTypePeriod"
-                    :select-value="valueModel.type_percent_min"
-                  />
+                    :select-value="valueModel.type_percent_min" />
                 </div>
                 <div class="xl:col-span-2 col-span-12 mx-4">
                   <app-input
                     v-model.number="valueModel.percent_max"
                     class="input-bordered w-full"
                     mask="###"
-                    :class="{'input-success': valueModel.percent_max, 'input-warning': !valueModel.percent_max}"
-                    label="Макс"
-                  />
+                    :class="{ 'input-success': valueModel.percent_max, 'input-warning': !valueModel.percent_max }"
+                    label="Макс" />
                 </div>
                 <div class="xl:col-span-4 col-span-12 mx-4">
                   <app-select
                     class="w-full"
-                    :select-class="{'select-success': valueModel.type_percent_max, 'select-error': valueModel.percent_max && !valueModel.type_percent_max}"
+                    :select-class="{
+                      'select-success': valueModel.type_percent_max,
+                      'select-error': valueModel.percent_max && !valueModel.type_percent_max,
+                    }"
                     label="Тип(макс.)"
                     :disabled="valueModel.percent_max === null"
                     v-model="valueModel.type_percent_max"
                     :options="listTypePeriod"
                     :is-load="isLoadTypePeriod"
-                    :select-value="valueModel.type_percent_max"
-                  />
+                    :select-value="valueModel.type_percent_max" />
                 </div>
               </div>
             </div>
@@ -302,8 +365,7 @@
     :on-save="onSave"
     :on-cancel="onCancel"
     :on-new="onNew"
-    :disabled-cancel="disabledCancel"
-  />
+    :disabled-cancel="disabledCancel" />
 </template>
 
 <script>
@@ -367,6 +429,8 @@ export default {
       ], // список статусов
       selectedItem: null, // выделенный элемент в списке
       selectedStatus: null, // переменная для установки статуса в поле выбора
+      activeTab: 'main', // активная вкладка
+      images: [], // изображения организации
     }
   },
 
@@ -383,10 +447,49 @@ export default {
 
   methods: {
     /*
-    * Сохранение данных
-    * @function onSave
-    */
-    async onSave(){
+     * Выбор изображения
+     * @function selectImage
+     */
+    selectImage(event) {
+      const filename = event.target.attributes.filename.nodeValue // получение имени файла
+      let index
+      if (filename) index = this.images.findIndex(el => el.path === filename) // Получение индекса выделенного изображения
+      if (index >= 0) {
+        this.images.forEach(el => (el.isActiveImage = false)) // сброс активности для всех изображений
+        this.images[index].isActiveImage = true // установка активности для выбранного изображения
+        this.valueModel.image = this.images[index].path // установка изображения для текущей организации
+      }
+    },
+
+    /*
+     * Добавление изображения
+     * @function addImage
+     */
+    async addImage() {
+      const { $showModal, valueModel } = this
+      const body = await $showModal('upload-file', {
+        modalTitle: 'Загрузка изображения',
+        width: 'w-[600px]',
+        url: `/api/offers/load-image?id=${valueModel.id}`,
+        name: valueModel.id,
+      })
+      this.images.push({ path: body.path })
+    },
+
+    /*
+     * При выборе кладки
+     * @function selectTab
+     * @param {String} tab - Наименование вкладки
+     */
+    selectTab(tab) {
+      this.activeTab = tab
+    },
+
+    /*
+     * Сохранение данных
+     * @function onSave
+     */
+    async onSave() {
       const { $showConfirm, cloneObject, capitalize, selectItem, processResponse } = this
       const optionsConfirm = {
         message: 'Сохранить изменения?',
@@ -418,7 +521,7 @@ export default {
         list: listCategories,
         selected: valueModel.link_categories,
       })
-      if (body){
+      if (body) {
         const toast = {
           title: 'Категории успешно выбраны',
           class: 'alert-success',
@@ -429,17 +532,17 @@ export default {
     },
 
     /*
-    * Указание способов получения денег
-    * @function onSetMethodGetMoney
-    */
-    async onSetMethodGetMoney(){
+     * Указание способов получения денег
+     * @function onSetMethodGetMoney
+     */
+    async onSetMethodGetMoney() {
       const { $showMultiSelect, listMethodGetMoney, valueModel, $showToast } = this
       const body = await $showMultiSelect({
         title: 'Выбор способов получения денег',
         list: listMethodGetMoney,
         selected: valueModel.link_method_get_money,
       })
-      if (body){
+      if (body) {
         const toast = {
           title: 'Способы получения денег успешно выбраны',
           class: 'alert-success',
@@ -727,8 +830,17 @@ export default {
     valueModel: {
       handler(newValue) {
         const { validateForm, withObject, selectedItem } = this
-        this.disabledSave = validateForm(newValue) || withObject(newValue, selectedItem)// установка активности кнопки "Сохранить"
+        this.images = []
+        this.disabledSave = validateForm(newValue) || withObject(newValue, selectedItem) // установка активности кнопки "Сохранить"
         this.disabledCancel = withObject(newValue, selectedItem)
+        if (newValue.images) {
+          const arr = Object.values(newValue.images) // преобразование значений объекта в массив
+          this.images = arr.map(el => {
+            return { path: el }
+          }) // формирование массива с изображениями
+          const index = this.images.findIndex(el => el.path === newValue.image) // Поиск индекса изображения организации
+          if (index >= 0) this.images[index].isActiveImage = true // установка активности для изображения из списка
+        }
       },
       deep: true,
     },

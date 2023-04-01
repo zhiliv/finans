@@ -172,8 +172,8 @@ export default {
         const paramsQuery = { method: 'POST', body: { id_organization: valueModel.id, path: image.path } } // параметры запроса
         const response = await useFetch('/api/organizations/delete-image', paramsQuery) // отправка запроса для удаления изображения
         if (processResponse(response)) {
-          const index = images.findIndex(el => el.path === image.path)
-          this.images.splice(index, 1)
+          const index = images.findIndex(el => el.path === image.path) // получение индекса изображения в массиве
+          this.images.splice(index, 1) // удаление из массива элемента
         }
       }
     },
@@ -187,9 +187,9 @@ export default {
       let index
       if (filename) index = this.images.findIndex(el => el.path === filename) // Получение индекса выделенного изображения
       if (index >= 0) {
-        this.images.forEach(el => (el.isActiveImage = false))
-        this.images[index].isActiveImage = true
-        this.valueModel.image = this.images[index].path
+        this.images.forEach(el => (el.isActiveImage = false)) // сброс активности для всех изображений
+        this.images[index].isActiveImage = true // установка активности для выбранного изображения
+        this.valueModel.image = this.images[index].path // установка изображения для текущей организации
       }
     },
 
