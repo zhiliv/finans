@@ -1,7 +1,6 @@
 import { sequelize } from '~/server/db.js'
 import * as bcrypt from 'bcrypt'
 const config = useRuntimeConfig() // получение конфигурации
-import { getServerSession} from '#auth'
 
 export const getAccess = async  () => {
 

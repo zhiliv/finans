@@ -209,5 +209,15 @@ export default {
         return false
       } else return true
     },
+    
+    /* 
+    * Получение ссылки для изображений
+    * @function getUrlImage
+    */
+    getUrlImage(url){
+      return `img/${url}`
+    }
   },
+  
+
 }

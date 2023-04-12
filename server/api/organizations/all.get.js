@@ -1,7 +1,7 @@
 import { sequelize } from '~/server/db.js'
 
-// import { getServerSession } from '#auth'
 export default defineEventHandler(async event => {
+  if(!event.context.session.test) event.context.session.test = 'Тестовое значение'
   try {
     const query = `
     SELECT

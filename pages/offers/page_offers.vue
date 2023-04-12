@@ -86,7 +86,7 @@
                     <div class="col-span-12 flex justify-center">
                       <nuxt-img
                         v-if="valueModel.image"
-                        :src="valueModel.image"
+                        :src="getUrlImage(valueModel.image)"
                         alt
                         class="w-[150px] h-[150px] border" />
                     </div>
@@ -96,11 +96,12 @@
                     <div class="col-span-12 justify-center">
                       <div class="flex max-w-full overflow-x-auto h-full">
                         <template v-for="item in images" :key="item.path">
-                          <div class="relative min-w-[100px] min-h-[100px] p-2 m-1">
+                          <div class="relative min-w-[100px] min-h-[100px] ">
                             <nuxt-img
-                              :src="item.path"
-                              :filename="item.path"
+                              :src="getUrlImage(item.path)"
+                              :filename="`${item.path}`"
                               alt
+                              loading="lazy"
                               width="100"
                               :class="[
                                 'm-2',
@@ -111,10 +112,10 @@
                               ]"
                               @click="selectImage" />
                             <button
-                              class="absolute top-5 right-0 h-6"
+                              class="absolute top-3 right-3 h-6 "
                               @click="deleteImage(item)"
                               v-if="item.path !== valueModel.image">
-                              <nuxt-icon name="mdi/mdi-delete" style="font-size: 1.2em" />
+                              <nuxt-icon loading="lazy" quality="50" name="mdi/mdi-delete" style="font-size: 1.2em" />
                             </button>
                           </div>
                         </template>
@@ -446,6 +447,27 @@ export default {
   },
 
   methods: {
+    /*
+     * Удаление выбранного изображения
+     * @function deleteImage
+     * @param {Object} image - Объект изображения
+     */
+     async deleteImage(image) {
+      const { $showConfirm, processResponse, valueModel, images } = this
+      const optionsConfirm = {
+        message: 'Удалить выбранное изображение?',
+      } // опции формы подтверждения
+      const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
+      if (confirm) {
+        const paramsQuery = { method: 'POST', body: { id_organization: valueModel.id, path: image.path } } // параметры запроса
+        const response = await useFetch('/api/organizations/delete-image', paramsQuery) // отправка запроса для удаления изображения
+        if (processResponse(response)) {
+          const index = images.findIndex(el => el.path === image.path) // получение индекса изображения в массиве
+          this.images.splice(index, 1) // удаление из массива элемента
+        }
+      }
+    },
+    
     /*
      * Выбор изображения
      * @function selectImage

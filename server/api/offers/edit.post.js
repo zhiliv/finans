@@ -1,10 +1,11 @@
 import { sequelize } from '~/server/db.js'
 
 export default defineEventHandler(async event => {
+  const {models} = sequelize
   const t = await sequelize.transaction()
   const body = await readBody(event) // получение параметров
   if(body && body.image){
-    const image = await sequelize.models.img_offers.findOne({where: {id_offer: body.id, path: body.image}})
+    const image = await models.img_offers.findOne({where: {id_offer: body.id, path: body.image}})
     body.img_offer_id = image.id
   }
   const result = {}
@@ -42,9 +43,23 @@ export default defineEventHandler(async event => {
       'img_offer_id'
     ]
     const params = { transaction: t, where: { id: body.id }, fields, returning: true }
-    const offer = await sequelize.models.offers.update(body, params)
-    console.log('🚀 -> offer:', offer)
-
+    const offer = await models.offers.update(body, params)
+    await models.link_get_money.destroy({where: {id_offer: body.id}}) // удаление записей 
+    const arrMethodGetMoney = body.link_method_get_money.map(el => {
+      return {
+        id_offer: body.id,
+        id_method_get_money: el
+      }
+    }) // формирование массива
+    await models.link_get_money.bulkCreate(arrMethodGetMoney) // добавление массива способов получения денег для оффера
+    await models.link_categories.destroy({where: {id_offer: body.id}}) // удаление всех категорий для оффера
+    const arrCategories = body.link_categories.map(el => {
+      return {
+        id_offer: body.id,
+        id_category: el
+      }
+    }) // формирование массива
+    await models.link_categories.bulkCreate(arrCategories) // добавление массива категорий для оффера
     await t.commit()
     result.status = 200
     result.typeMessage = 'success'
