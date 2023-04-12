@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/valid-v-for -->
 <template>
-  <div class="absolute right-4 bottom-4">
+  <div class="absolute right-4 bottom-16 z-100">
     <app-toast-body
       v-for="item in listToast"
       :id="item.id"
@@ -32,3 +32,7 @@ export default {
   },
 }
 </script>
+
+<style>
+
+</style>

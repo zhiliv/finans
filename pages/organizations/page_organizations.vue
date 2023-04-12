@@ -9,8 +9,7 @@
             v-model="selectedItem"
             :is-load="isLoadList"
             ref="list"
-            :on-delete="onDeleteItem"
-          />
+            :on-delete="onDeleteItem" />
         </div>
         <div class="lg:col-span-9 col-span-12 w-full overflow-y-scroll min-h-full">
           <div class="grid grid-cols-12 min-h-full">
@@ -22,23 +21,40 @@
                       <h5>Изображения</h5>
                     </div>
                     <div class="col-span-12 flex justify-center">
-                      <img src alt class="w-[150px] h-[150px] border" />
+                      <nuxt-img
+                        v-if="valueModel.image"
+                        :src="valueModel.image"
+                        alt
+                        class="w-[150px] h-[150px] border" />
                     </div>
                     <div class="col-span-12 justify-center">
                       <app-button class="btn-sm mt-2 btn-warning" @click="addImage">Добавить</app-button>
                     </div>
                     <div class="col-span-12 justify-center">
                       <div class="flex max-w-full overflow-x-auto h-full">
-                        <nuxt-img
-                          v-for="item in images"
-                          :key="item.path"
-                          :src="'organizations/' + item.path"
-                          :filename="item.path"
-                          alt
-                          width="150"
-                          :class="['m-2', 'border', {'border-green-500 border-2': item.isActiveImage}]"
-                          @click="selectImage"
-                        />
+                        <template v-for="item in images" :key="item.path">
+                          <div class="relative min-w-[100px] min-h-[100px] p-2 m-1">
+                            <nuxt-img
+                              :src="item.path"
+                              :filename="item.path"
+                              alt
+                              width="100"
+                              :class="[
+                                'm-2',
+                                'border',
+                                'w-[100px]',
+                                'h-[100px]',
+                                { 'border-green-500 border-2': item.isActiveImage },
+                              ]"
+                              @click="selectImage" />
+                            <button
+                              class="absolute top-5 right-0 h-6"
+                              @click="deleteImage(item)"
+                              v-if="item.path !== valueModel.image">
+                              <nuxt-icon name="mdi/mdi-delete" style="font-size: 1.2em" />
+                            </button>
+                          </div>
+                        </template>
                       </div>
                     </div>
                   </div>
@@ -52,26 +68,32 @@
                   <app-input
                     v-model.trim="valueModel.name"
                     class="input-bordered w-full"
-                    :class="{'input-success': valueModel.name && valueModel.name.length > 2, 'input-error': !valueModel.name || valueModel.name.length < 3,}"
-                    label="Наименование"
-                  />
+                    :class="{
+                      'input-success': valueModel.name && valueModel.name.length > 2,
+                      'input-error': !valueModel.name || valueModel.name.length < 3,
+                    }"
+                    label="Наименование" />
                 </div>
                 <div class="xl:col-span-6 col-span-12 mx-4 py-1">
                   <app-input
                     v-model.trim="valueModel.site"
                     class="input-bordered w-full"
-                    :class="{'input-success': valueModel.site && valueModel.site.length > 2, 'input-error': !valueModel.site || valueModel.site.length < 5,}"
-                    label="Сайт организации"
-                  />
+                    :class="{
+                      'input-success': valueModel.site && valueModel.site.length > 2,
+                      'input-error': !valueModel.site || valueModel.site.length < 5,
+                    }"
+                    label="Сайт организации" />
                 </div>
                 <div class="col-span-12 mx-4">
                   <label class="label py-0 px-2">Короткое описание</label>
                   <textarea
                     v-model.trim="valueModel.short_description"
                     class="textarea textarea-bordered h-52 w-full my-2"
-                    :class="{'textarea-success': valueModel.short_description, 'textarea-error': !valueModel.short_description}"
-                    placeholder="Короткое описание"
-                  />
+                    :class="{
+                      'textarea-success': valueModel.short_description,
+                      'textarea-error': !valueModel.short_description,
+                    }"
+                    placeholder="Короткое описание" />
                 </div>
               </div>
             </div>
@@ -81,9 +103,8 @@
               <textarea
                 v-model.trim="valueModel.description"
                 class="textarea textarea-bordered h-60 w-full my-2"
-                :class="{'textarea-success': valueModel.description, 'textarea-error': !valueModel.description}"
-                placeholder="Описание"
-              />
+                :class="{ 'textarea-success': valueModel.description, 'textarea-error': !valueModel.description }"
+                placeholder="Описание" />
             </div>
           </div>
         </div>
@@ -95,8 +116,7 @@
     :on-save="onSave"
     :on-cancel="onCancel"
     :on-new="onNew"
-    :disabled-cancel="disabledCancel"
-  />
+    :disabled-cancel="disabledCancel" />
 </template>
 
 <script>
@@ -121,6 +141,7 @@ export default {
         description: null, // описание
         short_description: null, // короткое описание
         site: null,
+        image: null, // имя файла изображения
       }, // данные страницы
       title: 'Организации',
       images: [], // изображения организации
@@ -137,14 +158,39 @@ export default {
 
   methods: {
     /*
+     * Удаление выбранного изображения
+     * @function deleteImage
+     * @param {Object} image - Объект изображения
+     */
+    async deleteImage(image) {
+      const { $showConfirm, processResponse, valueModel, images } = this
+      const optionsConfirm = {
+        message: 'Удалить выбранное изображение?',
+      } // опции формы подтверждения
+      const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
+      if (confirm) {
+        const paramsQuery = { method: 'POST', body: { id_organization: valueModel.id, path: image.path } } // параметры запроса
+        const response = await useFetch('/api/organizations/delete-image', paramsQuery) // отправка запроса для удаления изображения
+        if (processResponse(response)) {
+          const index = images.findIndex(el => el.path === image.path) // получение индекса изображения в массиве
+          this.images.splice(index, 1) // удаление из массива элемента
+        }
+      }
+    },
+
+    /*
      * Выбор изображения
      * @function selectImage
      */
     selectImage(event) {
       const filename = event.target.attributes.filename.nodeValue // получение имени файла
       let index
-      if (filename) index = this.images.findIndex(el => el.path === filename)
-      if (index !== -1) this.images[index].isActiveImage = true
+      if (filename) index = this.images.findIndex(el => el.path === filename) // Получение индекса выделенного изображения
+      if (index >= 0) {
+        this.images.forEach(el => (el.isActiveImage = false)) // сброс активности для всех изображений
+        this.images[index].isActiveImage = true // установка активности для выбранного изображения
+        this.valueModel.image = this.images[index].path // установка изображения для текущей организации
+      }
     },
 
     /*
@@ -152,14 +198,14 @@ export default {
      * @function addImage
      */
     async addImage() {
-      const { $showModal } = this
+      const { $showModal, valueModel } = this
       const body = await $showModal('upload-file', {
         modalTitle: 'Загрузка изображения',
-        width: 'w-[500px]',
-        path: 'organizations/load-image',
+        width: 'w-[600px]',
+        url: `/api/organizations/load-image?id=${valueModel.id}`,
+        name: valueModel.id,
       })
-      this.images.push({ path: `${body.name}` })
-      console.log('images', this.images)
+      this.images.push({ path: body.path })
     },
     /*
      * Сохранение данных
@@ -194,7 +240,7 @@ export default {
       const { processingListResponse } = this
       const { pending, data: list, error } = await useFetch('/api/organizations/all') // получение данных списка
       if (processingListResponse(error)) {
-        this.list = list // установка списка
+        this.list = list.value[0] // установка списка
         this.isLoadList = !!pending // установка статуса загрузки
       }
     },
@@ -208,7 +254,7 @@ export default {
       const body = await $showModal('modal_name', { modalTitle: 'Создание новой организации' })
       if (body) {
         body.name = capitalize(body.name)
-        const paramsQuery = { method: 'POST', body } // параметры запроса
+        const paramsQuery = { method: 'PUT', body } // параметры запроса
         const response = await useFetch('/api/organizations/add', paramsQuery) // получение данных списка
         if (processResponse(response)) {
           this.list.push(response.data.value.data)
@@ -329,14 +375,17 @@ export default {
     valueModel: {
       handler(newValue) {
         const { validateForm, withObject, selectedItem } = this
+        this.images = []
         this.disabledSave = validateForm(newValue) || withObject(newValue, selectedItem) // установка активности кнопки "Сохранить"
-        this.disabledCancel = withObject(newValue, selectedItem)
-      },
-      deep: true,
-    },
-    methodGetMoney: {
-      handler(newVal) {
-        console.log('🚀 -> handler -> newVal:', newVal)
+        this.disabledCancel = withObject(newValue, selectedItem) // установка активности кнопки "Отменить"
+        if (newValue.images) {
+          const arr = Object.values(newValue.images) // преобразование значений объекта в массив
+          this.images = arr.map(el => {
+            return { path: el }
+          }) // формирование массива с изображениями
+          const index = this.images.findIndex(el => el.path === newValue.image) // Поиск индекса изображения организации
+          if (index >= 0) this.images[index].isActiveImage = true // установка активности для изображения из списка
+        }
       },
       deep: true,
     },

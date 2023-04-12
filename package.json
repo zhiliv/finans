@@ -12,14 +12,13 @@
     "lint": "eslint ."
   },
   "devDependencies": {
+    "@averjs/nuxt-compression": "^1.2.2",
     "@nuxt/image-edge": "^1.0.0-27968280.9739e4d",
-    "@nuxtjs/tailwindcss": "^6.4.1",
     "@sidebase/nuxt-auth": "^0.4.4",
-    "@tailwindcss/typography": "^0.5.9",
+    "@sidebase/nuxt-session": "^0.2.7",
     "node-sass": "^7.0.0",
-    "nuxt": "^3.3.1",
-    "postcss-import": "^15.1.0",
-    "postcss-nested": "^6.0.0",
+    "nuxt": "^3.3.3",
+    "nuxt-purgecss": "^2.0.0",
     "sass-loader": "^13.2.0",
     "sequelize-auto": "^0.8.8",
     "tailwindcss": "^3.2.7"
@@ -27,25 +26,24 @@
   "dependencies": {
     "@nuxt-modules/compression": "^0.1.0",
     "@nuxt/devalue": "^2.0.0",
-    "@nuxt/ui-templates": "npm:@nuxt/ui-templates-edge@latest",
+    "@tailwindcss/typography": "^0.5.9",
     "@vuelidate/core": "^2.0.0",
     "@vuelidate/validators": "^2.0.0",
     "autoprefixer": "^10.4.13",
     "bcrypt": "^5.1.0",
+    "busboy": "^1.6.0",
     "cli-color": "^2.0.3",
-    "daisyui": "^2.51.3",
-    "ipx": "^1.0.0-2",
+    "daisyui": "^2.51.5",
     "mitt": "^3.0.0",
     "moment": "^2.29.4",
-    "multer": "^1.4.5-lts.1",
+    "next-auth": "^4.22.1",
+    "nuxt-icons": "^3.1.0",
     "pg": "^8.9.0",
     "pg-hstore": "^2.3.4",
     "postcss": "^8.4.21",
     "sequelize": "^6.29.0",
     "vite-plugin-compression": "^0.5.1",
     "vue-multiselect": "^3.0.0-beta.1",
-    "vue-the-mask": "^0.11.1",
-    "vue-uuid": "^3.0.0",
-    "vue2-dropzone-vue3": "^1.1.0"
+    "vue-uuid": "^3.0.0"
   }
 }

@@ -25,27 +25,11 @@ export default class img_organization extends Model {
       type: DataTypes.STRING,
       allowNull: false,
       comment: "Путь к файлу"
-    },
-    created_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      comment: "Дата создания записи"
-    },
-    update_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      comment: "Дата обнолвения "
-    },
-    status: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      comment: "Статус банера"
     }
   }, {
     sequelize,
     tableName: 'img_organization',
     schema: 'prod',
-    hasTrigger: true,
     timestamps: false,
     indexes: [
       {

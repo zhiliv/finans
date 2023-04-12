@@ -32,7 +32,7 @@ export default class organizations extends Model {
       allowNull: true,
       comment: "Сайт организации"
     },
-    img_organization__id: {
+    img_organization_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       comment: "Банер по умолчанию",
