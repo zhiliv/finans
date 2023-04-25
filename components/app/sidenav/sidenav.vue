@@ -6,8 +6,8 @@
       <ul class="menu px-2 w-80 bg-zinc-800 text-base-content pt-1">
         <template v-for="item in menu" :key="item.name">
           <li class="pt-2" v-if="!item.dropdown">
-            <NuxtLink active-class="active" :to="item.href" v-slot="{ href, navigate, isActive }">
-              <a :class="{'active': isActive}" :href="href" @click="navigate">{{item.name}}</a>
+            <NuxtLink active-class="active" :to="item.href">
+              {{item.name}}
             </NuxtLink>
           </li>
           <template v-if="item.dropdown">
@@ -23,9 +23,8 @@
               <NuxtLink
                 active-class="active"
                 :to="itemList.href"
-                v-slot="{ href, navigate, isActive }"
               >
-                <a :class="{'active': isActive}" :href="href" @click="navigate">{{itemList.name}}</a>
+                {{itemList.name}}
               </NuxtLink>
             </li>
           </template>
@@ -58,8 +57,8 @@
         >
           <template v-for="item in menu" :key="item.name">
             <li v-if="!item.dropdown">
-              <NuxtLink active-class="active" :to="item.href" v-slot="{ href, navigate, isActive }">
-                <a :class="{'active': isActive}" :href="href" @click="navigate">{{item.name}}</a>
+              <NuxtLink active-class="active" :to="item.href">
+                {{item.name}}
               </NuxtLink>
             </li>
             <template v-if="item.dropdown">
@@ -81,13 +80,7 @@
                     <NuxtLink
                       active-class="active"
                       :to="itemList.href"
-                      v-slot="{ href, navigate, isActive }"
-                    >
-                      <a
-                        :class="{'active': isActive}"
-                        :href="href"
-                        @click="navigate"
-                      >{{itemList.name}}</a>
+                    >{{itemList.name}}
                     </NuxtLink>
                   </li>
                 </ul>
