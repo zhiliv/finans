@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     saltRounds: 11,
     password_admin_start: 'admin',
     sessionOptions: {
-      maxAge: 60*60*12, // время жизни
+      maxAge: 60*60*12, // время жизни(12 часов)
       httpOnly: true,
       path: '/',
       sameSite: true,
