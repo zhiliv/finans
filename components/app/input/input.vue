@@ -2,7 +2,7 @@
   <label class="label py-0 px-2">{{label}}</label>
   <input
     :value="modelValue"
-    type="text"
+    :type="$attrs.type || 'text'"
     class="input"
     :pattern="$attrs.patterns"
     :maxlength="$attrs.maxlength"

@@ -141,7 +141,6 @@ export default {
      * @param {Object} response - Данные ответа запроса
      */
     processResponse(response) {
-      console.log('🚀 -> processResponse -> response:', response)
       const { $showToast } = this
       const toastParams = {
         title: '', // заголовок сообщения
@@ -215,7 +214,7 @@ export default {
     * @function getUrlImage
     */
     getUrlImage(url){
-      return `img/${url}`
+      return `/img/${url}`
     }
   },
   

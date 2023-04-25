@@ -1,7 +1,7 @@
 <template>
-<head>
+<!-- <head>
   <title>{{title}}</title>
-</head>
+</head> -->
 <div class="min-w-screen min-h-screen select-none">
   <div class="h-full w-full flex flex-col lg:flex-row">
     <app-sidenav :menu="menu" class="min-h-screen" @title="getTitle" />

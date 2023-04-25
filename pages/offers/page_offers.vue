@@ -84,7 +84,7 @@
                       <h5>Изображения</h5>
                     </div>
                     <div class="col-span-12 flex justify-center">
-                      <nuxt-img
+                      <img
                         v-if="valueModel.image"
                         :src="getUrlImage(valueModel.image)"
                         alt
@@ -97,7 +97,7 @@
                       <div class="flex max-w-full overflow-x-auto h-full">
                         <template v-for="item in images" :key="item.path">
                           <div class="relative min-w-[100px] min-h-[100px] ">
-                            <nuxt-img
+                            <img
                               :src="getUrlImage(item.path)"
                               :filename="`${item.path}`"
                               alt
@@ -868,7 +868,6 @@ export default {
     },
     methodGetMoney: {
       handler(newVal) {
-        console.log('🚀 -> handler -> newVal:', newVal)
       },
       deep: true,
     },

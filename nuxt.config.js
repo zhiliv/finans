@@ -1,12 +1,14 @@
 // import whitelist from './modules/whitelist/result-whitelist.json'
 const path = require('path')
 
+
 export default defineNuxtConfig({
   env: {
     tokenLeads: 'c8e2d508767bd48d929b8d63641eaf80',
   },
 
-  ssr: process.env.NODE_ENV !== 'development',
+  ssr: true,
+
   runtimeConfig: {
     database: {
       username: 'postgres',
@@ -19,15 +21,17 @@ export default defineNuxtConfig({
     secret_key: 'yOzPacWqItuzr0sg5AVMG7dsIfCaoAj0C6Z6GFt5lrKLLxHWl3jlAfWkGlWhSgFz13i50S2lVYTwB3qC',
     saltRounds: 11,
     password_admin_start: 'admin',
-  },
-  app: {
-    head: {
-      bodyAttrs: {
-        class: '',
-      },
+    sessionOptions: {
+      maxAge: 10, // время жизни
+      httpOnly: true,
+      path: '/',
+      sameSite: true,
+      secure: true,
     },
   },
+
   css: ['@/assets/css/main.css'],
+
   postcss: {
     plugins: {
       'postcss-import': {},
@@ -40,8 +44,8 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     plugins: ['~/server/index.js'],
   },
+
   modules: [
-    '@sidebase/nuxt-session',
     '@nuxt/image-edge',
     'nuxt-icons',
     '@nuxt-modules/compression',
@@ -58,14 +62,6 @@ export default defineNuxtConfig({
     dir: 'public/img',
   },
 
-  session: {
-    isEnabled: true,
-    session: {
-      expiryInSeconds: 30*10,
-      cookieSecure: true,
-    },
-  },
-
   /*   vite: {
     css: {
       preprocessorOptions: {
@@ -73,6 +69,14 @@ export default defineNuxtConfig({
           additionalData: '@import "@/assets/css/_variables.css";'
         }
       }
+    },
+  }, */
+
+  /* app: {
+    head: {
+      bodyAttrs: {
+        class: '',
+      },
     },
   }, */
 })

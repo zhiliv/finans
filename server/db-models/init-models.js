@@ -1,6 +1,7 @@
 import _sequelize from "sequelize";
 const DataTypes = _sequelize.DataTypes;
 import _accesses from  "./accesses.js";
+import _auth_logger from  "./auth_logger.js";
 import _categories from  "./categories.js";
 import _cities from  "./cities.js";
 import _cpa from  "./cpa.js";
@@ -24,6 +25,7 @@ import _users from  "./users.js";
 
 export default function initModels(sequelize) {
   const accesses = _accesses.init(sequelize, DataTypes);
+  const auth_logger = _auth_logger.init(sequelize, DataTypes);
   const categories = _categories.init(sequelize, DataTypes);
   const cities = _cities.init(sequelize, DataTypes);
   const cpa = _cpa.init(sequelize, DataTypes);
@@ -96,6 +98,7 @@ export default function initModels(sequelize) {
 
   return {
     accesses,
+    auth_logger,
     categories,
     cities,
     cpa,
