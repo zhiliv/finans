@@ -3,7 +3,7 @@
     <app-input
       v-model.trim="modelValue.name"
       class="input-bordered w-full"
-      :valid="validName"
+      :is-valid="isValid.name"
       label="Наименование"
     />
   </div>
@@ -11,62 +11,37 @@
     <app-input
       v-model.trim="modelValue.site"
       class="input-bordered w-full"
-      :valid="validSite"
+      :is-valid="isValid.site"
       label="Сайт"
     />
   </div>
 </template>
 
-<script>
-import mixinFunction from '~/mixins/globalMixins'
-export default {
-  props: {
-    /* Данные формы */
-    modelValue: {
-      type: Object,
-      default: {
-        name: null, // значение поля "Наименование"
-        site: null, // поле "Сайт"
-      },
-    },
-  },
+<script lang="ts" setup>
 
-  mixins: [mixinFunction],
 
-  emits: ['update:modelValue', 'invalid'],
-
-  watch: {
-    modelValue: {
-      handler(newValue) {
-        const { $emit, isNumber } = this
-        $emit('update:modelValue', newValue) // отправка события обновления данных
-        this.validName =
-          (newValue && (!newValue.name || !newValue.name.length || newValue.name.length < 2)) || isNumber(newValue.name)
-            ? 'error'
-            : 'success' // подсветка поля если количество символов менее 3х и введенное значение не число
-        this.validSite =
-          (newValue && (!newValue.site || !newValue.site.length || newValue.site.length < 2)) || isNumber(newValue.site)
-            ? 'error'
-            : 'success' // подсветка поля если количество символов менее 3х и введенное значение не число
-        $emit('invalid', this.validName === 'success' && this.validSite === 'success' ? false : true)
-      },
-      deep: true,
-    },
-  },
-
-  mounted() {
-    const { $emit, validName, validSite } = this
-    $emit('invalid', validName === 'error' || validSite === 'error' ? true : false)
-  },
-
-  data() {
-    return {
-      validName: 'error',
-      validSite: 'error',
-    }
-  },
+/**
+ * @interface Props
+ * @member {Object} modelValue - Значение формы
+ */
+interface Props {
+  modelValue: any
 }
-</script>
 
-<style>
-</style>
+/* Установка значений по умолчанию для входящих свойств */
+const props = withDefaults(defineProps<Props>(), {})
+
+/* Создание списка событий */
+const emit = defineEmits(['update:modelValue', 'isValid'])
+const isValid = ref({ name: false, site: false }) // Валидация полей
+
+watch(
+  () => props.modelValue,
+  newVal => {
+    isValid.value.name = !!(newVal.name && newVal.name.length > 2 && !isNumber(newVal.name))
+    isValid.value.site = !!(newVal.site && newVal.site.length > 2 && !isNumber(newVal.site))
+    emit('isValid', isValid.value.name && isValid.value.site)
+  },
+  { deep: true },
+)
+</script>

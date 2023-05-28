@@ -1,4 +1,3 @@
-import { sequelize } from '~/server/db.js'
 import * as bcrypt from 'bcrypt'
 const config = useRuntimeConfig() // получение конфигурации
 
@@ -15,8 +14,7 @@ export const getSalt = async () => {
  * @function getHashPassword
  * @param {String} password - Значение пароля
  */
-export const getHashPassword = async password => {
+export const getHashPassword = async (password: string) => {
   const salt = await getSalt()
   return password && salt ? await bcrypt.hash(password, salt) : false
 }
-

@@ -7,7 +7,7 @@ export default {
   props: {
     /* Текст внутри спинера */
     text: {
-      type: String,
+      type: [String, Boolean],
       default: 'Загрузка...',
     },
   }

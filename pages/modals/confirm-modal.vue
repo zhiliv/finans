@@ -4,17 +4,13 @@
       <div class="modal-confirm-container border-2 border-zinc-500">
         <div class="body-confirm-modal bg-zinc-600">
           <div class="h-auto bg-zinc-700 p-1 text-center border-b-2 border-zinc-500">
-            <h4 class="text-amber-600 px-4">{{message}}</h4>
+            <span class="text-amber-600 px-4">{{ title }}</span>
           </div>
-          <div class="p-3 flex flex-col lg:flex-row justify-between items-center h-full">
-            <app-button
-              class="btn-error w-full lg:btn-wide m-2"
-              @click="onCancel"
-            >{{cancelText}}</app-button>
-            <app-button
-              class="btn-success w-full lg:btn-wide m-2"
-              @click="onConfirm"
-            >{{confirmText}}</app-button>
+          <div class="flex justify-center p-2">{{ message }}</div>
+
+          <div class="p-0 flex flex-col lg:flex-row justify-between items-center h-full">
+            <app-button class="btn-error btn-sm w-40 m-2" @click="onCancel">{{ cancelText }}</app-button>
+            <app-button class="btn-success btn-sm w-40 m-2" @click="onConfirm">{{ confirmText }}</app-button>
           </div>
         </div>
       </div>
@@ -22,83 +18,72 @@
   </div>
 </template>
 
-<script>
-export default {
-  inheritAttrs: false, // отключение наследования аттрибутов
-  data() {
-    return {
-      confirmText: 'Да', // значение текста кнопки подтверждения
-      cancelText: 'Нет', // значение текста кнопки отмены
-      message: '', // текст сообщения
-      isShow: false, // статус отображения формы
-    }
-  },
+<script lang="ts" setup>
+const isShow = ref(false) // Статус отображения сообщения
+const confirmText = ref('Да') // Текстовое значение кнопки подтверждения
+const cancelText = ref('Нет') // Текстовое значение кнопки отмены
+const title = ref('Подтвердить действие?') // Значение заголовка
+const message = ref('') // Значение текста подтверждения
 
-  methods: {
-    /*
-     * При нажатии на кнопку "Подтвердить"
-     * @function onConfirm
-     */
-    onConfirm() {
-      const { $event } = this
-      $event(`close-confirm`, true) // Событие при подтверждении1
-      this.isShow = false // скрытие окна
-    },
+/*
+ * Отслеживание события для отображения окна
+ */
+emitter.on('show-confirm', (event: any) => {
+  if (event?.confirmText) confirmText.value = event.confirmText
+  if (event?.cancelText) cancelText.value = event.cancelText
+  if (event?.title) title.value = event.title
+  if (event?.message) message.value = event.message
+  isShow.value = true // установка статуса показа окна
+})
 
-    /*
-    * При нажатии на кнопку "Отмена"
-    @ function onCancel
-    */
-    onCancel() {
-      const { $event } = this
-      $event(`close-confirm`, false) // Событие при подтверждении1
-      this.isShow = false // скрытие окна
-    },
-  },
+/*
+ * Событие при нажатии на кнопку подтверждения
+ * @function onConfirm
+ */
+function onConfirm() {
+  emitter.emit('close-confirm', true) // Отправка события c результатом ответа
+  isShow.value = false // Установка статусы скрытия окна
+}
 
-  mounted() {
-    const { $listen } = this
-    $listen('show-confirm', event => {
-      // Прослушивание события открытия окна
-      const { message, cancelText, confirmText } = event
-      if (cancelText) this.cancelText = cancelText // установка значения текста кнопки отмены
-      if (confirmText) this.confirmText = confirmText // установка значения текста кнопки подтверждения
-      this.message = event && message ? message : 'Подтвердить?' // установка значения сообщения
-      this.isShow = true // установка статуса показа окна
-    })
-  },
+/*
+ * Событие при нажатии кнопки отмены
+ * @function onCancel
+ */
+function onCancel() {
+  emitter.emit('close-confirm', false) // Отправка события c результатом ответа
+  isShow.value = false // Установка статусы скрытия окна
 }
 </script>
 <style>
-  .modal-confirm-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: table;
-  }
-
-  .modal-confirm-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-  }
-
-  .modal-confirm-container {
-    width: 25%;
-    margin: 0px auto;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-    font-family: Helvetica, Arial, sans-serif;
-    padding-bottom: 0px;
-  }
-
-  @media (max-width: 767.9px) {
-    .modal-confirm-container {
+    .modal-confirm-mask {
+      position: fixed;
+      z-index: 9998;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: table;
     }
-  }
+
+    .modal-confirm-wrapper {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .modal-confirm-container {
+      width: 15%;
+      margin: 0px auto;
+      background-color: #fff;
+      border-radius: 2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+      font-family: Helvetica, Arial, sans-serif;
+      padding-bottom: 0px;
+    }
+
+    @media (max-width: 767.9px) {
+      .modal-confirm-container {
+        width: 90%;
+      }
+    }
 </style>

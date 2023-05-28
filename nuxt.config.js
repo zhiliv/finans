@@ -28,6 +28,7 @@ export default defineNuxtConfig({
       sameSite: true,
       secure: true,
     },
+    notAuth: true // Проверять ли авторизацию
   },
 
   css: ['@/assets/css/main.css'],
@@ -48,13 +49,15 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/image-edge',
     'nuxt-icons',
+    '@pinia/nuxt',
     '@nuxt-modules/compression',
     [
       'nuxt-purgecss',
       {
         enabled: true,
-        safelist: [/^h-/, /^w-/, /^lg:h-/, /^min-h-/, /^min-w-/, /^max-h-/, /^maw-w-/, /^xl:w-/],
-      },
+        safelist: [/^h-/, /^w-/, /^lg:h-/, /^min-h-/, /^min-w-/, /^max-h-/, /^maw-w-/, /^xl:w-/, /^alert-/],
+        whitelist: ['alert-warning', 'alert-info', 'alert-success', 'alert-error']
+      },  
     ],
   ],
 

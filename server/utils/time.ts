@@ -1,9 +1,9 @@
 import moment from 'moment'
 
-/* 
-* Получение текущей даты
-* @function DateNow
-*/
+/*
+ * Получение текущей даты
+ * @function DateNow
+ */
 export const DateNow = () => {
-  return moment().tz("Europe/Moscow").format()
+  return moment().tz('Europe/Moscow').format()
 }

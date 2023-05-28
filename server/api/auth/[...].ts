@@ -3,6 +3,8 @@ import * as bcrypt from 'bcrypt' // модуль криптографии
 import jwt from 'jsonwebtoken'
 import { EnterAuthData, LoggerAuth } from '~/types/auth'
 import { DateNow } from '~/server/utils/time'
+import moment from 'moment'
+import { Op } from 'sequelize'
 
 const config = useRuntimeConfig() // получение данных конфигурации
 
@@ -13,9 +15,10 @@ interface Result {
 }
 
 export default defineEventHandler(async event => {
+  deleteCookie(event, 'token') // удаление куки
   const params: EnterAuthData = await readBody(event) // параметры запроса
   const ip: string = getClientAddress(event.node.req) // получение ip адреса клиента
-
+  
   const result: Result = {
     statusCode: 400, // установка статуса ответа
     message: '',
@@ -32,7 +35,6 @@ export default defineEventHandler(async event => {
     token: null, // установка токена
   }
 
-
   if (params.login.length < 4 || params.password.length < 5) {
     // проверка длины логина или пароля
     result.statusCode = 400
@@ -41,9 +43,16 @@ export default defineEventHandler(async event => {
   }
 
   const user: any = await sequelize.models.users.findOne({ where: { name: params.login } }) // проверка данных пользователя в БД
-
+  const countIPrequest = await checkCountAuth(ip)
+  if(countIPrequest > 5 && !config.notAuth) {
+    result.statusCode = 400 
+    result.message = 'Превышено количество запросов авторизации. Доступ к авторизации будет доступен в течении 5 минут'
+    await logger(dataAuth)
+    return createError({ statusCode: result.statusCode, message: result.message })
+  } 
+  
   let token // переменная для хранения токена
-  if (user) {
+  if (user && countIPrequest <= 5) {
     const checkHash = await bcrypt.compare(params.password, user.password_hash) // проверка пароля по хэшу
     if (checkHash) {
       token = jwt.sign({ id: user.id }, config.secret_key, { expiresIn: '1d' })
@@ -53,9 +62,12 @@ export default defineEventHandler(async event => {
       setCookie(event, 'token', token, config.sessionOptions)
     } else {
       result.statusCode = 400 // установка статуса
+      result.message = 'Неверный логин или пароль'  
     }
   }
   logger(dataAuth) // логирование
+  
+  
   return result.statusCode === 400 ? createError({ statusCode: result.statusCode, message: result.message }) : result
 })
 
@@ -76,4 +88,22 @@ const getClientAddress = (req: any) => {
  */
 const logger = async (authData: LoggerAuth) => {
   sequelize.models.auth_logger.create(authData)
+}
+
+/* 
+* Проверка количества запросов авторизации с ip-адреса
+* @function checkCountAuth
+* @param {String} ip - Ip адрес клиента
+* @return {Number} - Количество записей
+*/
+const checkCountAuth = async  (ip:string) => {
+  const DateMinus5Minutes = moment().tz("Europe/Moscow").subtract(5, 'minutes') // получение даты минус 5 минут
+  const params = {
+    where: {
+      date_requiest: {
+        [Op.between]: [DateMinus5Minutes, DateNow()]   // получение диапазон между текущей датой и датой минус 5 минут
+      }
+    }
+  }
+  return  await sequelize.models.auth_logger.count(params) // получение количества записей за 5 минут
 }

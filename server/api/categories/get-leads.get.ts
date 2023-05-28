@@ -47,7 +47,7 @@ const addItems = async  (list) => {
 }
 
 export default defineEventHandler(async event => {
-  let list = await getList()
+  let list:any = await getList()
   list = list.data
   await addItems(list)
   return true

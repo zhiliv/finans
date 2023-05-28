@@ -7,195 +7,149 @@
             :list="list"
             class="border border-gray-400 bg-stone-700"
             v-model="valueModel"
-            :is-load="isLoadList"
-            ref="list"
+            :loading="isLoadList"
+            ref="listRefs"
+            :select-index="selectIndex"
             :on-delete="onDeleteItem"
           />
         </div>
         <div class="lg:col-span-9 col-span-12 w-full">
           <div class="grid grid-cols-12">
-            <app-sub @invalid="getInvalid" v-model="valueModel" />
+            <app-sub @is-valid="getValid" v-model="valueModel" />
           </div>
         </div>
       </div>
     </div>
   </div>
   <app-control-buttons
-    :disabled-save="disabledSave"
+    :disabled-save="controlsDisabled.save"
     :on-save="onSave"
     :on-cancel="onCancel"
     :on-new="onNew"
-    :disabled-cancel="disabledCancel"
+    :disabled-cancel="controlsDisabled.cancel"
   />
 </template>
 
-<script>
+<script lang="ts" setup>
+import { CPA } from '~/types/cpa'
+import { Query } from '~/types/query'
+import { Confirm } from '~/types/confirm'
 import appSub from '~/pages/sub/sub_cpa.vue' // подключение саб формы
-import appControlButton from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
-import mixinFunction from '~/mixins/globalMixins'
-export default {
-  mixins: [mixinFunction],
-  components: {
-    'app-sub': appSub,
-    'app-control-buttons': appControlButton,
-  },
+import appControlButtons from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
 
-  data() {
-    return {
-      list: [], // список партнерских программ
-      isLoadList: false, // статус загрузки данных
-      valueModel: {}, // данные страницы
-      title: 'Партнерские программы', // Заголовок формы
-      disabledSave: true, // доступность кнопки "Сохранить"
-      disabledCancel: true, // доступность кнопки "Отменить"
+const meta = { title: 'Партнерские программы' } // Установка мета данных страницы
+useSeoMeta(meta) // Установка мета тегов
+
+const listRefs = ref() // Ссылка на список
+const valueModel = ref({ id: null, name: null, site: null }) // Данные формы
+const selectIndex = ref(-1) // Индекс выбираемого элемента
+const controlsDisabled = ref({ save: true, cancel: true }) // Активность кнопок "Сохранить" и "Отменить"
+const { pending: isLoadList, data: list } = await useLazyAsyncData('list', () => $fetch('/api/cpa/all')) // Получение списка категорий
+const refreshList = () => refreshNuxtData('list') // Обновление списка
+refreshList() // Обновление списка
+
+/* Отслеживание изменений данных формы */
+watch(
+  valueModel,
+  newVal => {
+    if (!checkEmptyObject(newVal)) {
+      const index = list.value.findIndex((el: any) => el.id === valueModel.value.id) // Получение индекса выделенного элемента
+      const obj = cloneObject(list.value[index]) // клонирование объекта
+      delete obj.isActive // удаление свойства isActive
+      controlsDisabled.value.save = withObject(valueModel.value, obj) // установка доступности кнопки "Сохранить"
+      controlsDisabled.value.cancel = withObject(valueModel.value, obj) // установка доступности кнопки "Отменить"
+    } else {
+      controlsDisabled.value.save = true
     }
   },
+  { deep: true },
+)
 
-  mounted() {
-    const { getList } = this
-    getList()
-  },
+/**
+ * Получение данных о валидности заполнения
+ * @function getValid
+ * @param {Boolean} valid - Получаемое значение валидации
+ */
+function getValid(valid: boolean) {
+  controlsDisabled.value.save = controlsDisabled.value.save || !valid || !valueModel.value.id
+}
 
-  methods: {
-    /*
-     * Получение списка партнерских программ
-     * @function getList
-     */
-    async getList() {
-      const { processingListResponse } = this
-      const { pending, data: list, error } = await useFetch('/api/cpa/all') // получение данных списка
-      if (processingListResponse(error)) {
-        this.list = list // установка списка
-        this.isLoadList = !!pending // установка статуса загрузки
-      }
-    },
+/**
+ * Удаление выделенного элемента
+ * @function onDeleteItem
+ */
+async function onDeleteItem(item: CPA) {
+  const confirmParam: Confirm = {
+    message: 'Удалить запись?',
+  } // Параметры сообщения подтверждения
+  const confirm: Boolean | unknown = await dialogConfirm(confirmParam) // Отображение окна подтверждения
+  if (confirm) {
+    const paramsQuery: Query = { url: '/api/cpa/del', method: 'delete', body: valueModel.value.id }
+    const response: any = await query(paramsQuery) // Отправка запроса на удаление
+    if (response?.data?.value?.status == 200) {
+      const index = list.value.findIndex((el: any) => el.id === valueModel.value.id) // получение индекса удаляемого элемента
+      list.value.splice(index, 1) // Удаление элемента из списка
+      showToast({ message: response.data.value.message, type: 'success' }) // Обработка результата
+      selectIndex.value = list.value?.length ? 0 : -1 // Выделение первого элемента
+    }
+  }
+}
 
-    /*
-     * Создание новой партнерской программы
-     * @function onNew
-     */
-    async onNew() {
-      const { $showModal, list, capitalize, selectItem, processResponse } = this
-      const body = await $showModal('modal_name', { modalTitle: 'Создание новой партнерской программы' })
-      if (body) {
-        body.name = capitalize(body.name)
-        const paramsQuery = { method: 'POST', body } // параметры запроса
-        const response = await useFetch('/api/cpa/add', paramsQuery) // получение данных списка
-        if (processResponse(response)) {
-          this.list.push(response.data.value.data)
-          const index = list.findIndex(el => el.id === response.data.value.data.id)
-          selectItem(index) // выбор элемента списка
-        }
-      }
-    },
-    /*
-     * Удаление типа документа
-     * @function onDeleteItem
-     * @param {Object} item - элемент
-     */
-    async onDeleteItem(item) {
-      const { list, $showConfirm, selectItem, processResponse } = this
-      const options = {
-        message: 'Удалить запись?',
-      } // опции формы подтверждения
-      const confirm = await $showConfirm(options) // открытие окна подтверждение
-      if (confirm) {
-        const index = list.findIndex(el => el.id === item.id) // получение индекса элемента
-        const paramsQuery = { method: 'DELETE', body: list[index].id } // параметры запроса
-        const response = await useFetch('/api/cpa/del', paramsQuery) // получение данных списка
-        if (processResponse(response)) {
-          list.splice(index, 1) // удаление элемента из списка
-          if (list.length) selectItem()
-          else this.valueModel.name = null
-        }
-      }
-    },
-    /*
-     * Получение значения валидности полей
-     * @function getInvalid
-     * @param {invalid} Boolean - Значение валидности
-     */
-    getInvalid(invalid) {
-      this.disabledSave = this.disabledSave || invalid || !this.valueModel.id
-    },
-    /*
-     * Сохранение данных
-     * При нажатии на кнопку "Сохранить"
-     * @function onSave
-     */
-    async onSave() {
-      const { $showConfirm, cloneObject, capitalize, selectItem, processResponse } = this
-      const optionsConfirm = {
-        message: 'Сохранить изменения?',
-      }
-      const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
-      if (confirm) {
-        const index = this.list.findIndex(el => el.id == this.valueModel.id) // получение идентификатора выделенного элемента
-        const body = cloneObject(this.valueModel)
-        body.name = capitalize(body.name)
-        const paramsQuery = { method: 'POST', body } // параметры запроса
-        const response = await useFetch('/api/cpa/edit', paramsQuery) // получение данных списка
-        if (processResponse(response)) {
-          this.list[index] = this.valueModel // Изменение объекта выделенного элемента в списка
-          selectItem(index)
-        }
-      }
-    },
+/**
+ * Отмена изменения данных
+ * @function onCancel
+ */
+async function onCancel() {
+  const confirmParam: Confirm = {
+    message: 'Есть не сохраненные данные, отменить изменения?',
+  } // Параметры сообщения подтверждения
+  const confirm: Boolean | unknown = await dialogConfirm(confirmParam) // Отображение окна подтверждения
+  if (confirm) {
+    const index = list.value.findIndex((el: any) => el.id === valueModel.value.id) // получение индекса элемента в списке
+    const item = cloneObject(list.value[index]) // клонирование элемента в объектную модель
+    valueModel.value = item // установка значения данных модели
+  }
+}
 
-    /*
-     * Отмена изменения данных
-     * @function onCancel
-     */
-    async onCancel() {
-      const { $showConfirm, list, valueModel } = this
-      const optionsConfirm = {
-        message: 'Есть не сохраненные данные, отменить изменения?',
-      }
-      const confirm = await $showConfirm(optionsConfirm) // открытие окна подтверждение
-      if (confirm) {
-        // если нажата кнока "Да"
-        const index = list.findIndex(el => el.id === valueModel.id) // получение индекса элемента в списке
-        const item = this.cloneObject(list[index]) // клонирование элемента в объектную модель
-        delete item.isActive // удаление свойства
-        this.valueModel = item // установка значения данных модели
-      }
-    },
+/**
+ * Сохранение данных
+ * @function onSave
+ */
+async function onSave() {
+  const confirmParam: Confirm = {
+    message: 'Сохранить изменения?',
+  } // Параметры сообщения подтверждения
+  const confirm: Boolean | unknown = await dialogConfirm(confirmParam) // Отображение окна подтверждения
+  if (confirm) {
+    const index = list.value.findIndex((el: any) => el.id == valueModel.value.id) // получение идентификатора выделенного элемента
+    const body = cloneObject(valueModel.value)
+    body.name = capitalize(body.name)
+    const paramsQuery: Query = { url: '/api/cpa/edit', method: 'post', body: valueModel.value }
+    const response: any = await query(paramsQuery) // Отправка запроса на сохранение данных
+    if (response?.data?.value?.status == 200) {
+      list.value[index] = valueModel.value // Изменение объекта выделенного элемента в списка
+      selectIndex.value = index
+      showToast({ message: response.data.value.message, type: 'success' }) // Обработка результата
+    }
+  }
+}
 
-    /*
-     * Выделение элемента списка
-     * @function selectItem
-     * @param {Number} index Индекс выделяемого элемента
-     */
-    selectItem(index) {
-      const { $nextTick, list, $refs } = this
-      if (list.length)
-        $nextTick(() => {
-          $refs.list.$el.querySelectorAll('li')[index ? index : 0].click() // эмуляция клика по элементу
-        })
-    },
-  },
-
-  watch: {
-    /* Наблюдение за изменением выделенного элемента */
-    valueModel: {
-      handler(newValue) {
-        const { checkEmptyObject, valueModel, list, withObject, cloneObject } = this
-        if (!checkEmptyObject(valueModel)) {
-          // проверка что объект не пустой
-          const index = list.findIndex(el => el.id === valueModel.id) // получение индекса элемента
-          const obj = cloneObject(list[index]) // клонирование объекта
-          delete obj.isActive // удаление свойства isActive
-          this.disabledSave = withObject(valueModel, obj) // установка доступности кнопки "Сохранить"
-          this.disabledCancel = withObject(valueModel, obj) // установка доступности кнопки "Отменить"
-        } else this.disabledSave = true
-      },
-      deep: true,
-    },
-    /* Наблюдение за статусом загрузкой списка */
-    isLoadList(newValue) {
-      const { selectItem } = this
-      selectItem()
-    },
-  },
+/**
+ * Создание новой записи
+ * @function onNew
+ */
+async function onNew() {
+  const body: any = await showModal('modal_name', { modalTitle: 'Создание новой категории' })
+  if (body) {
+    body.name = capitalize(body.name)
+    const paramsQuery: Query = { url: '/api/cpa/add', method: 'post', body } // параметры запроса
+    const response: any = await query(paramsQuery) // Отправка запроса на сохранение данных
+    if (response?.data?.value?.status == 200) {
+      showToast({ message: response.data.value.message, type: 'success' }) // Отображение уведомления
+      list.value.push(response.data.value.data) // Добавление записи в список
+      const index = list.value.findIndex((el: any) => el.id === response.data.value.data.id) // Получение индекса элемента в списке
+      selectIndex.value = index // Установка индекса элемента списку
+    }
+  }
 }
 </script>

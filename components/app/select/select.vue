@@ -1,15 +1,15 @@
 <template>
   <div class="relative" :class="[$attrs.class, {'px-2': $attrs.multiple}]">
     <app-spinner
-      v-if="isLoad === false || isLoad === 'false'"
-      class="absolute top-[0.5em]"
+      v-if="isLoad === false"
+      class="absolute pt-2"
       :class="{'left-[50%]': $attrs.multiple}"
     />
-    <label class="label py-0 px-4">{{label}}</label>
+    <label class="label py-0 px-2">{{label}}</label>
     <select
-      :multiple="$attrs.multiple"
+      :multiple="attrs.multiple"
       v-model="selected"
-      :disabled="$attrs.disabled"
+      :disabled="attrs?.disabled"
       class="select select-bordered w-full"
       :class="[$attrs['select-class'], {'mt-3': $attrs.multiple}]"
     >
@@ -25,78 +25,56 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    /* Список  */
-    options: {
-      type: Array,
-      default: [],
-    },
-    /* Подпись поля */
-    label: {
-      type: String,
-      default: null,
-    },
-    /* Свойство для обозначения значения */
-    value: {
-      type: String,
-      default: 'id',
-    },
-    /* Текстовое значение */
-    text: {
-      type: String,
-      default: 'name',
-    },
-    /* Обязательность поля */
-    required: {
-      type: [Boolean, String],
-      default: false,
-      validator(value) {
-        return value === true || value === false || value === 'true' || value === 'false'
-      },
-    },
-    /* Статус загрузки */
-    isLoad: {
-      type: [String, Boolean],
-      default: false,
-      validator(value) {
-        return value === true || value === false || value === 'true' || value === 'false'
-      },
-    },
-    /* Индекс выделяемого элемента */
-    selectValue: {
-      type: [Number, String, Boolean, Object, Array],
-      default: null,
-    },
-  },
-  emits: ['update:modelValue', 'update:selectValue'],
-  data() {
-    return {
-      selected: this.$attrs.multiple ? [] : null, // выделенная строка
-      valueModel: null, // модель данных
-    }
-  },
-
-  watch: {
-    /*
-     * Отслеживание изменений выбора пункта списка
-     * @function selected
-     * @param {Number} newValue - Новое значение
-     */
-    selected(newValue) {
-      const { $emit } = this
-      $emit('update:modelValue', newValue) // отправка события для обновления модели данных
-    },
-
-    /*
-     * Отслеживание изменений передаваемого индекса
-     * @function selectValue
-     */
-    selectValue(newValue) {
-      if (newValue) this.selected = newValue
-      else if (newValue === false) this.selected = newValue
-    },
-  },
+<script lang="ts" setup>
+const attrs = useAttrs() // Получение аттрибутов
+/**
+ * @interface Props
+ * @member {Array} options - Список
+ * @member {String} label - Заголовок списка
+ * @member {String} value - Наименование свойства значения
+ * @member {String} text - Текстовое значение выделенного элемента
+ * @member {Boolean} required - Обязательно поля
+ * @member {Boolean} isLoad - Статус загрузки списка
+ * @member {Any} selectValue - Значение выделенного элемента списка
+ * @member {Boolean} disabled - Активность поля
+ * @member {Boolean} multiple - Множественный выбор
+ */
+interface Props {
+  options: any
+  label?: string
+  value?: string
+  text?: string
+  required?: boolean
+  isLoad: boolean | string
+  selectValue: any
+  disabled?: boolean
+  multiple?: boolean
 }
+
+const props = withDefaults(defineProps<Props>(), {
+  options: [],
+  value: 'id',
+  text: 'name',
+  required: false,
+  isLoad: false,
+})
+
+/* События компонента */
+const emit = defineEmits(['update:modelValue', 'update:selectValue'])
+
+const selected = ref() // Выделенный элемент
+
+/* Отслеживание изменений выбранных элементов */
+watch(selected, newVal => {
+  emit('update:modelValue', newVal) // Отправка события для обновления модели данных
+})
+
+/* Отслеживание изменений входящих свойств */
+watch(
+  () => props.selectValue,
+  newVal => {
+    if (newVal) selected.value = newVal
+    else if (newVal === false) selected.value = newVal
+  },
+)
 </script>
