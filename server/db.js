@@ -6,4 +6,8 @@ export const sequelize = new Sequelize(config.database.database, config.database
   port: config.database.post,
   dialect: 'postgres',
   logging: false,
+  dialectOptions: {
+    useUTC: false 
+  },
+  timezone: '+03:00' //Установка часового пояса
 })

@@ -1,9 +1,9 @@
 import { sequelize } from '~/server/db.js'
+import { defineAuthenticatedEventHandler } from '~/server/utils/defineAuthenticatedEventHandler';
 
 export default defineEventHandler(async event => {
-  if(!event.context.session.test) event.context.session.test = 'Тестовое значение'
   try {
-    const query = `
+    const query: string = `
     SELECT
       org.id, -- Идентификатор
       org.name, -- Наименование
@@ -21,10 +21,10 @@ export default defineEventHandler(async event => {
     ORDER BY name
     `
     return await sequelize.query(query)
-  } catch (error) {
-    let message = ''
-    message = error && error.errors && error.errors.length ? error.errors.map(el => el.message).join('\n') : ''
-    if (error.original && error.original.hint) message = error.original.message + '; ' + error.original.hint
+  } catch (error: any) {
+    let message: string = '' // текст сообщения
+    message = error && error.errors && error.errors.length ? error.errors.map((el: any) => el.message).join('\n') : '' // получение текста ошибки
+    if (error.original && error.original.hint) message = error.original.message + '; ' + error.original.hint 
     throw createError({
       statusCode: 400, // установка статуса ответа
       message, // установка текста сообщения

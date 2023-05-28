@@ -1,7 +1,4 @@
 <template>
-<head>
-  <title>{{title}}</title>
-</head>
 <div class="min-w-screen min-h-screen select-none">
   <div class="h-full w-full flex flex-col lg:flex-row">
     <app-sidenav :menu="menu" class="min-h-screen" @title="getTitle" />
@@ -21,35 +18,21 @@
 <app-toast />
 <app-multiselect />
 </template>
-<script>
+<script lang="ts" setup>
 import appModal from '~/pages/modal.vue'
 import appConfirm from '~/pages/modals/confirm-modal.vue'
 import appMultiselect from '~/pages/modals/modal-multiselect.vue'
 import menu from './menu.json' //
-export default {
-  components: {
-    'app-modal': appModal,
-    'app-confirm': appConfirm,
-    'app-multiselect': appMultiselect,
-  },
 
-  data() {
-    return {
-      title: null,
-      isOpen: false,
-      menu
-    }
-  },
+const title = ref('') // Заголовок
 
-  methods: {
-    /*
-     * Отслеживание изменения пункта меню для отображения заголовка
-     * @function getTitle
-     * @param {String} title - Заголовок
-     */
-    getTitle(title) {
-      this.title = title
-    },
-  },
+/**
+* Получение теста заголовка
+* @function getTitle
+* @param {String} text - Текст заголовка 
+*/
+function getTitle(text: string){
+  title.value = text
 }
+
 </script>

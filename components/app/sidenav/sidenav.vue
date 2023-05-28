@@ -6,9 +6,7 @@
       <ul class="menu px-2 w-80 bg-zinc-800 text-base-content pt-1">
         <template v-for="item in menu" :key="item.name">
           <li class="pt-2" v-if="!item.dropdown">
-            <NuxtLink active-class="active" :to="item.href" v-slot="{ href, navigate, isActive }">
-              <a :class="{'active': isActive}" :href="href" @click="navigate">{{item.name}}</a>
-            </NuxtLink>
+            <NuxtLink active-class="active" :to="item.href">{{item.name}}</NuxtLink>
           </li>
           <template v-if="item.dropdown">
             <li
@@ -20,20 +18,14 @@
               class="mt-1"
               :class="item.list.length-1 === index ? 'border-b-2 border-zinc-400 last' : ''"
             >
-              <NuxtLink
-                active-class="active"
-                :to="itemList.href"
-                v-slot="{ href, navigate, isActive }"
-              >
-                <a :class="{'active': isActive}" :href="href" @click="navigate">{{itemList.name}}</a>
-              </NuxtLink>
+              <NuxtLink active-class="active" :to="itemList.href">{{itemList.name}}</NuxtLink>
             </li>
           </template>
         </template>
       </ul>
     </div>
   </div>
-  <div ref="navbar" class="navbar bg-zinc-800 lg:hidden h-10 w-full">
+  <div ref="navbarRefs" class="navbar bg-zinc-800 lg:hidden h-10 w-full">
     <div class="navbar-start">
       <div class="dropdown flex">
         <label tabindex="0" class="btn-ghost lg:hidden content-end">
@@ -58,9 +50,7 @@
         >
           <template v-for="item in menu" :key="item.name">
             <li v-if="!item.dropdown">
-              <NuxtLink active-class="active" :to="item.href" v-slot="{ href, navigate, isActive }">
-                <a :class="{'active': isActive}" :href="href" @click="navigate">{{item.name}}</a>
-              </NuxtLink>
+              <NuxtLink active-class="active" :to="item.href">{{item.name}}</NuxtLink>
             </li>
             <template v-if="item.dropdown">
               <li tabindex="0" class="parent-sidenav-list">
@@ -78,17 +68,7 @@
                 </a>
                 <ul class="list-navbar p-2 bg-zinc-700">
                   <li v-for="itemList in item.list" :key="itemList.name">
-                    <NuxtLink
-                      active-class="active"
-                      :to="itemList.href"
-                      v-slot="{ href, navigate, isActive }"
-                    >
-                      <a
-                        :class="{'active': isActive}"
-                        :href="href"
-                        @click="navigate"
-                      >{{itemList.name}}</a>
-                    </NuxtLink>
+                    <NuxtLink active-class="active" :to="itemList.href">{{itemList.name}}</NuxtLink>
                   </li>
                 </ul>
               </li>
@@ -100,62 +80,63 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    /* Список меню */
-    menu: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  mounted() {
-    const { setParentActive } = this
-    setParentActive()
-  },
-
-  methods: {
-    /*
-     * Установка активности для родительского элемента списка для мобильных устройств
-     * @function setParentActive
-     */
-    setParentActive() {
-      const el = this.$refs.navbar.querySelector('.parent-sidenav-list .active')
-      if (el) el.parentNode.parentNode.parentNode.querySelector('a').classList.add('active')
-    },
-  },
-
-  computed: {
-    route() {
-      return this.$route
-    },
-  },
-
-  watch: {
-    route: {
-      immediate: true,
-      handler(newValue) {
-        const { menu, $emit } = this
-        const arr = [] // массив для хранения развернутого списка
-        menu.forEach(el => (!el.list ? arr.push(el) : arr.push(...el.list)))
-        const selectItem = arr.find(el => el.href === newValue.fullPath)
-        $emit('title', selectItem.name)
-      },
-    },
-  },
+<script lang="ts" setup>
+/**
+ * @interface Props
+ * @member {Array} menu - Список меню
+ */
+interface Props {
+  menu: any
 }
+
+/* Установка значений по умолчанию для входящих значений */
+const props = withDefaults(defineProps<Props>(), {
+  menu: [],
+})
+
+const emit = defineEmits(['title'])
+
+const navbarRefs = ref() // Ссылка на элемент
+
+/*
+ * Получение заголовка для формы
+ * @function getTitleNav
+ */
+function getTitleNav() {
+  const arr: any = []
+  props.menu.forEach((el: any) => (!el.list ? arr.push(el) : arr.push(...el.list))) // Получение всех элементов меню
+  const selectItem = arr.find((el: any) => el.href === route.currentRoute.value.path) // получение выделенного элемента
+  emit('title', selectItem.name) // Отправка заголовка формы
+}
+
+/* При монтировании объекта */
+onMounted(() => {
+  const el = navbarRefs.value.querySelector('.parent-sidenav-list .active') // Поиск активного класса элемента
+  if (el) el.parentNode.parentNode.parentNode.querySelector('a').classList.add('active') // Установка активного класса для элемента
+  getTitleNav()
+})
+
+const route = useRouter() // Получение роута
+
+watch(
+  () => route,
+  () => {
+    getTitleNav()
+  },
+  { deep: true },
+)
 </script>
 
 <style>
-  .sidenav {
-    overflow-y: auto;
-  }
+    .sidenav {
+      overflow-y: auto;
+    }
 
-  .sidenav .last {
-    padding-bottom: 1em;
-  }
+    .sidenav .last {
+      padding-bottom: 1em;
+    }
 
-  .sidenav .first {
-    margin-top: 1em;
-  }
+    .sidenav .first {
+      margin-top: 1em;
+    }
 </style>

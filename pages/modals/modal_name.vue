@@ -3,55 +3,41 @@
   <sub-control-new :on-create="onCreate" :data-form="inputData" :disabled-create="disabledCreate" />
 </template>
 
-<script>
+<script lang="ts" setup>
 import subForm from '~/pages/sub/sub_name.vue'
 import subControlNew from '~/pages/sub/control_new.vue'
-export default {
-  components: {
-    'sub-form': subForm, // форма тела модального окна
-    'sub-control-new': subControlNew, // саф форма с действиями формы
-  },
-  inheritAttrs: false, // отключение наследования аттрибутов
 
-  props: {
-    /* Входные данные формы */
-    inputData: {
-      // входные данные
-      type: Object,
-      default: {},
-    },
-  },
-  data() {
-    return {
-      disabledCreate: true,
-      dataForm: {},
-    }
-  },
+/**
+ * @interface Props
+ * @member {Object} inputData - Входные данные
+ */
+interface Props {
+  inputData: any
+}
 
-  mounted() {
-    const { inputData } = this
-    this.dataForm = inputData // присвоение данным формы значения входных параметров
-  },
+const props = withDefaults(defineProps<Props>(), {
+  inputData: {},
+})
 
-  methods: {
-    /*
-     * Сохранение данных
-     * @function onCreate
-     */
-    async onCreate() {
-      const { dataForm, inputData, $event } = this
-      const obj = Object.assign(dataForm, inputData) // объединение объектов
-      $event(`close-modal-${dataForm.formUuid}`, obj) // открытие модальной формы
-    },
-  },
+const disabledCreate = ref(true) // Активность кнопки "Создать"
+const dataForm: any = ref() // Данные формы
+dataForm.value = props.inputData // Присвоение входных данных данным формы
 
-  watch: {
-    dataForm: {
-      handler(newValue) {
-        this.disabledCreate = newValue && newValue.name && newValue.name.length < 3 // установка минимальной длины поля "Наименование"
-      },
-      deep: true,
-    },
+/* Отслеживание данных формы */
+watch(
+  dataForm,
+  newVal => {
+    disabledCreate.value = newVal?.name?.length < 3
   },
+  { deep: true },
+)
+
+/**
+ * Сохранение данных
+ * @function onCreate
+ */
+function onCreate() {
+  const obj = Object.assign(dataForm.value, props.inputData)
+  emitter.emit(`close-modal-${dataForm.value.formUuid}`, obj) // Закрытие модального окна и передача параметров
 }
 </script>
