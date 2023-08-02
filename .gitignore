@@ -1,13 +1,1 @@
-.node_modules
-.history
-*.log*
-.nuxt
-.nitro
-.cache
-.output
-.env
-dist
-yarn.lock
-.yarn
 node_modules
-public

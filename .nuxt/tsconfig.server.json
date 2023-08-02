@@ -1,0 +1,73 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "paths": {
+      "#imports": [
+        "D:/Projects/finans/.nuxt/types/nitro-imports"
+      ],
+      "#paths": [
+        "D:/Projects/finans/node_modules/nuxt/dist/core/runtime/nitro/paths"
+      ],
+      "~": [
+        "D:/Projects/finans"
+      ],
+      "~/*": [
+        "D:/Projects/finans/*"
+      ],
+      "@": [
+        "D:/Projects/finans"
+      ],
+      "@/*": [
+        "D:/Projects/finans/*"
+      ],
+      "~~": [
+        "D:/Projects/finans"
+      ],
+      "~~/*": [
+        "D:/Projects/finans/*"
+      ],
+      "@@": [
+        "D:/Projects/finans"
+      ],
+      "@@/*": [
+        "D:/Projects/finans/*"
+      ],
+      "assets": [
+        "D:/Projects/finans/assets"
+      ],
+      "assets/*": [
+        "D:/Projects/finans/assets/*"
+      ],
+      "public": [
+        "D:/Projects/finans/public"
+      ],
+      "public/*": [
+        "D:/Projects/finans/public/*"
+      ],
+      "#image": [
+        "D:/Projects/finans/node_modules/@nuxt/image-edge/dist/runtime"
+      ],
+      "#image/*": [
+        "D:/Projects/finans/node_modules/@nuxt/image-edge/dist/runtime/*"
+      ],
+      "pinia": [
+        "D:/Projects/finans/node_modules/pinia/dist/pinia"
+      ]
+    }
+  },
+  "include": [
+    "D:/Projects/finans/.nuxt/types/nitro-nuxt.d.ts",
+    "./types/nitro.d.ts",
+    "../**/*",
+    "../server/**/*"
+  ]
+}

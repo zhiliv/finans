@@ -15,13 +15,6 @@ export default {
 </script>
 
 <style>
-body {
-  background: black;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
 
 .spinner {
   color: #fbbf24;

@@ -1,0 +1,172 @@
+<template>
+  <div class="overflow-x-auto p-0 block-table w-full">
+    <table class="table table-auto table-compact w-full">
+      <thead class="sticky top-0 w-full z-50">
+        <tr v-if="columns !== null" class="z-50">
+          <th
+            :class="{ 'text-left': column.labelPosition === `left`, 'text-center': column.labelPosition === `center`, 'text-right': column.labelPosition === `right` }"
+            :width="column?.width" class="p-0 border-r border-zinc-300" v-for="column in columns" :key="column">
+            <div class="bg-zinc-200 border-l border-t border-b p-2">
+              <div class="z-100">
+                {{ column.label }}
+                <div v-if="column.filter === 'text'" class="w-full relative">
+                  <app-input class="input-xs w-full" v-model.trim="column.filterValue" />
+                  <app-button class="btn-xs absolute right-0 bg-zinc-100 hover:bg-zinc-400 text-lime-500" @click="applyFilter(column.key, column.filterValue)">
+                    <nuxt-icon loading="lazy" quality="90" name="mdi/check-bold" class="icon-apply" filled />
+                  </app-button>
+                </div>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody v-if="store.list" class="py-4" ref="tableBody">
+        <tr v-for="row in store.list" :key="row.key" @click="onClick(row)" class="border" @dblclick="dblClick(row)">
+          <template v-for="column in columns" :key="column">
+            <th :style="{ width: column?.width, 'max-width': column?.width ? column?.width : '100px' }"
+              :class="{ 'text-left': column.textPosition === `left`, 'text-center': column.textPosition === `center`, 'text-right': column.textPosition === `right` }"
+              class="border-r border-zinc-300 font-normal truncate-text" v-bind="row">
+              {{ row[column.key] }}
+            </th>
+          </template>
+        </tr>
+      </tbody>
+    </table>
+    <app-spinner v-show="!store.list && columns !== null" class="w-full" />
+  </div>
+  <pagination :count="store.count" @pagination="getPagination" :count-items="limit" />
+</template>
+
+<script lang="ts" setup>
+import pagination from './pagination/pagination.vue'
+// let loading = true
+/**
+ * @interface Column
+ * @member {String} key - Наименование колонки
+ * @member {String} label - Текстовое значение имени колонки
+ * @member {String} width - Ширина колонки
+ * @member {String} textPosition - Положение текста
+ * @member {String} labelPosition - Положение текста заголовка колонки
+ * @member {String} filter - Тип фильтра
+ * @member {Any} filterValue - Значение фильтра
+ */
+interface Column {
+  key: string
+  label: string
+  width?: string
+  textPosition?: 'left' | 'right' | 'center'
+  labelPosition?: 'left' | 'right' | 'center'
+  filter: 'text' | 'list'
+  filterValue: string | number | boolean | null
+}
+
+/**
+ * @interface Props
+ * @member {Array} columns - Список колонок
+ * @member {Objert} store - Стор для обмена данными
+ */
+interface Props {
+  columns: Column[] | any
+  store: any
+  limit?: number
+}
+
+/* Установка значений PROPS */
+const props = withDefaults(defineProps<Props>(), {
+  columns: null,
+  store: { getList: () => { }, list: [] },
+  limit: 50
+})
+
+const offset = ref(0) // Значение сдвига
+
+
+await props.store.getCount() // Получение всех строк
+await props.store.getList(props.limit, offset.value) // Получение всех строк
+
+
+const tableBody = ref<any>() // Ссылка на таблица
+const emit = defineEmits(['click', 'offset'])
+const filter = ref<any>({}) // Значение фильтра
+
+/**
+ * @function dblClick
+ * @param {Object} item - Данные выделенной строки
+ */
+function dblClick(item: any) {
+  console.log('🚀 -> dblClick -> item:', item)
+}
+
+/**
+ * Примение фильтра
+ * @function applyFilter
+ * @param {String} key - Наименование ключа фильтра
+ * @param {String} value - Значение фильтра
+ */
+function applyFilter(key: string, value: any) {
+  props.store.setFilter(key, value)
+}
+
+/**
+ * Событие пи одиночном клике на строку
+ * @function onClick
+ * @param {Object} item - Данные строки
+ */
+function onClick(item: any) {
+  const index = props.store.list.findIndex((el: any) => el.id === item.id) // Получение индекса элемента
+  const listEls = tableBody.value.querySelectorAll('tr') // Получение списка строк DOM модели
+  listEls.forEach((el: any) => el.classList.remove('active')) // Удаление активного класса
+  listEls[index].classList.add('active') // Добавление активного класса
+  emit('click', item)
+}
+
+/* 
+* Получение значения пагинации
+* @function getPagination
+*/
+async function getPagination(value:any){
+  offset.value = value
+  console.log('🚀 -> getPagination -> offset.value:', offset.value, (offset.value - 1) * props.limit)
+  await props.store.getList(props.limit, ((offset.value - 1) * props.limit)) // Получение всех строк
+}
+</script>
+
+<style scoped>
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.active>* {
+  background: #c7d2fe !important;
+  color: #3f3f46;
+}
+
+@media (max-width: 1023px) {
+  .block-table {
+    height: 75%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .block-table {
+    height: 87%;
+  }
+}
+
+.btn-group .active {
+  background: #3730a3;
+}
+
+.icon-apply {
+  font-size: 1em;
+  fill: #166534;
+}
+
+.truncate-text {
+  white-space: nowrap;
+
+}
+</style>
