@@ -1,13 +1,11 @@
-
-
 <template>
-  <div ref="listPagination" class="btn-group justify-center w-full border-t py-3">
-    <button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="start" v-if="position > 0"> &#60; &#60; </button>
-    <button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="prew" v-if="position > 0"> &#60; </button>
-    <button v-for="item in list[position]" :key="item" class="btn btn-sm btn-primary hover:bg-indigo-400" :class="{ active: item === pagination }"
-      @click="select(item)">{{ item }}</button>
-    <button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="next" v-if="position < list.length - 1"> &#62; </button>
-    <button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="end" v-if="position < list.length - 1"> &#62; &#62; </button>
+  <div ref="listPagination" class="btn-group justify-center w-full border-t py-1 h-16 min-h-16">
+    <app-button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="start" v-if="position > 0"> &#60;&#60; </app-button>
+    <app-button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="prew" v-if="position > 0"> &#60; </app-button>
+    <app-button v-for="item in list[position]" :key="item" class="btn btn-sm btn-primary hover:bg-indigo-400" :class="{ active: item === pagination }"
+      @click="select(item)">{{ item }}</app-button>
+    <app-button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="next" v-if="position < list.length - 1"> &#62; </app-button>
+    <app-button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="end" v-if="position < list.length - 1"> &#62;&#62; </app-button>
   </div>
 </template>
 
@@ -42,7 +40,7 @@ const list = computed(() => {
   listPosition.forEach((num: number, index: number) => {
     checkNum++
     arrPagination.push(num) // Добавление номера пагинации в блок
-    if(checkNum === 5 || listPosition[index] === listPosition[listPosition.length-1]) {
+    if(checkNum === 5 || listPosition[index] === listPosition[listPosition.length - 1]) {
       checkNum = 0
       result.push(arrPagination) // Добавление блока в список
       arrPagination = []
@@ -50,8 +48,6 @@ const list = computed(() => {
   })
   return result
 })
-
-console.log('list', list.value)
 
 const pagination = ref<number>(1) // Выбранное значение пагинации
 
@@ -71,7 +67,7 @@ function select(num: number) {
 */
 function prew() {
   position.value--
-  pagination.value = list.value[position.value][4]
+  pagination.value = list.value[position.value][0]
   emit('pagination', pagination.value)
 }
 
@@ -89,7 +85,7 @@ function next() {
 * В начало списка пагинации
 * @function start
 */
-function start(){
+function start() {
   position.value = 0
   pagination.value = list.value[position.value][0]
   emit('pagination', pagination.value)
@@ -100,8 +96,8 @@ function start(){
 * @function end
 */
 function end() {
-  position.value = list.value.length-1
-  pagination.value = list.value[position.value][list.value[position.value].length-1]
+  position.value = list.value.length - 1
+  pagination.value = list.value[position.value][list.value[position.value].length - 1]
   emit('pagination', pagination.value)
 }
 

@@ -116,5 +116,5 @@ export { getSalt, getHashPassword } from '../../server/utils/access';
 export { default as getAuth } from '../../server/utils/getAuth';
 export { getErrorResponse, getList, updateItem, getWhere, getCountTable } from '../../server/utils/helper';
 export { default as useFiles } from '../../server/utils/useFiles';
-export { defineAuthenticatedEventHandler } from '../../server/utils/defineAuthenticatedEventHandler';
 export { DateNow } from '../../server/utils/time';
+export { defineAuthenticatedEventHandler } from '../../server/utils/defineAuthenticatedEventHandler';

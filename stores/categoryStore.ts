@@ -28,15 +28,17 @@ export const useCategoryStore = defineStore('category', () => {
   const offset = ref<any>(0)
   const selectParams = ref<SelectParams>({ offset, limit, order: JSON.stringify([['name', 'ASC']]) }) // Параметры для запроса
   const where = ref<any>({}) // Условия отбора
-  const filter = ref<any>({}) // Фильтр
-
+  const filterCondition = ref<any>()
+  
   /*
    * Назначение условий отбора
    * @function setFilter
    * @param {String} key - Наименование ключа условий отбора
    * @param {String} value - Значение условий отбора
    */
-  async function setFilter(key: string, value: any) {
+  async function setFilter(key: string, value: any, filterCondition: string) {
+    console.log('🚀 -> setFilter -> value:', value)
+    console.log('🚀 -> setFilter -> key:', key)
     if (!value) delete where.value[key]
     // Удаляем из объекта свойство, если поле поиска пустое
     else where.value[key] = `${value}`
@@ -48,7 +50,6 @@ export const useCategoryStore = defineStore('category', () => {
    * @function getList
    */
   async function getList(limit?: number, offset?: number) {
-    console.log('🚀 -> getList -> offset:', offset)
     let url = `/api/categories/all?limit=${limit || selectParams.value.limit}&offset=${offset || selectParams.value.offset}&order=${selectParams.value.order}`
     if (!checkEmptyObject(where.value)) url += `&where=${JSON.stringify(where.value)}`
     try {
@@ -105,5 +106,5 @@ export const useCategoryStore = defineStore('category', () => {
     resultUpdateCategory.value = await query(paramsQuery) // Отправка запроса на удаление
   }
 
-  return { list, item, loading, updateData, error, getList, getCategoryLeads, setFilter, getCount, count, limit, offset }
+  return { list, item, loading, updateData, error, getList, getCategoryLeads, setFilter, getCount, count, limit, offset, filterCondition }
 })

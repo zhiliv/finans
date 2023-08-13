@@ -3,12 +3,15 @@
     <div class="h-full w-full flex flex-col lg:flex-row">
       <app-sidenav :menu="menu" class="h-full" @title="getTitle" />
       <div class="grid grid-cols-12 w-full h-full">
-        <div class="lg:col-span-12 col-span-12 w-full overflow-y-hidden ">
+        <div class="lg:col-span-12 col-span-12 w-full md:overflow-y-hidden min-h-full">
           <!-- Заголовок формы -->
           <div class="border">
             <h4 class="pl-2 min-h-[32px]">{{ title }}</h4>
           </div>
-          <router-view />
+          <div class="h-full max-h-full">
+            <router-view />  
+          </div>
+          
         </div>
       </div>
     </div>

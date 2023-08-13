@@ -1,11 +1,12 @@
 <template>
-  <label class="label py-0 px-2">{{ label }}</label>
+  <label v-if="label" class="label py-0 px-2">{{ label }}</label>
   <input
     :value="modelValue"
     :type="type"
     class="input"
     :pattern="patterns"
     :maxlength="maxlength"
+    :style="$attrs.style"
     :class="[attrs.class, { 'input-success': props.isValid === true, 'input-error': props.isValid === false }]"
     @input="handler"
   />

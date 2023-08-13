@@ -1,6 +1,11 @@
 <template>
-  <div class="w-full h-[100%] md:h-[85%]">
-    <app-table :store="store" :columns="columns"  />
+  <div class="w-full h-full max-h-full" style="max-height: 99%;">
+    <div class="h-14">
+      <control-record />
+    </div>
+    <div>
+      <app-table :store="store" :columns="columns" />
+    </div>
   </div>
 </template>
 
@@ -11,8 +16,7 @@ import { useCategoryStore } from '~/stores/categoryStore'
 
 
 const store = useCategoryStore()
-/* store.offset = 0
-store.limit = 5 */
+
 const columns = [
   {
     key: 'id',
@@ -25,6 +29,11 @@ const columns = [
   { key: 'name', label: 'Наименование', filter: 'text' },
   { key: 'description', label: 'описание', filter: 'text' },
 ]
+
+onMounted(() => {
+  const preTable = ref()
+  console.log('🚀 -> onMounted -> preTable:', preTable)
+})
 
 
 /* onMounted(() => {
