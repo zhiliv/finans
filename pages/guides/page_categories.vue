@@ -1,21 +1,23 @@
 <template>
-  <div class="w-full h-full max-h-full" style="max-height: 99%;">
+  <div class="w-full h-full max-h-full">
     <div class="h-14">
-      <control-record />
+      <app-control-record @on-new="onNew" modal-title-new="Создание новой категории" modal-width-new="30%" />
     </div>
     <div>
-      <app-table :store="store" :columns="columns" />
+      <app-table :store="store" :columns="columns" @click="(data) =>  selectItem = data" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { useStore } from '~/stores/store'
+
 const meta = { title: 'Категории' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
-import { useCategoryStore } from '~/stores/categoryStore'
+const selectItem = ref() // Данные о выбранной записи
 
-
-const store = useCategoryStore()
+const store = useStore() // Создание нового стора
+store.urlApi = '/api/categories'  // Установка ссылки для работы со стором
 
 const columns = [
   {
@@ -24,16 +26,15 @@ const columns = [
     width: '200px',
     textPosition: 'center',
     labelPosition: 'center',
-    filter: 'text',
+    filter: 'number'
   },
   { key: 'name', label: 'Наименование', filter: 'text' },
   { key: 'description', label: 'описание', filter: 'text' },
 ]
 
-onMounted(() => {
-  const preTable = ref()
-  console.log('🚀 -> onMounted -> preTable:', preTable)
-})
+function onNew(event:any){
+  console.log('test', event)
+}
 
 
 /* onMounted(() => {

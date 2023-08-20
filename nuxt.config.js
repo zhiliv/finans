@@ -50,7 +50,6 @@ export default defineNuxtConfig({
     '@nuxt/image-edge',
     'nuxt-icons',
     '@pinia/nuxt',
-    '@nuxt-modules/compression',
     [
       'nuxt-purgecss',
       {

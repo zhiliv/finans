@@ -2,7 +2,7 @@
   <div class="col-span-12 mx-4">
     <app-input
       v-model.trim="modelValue.name"
-      class="input-bordered w-full"
+      class="input-standart input-bordered w-full input"
       :is-valid="isValid.name"
       label="Наименование"
     />

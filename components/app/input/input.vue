@@ -1,5 +1,5 @@
 <template>
-  <label v-if="label" class="label py-0 px-2">{{ label }}</label>
+  <label v-if="label" class="label py-0 px-2">{{label}}</label>
   <input
     :value="modelValue"
     :type="type"
@@ -25,9 +25,17 @@ const handler = (event: any) => {
   emit('update:modelValue', event.target.value ? event.target.value : null)
 }
 
-/* Модель для входных параметров */
+/** 
+* @interface Props
+* @member {String} modelValue - Данные поля
+* @member {String} label - Подпись поля
+* @member {String} type - Тип поля 
+* @member {RegExp} patterns - Паттерн ввода
+* @member {Boolean} isValid - Значение валидации
+* @member {Number} maxlength - Максимальная длина
+*/
 interface Props {
-  modelValue: string | null // Данные поля
+  modelValue: string | null | any // Данные поля
   label?: string | null // Подпись поля
   type?: string // Тип поля
   patterns?: string | undefined // Паттерны
@@ -41,6 +49,6 @@ const props = withDefaults(defineProps<Props>(), {
   label: null,
   type: 'text',
   isValid: null,
-  maxlength: null,
+  maxlength: null
 })
 </script>

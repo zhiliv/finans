@@ -1,11 +1,11 @@
 <template>
-  <div ref="listPagination" class="btn-group justify-center w-full border-t py-1 h-16 min-h-16">
-    <app-button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="start" v-if="position > 0"> &#60;&#60; </app-button>
-    <app-button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="prew" v-if="position > 0"> &#60; </app-button>
-    <app-button v-for="item in list[position]" :key="item" class="btn btn-sm btn-primary hover:bg-indigo-400" :class="{ active: item === pagination }"
+  <div ref="listPagination" class="btn-group justify-center w-full border-t py-1 h-16 min-h-16" v-if="list.length > 1">
+    <app-button class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white" @click="start" v-if="position > 0"> &#60;&#60; </app-button>
+    <app-button class="btn btn-sm btn-link hover:bg-green-700 hover:text-white" @click="prew" v-if="position > 0"> &#60; </app-button>
+    <app-button v-for="item in list[position]" :key="item" class="bg-gray-200 border-0 text-slate-600 btn-sm  hover:bg-green-600 hover:text-white" :class="{ active: item === pagination }"
       @click="select(item)">{{ item }}</app-button>
-    <app-button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="next" v-if="position < list.length - 1"> &#62; </app-button>
-    <app-button class="btn btn-sm btn-primary hover:bg-indigo-400" @click="end" v-if="position < list.length - 1"> &#62;&#62; </app-button>
+    <app-button class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white" @click="next" v-if="position < list.length - 1"> &#62; </app-button>
+    <app-button class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white" @click="end" v-if="position < list.length - 1"> &#62;&#62; </app-button>
   </div>
 </template>
 
@@ -105,6 +105,7 @@ function end() {
 
 <style scoped>
 .active {
-  background: #3730a3;
+  background: #198754;
+  color: white;
 }
 </style>

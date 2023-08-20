@@ -86,27 +86,26 @@ export const updateItem = async (tableName: string, params: any) => {
  * @params {String} whereText - Текстовое условие
  */
 export const getWhere = (nameModel: string, whereText: string) => {
+  console.log('🚀 -> getWhere -> whereText:', whereText)
   let fields = sequelize.models[nameModel].tableAttributes // Получение полей таблицы
-
-  /**
-   * Получение значения строки
-   * @function getValue
-   * @param {String} key - Наименование поля
-   * @param {Any} value - Значение поля
-   */
-  const getValue = (key: any, value: any) => {
-    let result // Результат
-    let typeData = 'STRING' // Тип данных
-    if (fields[key].type.toString() === 'INTEGER') typeData = 'INTEGER'
-    if (typeData === 'INTEGER') result = value
-    if (typeData === 'STRING') result = `%${value}%`
-    return { data: result, typeData }
-  }
 
   let whereObj = JSON.parse(whereText) // Объект параметров
   const where:any = {} // Результат сформированного условия
   for (let key in whereObj) {
-    const row = getValue(key, whereObj[key]) // Получение значения и типа данных
+    const row = whereObj[key]
+    let obj 
+    /* {
+      [Op[row.data.type]]: row.data.value,
+    } */
+    console.log('row.data', row.data)
+    const value = fields[key].type.toString() === 'INTEGER' ? +row.value : row.value
+    if(row.type === 'gt') obj = { [Op.gt]: value }
+    else if(row.type === 'lt') obj = { [Op.lt]: value }
+    else if(row.type === 'iLike') obj = { [Op.iLike]: `%${value}` }
+    else if(row.type === 'eq') obj = { [Op.eq]: value }
+    else obj = { [Op.eq]: row.value }
+    where[key] = obj
+/*     
     if (row.typeData === 'INTEGER')
       where[key] = { 
         [Op.eq]: row.data,
@@ -114,8 +113,9 @@ export const getWhere = (nameModel: string, whereText: string) => {
     else
       where[key] = {
         [Op.iLike]: row.data,
-      }
+      } */
   }
+  console.log('where', where)
   return where
 }
 

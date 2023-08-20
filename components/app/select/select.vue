@@ -10,7 +10,7 @@
       :multiple="attrs.multiple"
       v-model="selected"
       :disabled="attrs?.disabled"
-      class="select select-bordered w-full"
+      class="select select-bordered"
       :class="[$attrs['select-class'], {'mt-3': $attrs.multiple}]"
     >
       <option v-if="!options.length" disabled>Список пуст</option>

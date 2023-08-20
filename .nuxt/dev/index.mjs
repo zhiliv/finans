@@ -2589,31 +2589,28 @@ const updateItem = async (tableName, params) => {
   }
 };
 const getWhere = (nameModel, whereText) => {
+  console.log("\u{1F680} -> getWhere -> whereText:", whereText);
   let fields = sequelize.models[nameModel].tableAttributes;
-  const getValue = (key, value) => {
-    let result;
-    let typeData = "STRING";
-    if (fields[key].type.toString() === "INTEGER")
-      typeData = "INTEGER";
-    if (typeData === "INTEGER")
-      result = value;
-    if (typeData === "STRING")
-      result = `%${value}%`;
-    return { data: result, typeData };
-  };
   let whereObj = JSON.parse(whereText);
   const where = {};
   for (let key in whereObj) {
-    const row = getValue(key, whereObj[key]);
-    if (row.typeData === "INTEGER")
-      where[key] = {
-        [Op.eq]: row.data
-      };
+    const row = whereObj[key];
+    let obj;
+    console.log("row.data", row.data);
+    const value = fields[key].type.toString() === "INTEGER" ? +row.value : row.value;
+    if (row.type === "gt")
+      obj = { [Op.gt]: value };
+    else if (row.type === "lt")
+      obj = { [Op.lt]: value };
+    else if (row.type === "iLike")
+      obj = { [Op.iLike]: `%${value}` };
+    else if (row.type === "eq")
+      obj = { [Op.eq]: value };
     else
-      where[key] = {
-        [Op.iLike]: row.data
-      };
+      obj = { [Op.eq]: row.value };
+    where[key] = obj;
   }
+  console.log("where", where);
   return where;
 };
 const getCountTable = async (tableName, where) => {

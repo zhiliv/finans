@@ -1,13 +1,13 @@
 <template>
   <div class="p-2 h-full">
-    <app-button class="btn-info md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add">
+    <app-button class="btn-standart  btn-primary md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add" @click="onNew">
       <svg style="height: 16px; width: 18px;" class="add-record" id="Layer_1" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
         <path d="m22 9h-7v-7h-6v7h-7v6h7v7h6v-7h7z" fill="" />
       </svg>
       Добавить
     </app-button>
-    <app-button class="btn-success md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit">
+    <app-button class="btn-standart btn-success md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit">
       <svg version="1.1" style="height: 16px; width: 18px;" class="edit-record" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490.584 490.584" xml:space="preserve">
         <g>
@@ -20,7 +20,7 @@
         </g>
       </svg>
       Изменить</app-button>
-    <app-button class="btn-error md:btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete">
+    <app-button class="btn-standart btn-error md:btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete">
       <svg viewBox="0 0 64 64" style="height: 16px; width: 18px;" class="delete-record" xmlns="http://www.w3.org/2000/svg">
         <g id="Layer_8" data-name="Layer 8">
           <path d="m32 2.75a29.25 29.25 0 1 0 29.25 29.25 29.28 29.28 0 0 0 -29.25-29.25zm0 56a26.75 26.75 0 1 1 26.75-26.75 26.78 26.78 0 0 1 -26.75 26.75z" />
@@ -32,36 +32,70 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+const emit = defineEmits(['onNew'])
+
+/**
+ * @interface Props 
+ * @member {String} modalTitleNew - Заголовок модального окна для создания записи
+ * @member {String} modalWidthNew - Ширина модального окна
+ */
+interface Props {
+  modalTitleNew: string
+  modalWidthNew: string 
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  modalTitleNew: '',
+  modalWidthNew: ''
+})
+
+/** 
+* Создание новой категории
+* @function onNew
+*/
+async function onNew() {
+  const body: any = await showModal('modal_name', { title: props.modalTitleNew, width: props.modalWidthNew }) // Получение ответа из модального окна
+  if(body?.name) {
+    body.name = capitalize(body.name)
+    emit('onNew', body)
+  }
+  
+  /* if(body) {
+    const paramsQuery: Query = { url: '/api/cpa/add', method: 'post', body } // параметры запроса
+    const response: any = await query(paramsQuery) // Отправка запроса на сохранение данных
+    if(response?.data?.value?.status == 200) {
+      showToast({ message: response.data.value.message, type: 'success' }) // Отображение уведомления
+      // list.value.push(response.data.value.data) // Добавление записи в список
+      // const index = list.value.findIndex((el: any) => el.id === response.data.value.data.id) // Получение индекса элемента в списке
+      //selectIndex.value = index // Установка индекса элемента списку
+    }
+  } */
+}
+
+
+
+
+</script>
+
+
 <style scoped>
-.btn-record.add:hover {
-  background: #3b82f6
-}
-
-.btn-record.edit:hover {
-  background: #14b8a6
-}
-
-.btn-record.delete:hover {
-  background: #f43f5e
-}
-
 .btn-record:hover>* {
   fill: white;
 }
 
-.btn-record:hover{
+.btn-record:hover {
   color: white
 }
 
 .add-record {
-  fill: #52525b
+  fill: white;
+  transition: .3s;
 }
 
-.edit-record {
-  fill: #52525b
-}
-
+.edit-record,
 .delete-record {
-  fill: #52525b
+  fill: white;
+  transition: .3s;
 }
 </style>

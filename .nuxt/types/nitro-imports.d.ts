@@ -113,8 +113,8 @@ export { appendCorsHeaders, appendCorsPreflightHeaders, appendHeader, appendHead
 export { buildAssetsURL as __buildAssetsURL, publicAssetsURL as __publicAssetsURL } from '../../node_modules/nuxt/dist/core/runtime/nitro/paths';
 export { defineAppConfig } from '../../node_modules/nuxt/dist/core/runtime/nitro/config';
 export { getSalt, getHashPassword } from '../../server/utils/access';
+export { defineAuthenticatedEventHandler } from '../../server/utils/defineAuthenticatedEventHandler';
 export { default as getAuth } from '../../server/utils/getAuth';
 export { getErrorResponse, getList, updateItem, getWhere, getCountTable } from '../../server/utils/helper';
-export { default as useFiles } from '../../server/utils/useFiles';
 export { DateNow } from '../../server/utils/time';
-export { defineAuthenticatedEventHandler } from '../../server/utils/defineAuthenticatedEventHandler';
+export { default as useFiles } from '../../server/utils/useFiles';

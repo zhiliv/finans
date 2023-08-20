@@ -1,7 +1,7 @@
 <template>
   <div ref="table">
     <div class="overflow-x-auto p-0 max-h-full w-full flex flex-wrap">
-      <table class="table table-auto table-compact w-full">
+      <table class="table table-auto table-compact w-full border-b">
         <thead class="sticky top-0 w-full z-50">
           <tr v-if="columns !== null" class="z-50">
             <th
@@ -11,10 +11,17 @@
                 <div class="z-100">
                   {{ column.label }}
                   <div v-if="column.filter === 'text'" class="w-full relative flex">
-                    <app-select value="value" :options="listFilter" select-class="select-xs w-12 absolute left-0 bg-zinc-100" v-model="column.filterCondition"
+                    <app-select value="value" :options="listFilter" select-class="select-xs w-14 absolute left-0 bg-zinc-100" v-model="column.filterCondition"
                       :is-load="true" :select-value="listFilter[0].value" />
-                    <app-input class="input-xs w-full" style="padding-left: 54px;" v-model.trim="column.filterValue" />
+                    <app-input class="input-xs w-full" style="padding-left: 60px;" v-model.trim="column.filterValue" />
                     <app-button class="btn-xs absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500"
+                      @click="applyFilter(column.key, column.filterValue, column.filterCondition)">
+                      <nuxt-icon loading="lazy" quality="90" name="mdi/check-bold" class="icon-apply" filled />
+                    </app-button>
+                  </div>
+                  <div v-if="column.filter === 'number'" class="w-full relative flex">
+                    <app-input class="input-xs" v-model.trim="column.filterValue" />
+                    <app-button class="btn-xs absolute right-3 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500"
                       @click="applyFilter(column.key, column.filterValue, column.filterCondition)">
                       <nuxt-icon loading="lazy" quality="90" name="mdi/check-bold" class="icon-apply" filled />
                     </app-button>
@@ -63,7 +70,7 @@ interface Column {
   width?: string
   textPosition?: 'left' | 'right' | 'center'
   labelPosition?: 'left' | 'right' | 'center'
-  filter: 'text' | 'list'
+  filter: 'text' | 'list' | 'number'
   filterValue: string | number | boolean | null
   filterCondition: '=' | '>' | '<' | '%'
 }
@@ -82,9 +89,7 @@ interface Props {
 /* Установка значений PROPS */
 const props = withDefaults(defineProps<Props>(), {
   columns: null,
-  store: { getList: () => { }, list: [] },
-  limit: 50,
-  
+  limit: 50
 })
 
 const offset = ref(0) // Значение сдвига
@@ -119,7 +124,6 @@ function dblClick(item: any) {
  * @param {String} value - Значение фильтра
  */
 function applyFilter(key: string, value: any, filterCondition: string) {
-  console.log('🚀 -> applyFilter -> filterCondition:', filterCondition)
   props.store.setFilter(key, value, filterCondition)
 }
 
@@ -142,7 +146,6 @@ function onClick(item: any) {
 */
 async function getPagination(value: any) {
   offset.value = value // Значение сдвига
-  console.log('🚀 -> getPagination -> offset.value:', offset.value, (offset.value - 1) * props.limit)
   await props.store.getList(props.limit, ((offset.value - 1) * props.limit)) // Получение всех строк
 }
 
@@ -163,8 +166,8 @@ onMounted(() => {
 }
 
 .active>* {
-  background: #c7d2fe !important;
-  color: #3f3f46;
+  background: #bbf7d0 !important;
+
 }
 
 .btn-group .active {

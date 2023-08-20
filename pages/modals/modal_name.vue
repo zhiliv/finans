@@ -10,13 +10,28 @@ import subControlNew from '~/pages/sub/control_new.vue'
 /**
  * @interface Props
  * @member {Object} inputData - Входные данные
+ * @member {String} title - Заголовок формы1
+ * @member {String} formUuid - Уникальный идентификатор формы
+ * @member {String} form - Адрес\Имя формы
+ * @member {String} name - Имя формы
+ * @member {String} width - Ширина формы
  */
 interface Props {
   inputData: any
+  title: string
+  formUuid: string
+  form: any
+  name?: any
+  width?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   inputData: {},
+  title: '',
+  formUuid: '',
+  form: null,
+  name: null,
+  width: ''
 })
 
 const disabledCreate = ref(true) // Активность кнопки "Создать"
