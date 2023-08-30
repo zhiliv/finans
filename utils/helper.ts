@@ -185,6 +185,35 @@ export const showModal = async (nameForm: string, event: any) => {
   return result
 }
 
+/*
+ * Показать модальное окно
+ * @function showDrawer
+ * @param {String} nameForm - Имя формы
+ * @param {Object} event - Объект события
+ */
+export const showDrawer = async (nameForm: string, event: any) => {
+  if(!event) event = {}
+  event.formUuid = uuid.v4() // Добавление идентификатора формы
+  event.form = nameForm // Передача значения имени формы
+  emitter.emit(`show-drawer`, event) // Отправка события для показа модального окна
+  /* Создание ожидания ответа закрытия модального окна для возврата результата */
+  const listenCloseModal = () => {
+    return new Promise((resolve, reject) => {
+      emitter.on(`close-drawer-${event.formUuid}`, (eventClose: any) => {
+        // прослушивание уникального события закрытия окна
+        emitter.emit(`destroy-drawer-${event.formUuid}`) // отправка события для скрытия окна
+        delete eventClose.modalTitle
+        delete eventClose.formUuid
+        delete eventClose.form
+        resolve(eventClose) // получение ответа в promise
+      })
+    })
+  }
+  const result = await listenCloseModal() // возврат результата
+  return result
+}
+
+
 /** 
 * Создание новой записи
 * @function newRecord
