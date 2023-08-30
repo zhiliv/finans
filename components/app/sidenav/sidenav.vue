@@ -1,8 +1,8 @@
 <template>
   <div class="drawer drawer-mobile sidenav hidden lg:flex w-92 h-full" :class="$attrs.class">
-    <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-side">
-      <label for="my-drawer-2" class="drawer-overlay"></label>
+    
+    <div class="drawer">
+      
       <ul class="menu px-2 w-80 bg-gray-200 text-base-content pt-1">
         <template v-for="item in menu" :key="item.name">
           <li class="pt-2" v-if="!item.dropdown">
@@ -19,7 +19,7 @@
       </ul>
     </div>
   </div>
-  <div ref="navbarRefs" class="navbar bg-gray-400 lg:hidden h-10 w-full">
+  <div ref="navbarRefs" class="navbar bg-gray-400 lg:hidden h-10 w-full z-100">
     <div class="navbar-start">
       <div class="dropdown flex">
         <label tabindex="0" class="btn-ghost lg:hidden content-end">

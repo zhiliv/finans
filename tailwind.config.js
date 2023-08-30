@@ -50,15 +50,16 @@ module.exports = {
         "success": "#198754",
         "warning": "#ffc107",
         "error": "#dc3545",        
-        '.btn-standart': {
-          height: '38px',
-        },
-        '.input-standart': {
+        '.standart': {
           height: '38px'
         },
         'tbody tr:hover th': {
           'background': '#f0fdf4',
           'color': '#44403c'
+        },
+        'a.active': {
+          'background': '#198754 !important',
+          'color': 'white !important'
         }
       }
     } ],

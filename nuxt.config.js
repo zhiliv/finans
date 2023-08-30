@@ -3,11 +3,22 @@ const path = require('path')
 
 
 export default defineNuxtConfig({
+
+  experimental: {
+    headNext: true,
+
+  },
+  export: {
+    headNext: true
+  },
+  render: {
+    resourceHints: false
+  },
   env: {
     tokenLeads: 'c8e2d508767bd48d929b8d63641eaf80',
   },
 
-  ssr: true,
+  ssr: false,
 
   runtimeConfig: {
     database: {
@@ -22,7 +33,7 @@ export default defineNuxtConfig({
     saltRounds: 11,
     password_admin_start: 'admin',
     sessionOptions: {
-      maxAge: 60*60*12, // время жизни(12 часов)
+      maxAge: 60 * 60 * 12, // время жизни(12 часов)
       httpOnly: true,
       path: '/',
       sameSite: true,
@@ -31,7 +42,7 @@ export default defineNuxtConfig({
     notAuth: true // Проверять ли авторизацию
   },
 
-  css: ['@/assets/css/main.css'],
+  css: [ '@/assets/css/main.css' ],
 
   postcss: {
     plugins: {
@@ -43,7 +54,10 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
-    plugins: ['~/server/index.js'],
+    serverAssets: [ {
+      baseName: 'img',
+      dir: './public/img'
+    } ]
   },
 
   modules: [
@@ -54,14 +68,14 @@ export default defineNuxtConfig({
       'nuxt-purgecss',
       {
         enabled: true,
-        safelist: [/^h-/, /^w-/, /^lg:h-/, /^min-h-/, /^min-w-/, /^max-h-/, /^maw-w-/, /^xl:w-/, /^alert-/],
-        whitelist: ['alert-warning', 'alert-info', 'alert-success', 'alert-error']
-      },  
+        safelist: [ /^h-/, /^w-/, /^lg:h-/, /^min-h-/, /^min-w-/, /^max-h-/, /^maw-w-/, /^xl:w-/, /^alert-/ ],
+        whitelist: [ 'alert-warning', 'alert-info', 'alert-success', 'alert-error' ]
+      },
     ],
   ],
 
   image: {
-    dir: 'public/img',
+    dir: 'assets/img',
   },
 
   /*   vite: {

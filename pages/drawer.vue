@@ -11,8 +11,8 @@
           </keep-alive>
         </div>
         <div class="absolute bottom-0 p-2 w-full border-t">
-          <app-button class="m-1 btn-standart md:btn-sm btn-error" @click="close">Закрыть</app-button>
-          <app-button class="m-1 btn-standart md:btn-sm float-right" @click="onSave">Сохранить</app-button>
+          <app-button class="m-1 standart md:btn-sm btn-error" @click="close">Закрыть</app-button>
+          <app-button class="m-1 standart md:btn-sm float-right" @click="onSave">Сохранить</app-button>
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ const valueModel = ref() // Данные формы
 /** Прием события для показа формы  */
 emitter.on('show-modal', (event: any) => {
   valueModel.value = event
+  
   bodyModal.value = markRaw(defineAsyncComponent(() => import(`./modals/${event.form}.vue`))) // получение тела формы
   isShow.value = true // Отображение модальной формы
   /** Прием события для уничтожения формы  */

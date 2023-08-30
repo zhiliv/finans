@@ -1,5 +1,5 @@
 <template>
-  <div ref="listPagination" class="btn-group justify-center w-full border-t py-1 h-16 min-h-16" v-if="list.length > 1">
+  <div ref="listPagination" class="btn-group justify-center w-full border-t py-1 h-16 min-h-16" >
     <app-button class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white" @click="start" v-if="position > 0"> &#60;&#60; </app-button>
     <app-button class="btn btn-sm btn-link hover:bg-green-700 hover:text-white" @click="prew" v-if="position > 0"> &#60; </app-button>
     <app-button v-for="item in list[position]" :key="item" class="bg-gray-200 border-0 text-slate-600 btn-sm  hover:bg-green-600 hover:text-white" :class="{ active: item === pagination }"

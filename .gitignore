@@ -1,3 +1,7 @@
+.nuxt
 node_modules
 .output
-.nuxt
+
+dist
+
+yarn.lock

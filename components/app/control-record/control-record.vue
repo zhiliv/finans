@@ -7,7 +7,7 @@
       </svg>
       Добавить
     </app-button>
-    <app-button class="btn-standart btn-success md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit">
+    <app-button class="btn-standart btn-success md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit" :disabled="selectItem" @click="onEdit">
       <svg version="1.1" style="height: 16px; width: 18px;" class="edit-record" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490.584 490.584" xml:space="preserve">
         <g>
@@ -20,7 +20,7 @@
         </g>
       </svg>
       Изменить</app-button>
-    <app-button class="btn-standart btn-error md:btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete">
+    <app-button class="btn-standart btn-error md:btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete" :disabled="selectItem">
       <svg viewBox="0 0 64 64" style="height: 16px; width: 18px;" class="delete-record" xmlns="http://www.w3.org/2000/svg">
         <g id="Layer_8" data-name="Layer 8">
           <path d="m32 2.75a29.25 29.25 0 1 0 29.25 29.25 29.28 29.28 0 0 0 -29.25-29.25zm0 56a26.75 26.75 0 1 1 26.75-26.75 26.78 26.78 0 0 1 -26.75 26.75z" />
@@ -33,21 +33,24 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(['onNew'])
+const emit = defineEmits(['onNew', 'onEdit'])
 
 /**
  * @interface Props 
  * @member {String} modalTitleNew - Заголовок модального окна для создания записи
  * @member {String} modalWidthNew - Ширина модального окна
+ * @member {Object} selectItem - Данные выбранной строки
  */
 interface Props {
   modalTitleNew: string
   modalWidthNew: string 
+  selectItem: any
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modalTitleNew: '',
-  modalWidthNew: ''
+  modalWidthNew: '',
+  selectItem: null
 })
 
 /** 
@@ -73,9 +76,13 @@ async function onNew() {
   } */
 }
 
-
-
-
+/** 
+* Редактирование данных зиписи
+* @function onEdit 
+*/
+async function onEdit(){
+  const body: any = await showDrawer('edit_categories', { title: props.modalTitleNew, width: props.modalWidthNew }) // Получение ответа из модального окна
+}
 </script>
 
 

@@ -1,19 +1,19 @@
 <template>
   <div ref="table">
     <div class="overflow-x-auto p-0 max-h-full w-full flex flex-wrap">
-      <table class="table table-auto table-compact w-full border-b">
+      <table class="table table-auto lg:table-sm w-full border-b">
         <thead class="sticky top-0 w-full z-50">
           <tr v-if="columns !== null" class="z-50">
             <th
-              :class="{ 'text-left': column.labelPosition === `left`, 'text-center': column.labelPosition === `center`, 'text-right': column.labelPosition === `right` }"
+              :class="{ 'text-left': column.labelPosition === `left`, 'text-center': column.labelPosition === `center`, 'text-right': column.labelPosition === `right` }" style="padding: 0 !important"
               :width="column?.width" class="p-0 border-r border-zinc-300" v-for="column in columns" :key="column">
               <div class="bg-zinc-200 border-l border-t border-b p-2">
-                <div class="z-100">
+                <div class="z-100 text-zinc-700 text-sm">
                   {{ column.label }}
                   <div v-if="column.filter === 'text'" class="w-full relative flex">
                     <app-select value="value" :options="listFilter" select-class="select-xs w-14 absolute left-0 bg-zinc-100" v-model="column.filterCondition"
                       :is-load="true" :select-value="listFilter[0].value" />
-                    <app-input class="input-xs w-full" style="padding-left: 60px;" v-model.trim="column.filterValue" />
+                    <app-input class="input-xs w-full " style="padding-left: 60px;" v-model.trim="column.filterValue" />
                     <app-button class="btn-xs absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500"
                       @click="applyFilter(column.key, column.filterValue, column.filterCondition)">
                       <nuxt-icon loading="lazy" quality="90" name="mdi/check-bold" class="icon-apply" filled />
@@ -95,6 +95,12 @@ const props = withDefaults(defineProps<Props>(), {
 const offset = ref(0) // Значение сдвига
 const table = ref() // Ссылка на элемент таблицы
 
+
+
+defineExpose({
+  applyFilter, columns: props.columns, table
+})
+
 const listFilter = ref([
   { value: '=', name: '=' },
   { value: '>', name: '>' },
@@ -103,7 +109,9 @@ const listFilter = ref([
 ]) // список статусов) 
 
 await props.store.getCount() // Получение всех строк
-await props.store.getList(props.limit, offset.value) // Получение всех строк
+props.store.limit = props.limit
+props.store.offset = offset.value
+await props.store.getList() // Получение всех строк
 
 
 const tableBody = ref<any>() // Ссылка на таблица
@@ -118,7 +126,7 @@ function dblClick(item: any) {
 }
 
 /**
- * Примение фильтра
+ * Применение фильтра
  * @function applyFilter
  * @param {String} key - Наименование ключа фильтра
  * @param {String} value - Значение фильтра
@@ -146,7 +154,9 @@ function onClick(item: any) {
 */
 async function getPagination(value: any) {
   offset.value = value // Значение сдвига
-  await props.store.getList(props.limit, ((offset.value - 1) * props.limit)) // Получение всех строк
+  props.store.limit = props.limit
+  props.store.offset = ((offset.value - 1) * props.limit)
+  await props.store.getList() // Получение всех строк
 }
 
 onMounted(() => {

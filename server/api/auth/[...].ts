@@ -15,6 +15,7 @@ interface Result {
 }
 
 export default defineEventHandler(async event => {
+  console.log('🚀 -> event:', event)
   deleteCookie(event, 'token') // удаление куки
   const params: EnterAuthData = await readBody(event) // параметры запроса
   const ip: string = getClientAddress(event.node.req) // получение ip адреса клиента

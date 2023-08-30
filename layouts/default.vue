@@ -17,12 +17,14 @@
     </div>
   </div>
   <app-modal />
+  <app-drawer />
   <app-confirm />
   <app-toast />
   <app-multiselect />
 </template>
 <script lang="ts" setup>
 import appModal from '~/pages/modal.vue'
+import appDrawer from '~/pages/drawer.vue'
 import appConfirm from '~/pages/modals/confirm-modal.vue'
 import appMultiselect from '~/pages/modals/modal-multiselect.vue'
 import menu from './menu.json' //
