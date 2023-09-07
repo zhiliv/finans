@@ -3,14 +3,13 @@ const path = require('path')
 
 
 export default defineNuxtConfig({
-
-  experimental: {
-    headNext: true,
-
+  devServer: {
+    port: 3200
   },
-  export: {
-    headNext: true
-  },
+  buildModules: [ '@nuxt-modules/compression', {
+    algorithm: 'brotliCompress'
+  } ],
+  
   render: {
     resourceHints: false
   },
@@ -78,21 +77,5 @@ export default defineNuxtConfig({
     dir: 'assets/img',
   },
 
-  /*   vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: '@import "@/assets/css/_variables.css";'
-        }
-      }
-    },
-  }, */
 
-  /* app: {
-    head: {
-      bodyAttrs: {
-        class: '',
-      },
-    },
-  }, */
 })

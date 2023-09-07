@@ -1,13 +1,13 @@
 <template>
   <div class="p-2 h-full">
-    <app-button class="btn-standart  btn-primary md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add" @click="onNew">
+    <app-button class="standart  btn-primary md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add" @click="onNew">
       <svg style="height: 16px; width: 18px;" class="add-record" id="Layer_1" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
         <path d="m22 9h-7v-7h-6v7h-7v6h7v7h6v-7h7z" fill="" />
       </svg>
       Добавить
     </app-button>
-    <app-button class="btn-standart btn-success md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit" :disabled="selectItem" @click="onEdit">
+    <app-button class="standart btn-success md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit" :disabled="!selectItem" @click="onEdit">
       <svg version="1.1" style="height: 16px; width: 18px;" class="edit-record" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490.584 490.584" xml:space="preserve">
         <g>
@@ -20,7 +20,8 @@
         </g>
       </svg>
       Изменить</app-button>
-    <app-button class="btn-standart btn-error md:btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete" :disabled="selectItem">
+    <app-button class="standart btn-error md:btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete" :disabled="!selectItem"
+      @click="onDelete">
       <svg viewBox="0 0 64 64" style="height: 16px; width: 18px;" class="delete-record" xmlns="http://www.w3.org/2000/svg">
         <g id="Layer_8" data-name="Layer 8">
           <path d="m32 2.75a29.25 29.25 0 1 0 29.25 29.25 29.28 29.28 0 0 0 -29.25-29.25zm0 56a26.75 26.75 0 1 1 26.75-26.75 26.78 26.78 0 0 1 -26.75 26.75z" />
@@ -33,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(['onNew', 'onEdit'])
+const emit = defineEmits(['onNew', 'onEdit', 'onDelete'])
 
 /**
  * @interface Props 
@@ -43,48 +44,56 @@ const emit = defineEmits(['onNew', 'onEdit'])
  */
 interface Props {
   modalTitleNew: string
-  modalWidthNew: string 
+  modalWidthNew: string
   selectItem: any
+  nameEditForm: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modalTitleNew: '',
   modalWidthNew: '',
-  selectItem: null
+  selectItem: null,
+  nameEditForm: ''
 })
 
 /** 
-* Создание новой категории
+* Создание новой записи
 * @function onNew
 */
 async function onNew() {
-  const body: any = await showModal('modal_name', { title: props.modalTitleNew, width: props.modalWidthNew }) // Получение ответа из модального окна
+  const body: any = await showModal('modal_name', { options: { title: props.modalTitleNew, width: props.modalWidthNew, isdrawer: false, buttons: { save: true, cancel: true } } }) // Получение ответа из модального окна
   if(body?.name) {
     body.name = capitalize(body.name)
     emit('onNew', body)
   }
-  
-  /* if(body) {
-    const paramsQuery: Query = { url: '/api/cpa/add', method: 'post', body } // параметры запроса
-    const response: any = await query(paramsQuery) // Отправка запроса на сохранение данных
-    if(response?.data?.value?.status == 200) {
-      showToast({ message: response.data.value.message, type: 'success' }) // Отображение уведомления
-      // list.value.push(response.data.value.data) // Добавление записи в список
-      // const index = list.value.findIndex((el: any) => el.id === response.data.value.data.id) // Получение индекса элемента в списке
-      //selectIndex.value = index // Установка индекса элемента списку
-    }
-  } */
 }
 
 /** 
 * Редактирование данных зиписи
 * @function onEdit 
 */
-async function onEdit(){
-  const body: any = await showDrawer('edit_categories', { title: props.modalTitleNew, width: props.modalWidthNew }) // Получение ответа из модального окна
+async function onEdit() {
+  const body: any = await showModal(props.nameEditForm, {
+    options: {
+      title: props.modalTitleNew, width: props.modalWidthNew, buttons: { save: true, cancel: true }, isDrawer: true
+    }, ...props.selectItem
+  }) // Получение ответа из модального окна
+  if(body && body.id) {
+    emit('onEdit', body)
+  }
+}
+
+/** 
+* Удаление записи
+* @function onDelete
+*/
+async function onDelete() {
+  const body: any = await showModal('modal_text', { options: { title: 'Удалить запись?', width: '20%', isdrawer: false, buttons: { cancel: false, yes: true, no: true }, text: 'Подтвердите удаление записи' } }) // Получение ответа из модального окна
+  if(body){
+    emit('onDelete', body)
+  }
 }
 </script>
-
 
 <style scoped>
 .btn-record:hover>* {

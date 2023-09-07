@@ -175,10 +175,6 @@ onMounted(() => {
   text-overflow: ellipsis;
 }
 
-.active>* {
-  background: #bbf7d0 !important;
-
-}
 
 .btn-group .active {
   background: #3730a3;

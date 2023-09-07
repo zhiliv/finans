@@ -39,7 +39,6 @@ export const getErrorResponse = (error: any) => {
  * @param {Obecjt} where - Условия запроса
  */
 export const getList = async (tableName: string, params: any, where?: any) => {
-  console.log('🚀 -> getList -> params:', params)
   try {
     const response: Response = await sequelize.models[tableName].findAll({
       order: params.order ? JSON.parse(params.order) : [],
@@ -49,7 +48,25 @@ export const getList = async (tableName: string, params: any, where?: any) => {
     }) // Отправка запроса
     return response
   } catch (error: any) {
-    console.log('🚀 -> getList -> error:', error)
+    const err = getErrorResponse(error) // формирование ошибки
+    throw createError(err)
+  }
+}
+
+/*
+ * Получение данных записи по идентификатору
+ * @function getRecord
+ * @param {String} tableName - Наименование таблицы в модели
+ * @param {Object} params - Параметры запроса
+ * @param {Obecjt} where - Условия запроса
+ */
+export const getRecord = async (tableName: string, params: any) => {
+  try {
+    const response: Response = await sequelize.models[tableName].findOne({
+      where: params.where ? params.where : null,
+    }) // Отправка запроса
+    return response
+  } catch(error: any) {
     const err = getErrorResponse(error) // формирование ошибки
     throw createError(err)
   }
@@ -86,7 +103,6 @@ export const updateItem = async (tableName: string, params: any) => {
  * @params {String} whereText - Текстовое условие
  */
 export const getWhere = (nameModel: string, whereText: string) => {
-  console.log('🚀 -> getWhere -> whereText:', whereText)
   let fields = sequelize.models[nameModel].tableAttributes // Получение полей таблицы
 
   let whereObj = JSON.parse(whereText) // Объект параметров
@@ -97,7 +113,6 @@ export const getWhere = (nameModel: string, whereText: string) => {
     /* {
       [Op[row.data.type]]: row.data.value,
     } */
-    console.log('row.data', row.data)
     const value = fields[key].type.toString() === 'INTEGER' ? +row.value : row.value
     if(row.type === 'gt') obj = { [Op.gt]: value }
     else if(row.type === 'lt') obj = { [Op.lt]: value }
@@ -115,7 +130,6 @@ export const getWhere = (nameModel: string, whereText: string) => {
         [Op.iLike]: row.data,
       } */
   }
-  console.log('where', where)
   return where
 }
 

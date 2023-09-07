@@ -12,7 +12,7 @@ export default defineEventHandler(async event => {
       },
     }
     const count = await sequelize.models.categories.count(optionsWhere) // получение количества записей с таким наименованием
-    if (count > 0) {
+    if(params.uniq && count > 0) {
       response.status = 217 // установка статуса ответа
       response.typeMessage = 'warning' // тип сообщения
       response.message = 'Запись с таким наименование уже существуют' // установка текста сообщения

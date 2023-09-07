@@ -4,6 +4,3 @@
   </button>
 </template>
 
-<style>
-
-</style>

@@ -9,7 +9,7 @@ export default class auth_logger extends Model {
       autoIncrementIdentity: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      comment: "Уникакльный идентификатор",
+      comment: "Уникальный идентификатор",
       primaryKey: true
     },
     user_id: {
@@ -35,7 +35,7 @@ export default class auth_logger extends Model {
     ip_adress: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "Ip дрес"
+      comment: "Ip адрес"
     },
     token: {
       type: DataTypes.STRING,

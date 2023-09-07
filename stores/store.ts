@@ -58,8 +58,7 @@ export const useStore = defineStore('store', () => {
    * @param {Number} offset - Сдвиг поиска записей
    */
   async function getList() {
-    console.log('selectParams', selectParams.value.limit)
-    let url = `${urlApi.value}/all?limit=${ selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}`
+    let url = `${urlApi.value}/all?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}`
     if(!checkEmptyObject(where.value)) url += `&where=${JSON.stringify(where.value)}`
     try {
       loading.value = true
@@ -95,34 +94,17 @@ export const useStore = defineStore('store', () => {
       err.value ? showToast({ message: err.value.data.message, type: 'error' }) : (loading.value = false)
     }
   }
-  
+
   /** 
   * Добавление новой записи
   * @function addNewRecord
   * @param {Object} data - Данные для добавления
   */
-  async function addNewRecord(data:any){
-    const paramsQuery: Query = { url: `${urlApi.value}/add`, method: 'post', body: data } // параметры запроса
+  async function addNewRecord(data: any) {
+    const paramsQuery: Query = { url: `${urlApi.value}/add`, method: 'put', body: data } // параметры запроса
     try {
-      let response: any = await query(paramsQuery) // Отправка запроса на удаление
+      let response: any = await query(paramsQuery) // Отправка запроса на добавление данных
       await getList()
-      return response
-    }
-    catch(err:any){
-      error.value = err.value ? true : false // Установка статуса ошибки
-      showToast({ message: err.value.data.message, type: 'error' })
-    }
-  }
-  
-  /** 
-  * Получение данных записи 
-  * @function getRecord
-  * @param {Number} id - Идентификатор для получения записи
-  */
-  async function getRecord(id:number){
-    const paramsQuery: Query = { url: `${urlApi.value}/record`, method: 'get', body: {id} } // параметры запроса
-    try {
-      let response: any = await query(paramsQuery) // Отправка запроса на удаление
       return response
     }
     catch(err: any) {
@@ -131,6 +113,58 @@ export const useStore = defineStore('store', () => {
     }
   }
 
-  return { list, loading, error, getList, setFilter, getCount, count, limit, offset, filterCondition, urlApi, addNewRecord }
-})
+  /** 
+  * Редактирование записи
+  * @function editRecord
+  * @param {Object} data - Данные для добавления
+  */
+  async function editRecord(data: any) {
+    const paramsQuery: Query = { url: `${urlApi.value}/edit`, method: 'post', body: data } // параметры запроса
+    try {
+      let response: any = await query(paramsQuery) // Отправка запроса на редактирование данных
+      await getList()
+      return response
+    }
+    catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      showToast({ message: err.value.data.message, type: 'error' })
+    }
+  }
 
+  /** 
+  * Получение данных записи 
+  * @function getRecord
+  * @param {Number} id - Идентификатор для получения записи
+  */
+  async function getRecord(id: number) {
+    const paramsQuery: Query = { url: `${urlApi.value}/record?id=${id}`, method: 'get' } // параметры запроса
+    try {
+      let response: any = await query(paramsQuery) // Отправка запроса на получение данных
+      return response
+    }
+    catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      showToast({ message: err.value.data.message, type: 'error' })
+    }
+  }
+  
+  /** 
+  * Удаление записи
+  * @function deleteRecord
+  * @param {Object} data - Данные для удаления
+  */
+  async function deleteRecord(data: any) {
+    const paramsQuery: Query = { url: `${urlApi.value}/delete`, method: 'delete', body: data } // параметры запроса
+    try {
+      let response: any = await query(paramsQuery) // Отправка запроса на удаление
+      await getList()
+      return response
+    }
+    catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      showToast({ message: err.value.data.message, type: 'error' })
+    }
+  }
+
+  return { list, loading, error, getList, setFilter, getCount, count, limit, offset, filterCondition, urlApi, addNewRecord, getRecord, editRecord, deleteRecord }
+})

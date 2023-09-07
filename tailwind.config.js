@@ -4,6 +4,9 @@ module.exports = {
     './components/**/*.{js,vue,ts}',
     './layouts/**/*.vue',
     './pages/**/*.vue',
+    './pages/*.vue',
+    './pages/**/**/*.vue',
+    './pages/**/**/**/*.vue',
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
   ],
@@ -53,13 +56,17 @@ module.exports = {
         '.standart': {
           height: '38px'
         },
-        'tbody tr:hover th': {
-          'background': '#f0fdf4',
+        'tbody tr:not(.active):hover th': {
+          'background': '#e5e5e5',
           'color': '#44403c'
         },
         'a.active': {
           'background': '#198754 !important',
           'color': 'white !important'
+        },
+        'tr.active>*': {
+          'background': '#737373',
+          'color': 'white'
         }
       }
     } ],
