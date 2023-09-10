@@ -14,7 +14,6 @@
         </div>
         <div class="lg:col-span-9 col-span-12 w-full">
           <div class="grid grid-cols-12">
-            <app-sub @invalid="getInvalid" v-model="valueModel" />
           </div>
         </div>
       </div>
@@ -36,7 +35,6 @@ import mixinFunction from '~/mixins/globalMixins'
 export default {
   mixins: [mixinFunction],
   components: {
-    'app-sub': appSub,
     'app-control-buttons': appControlButton,
   },
 

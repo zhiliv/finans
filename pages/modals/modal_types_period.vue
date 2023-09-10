@@ -1,11 +1,10 @@
 <template>
   <sub-form v-model="dataForm" />
-  <sub-control-new :on-create="onCreate" :data-form="inputData" :disabled-create="disabledCreate" />
+
 </template>
 
 <script>
 import subForm from '~/pages/sub/sub_types_period.vue'
-import subControlNew from '~/pages/sub/control_new.vue'
 export default {
   components: {
     'sub-form': subForm, // форма тела модального окна

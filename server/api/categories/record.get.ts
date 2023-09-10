@@ -1,13 +1,10 @@
+/* Получение данных записи по ее идентификатору */
+
 import { H3Event } from 'h3'
-import { getList, getWhere } from '~/server/utils/helper.js'
+import { getRecord, getWhere } from '~/server/utils/helper.js'
 export default defineEventHandler(async (event: H3Event) => {
   const params: any = getQuery(event)
-  
-  type Order = {
-    field: string;
-    value: 'ASC' | 'DESC';
-  }
-  
+
   /* 
   * @interface Options
   * @member {Object} where - Условия отбора
@@ -17,16 +14,11 @@ export default defineEventHandler(async (event: H3Event) => {
   */
   interface Options {
     where?: any
-    order?: Order[]
-    offset: number
-    limit: number
+  }
+
+  const options: Options = {
+    where: {id: params.id},
   }
   
-  const options:Options = {
-    where: params.where ? getWhere('categories', params.where) : {},
-    order: params.order,
-    offset: params.offset,
-    limit: params.limit
-  }
-  return getList('categories', options)
+  return getRecord('categories', options)
 })

@@ -174,9 +174,6 @@ export const showModal = async (nameForm: string, event: any) => {
       emitter.on(`close-modal-${event.formUuid}`, (eventClose: any) => {
         // прослушивание уникального события закрытия окна
         emitter.emit(`destroy-modal-${event.formUuid}`) // отправка события для скрытия окна
-        delete eventClose.modalTitle
-        delete eventClose.formUuid
-        delete eventClose.form
         resolve(eventClose) // получение ответа в promise
       })
     })
@@ -186,20 +183,19 @@ export const showModal = async (nameForm: string, event: any) => {
 }
 
 /** 
-* Создание новой записи
-* @function newRecord
-* @param {String} message - Сообщение при создании 
-* @param {String} url - Ссылка на создание записи
+* Получение результата валидации формы
+* @function getValidForm
+* @param {Object} valid - Объект валидации
 */
-export const newRecord = async (message: string, url: string, modalName: string = 'modal_name') => {
-  const body: any = await showModal(modalName, { modalTitle: message })
-  if(body){
-    body.name = capitalize(body.name)
-    const paramsQuery: Query = { url, method: 'post', body } // параметры запроса
-    const response: any = await query(paramsQuery) // Отправка запроса на сохранение данных
-    if (response?.data?.value?.status == 200) {
-      showToast({ message: response.data.value.message, type: 'success' }) // Отображение уведомления
-      return response.data.value.data.id
-    }
+export const getValidForm = (valid: any) => {
+  let result = true
+  if(!valid) return false
+  if(valid){
+    const keys = Object.keys(valid)
+    keys.forEach(key => {
+      if(key !== 'result')
+        if(valid[key] === false)  result = false
+    });
   }
+  return result
 }

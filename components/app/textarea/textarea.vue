@@ -1,15 +1,7 @@
 <template>
-  <label v-if="label" class="label py-0 px-2">{{label}}</label>
-  <input
-    :value="modelValue"
-    :type="type"
-    class="input"
-    :pattern="patterns"
-    :maxlength="maxlength"
-    :style="$attrs.style"
-    :class="[attrs.class, { 'input-success': props.isValid === true, 'input-error': props.isValid === false }]"
-    @input="handler"
-  />
+  <label v-if="label" class="label py-0 px-2">{{ label }}</label>
+  <textarea :value="modelValue"  class="textarea textarea-bordered w-full" :pattern="patterns" :style="$attrs.style"
+    :class="[attrs.class, { 'textarea-success': props.isValid === true, 'textarea-error': props.isValid === false, 'mt-2': !label }]" @input="handler" />
 </template>
 
 <script lang="ts" setup>
@@ -37,10 +29,8 @@ const handler = (event: any) => {
 interface Props {
   modelValue: string | null | any // Данные поля
   label?: string | null // Подпись поля
-  type?: string // Тип поля
   patterns?: string | undefined // Паттерны
   isValid?: string | null | boolean // Валидация поля
-  maxlength?: any | number | undefined // Максимальная длина
 }
 
 /* Установка значений PROPS */

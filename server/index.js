@@ -9,6 +9,7 @@ arrImgDir.forEach(dir => {
 })
 
 export default async () => {
+  console.log('инициализация')
   try {
     await sequelize.authenticate()
     await initModels(sequelize) // инициализация моделей

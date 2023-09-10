@@ -1,43 +1,37 @@
 <template>
-  <sub-form v-model="dataForm" is-modal="true" />
-  <sub-control-new :on-create="onCreate" :data-form="inputData" :disabled-create="disabledCreate" />
+  <div class="col-span-12 mx-4">
+    <app-input v-model.trim="data.name" class="standart input-bordered w-full input" :is-valid="isValid.name" label="Наименование" />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import subForm from '~/pages/sub/sub_name.vue'
-import subControlNew from '~/pages/sub/control_new.vue'
-
-/**
- * @interface Props
- * @member {Object} inputData - Входные данные
- */
-interface Props {
-  inputData: any
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  inputData: {},
+const emit = defineEmits(['valid', 'data'])
+/** 
+* Данные формы
+* @constant data
+* @member {String} name - Наименование
+*/
+const data = ref({
+  name: ''
 })
 
-const disabledCreate = ref(true) // Активность кнопки "Создать"
-const dataForm: any = ref() // Данные формы
-dataForm.value = props.inputData // Присвоение входных данных данным формы
-
-/* Отслеживание данных формы */
-watch(
-  dataForm,
-  newVal => {
-    disabledCreate.value = newVal?.name?.length < 3
-  },
-  { deep: true },
-)
+/** 
+* Данные валидации
+* @member {Boolean} name - Валидация наименования
+*/
+const isValid = ref({
+  name: false,
+  result: false
+})
 
 /**
- * Сохранение данных
- * @function onCreate
- */
-function onCreate() {
-  const obj = Object.assign(dataForm.value, props.inputData)
-  emitter.emit(`close-modal-${dataForm.value.formUuid}`, obj) // Закрытие модального окна и передача параметров
-}
+* Наблюдатель для установки валидации
+*/
+watch(data.value, (newVal) => {
+  isValid.value.name = Boolean(newVal.name && newVal.name.length && newVal.name.length > 3) // Установка валидации для поля "Наименование"
+  isValid.value.result = getValidForm(isValid.value)
+  emit('valid', { new: !isValid.value.result })
+  emit('data', data.value)
+})
+
 </script>

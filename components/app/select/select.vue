@@ -5,12 +5,12 @@
       class="absolute pt-2"
       :class="{'left-[50%]': $attrs.multiple}"
     />
-    <label class="label py-0 px-2">{{label}}</label>
+    <label v-if="label" class="label py-0 px-2">{{label}}</label>
     <select
       :multiple="attrs.multiple"
       v-model="selected"
       :disabled="attrs?.disabled"
-      class="select select-bordered w-full"
+      class="select select-bordered"
       :class="[$attrs['select-class'], {'mt-3': $attrs.multiple}]"
     >
       <option v-if="!options.length" disabled>Список пуст</option>
@@ -46,7 +46,7 @@ interface Props {
   text?: string
   required?: boolean
   isLoad: boolean | string
-  selectValue: any
+  selectValue?: any
   disabled?: boolean
   multiple?: boolean
 }
@@ -57,24 +57,22 @@ const props = withDefaults(defineProps<Props>(), {
   text: 'name',
   required: false,
   isLoad: false,
+  selectValue: null
 })
 
 /* События компонента */
 const emit = defineEmits(['update:modelValue', 'update:selectValue'])
-
 const selected = ref() // Выделенный элемент
+
 
 /* Отслеживание изменений выбранных элементов */
 watch(selected, newVal => {
   emit('update:modelValue', newVal) // Отправка события для обновления модели данных
 })
 
-/* Отслеживание изменений входящих свойств */
-watch(
-  () => props.selectValue,
-  newVal => {
-    if (newVal) selected.value = newVal
-    else if (newVal === false) selected.value = newVal
-  },
-)
+onMounted(() => {
+  selected.value = props.selectValue || null
+})
+
+
 </script>
