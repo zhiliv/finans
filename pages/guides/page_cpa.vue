@@ -14,9 +14,7 @@
           />
         </div>
         <div class="lg:col-span-9 col-span-12 w-full">
-          <div class="grid grid-cols-12">
-            <app-sub @is-valid="getValid" v-model="valueModel" />
-          </div>
+          
         </div>
       </div>
     </div>

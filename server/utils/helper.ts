@@ -58,7 +58,7 @@ export const getList = async (tableName: string, params: any, where?: any) => {
  * @function getRecord
  * @param {String} tableName - Наименование таблицы в модели
  * @param {Object} params - Параметры запроса
- * @param {Obecjt} where - Условия запроса
+ * @param {Object} where - Условия запроса
  */
 export const getRecord = async (tableName: string, params: any) => {
   try {

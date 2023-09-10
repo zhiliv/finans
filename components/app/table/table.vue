@@ -5,8 +5,8 @@
         <thead class="sticky top-0 w-full z-50">
           <tr v-if="columns !== null" class="z-50">
             <th
-              :class="{ 'text-left': column.labelPosition === `left`, 'text-center': column.labelPosition === `center`, 'text-right': column.labelPosition === `right` }" style="padding: 0 !important"
-              :width="column?.width" class="p-0 border-r border-zinc-300" v-for="column in columns" :key="column">
+              :class="{ 'text-left': column.labelPosition === `left`, 'text-center': column.labelPosition === `center`, 'text-right': column.labelPosition === `right` }"
+              style="padding: 0 !important" :width="column?.width" class="p-0 border-r border-zinc-300" v-for="column in columns" :key="column">
               <div class="bg-zinc-200 border-l border-t border-b p-2">
                 <div class="z-100 text-zinc-700 text-sm">
                   {{ column.label }}

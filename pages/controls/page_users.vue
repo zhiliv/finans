@@ -17,9 +17,7 @@
           </div>
         </div>
         <div class="lg:col-span-9 col-span-12 w-full">
-          <div class="grid grid-cols-12">
-            <app-sub @invalid="getInvalid" v-model="valueModel" />
-          </div>
+          
         </div>
       </div>
     </div>
@@ -34,13 +32,11 @@
 </template>
 
 <script>
-import appSub from '~/pages/sub/sub_name.vue' // подключение саб формы
 import appControlButton from '~/pages/sub/control_edit.vue' // подключение саб формы с кнопка ми управления
 import mixinFunction from '~/mixins/globalMixins'
 export default {
   mixins: [mixinFunction],
   components: {
-    'app-sub': appSub,
     'app-control-buttons': appControlButton,
   },
 

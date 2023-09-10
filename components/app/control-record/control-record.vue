@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2 h-full">
+  <div class="p-2 h-full" ref="control">
     <app-button class="standart  btn-primary md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add" @click="onNew">
       <svg style="height: 16px; width: 18px;" class="add-record" id="Layer_1" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
@@ -34,16 +34,19 @@
 </template>
 
 <script lang="ts" setup>
+const control = ref()
 const emit = defineEmits(['onNew', 'onEdit', 'onDelete'])
 
 /**
  * @interface Props 
  * @member {String} modalTitleNew - Заголовок модального окна для создания записи
+ * @member {String} modalTitleEdit - Заголовок формы редактирования
  * @member {String} modalWidthNew - Ширина модального окна
  * @member {Object} selectItem - Данные выбранной строки
  */
 interface Props {
   modalTitleNew: string
+  modalTitleEdit: string
   modalWidthNew: string
   selectItem: any
   nameEditForm: string
@@ -51,6 +54,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   modalTitleNew: '',
+  modalTitleEdit: '',
   modalWidthNew: '',
   selectItem: null,
   nameEditForm: ''
@@ -75,7 +79,7 @@ async function onNew() {
 async function onEdit() {
   const body: any = await showModal(props.nameEditForm, {
     options: {
-      title: props.modalTitleNew, width: props.modalWidthNew, buttons: { save: true, cancel: true }, isDrawer: true
+      title: props.modalTitleEdit, width: props.modalWidthNew, buttons: { save: true, cancel: true }, isDrawer: true
     }, ...props.selectItem
   }) // Получение ответа из модального окна
   if(body && body.id) {
@@ -89,10 +93,14 @@ async function onEdit() {
 */
 async function onDelete() {
   const body: any = await showModal('modal_text', { options: { title: 'Удалить запись?', width: '20%', isdrawer: false, buttons: { cancel: false, yes: true, no: true }, text: 'Подтвердите удаление записи' } }) // Получение ответа из модального окна
-  if(body){
+  if(body) {
     emit('onDelete', body)
   }
 }
+
+defineExpose({
+  control, onEdit
+})
 </script>
 
 <style scoped>
