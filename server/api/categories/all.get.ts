@@ -2,12 +2,12 @@ import { H3Event } from 'h3'
 import { getList, getWhere } from '~/server/utils/helper.js'
 export default defineEventHandler(async (event: H3Event) => {
   const params: any = getQuery(event)
-  
+
   type Order = {
     field: string;
     value: 'ASC' | 'DESC';
   }
-  
+
   /* 
   * @interface Options
   * @member {Object} where - Условия отбора
@@ -21,8 +21,8 @@ export default defineEventHandler(async (event: H3Event) => {
     offset: number
     limit: number
   }
-  
-  const options:Options = {
+
+  const options: Options = {
     where: params.where ? getWhere('categories', params.where) : {},
     order: params.order,
     offset: params.offset,

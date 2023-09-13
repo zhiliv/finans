@@ -26,6 +26,7 @@
         </div>
       </div>
     </div>
+    <app-spinner v-show="!store.list" class="w-full" />
     <div ref="tableBody" class="overflow-y-auto min-h-full w-full">
       <div class="md:flex lg:h-[35px]  border-zinc-300 row-table max-md:border-b-2 md:border-t" v-for="row in store.list" :key="row.key" @click="onClick(row)"
         @dblclick="dblClick(row)">
@@ -39,7 +40,7 @@
       </div>
     </div>
 
-    <app-spinner v-show="!store.list && columns !== null" class="w-full" />
+    
     <pagination :count="store.count" @pagination="getPagination" :count-items="limit" />
   </div>
 </template>

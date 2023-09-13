@@ -14,16 +14,20 @@ export default class auth_logger extends Model {
     },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Идентификатор пользователя"
+      allowNull: false,
+      comment: "Идентификатор пользователя",
+      references: {
+        model: 'users',
+        key: 'id'
+      }
     },
     date_requiest: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       comment: "Дата запроса"
     },
     date_auth: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: true,
       comment: "Дата авторизации"
     },
@@ -31,11 +35,6 @@ export default class auth_logger extends Model {
       type: DataTypes.BOOLEAN,
       allowNull: true,
       comment: "Статус авторизации"
-    },
-    ip_adress: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      comment: "Ip адрес"
     },
     token: {
       type: DataTypes.STRING,
@@ -49,7 +48,7 @@ export default class auth_logger extends Model {
     timestamps: false,
     indexes: [
       {
-        name: "auth_loggoer_pk",
+        name: "auth_logger_pk",
         unique: true,
         fields: [
           { name: "id" },
