@@ -1,13 +1,13 @@
 <template>
   <div class="p-2 h-full" ref="control">
-    <app-button class="standart  btn-primary md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add" @click="onNew">
+    <app-button class="standart btn-primary  btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add" @click="onNew">
       <svg style="height: 16px; width: 18px;" class="add-record" id="Layer_1" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
         <path d="m22 9h-7v-7h-6v7h-7v6h7v7h6v-7h7z" fill="" />
       </svg>
       Добавить
     </app-button>
-    <app-button class="standart btn-success md:btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit" :disabled="!selectItem" @click="onEdit">
+    <app-button class="standart btn-success btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit" :disabled="!selectItem" @click="onEdit">
       <svg version="1.1" style="height: 16px; width: 18px;" class="edit-record" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490.584 490.584" xml:space="preserve">
         <g>
@@ -20,7 +20,7 @@
         </g>
       </svg>
       Изменить</app-button>
-    <app-button class="standart btn-error md:btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete" :disabled="!selectItem"
+    <app-button class="standart btn-error btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete" :disabled="!selectItem"
       @click="onDelete">
       <svg viewBox="0 0 64 64" style="height: 16px; width: 18px;" class="delete-record" xmlns="http://www.w3.org/2000/svg">
         <g id="Layer_8" data-name="Layer 8">

@@ -1,10 +1,10 @@
 <template>
   <div class="w-full h-full max-h-full">
-    <div class="h-14">
+    <div>
       <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание новой категории" modal-title-edit="Редактирование категории"
         modal-width-new="30%" :select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_categories" />
     </div>
-    <div>
+    <div class="min-h-full">
       <app-table ref="table" :store="store" :columns="columns" @click="(data) => selectItem = data" @dblclick="onDblEdit" />
     </div>
   </div>
