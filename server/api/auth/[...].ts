@@ -51,13 +51,17 @@ export default defineEventHandler(async event => {
   
   let token // переменная для хранения токена
   const checkHash = user?.id ? await bcrypt.compare(params.password, user.password_hash) : null // проверка пароля по хэшу
-  if(user && user.id && countAuth <= 5 && checkHash) {
-    
+  if(user && user.id && countAuth <= 5 && checkHash) {    
       token = jwt.sign({ id: user.id }, config.secret_key, { expiresIn: '1d' })
+      console.log('🚀 -> token:', token)
       result.statusCode = 200 // установка статуса
       dataAuth.user_id = user.id // установка идентификатора пользователя
       dataAuth.date_auth = DateNow() // установка даты авторизации
+      dataAuth.token = token
+    console.log('config.sessionOptions', config.sessionOptions)
       setCookie(event, 'token', token, config.sessionOptions)
+      setCookie(event, 'user', user.name, config.sessionOptions)
+      setCookie(event, 'user_id', user.id, config.sessionOptions)
       logger(dataAuth) // логирование
   }
   else {
@@ -66,9 +70,6 @@ export default defineEventHandler(async event => {
     logger(dataAuth) // логирование
     result.message = 'Неверный логин или пароль'
   }
-  
-  
-  
   return result.statusCode === 400 ? createError({ statusCode: result.statusCode, message: result.message }) : result
 })
 

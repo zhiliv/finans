@@ -15,7 +15,7 @@ type SelectParams = {
   order?: string
 }
 
-export const useStore = defineStore('store', () => {
+export const useStore = defineStore('categories', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки
@@ -25,7 +25,7 @@ export const useStore = defineStore('store', () => {
   const selectParams = ref<SelectParams>({ offset, limit, order: JSON.stringify([['name', 'ASC']]) }) // Параметры для запроса
   const where = ref<any>({}) // Условия отбора данных
   const filterCondition = ref<any>() // Данные фильтрации
-  const urlApi = ref<string>('') // Ссылка на api для получения списка
+  const table = ref<string>('categories') // Получение наименования категории(таблицы)
 
   /**
    * Назначение условий отбора
@@ -54,11 +54,10 @@ export const useStore = defineStore('store', () => {
   /**
    * Получение списка всех категорий
    * @function getList
-   * @param {Number} limit - Количество выбираемых записей
-   * @param {Number} offset - Сдвиг поиска записей
+   * @param {String} _url - Ссылка для api
    */
   async function getList() {
-    let url = `${urlApi.value}/all?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}`
+    let url = `/api/fetch/all?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}&table=${table.value}`
     if(!checkEmptyObject(where.value)) url += `&where=${JSON.stringify(where.value)}`
     try {
       loading.value = true
@@ -78,10 +77,10 @@ export const useStore = defineStore('store', () => {
   /**
    * Получение общего количества записей
    * @function getCount
-   * @params {String} where - Условия отбора
+   * @param {String} _url - Ссылка для api
    */
   async function getCount() {
-    let url = !checkEmptyObject(where.value) ? `${urlApi.value}/count?where=${JSON.stringify(where.value)}` : `${urlApi.value}/count` // Проверка на наличие дополнительных параметров получения количества
+    let url = !checkEmptyObject(where.value) ? `/api/fetch/count?where=${JSON.stringify(where.value)}&table=${table.value}` : `/api/fetch/count?table=${table.value}` // Проверка на наличие дополнительных параметров получения количества
     try {
       const paramsQuery: Query = {
         url, // TODO добавить параметры фильтрации
@@ -99,13 +98,15 @@ export const useStore = defineStore('store', () => {
   * Добавление новой записи
   * @function addNewRecord
   * @param {Object} data - Данные для добавления
+  * @param {String} _url - Ссылка для api
   */
   async function addNewRecord(data: any) {
-    const paramsQuery: Query = { url: `${urlApi.value}/add`, method: 'put', body: data } // параметры запроса
+    data.table = table.value // Установка параметра имени таблицы
+    const paramsQuery: Query = { url: `/api/fetch/add`, method: 'put', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на добавление данных
       await getList()
-      return response
+      return response.data
     }
     catch(err: any) {
       error.value = err.value ? true : false // Установка статуса ошибки
@@ -117,17 +118,19 @@ export const useStore = defineStore('store', () => {
   * Редактирование записи
   * @function editRecord
   * @param {Object} data - Данные для добавления
+  * @param {String} _url - Ссылка для api
   */
   async function editRecord(data: any) {
-    const paramsQuery: Query = { url: `${urlApi.value}/edit`, method: 'post', body: data } // параметры запроса
+    data.table = table.value // Установка параметра имени таблицы
+    const paramsQuery: Query = { url: `/api/fetch/edit`, method: 'post', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на редактирование данных
       await getList()
-      return response
+      return response.data
     }
     catch(err: any) {
-      error.value = err.value ? true : false // Установка статуса ошибки
-      showToast({ message: err.value.data.message, type: 'error' })
+      error.value = err?.value ? true : false // Установка статуса ошибки
+      showToast({ message: err?.value?.data?.message || err, type: 'error' })
     }
   }
 
@@ -135,30 +138,13 @@ export const useStore = defineStore('store', () => {
   * Получение данных записи 
   * @function getRecord
   * @param {Number} id - Идентификатор для получения записи
+  * @param {String} _url - Ссылка для api
   */
   async function getRecord(id: number) {
-    const paramsQuery: Query = { url: `${urlApi.value}/record?id=${id}`, method: 'get' } // параметры запроса
+    const paramsQuery: Query = { url: `/api/fetch/record?id=${id}&table=${table.value}`, method: 'get' } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на получение данных
-      return response
-    }
-    catch(err: any) {
-      error.value = err.value ? true : false // Установка статуса ошибки
-      showToast({ message: err.value.data.message, type: 'error' })
-    }
-  }
-  
-  /** 
-  * Удаление записи
-  * @function deleteRecord
-  * @param {Object} data - Данные для удаления
-  */
-  async function deleteRecord(data: any) {
-    const paramsQuery: Query = { url: `${urlApi.value}/delete`, method: 'delete', body: data } // параметры запроса
-    try {
-      let response: any = await query(paramsQuery) // Отправка запроса на удаление
-      await getList()
-      return response
+      return response.data
     }
     catch(err: any) {
       error.value = err.value ? true : false // Установка статуса ошибки
@@ -166,5 +152,25 @@ export const useStore = defineStore('store', () => {
     }
   }
 
-  return { list, loading, error, getList, setFilter, getCount, count, limit, offset, filterCondition, urlApi, addNewRecord, getRecord, editRecord, deleteRecord }
+  /** 
+  * Удаление записи
+  * @function deleteRecord
+  * @param {Object} data - Данные для удаления
+  * @param {String} _url - Ссылка для api
+  */
+  async function deleteRecord(data: any) {
+    data.table = table.value // Наименование таблицы
+    const paramsQuery: Query = { url: `/api/categories/delete`, method: 'delete', body: data } // параметры запроса
+    try {
+      let response: any = await query(paramsQuery) // Отправка запроса на удаление
+      await getList()
+      return response.data
+    }
+    catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      showToast({ message: err.value.data.message, type: 'error' })
+    }
+  }
+
+  return { list, loading, error, getList, setFilter, getCount, count, limit, offset, filterCondition, addNewRecord, getRecord, editRecord, deleteRecord, table }
 })

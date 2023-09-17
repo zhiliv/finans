@@ -1,3 +1,5 @@
+import { H3Event } from 'h3'
+
 /* Получение данных записи по ее идентификатору */
 export default defineEventHandler(async (event: H3Event) => {
   const params: any = getQuery(event)
@@ -17,5 +19,5 @@ export default defineEventHandler(async (event: H3Event) => {
     where: {id: params.id},
   }
   
-  return getRecord('categories', options)
+  return getRecord(params.table, options)
 })
