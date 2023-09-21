@@ -19,12 +19,12 @@ export default class types_period extends Model {
     },
     padez: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       comment: "Родительский падеж"
     },
     mnozh: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       comment: "Множественное число"
     }
   }, {

@@ -1,8 +1,8 @@
 <template>
   <div class="w-full h-full max-h-full">
     <div>
-      <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание новой категории" modal-title-edit="Редактирование категории"
-        modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_categories" />
+      <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание нового способа получения денег" modal-title-edit="Редактирование способа получения денег"
+        modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_method_get_money" />
     </div>
     <div class="min-h-full">
       <app-table ref="table" :store="store" :columns="columns" @click="(data) => selectItem = data" @dblclick="onDblEdit" />
@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/categories-store'
+import { useStore } from '~/stores/method-get-money-store'
 
-const meta = { title: 'Категории' } // Установка мета данных страницы
+const meta = { title: 'Способы получения денег' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
 const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
@@ -66,7 +66,7 @@ async function onEdit(data: any) {
 * @function onDelete
 */
 async function onDelete() {
-  const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/categories' })
+  const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/method_get_money' })
   if(result?.value)
     showToast({ message: result?.value?.message, type: result?.value?.typeMessage }) // Отображение сообщения об успешном удалении записи
 }
