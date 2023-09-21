@@ -1,11 +1,14 @@
 <template>
+  <app-spinner v-if="!isLoad" class="w-full" />
   <div class="p-2  overflow-y-auto">
     <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
+    <app-input v-model="data.padez" class="standart w-full input" label="Родительский падеж" :is-valid="isValid.padez" />
+    <app-input v-model="data.mnozh" class="standart w-full input" label="Множественное число" :is-valid="isValid.mnozh" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/type-docs-store'
+import { useStore } from '~/stores/types-period-store'
 const emit = defineEmits(['valid', 'data'])
 
 /** 
@@ -26,6 +29,8 @@ const props = withDefaults(defineProps<Props>(), {
 */
 interface Data{
   name: String | null
+  padez: String
+  mnozh: String
   id: number | null
 }
 
@@ -35,6 +40,8 @@ interface Data{
 */
 const data = ref({
   name: null,
+  padez: null,
+  mnozh: null,
   id: null,
 }) // Данные формы
 
@@ -44,17 +51,22 @@ const data = ref({
 */
 const isValid = ref({
   name: false,
+  padez: false,
+  mnozh: false,
   result: false
 })
 
-
+const isLoad = ref(false) // Статус загрузки данных
 const store = useStore() // Создание нового стора
 const id = ref(props.modelValue.id) // Идентификатор записи
 
 onMounted(async () => {
   const response = await store.getRecord(id.value)
+  isLoad.value = true
   data.value.id = id
   data.value.name = response.value.name
+  data.value.padez = response.value.padez
+  data.value.mnozh = response.value.mnozh
 })
 
 
@@ -63,6 +75,8 @@ onMounted(async () => {
 */
 watch(data.value, (newVal: Data) => {
   isValid.value.name = !!(newVal.name && newVal.name.length && newVal.name.length > 3) // Установка валидации для поля "Наименование"
+  isValid.value.padez = !!(newVal.padez && newVal.padez.length && newVal.padez.length > 2) // Установка валидации для поля "Родительский падеж"
+  isValid.value.mnozh = !!(newVal.mnozh && newVal.mnozh.length && newVal.mnozh.length > 2) // Установка валидации для поля "Множественное число"
   isValid.value.result = getValidForm(isValid.value)
   emit('valid', {save: !isValid.value.result})
   emit('data', data.value)

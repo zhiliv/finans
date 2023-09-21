@@ -1,13 +1,13 @@
 <template>
   <div ref="table" class="w-full pr-1 md:max-w-full md:min-w-full md:flex  flex-wrap h-full max-md:pt-10">
-    <div class="sm:flex flex-row w-full mr-3">
+    <div class="sm:flex flex-row w-full mr-3 ">
       <div v-for="(column, index) in columns" :key="column" class="border-l border-b border-t border-zinc-300"
         :class="{ 'w-full': !column?.width, 'border-r': index === columns.length - 1 }" :style="{ 'min-width': column?.width }">
-        <div class="bg-zinc-200 border-l border-t border-b pl-1 pr-1 w-full min-h-[55px] ">
+        <div class="bg-zinc-200 border-l border-t border-b pl-1 pr-1 w-full min-h-[55px] " :style="{ 'width': column?.width }">
           <div class="z-100 text-zinc-700 text-sm font-medium pl-1">
             {{ column.label }}
           </div>
-          <div v-if="column.filter === 'text'" class="w-full flex relative">
+          <div v-if="column.filter === 'text'" class="w-full flex relative" >
             <app-select value="value" :options="listFilter" select-class="select-sm w-14 absolute left-0 bg-zinc-100" v-model="column.filterCondition"
               :is-load="true" :select-value="listFilter[0].value" />
             <app-input class="input-sm w-full " style="padding-left: 60px;" v-model.trim="column.filterValue" />
@@ -16,7 +16,7 @@
               <nuxt-icon loading="lazy" quality="90" name="mdi/check-bold" class="icon-apply" filled />
             </app-button>
           </div>
-          <div v-if="column.filter === 'number'" class="w-full relative flex">
+          <div v-if="column.filter === 'number'" class="w-full relative flex ">
             <app-input class="input-sm w-full " v-model.trim="column.filterValue" />
             <app-button class="btn-sm absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500"
               @click="applyFilter(column.key, column.filterValue, column.filterCondition)">
@@ -27,8 +27,8 @@
       </div>
     </div>
     <app-spinner v-show="!store.list" class="w-full" />
-    <div ref="tableBody" class="overflow-y-auto min-h-full w-full">
-      <div class="md:flex lg:h-[35px]  border-zinc-300 row-table max-md:border-b-2 md:border-t hover:bg-gray-100" v-for="row in store.list" :key="row.key" @click="onClick(row)"
+    <div ref="tableBody" class="overflow-y-scroll min-h-full w-full overflow-x-hidden">
+      <div class="md:flex lg:h-[35px] row-table border-zinc-300 row-table max-md:border-b-2 md:border-b hover:bg-gray-100 w-full max-w-full" v-for="row in store.list" :key="row.key" @click="onClick(row)"
         @dblclick="dblClick(row)">
         <div v-for="(column, index) in columns" :key="column" class="md:border-l  pl-2"
           :class="{ 'w-full': !column?.width, 'border-r': index === columns.length - 1 }" :style="{ 'min-width': column?.width }">
@@ -38,9 +38,7 @@
           </div>
         </div>
       </div>
-    </div>
-
-    
+    </div>    
     <pagination :count="store.count" @pagination="getPagination" :count-items="limit" />
   </div>
 </template>
@@ -93,7 +91,7 @@ const table = ref() // Ссылка на элемент таблицы
 
 
 defineExpose({
-  applyFilter, columns: props.columns, table
+  applyFilter, columns: props.columns, table, dblClick
 })
 
 const listFilter = ref([
@@ -126,8 +124,8 @@ function dblClick(item: any) {
  * @param {String} key - Наименование ключа фильтра
  * @param {String} value - Значение фильтра
  */
-function applyFilter(key: string, value: any, filterCondition: string) {
-  props.store.setFilter(key, value, filterCondition)
+async function applyFilter(key: string, value: any, filterCondition: string) {
+  await props.store.setFilter(key, value, filterCondition)
 }
 
 /**
@@ -162,8 +160,6 @@ onMounted(() => {
       tableBody.value.style.height = table.value.parentNode.parentNode.offsetHeight - 185 + 'px'
   })
 })
-
-
 </script>
 
 <style scoped>

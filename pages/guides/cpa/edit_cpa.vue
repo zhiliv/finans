@@ -1,13 +1,13 @@
 <template>
   <app-spinner v-if="!isLoad" class="w-full" />
-  <div class="p-2  overflow-y-auto" v-if="isLoad">
+  <div class="p-2  overflow-y-auto">
     <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
-    <app-textarea v-model="data.description" label="Описание" style="height: 550px" :is-valid="isValid.description"></app-textarea>
+    <app-input v-model="data.site" class="standart w-full input" label="Наименование" :is-valid="isValid.site" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/categories-store'
+import { useStore } from '~/stores/cpa-store'
 const emit = defineEmits(['valid', 'data'])
 
 /** 
@@ -28,8 +28,8 @@ const props = withDefaults(defineProps<Props>(), {
 */
 interface Data{
   name: String | null
-  description: String | null
   id: number | null
+  site: string
 }
 
 /** 
@@ -39,8 +39,8 @@ interface Data{
 */
 const data = ref({
   name: null,
-  description: null,
   id: null,
+  site: null
 }) // Данные формы
 
 /** 
@@ -50,7 +50,7 @@ const data = ref({
 */
 const isValid = ref({
   name: false,
-  description: false,
+  site: false,
   result: false
 })
 
@@ -63,7 +63,7 @@ onMounted(async () => {
   isLoad.value = true
   data.value.id = id
   data.value.name = response.value.name
-  data.value.description = response.value.description
+  data.value.site = response.value.site
 })
 
 
@@ -72,12 +72,7 @@ onMounted(async () => {
 */
 watch(data.value, (newVal: Data) => {
   isValid.value.name = !!(newVal.name && newVal.name.length && newVal.name.length > 3) // Установка валидации для поля "Наименование"
-  /* Установка валидации для поля "Описание" */
-  if(newVal.description) {
-    if(newVal.description.length > 3) isValid.value.description = true
-    else isValid.value.description = false
-  }
-  else isValid.value.description = false
+  isValid.value.site = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(newVal.site)
   isValid.value.result = getValidForm(isValid.value)
   emit('valid', {save: !isValid.value.result})
   emit('data', data.value)

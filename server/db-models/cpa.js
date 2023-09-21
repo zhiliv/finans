@@ -19,7 +19,7 @@ export default class cpa extends Model {
     },
     site: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       comment: "Адрес сайта"
     }
   }, {

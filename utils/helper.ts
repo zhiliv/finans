@@ -151,7 +151,7 @@ export const showToast = async (args: Toast) => {
  */
 export const query = async (args: Query) => {
   const response = await useFetch(args.url, args)
-  if (response.error.value) showToast({ type: 'error', message: response.error.value.message })
+  if(response.error.value) showToast({ type: 'error', message: response?.error?.value?.data?.message || response?.error?.value?.message })
   if (response.data.value && response.data.value.status === 202)
     showToast({ type: 'warning', message: response.data.value.message })
   if (response.data) return response

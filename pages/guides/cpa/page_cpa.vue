@@ -1,8 +1,8 @@
 <template>
   <div class="w-full h-full max-h-full">
     <div>
-      <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание новой категории" modal-title-edit="Редактирование категории"
-        modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_categories" />
+      <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание новой партнерской программы" modal-title-edit="Партнерские программы"
+        modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_cpa" />
     </div>
     <div class="min-h-full">
       <app-table ref="table" :store="store" :columns="columns" @click="(data) => selectItem = data" @dblclick="onDblEdit" />
@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/categories-store'
+import { useStore } from '~/stores/cpa-store'
 
-const meta = { title: 'Категории' } // Установка мета данных страницы
+const meta = { title: 'Партнерские программы' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
 const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
@@ -25,12 +25,12 @@ const columns = [
     key: 'id',
     label: 'Идентификатор',
     width: '200px',
-    textPosition: 'center',
-    labelPosition: 'center',
     filter: 'number'
   },
   { key: 'name', label: 'Наименование', filter: 'text' },
-  { key: 'description', label: 'Описание', filter: 'text' },
+  { key: 'site', label: 'Адрес сайта', filter: 'text', width: '250px' },
+  { key: 'site', label: 'Адрес сайта', filter: 'text' },
+  { key: 'site', label: 'Адрес сайта', filter: 'text', width: '250px' },
 ]
 
 /**  
@@ -67,7 +67,8 @@ async function onEdit(data: any) {
 * @function onDelete
 */
 async function onDelete() {
-  const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/categories' })
+  const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/cpa' })
+  console.log('🚀 -> onDelete -> result:', result)
   if(result?.value)
     showToast({ message: result?.value?.message, type: result?.value?.typeMessage }) // Отображение сообщения об успешном удалении записи
 }
@@ -78,6 +79,7 @@ async function onDelete() {
 * @param {Object} data - Данные для открытия формы
 */
 function onDblEdit(data?: any) {
+  console.log('🚀 -> onDblEdit -> data:', data)
   control.value.onEdit(data)
 }
 </script>

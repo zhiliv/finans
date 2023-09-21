@@ -9,6 +9,7 @@ import _img_offers from  "./img_offers.js";
 import _img_organization from  "./img_organization.js";
 import _link_categories from  "./link_categories.js";
 import _link_get_money from  "./link_get_money.js";
+import _link_type_docs from  "./link_type_docs.js";
 import _method_get_money from  "./method_get_money.js";
 import _offers from  "./offers.js";
 import _offers_old from  "./offers_old.js";
@@ -33,6 +34,7 @@ export default function initModels(sequelize) {
   const img_organization = _img_organization.init(sequelize, DataTypes);
   const link_categories = _link_categories.init(sequelize, DataTypes);
   const link_get_money = _link_get_money.init(sequelize, DataTypes);
+  const link_type_docs = _link_type_docs.init(sequelize, DataTypes);
   const method_get_money = _method_get_money.init(sequelize, DataTypes);
   const offers = _offers.init(sequelize, DataTypes);
   const offers_old = _offers_old.init(sequelize, DataTypes);
@@ -77,10 +79,14 @@ export default function initModels(sequelize) {
   offers.hasMany(link_categories, { as: "link_categories", foreignKey: "id_offer"});
   link_get_money.belongsTo(offers, { as: "id_offer_offer", foreignKey: "id_offer"});
   offers.hasMany(link_get_money, { as: "link_get_moneys", foreignKey: "id_offer"});
+  link_type_docs.belongsTo(offers, { as: "id_offer_offer", foreignKey: "id_offer"});
+  offers.hasMany(link_type_docs, { as: "link_type_docs", foreignKey: "id_offer"});
   img_organization.belongsTo(organizations, { as: "id_organization_organization", foreignKey: "id_organization"});
   organizations.hasMany(img_organization, { as: "img_organizations", foreignKey: "id_organization"});
   offers.belongsTo(organizations, { as: "id_organization_organization", foreignKey: "id_organization"});
   organizations.hasMany(offers, { as: "offers", foreignKey: "id_organization"});
+  link_type_docs.belongsTo(type_docs, { as: "id_type_doc_type_doc", foreignKey: "id_type_doc"});
+  type_docs.hasMany(link_type_docs, { as: "link_type_docs", foreignKey: "id_type_doc"});
   offers.belongsTo(types_period, { as: "type_free_period_types_period", foreignKey: "type_free_period"});
   types_period.hasMany(offers, { as: "offers", foreignKey: "type_free_period"});
   offers.belongsTo(types_period, { as: "type_period_max_types_period", foreignKey: "type_period_max"});
@@ -100,6 +106,7 @@ export default function initModels(sequelize) {
     img_organization,
     link_categories,
     link_get_money,
+    link_type_docs,
     method_get_money,
     offers,
     offers_old,

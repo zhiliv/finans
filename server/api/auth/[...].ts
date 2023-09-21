@@ -58,7 +58,6 @@ export default defineEventHandler(async event => {
       dataAuth.user_id = user.id // установка идентификатора пользователя
       dataAuth.date_auth = DateNow() // установка даты авторизации
       dataAuth.token = token
-    console.log('config.sessionOptions', config.sessionOptions)
       setCookie(event, 'token', token, config.sessionOptions)
       setCookie(event, 'user', user.name, config.sessionOptions)
       setCookie(event, 'user_id', user.id, config.sessionOptions)
