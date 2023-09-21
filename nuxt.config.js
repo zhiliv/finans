@@ -33,10 +33,10 @@ export default defineNuxtConfig({
     password_admin_start: 'admin',
     sessionOptions: {
       maxAge: 60 * 60 * 12, // время жизни(12 часов)
-      httpOnly: true,
+      httpOnly: false, // 
       path: '/',
       sameSite: true,
-      secure: true,
+      secure: false, // Позволяет получать куки не только через https
     },
     notAuth: true // Проверять ли авторизацию
   },

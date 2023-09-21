@@ -32,6 +32,11 @@ export default class users extends Model {
       type: DataTypes.DATE,
       allowNull: true,
       comment: "Дата обновления записи"
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: "Почта пользователя"
     }
   }, {
     sequelize,

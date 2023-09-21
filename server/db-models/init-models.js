@@ -9,6 +9,7 @@ import _img_offers from  "./img_offers.js";
 import _img_organization from  "./img_organization.js";
 import _link_categories from  "./link_categories.js";
 import _link_get_money from  "./link_get_money.js";
+import _link_type_docs from  "./link_type_docs.js";
 import _method_get_money from  "./method_get_money.js";
 import _offers from  "./offers.js";
 import _offers_old from  "./offers_old.js";
@@ -33,6 +34,7 @@ export default function initModels(sequelize) {
   const img_organization = _img_organization.init(sequelize, DataTypes);
   const link_categories = _link_categories.init(sequelize, DataTypes);
   const link_get_money = _link_get_money.init(sequelize, DataTypes);
+  const link_type_docs = _link_type_docs.init(sequelize, DataTypes);
   const method_get_money = _method_get_money.init(sequelize, DataTypes);
   const offers = _offers.init(sequelize, DataTypes);
   const offers_old = _offers_old.init(sequelize, DataTypes);
@@ -55,6 +57,8 @@ export default function initModels(sequelize) {
   roles.hasMany(user_roles, { as: "user_roles", foreignKey: "role_id"});
   roles_accesses.belongsTo(type_access, { as: "type_access", foreignKey: "type_access_id"});
   type_access.hasMany(roles_accesses, { as: "roles_accesses", foreignKey: "type_access_id"});
+  auth_logger.belongsTo(users, { as: "user", foreignKey: "user_id"});
+  users.hasMany(auth_logger, { as: "auth_loggers", foreignKey: "user_id"});
   roles.belongsTo(users, { as: "created_user", foreignKey: "created_user_id"});
   users.hasMany(roles, { as: "roles", foreignKey: "created_user_id"});
   user_roles.belongsTo(users, { as: "user", foreignKey: "user_id"});
@@ -65,8 +69,6 @@ export default function initModels(sequelize) {
   categories.hasMany(link_categories, { as: "link_categories", foreignKey: "id_category"});
   offers.belongsTo(cpa, { as: "id_cpa_cpa", foreignKey: "id_cpa"});
   cpa.hasMany(offers, { as: "offers", foreignKey: "id_cpa"});
-  offers.belongsTo(img_offers, { as: "img_offer_img_offer", foreignKey: "img_offer_id"});
-  img_offers.hasMany(offers, { as: "offers", foreignKey: "img_offer_id"});
   organizations.belongsTo(img_organization, { as: "img_organization_img_organization", foreignKey: "img_organization_id"});
   img_organization.hasMany(organizations, { as: "organizations", foreignKey: "img_organization_id"});
   link_get_money.belongsTo(method_get_money, { as: "id_method_get_money_method_get_money", foreignKey: "id_method_get_money"});
@@ -77,18 +79,16 @@ export default function initModels(sequelize) {
   offers.hasMany(link_categories, { as: "link_categories", foreignKey: "id_offer"});
   link_get_money.belongsTo(offers, { as: "id_offer_offer", foreignKey: "id_offer"});
   offers.hasMany(link_get_money, { as: "link_get_moneys", foreignKey: "id_offer"});
+  link_type_docs.belongsTo(offers, { as: "id_offer_offer", foreignKey: "id_offer"});
+  offers.hasMany(link_type_docs, { as: "link_type_docs", foreignKey: "id_offer"});
   img_organization.belongsTo(organizations, { as: "id_organization_organization", foreignKey: "id_organization"});
   organizations.hasMany(img_organization, { as: "img_organizations", foreignKey: "id_organization"});
   offers.belongsTo(organizations, { as: "id_organization_organization", foreignKey: "id_organization"});
   organizations.hasMany(offers, { as: "offers", foreignKey: "id_organization"});
-  offers.belongsTo(type_profit, { as: "type_profit_type_profit", foreignKey: "type_profit"});
-  type_profit.hasMany(offers, { as: "offers", foreignKey: "type_profit"});
+  link_type_docs.belongsTo(type_docs, { as: "id_type_doc_type_doc", foreignKey: "id_type_doc"});
+  type_docs.hasMany(link_type_docs, { as: "link_type_docs", foreignKey: "id_type_doc"});
   offers.belongsTo(types_period, { as: "type_free_period_types_period", foreignKey: "type_free_period"});
   types_period.hasMany(offers, { as: "offers", foreignKey: "type_free_period"});
-  offers.belongsTo(types_period, { as: "type_percent_max_types_period", foreignKey: "type_percent_max"});
-  types_period.hasMany(offers, { as: "type_percent_max_offers", foreignKey: "type_percent_max"});
-  offers.belongsTo(types_period, { as: "type_percent_min_types_period", foreignKey: "type_percent_min"});
-  types_period.hasMany(offers, { as: "type_percent_min_offers", foreignKey: "type_percent_min"});
   offers.belongsTo(types_period, { as: "type_period_max_types_period", foreignKey: "type_period_max"});
   types_period.hasMany(offers, { as: "type_period_max_offers", foreignKey: "type_period_max"});
   offers.belongsTo(types_period, { as: "type_period_min_types_period", foreignKey: "type_period_min"});
@@ -106,6 +106,7 @@ export default function initModels(sequelize) {
     img_organization,
     link_categories,
     link_get_money,
+    link_type_docs,
     method_get_money,
     offers,
     offers_old,

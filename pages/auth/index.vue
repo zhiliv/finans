@@ -3,10 +3,10 @@
     <div class="w-full p-6 m-auto rounded-md shadow-2xl ring-2 lg:max-w-xl ">
       <div class="space-y-4 ">
         <div>
-          <app-input v-model.number="valueModel.login" class="w-full input-bordered input" type="user" label="Логин" />
+          <app-input v-model.number="valueModel.login" class="w-full input" type="user" label="Логин" />
         </div>
         <div>
-          <app-input v-model.number="valueModel.password" class="w-full input-bordered" type="password" label="Пароль" />
+          <app-input v-model.number="valueModel.password" class="w-full" type="password" label="Пароль" />
         </div>
         <div>
           <app-button type="submit" @click="auth" class="w-full btn-primary" :disabled="disabledAuth">Войти</app-button>

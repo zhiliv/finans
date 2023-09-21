@@ -22,6 +22,5 @@ export interface LoggerAuth {
   date_requiest: Date // установка даты запроса
   date_auth: null | Date // установка даты авторизации
   status: boolean // установка статуса
-  ip_adress: string // установка ip адреса
   token: null | string // установка токена
 }

@@ -4,12 +4,12 @@ import { Response } from '~/types/query'
 import { getErrorResponse } from '~/server/utils/helper.js'
 
 export default defineEventHandler(async (event: H3Event) => {
-  const id: number | undefined = await readBody(event) // Получение параметров запроса
+  const params:any = await readBody(event) // Получение параметров запроса
   const response: Response = {} // переменная для получения  результата
   try {
     const optionsWhere = {
       where: {
-        id,
+        id: params.id,
       },
     }
     const count = await sequelize.models.categories.count(optionsWhere) // получение количества записей с таким наименованием
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event: H3Event) => {
       response.typeMessage = 'warning' // установка типа ответа
       response.message = 'Такой записи не существует!' // установка текста ответа
     } else {
-      const linkCount = await sequelize.models.link_categories.count({ where: { id_category: id } }) // Получение количества связанных записей
+      const linkCount = await sequelize.models.link_categories.count({ where: { id_category: params.id } }) // Получение количества связанных записей
       if (linkCount > 0) {
         response.status = 202 // установка статуса ответа
         response.typeMessage = 'warning' // установка типа ответа

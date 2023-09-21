@@ -1,17 +1,17 @@
 <template>
   <div class="w-full h-full max-h-full">
-    <div class="h-14">
-      <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание новой категории" modal-title-edit="Редактирование категории"
-        modal-width-new="30%" :select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_categories" />
-    </div>
     <div>
+      <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание новой категории" modal-title-edit="Редактирование категории"
+        modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_categories" />
+    </div>
+    <div class="min-h-full">
       <app-table ref="table" :store="store" :columns="columns" @click="(data) => selectItem = data" @dblclick="onDblEdit" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/store'
+import { useStore } from '~/stores/categories-store'
 
 const meta = { title: 'Категории' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
@@ -19,7 +19,6 @@ const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
 const control = ref() // Ссылка на кнопки управления
 const store = useStore() // Создание нового стора
-store.urlApi = '/api/categories'  // Установка ссылки для работы со стором
 
 const columns = [
   {
@@ -30,46 +29,54 @@ const columns = [
     labelPosition: 'center',
     filter: 'number'
   },
-  { key: 'name', label: 'Наименование', filter: 'text' },
-  { key: 'description', label: 'Описание', filter: 'text' },
+  { key: 'name', label: 'Наименование', filter: 'text' }
 ]
 
 /**  
-* Добавление новой категории
+* Добавление новой записи
 * @function onNew
 * @param {Object} data - Данные для добавления
 */
 async function onNew(data: any) {
   data.uniq = true // Установка признака уникальности наименования
   const result: any = await store.addNewRecord(data)
-  if(result?.data?.value) {
-    showToast({ message: result?.data?.value?.message, type: result?.data?.value?.typeMessage }) // Отображение сообщения об успешном добавлении
-    table.value.columns[0].filterValue = result.data.value.data.id // Установка значения для идентификатора
-    table.value.applyFilter('id', result.data.value.data.id, '=') // Применение фильтра
-    table.value.table.querySelector('tbody > tr').click()
+  if(result?.value) {
+    showToast({ message: result?.value?.message, type: result?.value?.typeMessage }) // Отображение сообщения об успешном добавлении
+    table.value.columns[0].filterValue = result.value.data.id // Установка значения для идентификатора
+    await table.value.applyFilter('id', result.value.data.id, '=') // Применение фильтра
+    table.value.table.querySelector('.row-table').click()
+    control.value.setSelectItem(store.list[0])
+    onDblEdit()
   }
 }
 
 /** 
+ * Редактирование записи
 * @function onEdit
+* @param {Object} data - Данные для редактирования
 */
 async function onEdit(data: any) {
   const result: any = await store.editRecord(data)
-  if(result?.data?.value?.data)
-    showToast({ message: result?.data?.value?.message, type: result?.data?.value?.typeMessage }) // Отображение сообщения об успешном обновлении записи
+  if(result?.value)
+    showToast({ message: result?.value?.message, type: result?.value?.typeMessage }) // Отображение сообщения об успешном обновлении записи
 }
 
 /** 
+ * Удаление записи
 * @function onDelete
 */
 async function onDelete() {
-  const result: any = await store.deleteRecord(selectItem.value.id)
-  if(result?.data?.value?.data)
-    showToast({ message: result?.data?.value?.message, type: result?.data?.value?.typeMessage }) // Отображение сообщения об успешном удалении записи
+  const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/categories' })
+  if(result?.value)
+    showToast({ message: result?.value?.message, type: result?.value?.typeMessage }) // Отображение сообщения об успешном удалении записи
 }
 
-
-function onDblEdit(data: any) {
+/** 
+* Редактирование записи при двойном клике
+* @function onDblEdit
+* @param {Object} data - Данные для открытия формы
+*/
+function onDblEdit(data?: any) {
   control.value.onEdit(data)
 }
 </script>

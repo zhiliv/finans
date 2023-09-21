@@ -64,7 +64,7 @@ module.exports = {
           'background': '#198754 !important',
           'color': 'white !important'
         },
-        'tr.active>*': {
+        'div.active': {
           'background': '#737373',
           'color': 'white'
         }

@@ -11,11 +11,11 @@
           </div>
         </div>
         <div class="bottom-0 p-2 w-full border-t" :class="{'h-10': isDrawer, 'h-16': !isDrawer }">
-          <app-button v-if="buttons.cancel" class="m-1 standart md:btn-sm btn-error" @click="close">Отменить</app-button>
-          <app-button v-if="buttons.save" class="btn-success m-1 standart md:btn-sm float-right" :disabled="disabled.save"
+          <app-button v-if="buttons.cancel" class="m-1 standart btn-sm btn-error" @click="close">Отменить</app-button>
+          <app-button v-if="buttons.save" class="btn-success m-1 standart btn-sm float-right" :disabled="disabled.save"
             @click="onSave">Сохранить</app-button>
-          <app-button v-if="buttons.no" class="w-20 m-1 standart md:btn-sm btn-error" @click="onNo">Нет</app-button>
-          <app-button v-if="buttons.yes" class="w-20 btn-success m-1 standart md:btn-sm float-right" @click="onYes">Да</app-button>
+          <app-button v-if="buttons.no" class="w-20 m-1 standart btn-sm btn-error" @click="onNo">Нет</app-button>
+          <app-button v-if="buttons.yes" class="w-20 btn-success m-1 standart btn-sm float-right" @click="onYes">Да</app-button>
         </div>
       </div>
     </div>
