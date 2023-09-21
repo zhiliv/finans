@@ -24,8 +24,8 @@
 import appModal from '~/pages/modal.vue'
 import appMultiselect from '~/pages/modals/modal-multiselect.vue'
 import menu from './menu.json' //
-import { useStore } from '~/stores/users-store'
-const store = useStore() // Создание нового стора
+import { useUserStore } from '~/stores/users-store'
+const store = useUserStore() // Создание нового стора
 const title = ref('') // Заголовок
 
 /**

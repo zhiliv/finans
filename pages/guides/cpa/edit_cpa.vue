@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/cpa-store'
+import { useCPAStore } from '~/stores/cpa-store'
 const emit = defineEmits(['valid', 'data'])
 
 /** 
@@ -55,7 +55,7 @@ const isValid = ref({
 })
 
 const isLoad = ref(false) // Статус загрузки данных
-const store = useStore() // Создание нового стора
+const store = useCPAStore() // Создание нового стора
 const id = ref(props.modelValue.id) // Идентификатор записи
 
 onMounted(async () => {

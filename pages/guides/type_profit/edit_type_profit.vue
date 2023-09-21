@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/type-profit-store'
+import { useTypeProfitStore } from '~/stores/type-profit-store'
 const emit = defineEmits(['valid', 'data'])
 
 /** 
@@ -55,7 +55,7 @@ const isValid = ref({
 })
 
 const isLoad = ref(false) // Статус загрузки данных
-const store = useStore() // Создание нового стора
+const store = useTypeProfitStore() // Создание нового стора
 const id = ref(props.modelValue.id) // Идентификатор записи
 
 onMounted(async () => {
@@ -78,4 +78,4 @@ watch(data.value, (newVal: Data) => {
   emit('data', data.value)
 })
 
-</script>~/stores/default
+</script>

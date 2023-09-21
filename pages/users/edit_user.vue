@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/users-store'
+import { useUserStore } from '~/stores/users-store'
 const emit = defineEmits(['valid', 'data']) // События
-const store = useStore() // Создание нового стора
+const store = useUserStore() // Создание нового стора
 const id: any = useCookie('user_id') // Получение идентификатора пользователя из куки
 
 /**

@@ -15,7 +15,7 @@ type SelectParams = {
   order?: string
 }
 
-export const useTypesPeriodStore = defineStore('types-period', () => {
+export const useStore = defineStore('organizations', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки
@@ -25,7 +25,7 @@ export const useTypesPeriodStore = defineStore('types-period', () => {
   const selectParams = ref<SelectParams>({ offset, limit, order: JSON.stringify([['name', 'ASC']]) }) // Параметры для запроса
   const where = ref<any>({}) // Условия отбора данных
   const filterCondition = ref<any>() // Данные фильтрации
-  const table = ref<string>('types_period') // Получение наименования категории(таблицы)
+  const table = ref<string>('organizations') // Получение наименования таблицы
 
   /**
    * Назначение условий отбора
@@ -52,7 +52,7 @@ export const useTypesPeriodStore = defineStore('types-period', () => {
   }
 
   /**
-   * Получение списка всех категорий
+   * Получение списка всех организация
    * @function getList
    * @param {String} _url - Ссылка для api
    */
@@ -160,7 +160,7 @@ export const useTypesPeriodStore = defineStore('types-period', () => {
   */
   async function deleteRecord(data: any) {
     data.table = table.value // Наименование таблицы
-    const paramsQuery: Query = { url: `/api/type-docs/delete`, method: 'delete', body: data } // параметры запроса
+    const paramsQuery: Query = { url: `/api/organizations/delete`, method: 'delete', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на удаление
       await getList()

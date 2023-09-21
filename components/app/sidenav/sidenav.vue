@@ -94,8 +94,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/users-store'
-const store = useStore()
+import { useUserStore } from '~/stores/users-store'
+const store = useUserStore()
 
 /**
  * @interface Props
