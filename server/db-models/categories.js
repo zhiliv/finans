@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return categories.init(sequelize, DataTypes);
+}
 
-export default class categories extends Model {
+class categories extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('categories', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -23,7 +25,6 @@ export default class categories extends Model {
       comment: "Описание категории"
     }
   }, {
-    sequelize,
     tableName: 'categories',
     schema: 'guide',
     timestamps: false,

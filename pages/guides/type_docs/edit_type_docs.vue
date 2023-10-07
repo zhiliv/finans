@@ -6,12 +6,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useMethodGetMoneyStore } from '~/stores/type-docs-store'
+import { useTypeDocsStore } from '~/stores/type-docs-store'
 const emit = defineEmits(['valid', 'data'])
 
 /** 
 * @interface Props
-* @member {Function} modelValue - Данные формы
+* @member {Object} modelValue - Данные формы
 */
 interface Props {
   modelValue?: any
@@ -49,7 +49,7 @@ const isValid = ref({
 })
 
 const isLoad = ref(false) // Статус загрузки данных
-const store = useMethodGetMoneyStore() // Создание нового стора
+const store = useTypeDocsStore() // Создание нового стора
 const id = ref(props.modelValue.id) // Идентификатор записи
 
 onMounted(async () => {

@@ -1,4 +1,4 @@
-import { sequelize } from '~/server/db.js'
+import { sequelize } from '~/server/db'
 export default defineEventHandler(async event => {
   try {
     const query = `SELECT

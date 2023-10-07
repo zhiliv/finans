@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return method_get_money.init(sequelize, DataTypes);
+}
 
-export default class method_get_money extends Model {
+class method_get_money extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('method_get_money', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -18,7 +20,6 @@ export default class method_get_money extends Model {
       comment: "Наименование способо получения денег"
     }
   }, {
-    sequelize,
     tableName: 'method_get_money',
     schema: 'guide',
     timestamps: false,

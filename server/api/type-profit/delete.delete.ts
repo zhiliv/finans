@@ -1,4 +1,4 @@
-import { sequelize } from '~/server/db.js'
+import { sequelize } from '~/server/db'
 import { H3Event } from 'h3'
 import { Response } from '~/types/query'
 import { getErrorResponse } from '~/server/utils/helper.js'

@@ -1,5 +1,5 @@
 import getAuth from './getAuth'
-import { User } from '~/types/auth'
+import { UserAuth } from '~/types/auth'
 
 export function defineAuthenticatedEventHandler<T>(handler: (event: any, user?: User) => T | Promise<T>) {
   return defineEventHandler(async event => {
@@ -7,7 +7,7 @@ export function defineAuthenticatedEventHandler<T>(handler: (event: any, user?: 
       return handler(event)
     } 
     try {
-      const user: User = await getAuth(event)
+      const user: UserAuth = await getAuth(event)
       return handler(event, user)
     } catch (err) {
       sendRedirect(event, '/auth')

@@ -68,7 +68,6 @@ async function onEdit(data: any) {
 */
 async function onDelete() {
   const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/cpa' })
-  console.log('🚀 -> onDelete -> result:', result)
   if(result?.value)
     showToast({ message: result?.value?.message, type: result?.value?.typeMessage }) // Отображение сообщения об успешном удалении записи
 }
@@ -79,7 +78,6 @@ async function onDelete() {
 * @param {Object} data - Данные для открытия формы
 */
 function onDblEdit(data?: any) {
-  console.log('🚀 -> onDblEdit -> data:', data)
   control.value.onEdit(data)
 }
 </script>

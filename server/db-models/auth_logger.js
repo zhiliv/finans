@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return auth_logger.init(sequelize, DataTypes);
+}
 
-export default class auth_logger extends Model {
+class auth_logger extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('auth_logger', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -42,7 +44,6 @@ export default class auth_logger extends Model {
       comment: "Токен авторизации"
     }
   }, {
-    sequelize,
     tableName: 'auth_logger',
     schema: 'controls',
     timestamps: false,

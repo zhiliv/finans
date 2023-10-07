@@ -1,30 +1,34 @@
 <template>
-  <div class="modal-mask select-none " v-show="isShow && form">
-    <div :class="{ 'modal-wrapper': !isDrawer }">
-      <div class="modal-container border-2" :class="{'right-0': isDrawer && position === 'right', 'left-0': position === 'left', 'absolute': isDrawer,  'h-full': isDrawer }" :style="{ width: valueModel?.options?.width || '50%' }">
-        <div class="body-modal max-h-full">
-          <div class="p-1 border-b mb-2 text-center ">
-            <span class="text-lg px-4">{{ valueModel?.options?.title }}</span>
+  <template v-for="modal in modals" :key="modal.formUuid">
+    <div class="modal-mask select-none" v-show="modal.isShow && modal.form">
+      <div :class="{ 'modal-wrapper': !modal.isDrawer }">
+        <div class="modal-container border-2"
+          :class="{ 'right-0': modal?.isDrawer && modal?.position === 'right', 'left-0': modal?.position === 'left', 'absolute': modal.isDrawer, 'h-full': modal.isDrawer }"
+          :style="{ width: modal.data.options?.width || '50%' }">
+          <div class="body-modal max-h-full">
+            <div class="p-1 border-b mb-2 text-center ">
+              <span class="text-lg px-4">{{ modal.title }}</span>
+            </div>
+            <div class="overflow-y-auto pb-4 pl-2 pr-2" ref="subForm">
+              <component :is="modal.form" v-model="modal.valueModel" @valid="getValid" @data="getData" />
+            </div>
           </div>
-          <div class="overflow-y-auto pb-4" ref="subForm" >            
-            <component :is="form" v-model="valueModel" @valid="getValid" @data="getData" />
+          <div class="bottom-0 p-2 w-full border-t" :class="{ 'h-10': modal.isDrawer, 'h-16': !modal.isDrawer }">
+            <app-button v-if="modal.buttons.cancel" class="m-1 standart btn-sm btn-error" @click="close">Отменить</app-button>
+            <app-button v-if="modal.buttons.save" class="btn-success m-1 standart btn-sm float-right" :disabled="disabled.save"
+              @click="onSave">Сохранить</app-button>
+            <app-button v-if="modal.buttons.no" class="w-20 m-1 standart btn-sm btn-error" @click="close">Нет</app-button>
+            <app-button v-if="modal.buttons.yes" class="w-20 btn-success m-1 standart btn-sm float-right" @click="onYes">Да</app-button>
           </div>
-        </div>
-        <div class="bottom-0 p-2 w-full border-t" :class="{'h-10': isDrawer, 'h-16': !isDrawer }">
-          <app-button v-if="buttons.cancel" class="m-1 standart btn-sm btn-error" @click="close">Отменить</app-button>
-          <app-button v-if="buttons.save" class="btn-success m-1 standart btn-sm float-right" :disabled="disabled.save"
-            @click="onSave">Сохранить</app-button>
-          <app-button v-if="buttons.no" class="w-20 m-1 standart btn-sm btn-error" @click="onNo">Нет</app-button>
-          <app-button v-if="buttons.yes" class="w-20 btn-success m-1 standart btn-sm float-right" @click="onYes">Да</app-button>
         </div>
       </div>
     </div>
-  </div>
+  </template>
 </template>
 <script lang="ts" setup>
 import { listComponents } from './async-list-components'
+const modals: any = ref([]) // Массив с модальными окнами
 const data = ref() // Полученные данные формы
-const isDrawer = ref(false) // Признак дровера
 const disabled = ref({
   save: true,
   cancel: false
@@ -38,26 +42,27 @@ const buttons = ref({
   yes: false, // Кнопка "Да"
   no: false // Кнопка "Нет"
 }) // Список кнопок в футере формы
-const form = ref() // Ссылка на вложенную форму
-const isShow = ref(false) // Статус отображения модального окна
 const subForm = ref() // Тело модального окна
-const valueModel = ref() // Данные формы
-const formUuid = ref() // Уникальный идентификатор формы
-const position = ref('right') // Позиция дровера
-const text = ref('') // Текстовое значение формы
 
 /** Прием события для показа формы  */
 emitter.on('show-modal', (event: any) => {
-  valueModel.value = event
-  setButtons(valueModel.value?.options?.buttons)
-  formUuid.value = event.formUuid
-  form.value = components[event.form] // получение тела формы
-  isDrawer.value = valueModel.value.options.isDrawer
-  text.value = valueModel.value.options.text
-  isShow.value = true // Отображение модальной формы
+  setButtons(event.options?.buttons)
+  const modal: any = {
+    data: event,
+    buttons: buttons.value,
+    formUuid: event.formUuid,
+    form: components[event.form],
+    isDrawer: event.options?.isDrawer,
+    text: event.options.text,
+    isShow: true, // Отображение модальной формы
+    title: event.options?.title,
+    position: event.options?.position || 'right',
+    valueModel: event
+  }
+  modals.value.push(modal)
   /** Прием события для уничтожения формы  */
   emitter.on(`destroy-modal-${event.formUuid}`, () => {
-    form.value = null
+    modals.value.pop()
   })
 })
 
@@ -66,7 +71,7 @@ emitter.on('show-modal', (event: any) => {
 * @function setButtons
 * @param {Object} _buttons - Список кнопок 
 */
-const setButtons = (_buttons:any) => {
+const setButtons = (_buttons: any) => {
   buttons.value.cancel = _buttons?.cancel ? _buttons?.cancel : false
   buttons.value.save = _buttons?.save ? _buttons?.save : false
   buttons.value.yes = _buttons?.yes ? _buttons?.yes : false
@@ -78,7 +83,7 @@ const setButtons = (_buttons:any) => {
 * @function close
 */
 function close(_data?: any) {
-  emitter.emit(`close-modal-${formUuid.value}`, _data?.value || null) // отправка события для для закрытия формы
+  emitter.emit(`close-modal-${modals.value[modals.value.length-1].formUuid}`, _data?.value || null) // отправка события для для закрытия формы
 }
 
 /** 
@@ -110,28 +115,27 @@ function onSave() {
 * Событие при нажатии на кнопку "Да"
 * @function onYes
 */
-function onYes(){
-  const data = {value: true}
+function onYes() {
+  const data = { value: true }
   close(data)
-  
+
 }
 
 /** 
-* Событие при нажатии на кнопку "Нет"
-* @function onNo
+* При обновлении формы 
 */
-function onNo(){
-  close()
-}
-
 onUpdated(() => {
-  if(subForm.value) subForm.value.style.height = 'auto'
-  if(isDrawer.value === true){
-    subForm.value.style.height = subForm.value.parentNode.parentNode.offsetHeight - 110 + 'px' // Получение высоты родителя и присвоение значения таблице
-    window.addEventListener("resize", () => { // отслеживание изменений размера окна
-       subForm.value.style.height = subForm.value.parentNode.parentNode.offsetHeight - 110 + 'px' // Получение высоты родителя и 
-    }) 
-  }
+  subForm.value.forEach((el: HTMLElement) => el.style.height = 'auto')
+  modals.value.forEach((el: any) => {
+    if(el.isDrawer === true) {
+      subForm.value.forEach((el: any) => {
+        el.style.height = el.parentNode.parentNode.offsetHeight - 110 + 'px'
+        window.addEventListener("resize", () => { // отслеживание изменений размера окна
+          el.style.height = el.parentNode.parentNode.offsetHeight - 110 + 'px' // Получение высоты родителя и 
+        })
+      })
+    }
+  })
 })
 </script>
 

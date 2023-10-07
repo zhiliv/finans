@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return accesses.init(sequelize, DataTypes);
+}
 
-export default class accesses extends Model {
+class accesses extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('accesses', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -33,7 +35,6 @@ export default class accesses extends Model {
       comment: "Идентификатор пользователя, создавшего запись"
     }
   }, {
-    sequelize,
     tableName: 'accesses',
     schema: 'controls',
     timestamps: false,

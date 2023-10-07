@@ -1,4 +1,4 @@
-import { sequelize } from '~/server/db.js'
+import { sequelize } from '~/server/db'
 import { defineAuthenticatedEventHandler } from '~/server/utils/defineAuthenticatedEventHandler';
 
 export default defineEventHandler(async event => {

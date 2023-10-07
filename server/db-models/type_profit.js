@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return type_profit.init(sequelize, DataTypes);
+}
 
-export default class type_profit extends Model {
+class type_profit extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('type_profit', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -18,7 +20,6 @@ export default class type_profit extends Model {
       comment: "Наименование типа профита"
     }
   }, {
-    sequelize,
     tableName: 'type_profit',
     schema: 'guide',
     timestamps: false,

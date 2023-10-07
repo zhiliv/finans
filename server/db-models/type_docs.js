@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return type_docs.init(sequelize, DataTypes);
+}
 
-export default class type_docs extends Model {
+class type_docs extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('type_docs', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -18,7 +20,6 @@ export default class type_docs extends Model {
       comment: "Наименование типа документа"
     }
   }, {
-    sequelize,
     tableName: 'type_docs',
     schema: 'guide',
     timestamps: false,

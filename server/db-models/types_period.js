@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return types_period.init(sequelize, DataTypes);
+}
 
-export default class types_period extends Model {
+class types_period extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('types_period', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -28,7 +30,6 @@ export default class types_period extends Model {
       comment: "Множественное число"
     }
   }, {
-    sequelize,
     tableName: 'types_period',
     schema: 'guide',
     timestamps: false,

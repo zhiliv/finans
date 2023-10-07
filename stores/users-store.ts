@@ -122,7 +122,6 @@ export const useUserStore = defineStore('users', () => {
   */
   async function editRecord(data: any) {
     data.table = table.value // Установка параметра имени таблицы
-    console.log(data)
     if(!data.new_password || !data.confirm_password){
       delete data.new_password
       delete data.confirm_password

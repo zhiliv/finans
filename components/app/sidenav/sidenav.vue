@@ -80,7 +80,7 @@
                 </a>
                 <ul class="list-navbar p-2 bg-gray-200">
                   <li v-for="itemList in item.list" :key="itemList.name">
-                    <NuxtLink active-class="active" :to="itemList.href">{{ itemList.name }}</NuxtLink>
+                    <NuxtLink active-class="active duration-300" :to="itemList.href" class="">{{ itemList.name }}</NuxtLink>
                   </li>
                 </ul>
               </li>
@@ -154,9 +154,7 @@ async function onEditUser(){
         title: 'Данные пользователя', width: '600px', buttons: { save: true, cancel: true }, isDrawer: true
       }, /* ...props.selectItem */
     }) // Получение ответа из модального окна
-    console.log('body', body)
     if(body && body.id) {
-      console.log('🚀 -> onEditUser -> body:', body)
       const result: any = await store.editRecord(body)
     }
 }

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { Query } from '~/types/query'
+import { uploadData } from '~/types/upload'
 
 /**
  * @interface QueryParams
@@ -15,7 +16,7 @@ type SelectParams = {
   order?: string
 }
 
-export const useStore = defineStore('organizations', () => {
+export const useOrganizationsStore = defineStore('organizations', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки
@@ -122,7 +123,7 @@ export const useStore = defineStore('organizations', () => {
   */
   async function editRecord(data: any) {
     data.table = table.value // Установка параметра имени таблицы
-    const paramsQuery: Query = { url: `/api/fetch/edit`, method: 'post', body: data } // параметры запроса
+    const paramsQuery: Query = { url: `/api/organizations/edit`, method: 'post', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на редактирование данных
       await getList()
@@ -141,7 +142,7 @@ export const useStore = defineStore('organizations', () => {
   * @param {String} _url - Ссылка для api
   */
   async function getRecord(id: number) {
-    const paramsQuery: Query = { url: `/api/fetch/record?id=${id}&table=${table.value}`, method: 'get' } // параметры запроса
+    const paramsQuery: Query = { url: `/api/organizations/record?id=${id}&table=${table.value}`, method: 'get' } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на получение данных
       return response.data
@@ -171,6 +172,7 @@ export const useStore = defineStore('organizations', () => {
       showToast({ message: err.value.data.message, type: 'error' })
     }
   }
+  
 
   return { list, loading, error, getList, setFilter, getCount, count, limit, offset, filterCondition, addNewRecord, getRecord, editRecord, deleteRecord, table }
 })

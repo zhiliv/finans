@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return img_offers.init(sequelize, DataTypes);
+}
 
-export default class img_offers extends Model {
+class img_offers extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('img_offers', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -27,7 +29,6 @@ export default class img_offers extends Model {
       comment: "Путь к изображению"
     }
   }, {
-    sequelize,
     tableName: 'img_offers',
     schema: 'prod',
     timestamps: false,

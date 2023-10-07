@@ -1,4 +1,4 @@
-import { sequelize } from '~/server/db.js'
+import { sequelize } from '~/server/db'
 import initModels from '~/server/db-models/init-models'
 import * as fs from 'fs'
 const config = useRuntimeConfig()
@@ -12,7 +12,7 @@ export default async () => {
   console.log('инициализация')
   try {
     await sequelize.authenticate()
-    await initModels(sequelize) // инициализация моделей
+    
     checkUsers()
   } catch (error) {
     console.error('Unable to connect to the database:', error)

@@ -1,31 +1,27 @@
-import Sequelize from 'sequelize'
-const config = useRuntimeConfig()
-
-import initModels from '~/server/db-models/init-models'
 import * as fs from 'fs'
+import Sequelize from 'sequelize'
+import { initModels } from '~/server/db-models/init-models'
+const config = useRuntimeConfig()
 
 
 export const sequelize = new Sequelize(config.database.database, config.database.username, config.database.password, {
   host: config.database.host,
-  port: config.database.post,
+  port: config.database.port,
   dialect: 'postgres',
   logging: false,
   dialectOptions: {
-    useUTC: false 
+    useUTC: false
   },
   timezone: '+03:00' //Установка часового пояса
 })
+initModels(sequelize)
+sequelize.authenticate()
 
 /* 
 const arrImgDir = [ 'organizations', 'offers' ] // список директорий для изображений
 arrImgDir.forEach(dir => {
   if (!fs.existsSync(`public/img/${ dir }`)) fs.mkdirSync(`public/img/${ dir }`) // проверка наличия директории и создание если она отсутствует
 }) */
-
-    sequelize.authenticate()
-    initModels(sequelize) // инициализация моделей
-  
-
 
 /*
  * Проверка наличия в таблице пользователей
@@ -39,13 +35,13 @@ const checkUsers = async () => {
     },
   }
   const count = await sequelize.models.users.count(optionsWhere) // проверка пользователя admin
-  if (count === 0) {
+  if(count === 0) {
     const hash = await getHashPassword(config.password_admin_start) // получение хэша пароля
     const user = {
       name: 'admin', // имя пользователя
       password_hash: hash, // хэш пароля
     }
-    await sequelize.models.users.create(user).then(res => {
+    await sequelize.models.users.create(user).then((res: any) => {
       console.log('пользователь создан')
     })
   }

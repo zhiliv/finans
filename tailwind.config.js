@@ -62,7 +62,11 @@ module.exports = {
         },
         'a.active': {
           'background': '#198754 !important',
-          'color': 'white !important'
+          'color': 'white !important',
+          '-webkit-transition': 'background-color .7s ease-in-out',
+          'transition': 'background-color 0.7s ease-in',
+      
+          
         },
         'div.active': {
           'background': '#737373',

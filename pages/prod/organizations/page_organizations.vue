@@ -2,7 +2,7 @@
   <div class="w-full h-full max-h-full">
     <div>
       <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание новой категории" modal-title-edit="Редактирование категории"
-        modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_categories" />
+        modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_organization" />
     </div>
     <div class="min-h-full">
       <app-table ref="table" :store="store" :columns="columns" @click="(data) => selectItem = data" @dblclick="onDblEdit" />
@@ -11,14 +11,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/organizations-store'
+import { useOrganizationsStore } from '~/stores/organizations-store'
 
 const meta = { title: 'Категории' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
 const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
 const control = ref() // Ссылка на кнопки управления
-const store = useStore() // Создание нового стора
+const store = useOrganizationsStore() // Создание нового стора
 
 const columns = [
   {

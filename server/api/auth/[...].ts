@@ -1,25 +1,26 @@
-import { sequelize } from '~/server/db.js'
+import { sequelize } from '~/server/db'
 import * as bcrypt from 'bcrypt' // модуль криптографии
 import jwt from 'jsonwebtoken'
 import { EnterAuthData, LoggerAuth } from '~/types/auth'
 import { DateNow } from '~/server/utils/time'
 import moment from 'moment'
 import { Op } from 'sequelize'
-
+import { Response } from '~/types/query'
+import { UserAuth } from '~/types/auth'
 const config = useRuntimeConfig() // получение данных конфигурации
 
-/* Интерфейс результата ответа */
-interface Result {
-  statusCode: number // статус результата
-  message: string | undefined // сообщение результата
+const getUser = (params: EnterAuthData) => {
+  return sequelize.models.users.findOne({ where: { name: params.login } })
+    .then((res: any) => {
+      return res.dataValues
+    })
 }
 
 export default defineEventHandler(async event => {
   deleteCookie(event, 'token') // удаление куки
   const params: EnterAuthData = await readBody(event) // параметры запроса
-  
-  const result: Result = {
-    statusCode: 400, // установка статуса ответа
+  const response: Response = {
+    status: 400, // установка статуса ответа
     message: '',
   }
 
@@ -32,44 +33,50 @@ export default defineEventHandler(async event => {
     token: null, // установка токена
   }
 
-  if (params.login.length < 4 || params.password.length < 5) {
-    // проверка длины логина или пароля
-    result.statusCode = 400
-    result.message = 'Не валидный логин или пароль'
+  if(params.login.length < 4 || params.password.length < 5) { // проверка длины логина или пароля
+    response.status = 200
+    response.message = 'Не валидный логин или пароль'
+    return createError(response)
   }
 
-  const user: any = await sequelize.models.users.findOne({ where: { name: params.login } }) // проверка данных пользователя в БД  
-  if(!user) return createError({ statusCode: 200, message: 'неверный логин или пароль' }) 
-  const countAuth = await checkCountAuth(user?.id)
-  if(countAuth > 5) {
-    dataAuth.user_id = user.id
-    result.statusCode = 400 
-    result.message = 'Превышено количество запросов авторизации. Доступ к авторизации будет доступен в течении 5 минут'
+  const user: UserAuth = await getUser(params)
+  // user = user.dataValues
+  if(!user?.id) {
+    response.status = 401
+    response.message = 'Неверный логин или пароль'
+    return createError(response)
+  }
+
+  const countAuth = await checkCountAuth(user?.id) // Получение количества подключений
+  if(countAuth > 500) {
+    dataAuth.user_id = user?.id
+    response.status = 401
+    response.message = 'Превышено количество запросов авторизации. Доступ к авторизации будет доступен в течении 5 минут'
     await logger(dataAuth)
-    return createError({ statusCode: result.statusCode, message: result.message })
-  } 
-  
+    return createError(response)
+  }
+
   let token // переменная для хранения токена
   const checkHash = user?.id ? await bcrypt.compare(params.password, user.password_hash) : null // проверка пароля по хэшу
-  if(user && user.id && countAuth <= 5 && checkHash) {    
-      token = jwt.sign({ id: user.id }, config.secret_key, { expiresIn: '1d' })
-      console.log('🚀 -> token:', token)
-      result.statusCode = 200 // установка статуса
-      dataAuth.user_id = user.id // установка идентификатора пользователя
-      dataAuth.date_auth = DateNow() // установка даты авторизации
-      dataAuth.token = token
-      setCookie(event, 'token', token, config.sessionOptions)
-      setCookie(event, 'user', user.name, config.sessionOptions)
-      setCookie(event, 'user_id', user.id, config.sessionOptions)
-      logger(dataAuth) // логирование
+  if(user && user.id && countAuth <= 500 && checkHash) {
+    token = jwt.sign({ id: user.id }, config.secret_key, { expiresIn: '1d' })
+    response.status = 200 // установка статуса
+    dataAuth.user_id = user.id // установка идентификатора пользователя
+    dataAuth.date_auth = DateNow() // установка даты авторизации
+    dataAuth.token = token
+    setCookie(event, 'token', token, config.sessionOptions)
+    setCookie(event, 'user', user.name, config.sessionOptions)
+    setCookie(event, 'user_id', String(user.id), config.sessionOptions)
+    logger(dataAuth) // логирование
+    return response
   }
   else {
     dataAuth.user_id = user.id
-    result.statusCode = 400 // установка статуса
+    response.status = 400 // установка статуса
+    response.message = 'Неверный логин или пароль'
     logger(dataAuth) // логирование
-    result.message = 'Неверный логин или пароль'
+    return response
   }
-  return result.statusCode === 400 ? createError({ statusCode: result.statusCode, message: result.message }) : result
 })
 
 /*
@@ -87,8 +94,8 @@ const logger = async (authData: LoggerAuth) => {
 * @param {String} login - login адрес клиента
 * @return {Number} - Количество записей
 */
-const checkCountAuth = async  (user_id:string) => {
-  if(user_id){
+const checkCountAuth = async (user_id: number) => {
+  if(user_id) {
     const DateMinus5Minutes = moment().tz("Europe/Moscow").subtract(5, 'minutes') // получение даты минус 5 минут
     const params = {
       where: {
@@ -101,5 +108,5 @@ const checkCountAuth = async  (user_id:string) => {
     return await sequelize.models.auth_logger.count(params) // получение количества записей за 5 минут  
   }
   else return false
-  
+
 }

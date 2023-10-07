@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return user_roles.init(sequelize, DataTypes);
+}
 
-export default class user_roles extends Model {
+class user_roles extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('user_roles', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -31,7 +33,6 @@ export default class user_roles extends Model {
       }
     }
   }, {
-    sequelize,
     tableName: 'user_roles',
     schema: 'controls',
     timestamps: false,

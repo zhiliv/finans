@@ -163,7 +163,6 @@ export const useCPAStore = defineStore('cpa', () => {
     const paramsQuery: Query = { url: `/api/cpa/delete`, method: 'delete', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на удаление
-      console.log('🚀 -> deleteRecord -> response:', response)
       await getList()
       return response.data
     }

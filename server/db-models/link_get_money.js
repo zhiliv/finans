@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return link_get_money.init(sequelize, DataTypes);
+}
 
-export default class link_get_money extends Model {
+class link_get_money extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('link_get_money', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -31,7 +33,6 @@ export default class link_get_money extends Model {
       }
     }
   }, {
-    sequelize,
     tableName: 'link_get_money',
     schema: 'prod',
     timestamps: false,

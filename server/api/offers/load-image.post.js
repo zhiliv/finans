@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import { sequelize } from '~/server/db.js'
+import { sequelize } from '~/server/db'
 import { Op } from 'sequelize'
 
 export default defineEventHandler(async event => {

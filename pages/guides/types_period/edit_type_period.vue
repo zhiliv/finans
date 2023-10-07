@@ -13,7 +13,7 @@ const emit = defineEmits(['valid', 'data'])
 
 /** 
 * @interface Props
-* @member {Function} modelValue - Данные формы
+* @member {Object} modelValue - Данные формы
 */
 interface Props {
   modelValue?: any

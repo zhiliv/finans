@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return img_organization.init(sequelize, DataTypes);
+}
 
-export default class img_organization extends Model {
+class img_organization extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('img_organization', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -25,9 +27,13 @@ export default class img_organization extends Model {
       type: DataTypes.STRING,
       allowNull: false,
       comment: "Путь к файлу"
+    },
+    label: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: "Описание изображения"
     }
   }, {
-    sequelize,
     tableName: 'img_organization',
     schema: 'prod',
     timestamps: false,

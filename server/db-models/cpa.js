@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return cpa.init(sequelize, DataTypes);
+}
 
-export default class cpa extends Model {
+class cpa extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('cpa', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -23,7 +25,6 @@ export default class cpa extends Model {
       comment: "Адрес сайта"
     }
   }, {
-    sequelize,
     tableName: 'cpa',
     schema: 'guide',
     timestamps: false,

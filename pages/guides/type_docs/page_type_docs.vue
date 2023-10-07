@@ -11,14 +11,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useMethodGetMoneyStore } from '~/stores/type-docs-store'
+import { useTypeDocsStore } from '~/stores/type-docs-store'
 
 const meta = { title: 'Типы документов' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
 const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
 const control = ref() // Ссылка на кнопки управления
-const store = useMethodGetMoneyStore() // Создание нового стора
+const store = useTypeDocsStore() // Создание нового стора
 
 const columns = [
   {

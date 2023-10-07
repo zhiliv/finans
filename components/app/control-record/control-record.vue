@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-1 max-md:p-2 h-full" ref="control">
+  <div class="pt-1 max-md:p-2 h-full lg:mr-3" ref="control">
     <app-button class="standart btn-primary  btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add" @click="onNew">
       <svg style="height: 16px; width: 18px;" class="add-record" id="Layer_1" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,6 @@ async function onNew() {
 * @function onEdit 
 */
 async function onEdit() {
-  console.log('props.selectItem', props.pSelectItem)
   const body: any = await showModal(props.nameEditForm, {
     options: {
       title: props.modalTitleEdit, width: props.modalWidthNew, buttons: { save: true, cancel: true }, isDrawer: true
@@ -94,7 +93,7 @@ async function onEdit() {
 * @function onDelete
 */
 async function onDelete() {
-  const body: any = await showModal('modal_text', { options: { title: 'Удалить запись?', width: '20%', isdrawer: false, buttons: { cancel: false, yes: true, no: true }, text: 'Подтвердите удаление записи' } }) // Получение ответа из модального окна
+  const body: any = await showModal('modal_confirm', { options: { title: 'Удалить запись?', width: '20%', isdrawer: false, buttons: { cancel: false, yes: true, no: true }, text: 'Подтвердите удаление записи' } }) // Получение ответа из модального окна
   if(body) {
     emit('onDelete', body)
   }

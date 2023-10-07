@@ -1,6 +1,7 @@
-import { sequelize } from '~/server/db.js'
+import { sequelize } from '~/server/db'
 import { Response } from '~/types/query'
 import { Op, DataTypes } from 'sequelize'
+import fs from 'fs' 
 
 type SelectParams = {
   offset: number
@@ -141,4 +142,16 @@ export const getWhere = (nameModel: string, whereText: string) => {
 */
 export const getCountTable = async (tableName:string, where:any) => {
   return await sequelize.models[tableName].count(where)
+}
+
+/** 
+* Сохранение файла
+* @function saveFile
+
+*/
+export const saveFile = async (fileName: string, file: string, id: number) => {
+  const base64Data = file.replace(/^data:([A-Za-z-+/]+);base64,/, '')
+  if(!fs.existsSync(`upload`)) fs.mkdirSync(`upload`)
+  await fs.writeFileSync(`./public/img/organizations/${id}/${fileName}`, base64Data, 'base64')
+  return {fileName, id}
 }

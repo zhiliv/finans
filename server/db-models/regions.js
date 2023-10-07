@@ -1,9 +1,11 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return regions.init(sequelize, DataTypes);
+}
 
-export default class regions extends Model {
+class regions extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return super.init({
+  return sequelize.define('regions', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -32,7 +34,6 @@ export default class regions extends Model {
       allowNull: false
     }
   }, {
-    sequelize,
     tableName: 'regions',
     schema: 'country',
     timestamps: false,

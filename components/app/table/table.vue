@@ -1,22 +1,22 @@
 <template>
   <div ref="table" class="w-full pr-1 md:max-w-full md:min-w-full md:flex  flex-wrap h-full max-md:pt-10">
-    <div class="sm:flex flex-row w-full mr-3 ">
+    <div class="flex flex-col md:flex-row w-full mr-3">
       <div v-for="(column, index) in columns" :key="column" class="border-l border-b border-t border-zinc-300"
         :class="{ 'w-full': !column?.width, 'border-r': index === columns.length - 1 }" :style="{ 'min-width': column?.width }">
-        <div class="bg-zinc-200 border-l border-t border-b pl-1 pr-1 w-full min-h-[55px] " :style="{ 'width': column?.width }">
+        <div class="bg-zinc-200 border-l border-t border-b pl-1 pr-1 min-w-full min-h-[55px] " :style="{ 'width': column?.width }">
           <div class="z-100 text-zinc-700 text-sm font-medium pl-1">
             {{ column.label }}
           </div>
           <div v-if="column.filter === 'text'" class="w-full flex relative" >
             <app-select value="value" :options="listFilter" select-class="select-sm w-14 absolute left-0 bg-zinc-100" v-model="column.filterCondition"
               :is-load="true" :select-value="listFilter[0].value" />
-            <app-input class="input-sm w-full " style="padding-left: 60px;" v-model.trim="column.filterValue" />
+            <app-input class="input-sm w-full" v-model.trim="column.filterValue" />
             <app-button class="btn-sm absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500"
               @click="applyFilter(column.key, column.filterValue, column.filterCondition)">
               <nuxt-icon loading="lazy" quality="90" name="mdi/check-bold" class="icon-apply" filled />
             </app-button>
           </div>
-          <div v-if="column.filter === 'number'" class="w-full relative flex ">
+          <div v-if="column.filter === 'number'" class="w-full relative flex">
             <app-input class="input-sm w-full " v-model.trim="column.filterValue" />
             <app-button class="btn-sm absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500"
               @click="applyFilter(column.key, column.filterValue, column.filterCondition)">
