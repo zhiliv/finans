@@ -1,15 +1,31 @@
 <template>
-  <div class="relative" :class="$attrs.class">
-    <app-spinner v-if="isLoad === false || isLoad === 'false'" class="absolute top-[0.5em]" />
+  <div
+    :class="$attrs.class"
+    class="relative"
+  >
+    <app-spinner
+      class="absolute top-[0.5em]"
+      v-if="isLoad === false || isLoad === 'false'"
+    />
     <label class="label py-0 px-4">{{label}}</label>
-    <select v-model="selected" class="select select-bordered w-full" :class="$attrs['select-class']">
-      <option v-if="!options.length" disabled>Список пуст</option>
-      <option v-if="options.length && required" disabled>Выберите значение</option>
+    <select
+      :class="$attrs['select-class']"
+      class="select select-bordered w-full"
+      v-model="selected"
+    >
+      <option
+        disabled
+        v-if="!options.length"
+      >Список пуст</option>
+      <option
+        disabled
+        v-if="options.length && required"
+      >Выберите значение</option>
       <div
-        v-for="item in options"
         :key="item[value]"
         :value="item[value]"
         class="text-[1.35em]"
+        v-for="item in options"
       >{{item[text]}}</div>
     </select>
   </div>
@@ -40,28 +56,28 @@ export default {
     },
     /* Обязательность поля */
     required: {
-      type: [Boolean, String],
+      type: [ Boolean, String ],
       default: false,
-      validator(value) {
+      validator (value) {
         return value === true || value === false || value === 'true' || value === 'false'
       },
     },
     /* Статус загрузки */
     isLoad: {
-      type: [String, Boolean],
+      type: [ String, Boolean ],
       default: false,
-      validator(value) {
+      validator (value) {
         return value === true || value === false || value === 'true' || value === 'false'
       },
     },
     /* Индекс выделяемого элемента */
     selectValue: {
-      type: [Number, String],
+      type: [ Number, String ],
       default: null
     }
   },
-  emits: ['update:modelValue'],
-  data() {
+  emits: [ 'update:modelValue' ],
+  data () {
     return {
       selected: null, // выделенная строка
       valueModel: null, // модель данных
@@ -74,7 +90,7 @@ export default {
      * @function selected
      * @param {Number} newValue - Новое значение
      */
-    selected(newValue) {
+    selected (newValue) {
       const { $emit } = this
       $emit('update:modelValue', newValue) // отправка события для обновления модели данных
     },
@@ -83,8 +99,8 @@ export default {
     * Отслеживание изменений передаваемого индекса
     * @function selectIndex
     */
-    selectValue(newValue){
-      if(newValue) this.selected = +newValue
+    selectValue (newValue) {
+      if (newValue) this.selected = +newValue
     }
   },
 }

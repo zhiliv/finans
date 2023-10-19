@@ -1,15 +1,18 @@
 <template>
-  <label v-if="label" class="label pb-0 px-2">{{label}}</label>
+  <label
+    class="label pb-0 px-2"
+    v-if="label"
+  >{{label}}</label>
   <input
-    :value="modelValue"
-    :type="type"
-    class="input input-bordered pt-1"
-    :pattern="patterns"
+    :class="[attrs.class, { 'input-success': props.isValid === true, 'input-error': props.isValid === false }]"
     :disabled="$attrs.disabled"
     :maxlength="maxlength"
+    :pattern="patterns"
     :style="$attrs.style"
-    :class="[attrs.class, { 'input-success': props.isValid === true, 'input-error': props.isValid === false }]"
+    :type="type"
+    :value="modelValue"
     @input="handler"
+    class="input input-bordered pt-1"
   />
 </template>
 
@@ -17,8 +20,8 @@
 const attrs = useAttrs() // Получение переданных аттрибутов
 const emit = defineEmits(['update:modelValue']) // События
 
-/*
- * Отправка события при  изменении поля ввода
+/**
+ ** Отправка события при  изменении поля ввода
  * @function handler
  * @param {Object} event - Объект события
  */
@@ -27,21 +30,21 @@ const handler = (event: any) => {
 }
 
 /** 
-* @interface Props
-* @member {String} modelValue - Данные поля
-* @member {String} label - Подпись поля
-* @member {String} type - Тип поля 
-* @member {RegExp} patterns - Паттерн ввода
-* @member {Boolean} isValid - Значение валидации
-* @member {Number} maxlength - Максимальная длина
+* @type Props
+* @param {String} modelValue - Данные поля
+* @param {String} label - Подпись поля
+* @param {String} type - Тип поля 
+* @param {RegExp} patterns - Паттерн ввода
+* @param {Boolean} isValid - Значение валидации
+* @param {Number} maxlength - Максимальная длина
 */
-interface Props {
-  modelValue: string | null | any // Данные поля
-  label?: string | null // Подпись поля
-  type?: string // Тип поля
-  patterns?: string | undefined // Паттерны
-  isValid?: string | null | boolean // Валидация поля
-  maxlength?: any | number | undefined // Максимальная длина
+type Props = {
+  modelValue: string | null | any
+  label?: string | null
+  type?: string
+  patterns?: string | undefined
+  isValid?: string | null | boolean
+  maxlength?: any | number | undefined
 }
 
 /* Установка значений PROPS */

@@ -1,34 +1,37 @@
 <template>
-  <div class="h-full relative w-full shadow-2xl shadow-zinc-300/30" :class="$attrs.class">
+  <div
+    :class="$attrs.class"
+    class="h-full relative w-full shadow-2xl shadow-zinc-300/30"
+  >
     <ul
-      ref="listView"
       class="list-group h-full absolute w-full overflow-y-scroll overflow-x-hidden"
+      ref="listView"
     >
       <li
-        v-for="item in listItems"
-        class="min-h-[35px] border-b border-zinc-300/10 hover:bg-amber-700"
         :class="{'active': item.isActive}"
         :key="item[value]"
         @click="onSelect(item)"
+        class="min-h-[35px] border-b border-zinc-300/10 hover:bg-amber-700"
+        v-for="item in listItems"
       >
         {{item[text]}}
         <button
-          v-if="onDelete"
           class="btn-xs btn-square btn-outline absolute right-0 mr-1"
+          v-if="onDelete"
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
+            @click="deleteItem(item)"
             class="h-6 w-6"
             fill="none"
-            viewBox="0 0 24 24"
             stroke="currentColor"
-            @click="deleteItem(item)"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
+              d="M6 18L18 6M6 6l12 12"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
             />
           </svg>
         </button>
@@ -42,18 +45,20 @@
 import { Confirm } from '~/types/confirm'
 import { Query } from '~/types/query'
 
+const emit = defineEmits(['update:modelValue', 'delete']) // Отправляемые события
+
 /**
- * @interface Props
- * @member {Array} list - Список
- * @member {String} value - Свойство значения строки
- * @member {String} text - Свойство текста строки
- * @member {Object} modelValue - Значение поля
- * @member {Boolean} loading - Статус загрузки
- * @member {Function} onDelete - Функция удаления элемента
- * @member {Number} selectIndex - Индекс выбираемого элемента
- * @member {String} urlName - Ссылка
+ * @type Props
+ * @param {Array} list - Список
+ * @param {String} value - Свойство значения строки
+ * @param {String} text - Свойство текста строки
+ * @param {Object} modelValue - Значение поля
+ * @param {Boolean} loading - Статус загрузки
+ * @param {Function} onDelete - Функция удаления элемента
+ * @param {Number} selectIndex - Индекс выбираемого элемента
+ * @param {String} urlName - Ссылка
  */
-interface Props {
+type Props = {
   list?: any
   value?: string
   text?: string
@@ -75,18 +80,15 @@ const props = withDefaults(defineProps<Props>(), {
   urlName: '',
 })
 
-const emit = defineEmits(['update:modelValue', 'delete'])
 
-/* Ссылка на отображаемый список */
-const listView = ref()
-/* Формирование списка для вывода */
-const listItems = computed(() => props.list)
+const listView = ref() // Ссылка на отображаемый список 
+const listItems = computed(() => props.list) // Формирование списка для вывода
 
 /* Наблюдатель за изменением индекса выделяемого элемента */
 watch(
   () => props.selectIndex,
   (newVal: any) => {
-    if (newVal !== -1) {
+    if(newVal !== -1) {
       clickIndex(newVal)
     }
   },
@@ -97,7 +99,7 @@ watch(
 watch(
   () => props.loading,
   newVal => {
-    if (props?.list?.length) clickIndex()
+    if(props?.list?.length) clickIndex()
   },
   { deep: true },
 )
@@ -108,8 +110,8 @@ watch(
  * @param {Number} index - Порядковый номер выбираемого элемента
  */
 async function clickIndex(index?: number | null | undefined) {
-  if (!index && index !== -1) index = 0
-  if (props?.list?.length) {
+  if(!index && index !== -1) index = 0
+  if(props?.list?.length) {
     await nextTick() // Ожидание обновления прорисовки списка
     listView.value.querySelectorAll('li')[index].click()
   }
@@ -130,7 +132,7 @@ function onSelect(item: any) {
 /**
  * Удаление выделенного элемента
  * @function onDeleteItem
- * @para, {String} URL - Путь
+ * @param {String} URL - Путь
  * @param {Object} item - Данные строки
  */
 async function deleteItem(item: any) {
@@ -139,10 +141,10 @@ async function deleteItem(item: any) {
   } // Параметры сообщения подтверждения
   let result = false
   const confirm: Boolean | unknown = await dialogConfirm(confirmParam) // Отображение окна подтверждения
-  if (confirm) {
+  if(confirm) {
     const paramsQuery: Query = { url: `/api/${props.urlName}/del`, method: 'delete', body: item.id }
     const response: any = await query(paramsQuery) // Отправка запроса на удаление
-    if (response?.data?.value?.status == 200) {
+    if(response?.data?.value?.status == 200) {
       showToast({ message: response.data.value.message, type: 'success' }) // Обработка результата
       result = true
     }
@@ -152,22 +154,22 @@ async function deleteItem(item: any) {
 </script>
 
 <style>
-    .list-group li {
-      padding-left: 0.5em;
-      padding-top: 0.25em;
-      font-size: 18px;
-    }
+  .list-group li {
+    padding-left: 0.5em;
+    padding-top: 0.25em;
+    font-size: 18px;
+  }
 
-    .list-group li:hover {
-      background: var(--primary);
-      color: var(--light);
-    }
+  .list-group li:hover {
+    background: var(--primary);
+    color: var(--light);
+  }
 
-    .list-group li.active {
-      background: #b45309;
-    }
+  .list-group li.active {
+    background: #b45309;
+  }
 
-    .list-group li.active:hover {
-      background: #d97706;
-    }
+  .list-group li.active:hover {
+    background: #d97706;
+  }
 </style>

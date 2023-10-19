@@ -1,6 +1,6 @@
 <template>
-  <div class="flex w-full justify-center">
-    <label>{{ modelValue.options.text }}</label>
+  <div class="flex w-full justify-center h-auto">
+    <span class="h-20">{{ modelValue.options.text }}</span>
   </div>
 </template>
 

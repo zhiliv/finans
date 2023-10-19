@@ -1,53 +1,111 @@
 <template>
-  <app-spinner v-if="!isLoad" class="w-full" />
-  <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
-  <app-carousel @upload="upload" :images="data.images" />
-  <app-textarea v-model="data.short_description" label="Короткое описание" class="h-[80px]" />
-  <app-textarea v-model="data.description" label="Короткое описание" class="h-[300px]" />
+  <app-spinner
+    class="w-full"
+    v-if="!isLoad"
+  />
+  <app-input
+    :is-valid="isValid.name"
+    class="standart w-full input"
+    label="Наименование"
+    v-model="data.name"
+  />
+  <div class="flex-row mt-2 border p-2 rounded-lg">
+    <div class="text-center flex justify-center">
+      <h5 class="w-full">Главный банер</h5>
+      <div class="h-[150px] w-[150px] border hidden">
+        <!-- <nuxt-img
+    format="webp"
+        />-->
+      </div>
+    </div>
+    <div class="flex justify-end">
+      <app-button
+        @click="controlImage"
+        class="btn-primary btn-sm"
+      >Изображения</app-button>
+    </div>
+  </div>
+
+  <app-input
+    class="standart w-full input"
+    label="Юридическое наименование"
+    v-model="data.information.Ur_name"
+  />
+  <app-input
+    class="standart w-full input"
+    label="Юридический адрес"
+    v-model="data.information.Ur_address"
+  />
+  <app-input
+    class="standart w-full input"
+    label="Сайт"
+    v-model="data.information.site"
+  />
+  <app-input
+    class="standart w-full input"
+    label="ИНН"
+    v-model="data.information.INN"
+  />
+  <app-input
+    class="standart w-full input"
+    label="ОГРН"
+    v-model="data.information.OGRN"
+  />
+  <app-input
+    class="standart w-full input"
+    label="Номера телефонов"
+    v-model="data.information.phones"
+  />
+  <app-textarea
+    class="h-[80px]"
+    label="Короткое описание"
+    v-model="data.information.short_description"
+  />
+  <app-textarea
+    class="h-[300px]"
+    label="Полное описание"
+    v-model="data.information.description"
+  />
 </template>
 
 <script lang="ts" setup>
-import { useOrganizationsStore } from '~/stores/organizations-store'
+import { useOrganizationsStore, Organization, Information, Image } from '~/stores/organizations-store'
 const emit = defineEmits(['valid', 'data'])
 
 /** 
-* @interface Props
-* @member {Object} modelValue - Данные формы
+* @type Props
+* @param {Object} modelValue - Данные формы
 */
-interface Props {
+type Props = {
   modelValue?: any
 }
 
+/** Установка значений по умолчанию для данных формы */
+const dataDefault: Organization = {
+  name: '',
+  information: {
+    Ur_name: null,
+    Ur_address: null,
+    description: null,
+    short_description: null,
+    site: null,
+    INN: null,
+    OGRN: null,
+    phones: null
+  },
+  images: [],
+  id: null
+}
+
+/** Установка значений по умолчанию для входных параметров  */
 const props = withDefaults(defineProps<Props>(), {
   modelValue: null,
 })
 
-/** 
-* Модель данных для формы
-* @interface Data
-*/
-interface Data {
-  name: String | null
-  description: String | null
-  short_description: String | null
-  id: number | null
-}
+const data = ref(dataDefault) // Данные формы
 
 /** 
-* Данные формы
-* @member {String} name - Наименование
-* @member {String} description - Описание
-*/
-const data = ref({
-  name: null,
-  description: null,
-  short_description: null,
-  id: null,
-  images: []
-}) // Данные формы
-
-/** 
-* Данные валидации
+** Данные валидации
 * @member {Boolean} name - Валидация наименования
 * @member {Boolean} description - Валидация описания
 */
@@ -65,32 +123,61 @@ onMounted(async () => {
   isLoad.value = true
   data.value.id = id
   data.value.name = response.value.name
-  data.value.short_description = response.value.short_description
-  data.value.description = response.value.description
-  data.value.images = response.value.images
+  data.value.information = data.value.information
+  data.value.images = response.value.images || []
 })
 
 
-/**
-* Наблюдатель для установки валидации
-*/
-watch(data.value, (newVal: Data) => {
+/**  Наблюдатель для установки валидации */
+watch(data.value, (newVal: any) => {
   isValid.value.name = !!(newVal.name && newVal.name.length && newVal.name.length > 3) // Установка валидации для поля "Наименование"
   /* Установка валидации для поля "Описание" */
-  
   isValid.value.result = getValidForm(isValid.value)
   emit('valid', { save: !isValid.value.result })
   emit('data', data.value)
 })
 
 /** 
-* Загрузка изображения
-* @function upload
-* @param {Object}  data - Данные о загружаемом файле
+** Загрузка изображения
+* @function addImage
+* @param {Object}  dataFile - Данные о загружаемом файле
 */
-async function upload(dataUpload: any) {
-  /* dataUpload.id_org = data.value.id  // Установка идентификатора организации
-  await store.uploadImage(dataUpload) */
+async function addImage(dataFile: any) {
+  if(dataFile) {
+    dataFile.isNew = true
+    data.value.images.push(dataFile)
+  }
 }
 
+/** 
+** Получение изображения
+* @function getImage
+*/
+const getImage = () => {
+
+}
+
+/** 
+** Управление изображениями
+* @function controlImage
+*/
+async function controlImage() {
+  const body: any = await showModal('control_image', {
+    options: {
+      title: 'Управление изображениями',
+      width: '30%',
+      isDrawer: true,
+      buttons: { change: true, cancel: true }
+    },
+    images: data.value.images
+  }) // Получение ответа из модального окна
+  if(body) {
+    console.log('🚀 -> controlImage -> body:', body)
+    //  emit('add', body)
+  }
+}
+
+const getPath = () => {
+  return `/img/organization/${data.value.id}`
+}
 </script>

@@ -1,79 +1,196 @@
 <template>
-  <div class="flex justify-start border-b mt-3">
-    <span class="pl-2">Изображения</span>
-  </div>
-  <div class="carousel w-full min-h-[180px] h-[180px] mt-2  pb-2">
-    <h4 v-if="!list.length" class="text-center w-full justify-center pt-16">Изображения отсутствуют</h4>
-    <div :id="geIdImage(index)" class="carousel-item w-full flex justify-center" v-for="(image, index) in list" :key="index">
-      <nuxt-img :src="setUrlImg(image.path)" />
+  <div class="carousel w-full block-carousel mt-2 pb-2">
+    <h4
+      class="text-center w-full justify-center pt-16"
+      v-if="!images || !images.length && isLoad"
+    >Изображения отсутствуют</h4>
+    <div
+      class="flex w-full justify-center"
+      v-if="!isLoad"
+    >
+      <app-spinner />
+    </div>
+
+    <div
+      :id="geIdImage(index)"
+      :key="index"
+      class="carousel-item w-full flex justify-center"
+      v-for="(image, index) in images"
+    >
+      <nuxt-img
+        :class="{'border-green-600': image.isActive,  'border-4': image.isActive}"
+        :src="image.path"
+        @click="select(index)"
+        format="webp"
+        class="carousel-img"
+        v-if="!image?.isNew && image.path"
+      />
+      <img
+        :src="getImageUrl(image)"
+        @click="select(index)"
+        class="mt-2 carousel-img"
+        v-if="image.isNew"
+      />
+      <app-button
+        @click="del(index)"
+        class="btn-xs ml-2 btn-error hover:bg-red-500"
+      >X</app-button>
     </div>
   </div>
   <div class="flex justify-center w-full py-2 gap-2 relative border-b mb-4">
-    <a v-for="(item, index) in list" :href="getIdLink(index)" :key="index" class="btn btn-xs">{{ index + 1 }}</a>
-    <app-button class="btn-xs btn-primary  justify-center absolute right-6" @click="upload">Добавить</app-button>
+    <a
+      v-for="(item, index) in images"
+      :class="{'btn-success': item.isActive}"
+      :href="getIdLink(index)"
+      :key="item.id"
+      class="btn btn-xs"
+    >{{ index + 1 }}</a>
+  </div>
+  <div class="flex w-full justify-center">
+    <app-button
+      @click="add"
+      class="btn-md btn-primary"
+    >Добавить</app-button>
   </div>
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(['upload'])
+const isLoad = ref(false)
 
 /** 
-* @interface Props
-* @member {Array} images - Список изображений
-* @member {Function} download
+** Вывод изображения в превью
+* @function getImageUrl
+* @param {Object} data - Входные
 */
-interface Props {
-  images?: image[] | any
+const getImageUrl = (data: any) => {
+  return URL.createObjectURL(data.file)
 }
 
-/** 
-* @type image
-* @member {Number} id - Идентификатор
-* @member {String} url - Адрес изображения 
-*/
-type image = {
-  id: number;
-  url: String
+/**
+ ** Описание свойств изображения
+ * @type
+ * @param {String} id - Идентификатор
+ * @param {String} path - Ссылка на изображение
+ * @param {String} label - Подпись изображения
+ * @param {String} fileName - Имя файла
+ * @param {Boolean} isNew - Признак нового изображения
+ * @param {Boolean} isActive - Признак выделенного изображения
+ * @param {Boolean} isDel - Признак удаляемого изображения
+ */
+type Image = {
+  id: string
+  path: string
+  label: string
+  fileName: string
+  isNew?: true
+  isActive?: true
+  isDel?: true
 }
 
+/**
+ ** Описание входных параметров
+ * @type Props
+ * @param {Array<Image>} images - Список изображений
+ */
+type Props = {
+  images?: Image[] | any
+}
+const emit = defineEmits(['update']) // Список отправляемых событий
+
+/* Входные свойства  */
 const props = withDefaults(defineProps<Props>(), {
   images: []
 })
 
-const list = computed(() => props.images)
+const images: Image[] | any= ref(props.images) // Переменная со списком изображений
 
-/** 
-* Отправка события о загрузке файла
-* @function upload
-*/
-async function upload() {
-  const body: any = await showModal('upload_image', { options: { title: 'Загрузка изображения', width: '20%', isDrawer: true, buttons: { save: true, cancel: true } } }) // Получение ответа из модального окна
-  if(body?.name) {
-    body.name = capitalize(body.name)
-    emit('upload', body)
+/**
+ ** Отправка события о загрузке файла
+ * @function add
+ */
+async function add() {
+  const body: any = await showModal('add_image', {
+    options: {
+      title: 'Загрузка изображения',
+      width: '20%',
+      isDrawer: true,
+      buttons: { add: true, cancel: true },
+    },
+  }) // Получение ответа из модального окна
+  if(body) {
+    body.isNew = true
+    images.value.push(body)
   }
 }
 
-/** 
-* Установка ссылки на изображение
-* @function setUrlImg
-* @param {String} path - Путь к изображению
-*/
-const setUrlImg = (path: string) => `/${path}`
-
 /**
-* Установка идентификатора изображения
-* @function geIdImage
-* @param {Number} index - Порядковый номер
-*/
+ ** Установка идентификатора изображения
+ * @function geIdImage
+ * @param {Number} index - Порядковый номер
+ */
 const geIdImage = (index: number) => `image_${index + 1}`
 
-
-/** 
-* Получение идентификатора элемента ссылки для перехода по изображения
-* @function getIdLink
-* @param {Number} index - Порядковый номер
-*/
+/**
+ ** Получение идентификатора элемента ссылки для перехода по изображения
+ * @function getIdLink
+ * @param {Number} index - Порядковый номер
+ */
 const getIdLink = (index: number) => `#image_${index + 1}`
 
+watch(() => images, (newVal) => {
+  if(images) isLoad.value = true
+  emit('update', newVal)
+})
+
+
+onMounted(() => {
+  isLoad.value = true // Установка признака загрузки формы
+})
+
+/** 
+** Удаление изображения
+* @function del
+* @param {Object} image - Данные изображения
+*/
+async function del(index: number) {
+  const text = images.value[index].isActive ? 'Внимание! Данная запись является главной для записи, действительно удалить?' : 'Подтвердите удаление записи?'
+  const body: any = await showModal('modal_confirm', { options: { title: 'Удалить запись?', width: '25%', isDrawer: false, buttons: { cancel: false, yes: true, no: true }, text } }) // Получение ответа из модального окна
+  if(body) {
+    images.value.splice(index, 1) // Удаление элемента  
+    console.log('new', images)
+  }
+}
+
+
+/** 
+** Установка активного элемента
+* @function select
+* @param {Object} image - Данные изображения
+*/
+function select(index: number) {
+  console.log('🚀 -> select -> index:', index)
+  images.value.map((el: Image) => {
+    delete el.isActive
+    return el
+  })
+  images.value[index].isActive = true
+}
 </script>
+
+<style scoped>
+  @media (max-width: 767.9px) {
+    .block-carousel {
+      height: 200px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .block-carousel {
+      height: 350px;
+    }
+  }
+  
+  .carousel-img{
+    max-width: 92%;
+  }
+</style>

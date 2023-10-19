@@ -1,15 +1,24 @@
 <template>
-  <label v-if="label" class="label py-0 px-2">{{ label }}</label>
-  <textarea :value="modelValue"  class="textarea textarea-bordered w-full" :pattern="patterns" :style="$attrs.style"
-    :class="[attrs.class, { 'textarea-success': props.isValid === true, 'textarea-error': props.isValid === false, 'mt-2': !label }]" @input="handler" />
+  <label
+    class="label py-0 px-2"
+    v-if="label"
+  >{{ label }}</label>
+  <textarea
+    :class="[attrs.class, { 'textarea-success': props.isValid === true, 'textarea-error': props.isValid === false, 'mt-2': !label }]"
+    :pattern="patterns"
+    :style="$attrs.style"
+    :value="modelValue"
+    @input="handler"
+    class="textarea textarea-bordered w-full"
+  />
 </template>
 
 <script lang="ts" setup>
 const attrs = useAttrs() // Получение переданных аттрибутов
-const emit = defineEmits(['update:modelValue']) // События
+const emit = defineEmits(['update:modelValue']) // Отправляемые события
 
-/*
- * Отправка события при  изменении поля ввода
+/**
+ ** Отправка события при  изменении поля ввода
  * @function handler
  * @param {Object} event - Объект события
  */
@@ -18,22 +27,22 @@ const handler = (event: any) => {
 }
 
 /** 
-* @interface Props
-* @member {String} modelValue - Данные поля
-* @member {String} label - Подпись поля
-* @member {String} type - Тип поля 
-* @member {RegExp} patterns - Паттерн ввода
-* @member {Boolean} isValid - Значение валидации
-* @member {Number} maxlength - Максимальная длина
+* @type Props
+* @param {String} modelValue - Данные поля
+* @param {String} label - Подпись поля
+* @param {String} type - Тип поля 
+* @param {RegExp} patterns - Паттерн ввода
+* @param {Boolean} isValid - Значение валидации
+* @param {Number} maxlength - Максимальная длина
 */
-interface Props {
+type Props = {
   modelValue: string | null | any // Данные поля
   label?: string | null // Подпись поля
   patterns?: string | undefined // Паттерны
   isValid?: string | null | boolean // Валидация поля
 }
 
-/* Установка значений PROPS */
+/* Установка значений по умолчанию для входных параметров */
 const props = withDefaults(defineProps<Props>(), {
   modelValue: null,
   label: null,

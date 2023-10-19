@@ -1,28 +1,53 @@
 <template>
-  <div ref="listPagination" class="btn-group justify-center w-full border-t py-2 h-16 min-h-16" >
-    <app-button class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white" @click="start" v-if="position > 0"> &#60;&#60; </app-button>
-    <app-button class="btn btn-sm btn-link hover:bg-green-700 hover:text-white" @click="prew" v-if="position > 0"> &#60; </app-button>
-    <app-button v-for="item in list[position]" :key="item" class="bg-gray-200 border-0 text-slate-600 btn-sm  hover:bg-green-600 hover:text-white" :class="{ active: item === pagination }"
-      @click="select(item)">{{ item }}</app-button>
-    <app-button class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white" @click="next" v-if="position < list.length - 1"> &#62; </app-button>
-    <app-button class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white" @click="end" v-if="position < list.length - 1"> &#62;&#62; </app-button>
+  <div
+    class="btn-group justify-center w-full border-t py-2 h-16 min-h-16"
+    ref="listPagination"
+  >
+    <app-button
+      @click="start"
+      class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white"
+      v-if="position > 0"
+    >&#60;&#60;</app-button>
+    <app-button
+      @click="prew"
+      class="btn btn-sm btn-link hover:bg-green-700 hover:text-white"
+      v-if="position > 0"
+    >&#60;</app-button>
+    <app-button
+      :class="{ active: item === pagination }"
+      :key="item"
+      @click="select(item)"
+      class="bg-gray-200 border-0 text-slate-600 btn-sm hover:bg-green-600 hover:text-white"
+      v-for="item in list[position]"
+    >{{ item }}</app-button>
+    <app-button
+      @click="next"
+      class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white"
+      v-if="position < list.length - 1"
+    >&#62;</app-button>
+    <app-button
+      @click="end"
+      class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white"
+      v-if="position < list.length - 1"
+    >&#62;&#62;</app-button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+const emit = defineEmits(['pagination']) // Отправляемые события
+
 /** 
-* @interface Props
-* @member {Number} count - Общее количество пагинаций
-* @member {Number} countItems - Количество строк в таблице
+* @type Props
+* @param {Number} count - Общее количество пагинаций
+* @param {Number} countItems - Количество строк в таблице
 */
-interface Props {
+type Props = {
   count: number
   countItems?: number
 }
 
-const emit = defineEmits(['pagination'])
-
+/**  Установка значений по умолчанию для входных параметров */
 const props = withDefaults(defineProps<Props>(), {
   count: 0,
   countItems: 50
@@ -52,17 +77,17 @@ const list = computed(() => {
 const pagination = ref<number>(1) // Выбранное значение пагинации
 
 /** 
-* Выбор значения пагинации
+** Выбор значения пагинации
 * @function select
 * @param {Number} num - Значение пагинации
 */
 function select(num: number) {
-  pagination.value = num
+  pagination.value = num // Установка значения пагинации
   emit('pagination', pagination.value)
 }
 
 /** 
-* Сдвиг пагинации влево
+** Сдвиг пагинации влево
 * @function prew
 */
 function prew() {
@@ -72,7 +97,7 @@ function prew() {
 }
 
 /** 
-* Сдвиг списка вправо
+** Сдвиг списка вправо
 * @function next
 */
 function next() {
@@ -82,7 +107,7 @@ function next() {
 }
 
 /** 
-* В начало списка пагинации
+** В начало списка пагинации
 * @function start
 */
 function start() {
@@ -92,7 +117,7 @@ function start() {
 }
 
 /** 
-* В конец списка пагинации
+** В конец списка пагинации
 * @function end
 */
 function end() {
@@ -100,12 +125,11 @@ function end() {
   pagination.value = list.value[position.value][list.value[position.value].length - 1]
   emit('pagination', pagination.value)
 }
-
 </script>
 
 <style scoped>
-.active {
-  background: #198754;
-  color: white;
-}
+  .active {
+    background: #198754;
+    color: white;
+  }
 </style>

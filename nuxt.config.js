@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   buildModules: [ '@nuxt-modules/compression', {
     algorithm: 'brotliCompress'
   } ],
+
   
   render: {
     resourceHints: false
@@ -60,9 +61,9 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxt/image-edge',
     'nuxt-icons',
     '@pinia/nuxt',
+    '@nuxt/devtools',
     [
       'nuxt-purgecss',
       {

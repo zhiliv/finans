@@ -1,5 +1,9 @@
 <template>
-  <div class="alert m-2 max-w-md min-w-md" :class="alertClass" @click="onClose">
+  <div
+    :class="alertClass"
+    @click="onClose"
+    class="alert m-2 max-w-md min-w-md"
+  >
     <div class="flex-col">
       <span class="text-l border-b border-zinc-400">{{ getTile }}</span>
       <p class>{{ message }}</p>
@@ -9,14 +13,14 @@
 
 <script lang="ts" setup>
 /**
- * @interface Props
- * @member {Number} id - Идентификатор уведомления
- * @member {String} title - Заголовок
- * @member {String} message - Сообщения уведомления
- * @member {Number} timer - Таймер закрытия окна
- * @member {String} type - Тип уведомления
+ * @type Props
+ * @param {Number} id - Идентификатор уведомления
+ * @param {String} title - Заголовок
+ * @param {String} message - Сообщения уведомления
+ * @param {Number} timer - Таймер закрытия окна
+ * @param {String} type - Тип уведомления
  */
-interface Props {
+type Props = {
   id: number
   title: string
   message: string
@@ -24,6 +28,7 @@ interface Props {
   type: 'info' | 'success' | 'warning' | 'error'
 }
 
+/** Установка значения по умолчанию для входных свойств */
 const props = withDefaults(defineProps<Props>(), {
   id: 0,
   title: '',
@@ -39,8 +44,8 @@ const alertClass = computed(() => {
 
 /* Вычисление заголовка */
 const getTile = computed(() => {
-  if (props.title) return props.title
-  switch (props.type) {
+  if(props.title) return props.title
+  switch(props.type) {
     case 'info':
       return 'Информация'
     case 'success':
@@ -57,8 +62,8 @@ setTimeout(() => {
   emitter.emit('remove-toast', { id: props.id }) // Отправка события о закрытии уведомления
 }, props.timer)
 
-/*
- * Событие при нажатии на закрытие уведомления
+/**
+ ** Событие при нажатии на закрытие уведомления
  * @function onClose
  */
 function onClose() {

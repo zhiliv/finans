@@ -1,25 +1,37 @@
 <template>
-  <div class="relative" :class="[$attrs.class, {'px-2': $attrs.multiple}]">
+  <div
+    :class="[$attrs.class, {'px-2': $attrs.multiple}]"
+    class="relative"
+  >
     <app-spinner
-      v-if="isLoad === false"
-      class="absolute pt-2"
       :class="{'left-[50%]': $attrs.multiple}"
+      class="absolute pt-2"
+      v-if="isLoad === false"
     />
-    <label v-if="label" class="label py-0 px-2">{{label}}</label>
+    <label
+      class="label py-0 px-2"
+      v-if="label"
+    >{{label}}</label>
     <select
-      :multiple="attrs.multiple"
-      v-model="selected"
-      :disabled="attrs?.disabled"
-      class="select select-bordered"
       :class="[$attrs['select-class'], {'mt-3': $attrs.multiple}]"
+      :disabled="attrs?.disabled"
+      :multiple="attrs.multiple"
+      class="select select-bordered"
+      v-model="selected"
     >
-      <option v-if="!options.length" disabled>Список пуст</option>
-      <option v-if="options.length && required" disabled>Выберите значение</option>
       <option
-        v-for="item in options"
+        disabled
+        v-if="!options.length"
+      >Список пуст</option>
+      <option
+        disabled
+        v-if="options.length && required"
+      >Выберите значение</option>
+      <option
         :key="item[value]"
         :value="item[value]"
         class="text-[1.35em]"
+        v-for="item in options"
       >{{item[text]}}</option>
     </select>
   </div>
@@ -27,19 +39,20 @@
 
 <script lang="ts" setup>
 const attrs = useAttrs() // Получение аттрибутов
+
 /**
- * @interface Props
- * @member {Array} options - Список
- * @member {String} label - Заголовок списка
- * @member {String} value - Наименование свойства значения
- * @member {String} text - Текстовое значение выделенного элемента
- * @member {Boolean} required - Обязательно поля
- * @member {Boolean} isLoad - Статус загрузки списка
- * @member {Any} selectValue - Значение выделенного элемента списка
- * @member {Boolean} disabled - Активность поля
- * @member {Boolean} multiple - Множественный выбор
+ * @type Props
+ * @param {Array} options - Список
+ * @param {String} label - Заголовок списка
+ * @param {String} value - Наименование свойства значения
+ * @param {String} text - Текстовое значение выделенного элемента
+ * @param {Boolean} required - Обязательно поля
+ * @param {Boolean} isLoad - Статус загрузки списка
+ * @param {Any} selectValue - Значение выделенного элемента списка
+ * @param {Boolean} disabled - Активность поля
+ * @param {Boolean} multiple - Множественный выбор
  */
-interface Props {
+type Props = {
   options: any
   label?: string
   value?: string
@@ -51,6 +64,7 @@ interface Props {
   multiple?: boolean
 }
 
+/* Установка данных по умолчанию для входных свойств */
 const props = withDefaults(defineProps<Props>(), {
   options: [],
   value: 'id',
@@ -60,16 +74,15 @@ const props = withDefaults(defineProps<Props>(), {
   selectValue: null
 })
 
-/* События компонента */
-const emit = defineEmits(['update:modelValue', 'update:selectValue'])
+const emit = defineEmits(['update:modelValue', 'update:selectValue']) // Отправляемые события 
 const selected = ref() // Выделенный элемент
-
 
 /* Отслеживание изменений выбранных элементов */
 watch(selected, newVal => {
   emit('update:modelValue', newVal) // Отправка события для обновления модели данных
 })
 
+/* При монтировании компонента */
 onMounted(() => {
   selected.value = props.selectValue || null
 })

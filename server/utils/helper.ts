@@ -146,12 +146,12 @@ export const getCountTable = async (tableName:string, where:any) => {
 
 /** 
 * Сохранение файла
-* @function saveFile
+* @function saveImage
 
 */
-export const saveFile = async (fileName: string, file: string, id: number) => {
+export const saveImage = async (table: string, id: number,  fileName: string | null, file: string) => {
   const base64Data = file.replace(/^data:([A-Za-z-+/]+);base64,/, '')
-  if(!fs.existsSync(`upload`)) fs.mkdirSync(`upload`)
-  await fs.writeFileSync(`./public/img/organizations/${id}/${fileName}`, base64Data, 'base64')
+  if(!fs.existsSync(`./public/img/${table}/${id}`)) await fs.mkdirSync(`./public/img/${table}/${id}`)
+  await fs.writeFileSync(`./public/img/${table}/${id}/${fileName}`, base64Data, 'base64')
   return {fileName, id}
 }

@@ -38,6 +38,10 @@
       {
         "name": "Типы профитов",
         "href": "/guides/type_profit/page_type_profit"
+      },
+      {
+        "name": "Сайты",
+        "href": "/guides/sites/page_sites"
       }
     ]
   }

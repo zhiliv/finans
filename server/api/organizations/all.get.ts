@@ -7,17 +7,9 @@ export default defineEventHandler(async event => {
     SELECT
       org.id, -- Идентификатор
       org.name, -- Наименование
-      short_description, -- Короткое описание
-      org.description, -- Полное описание
-      org.site, -- Сайт организации
-      img.path AS image, -- Основание изображение организации
-      (SELECT
-          array_agg(path)
-        FROM
-          prod.img_organization AS img
-        WHERE img.id_organization = org.id) AS images
+      to_jsonb(data),
+      array_to_json(images)
     FROM prod.organizations AS org
-    LEFT JOIN prod.img_organization AS img ON img.id = org.img_organization_id
     ORDER BY name
     `
     return await sequelize.query(query)

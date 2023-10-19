@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  return organizations.init(sequelize, DataTypes);
+  return offices.init(sequelize, DataTypes);
 }
 
-class organizations extends Sequelize.Model {
+class offices extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return sequelize.define('organizations', {
+  return sequelize.define('offices', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -14,34 +14,28 @@ class organizations extends Sequelize.Model {
       comment: "Идентификатор",
       primaryKey: true
     },
-    name: {
+    adress_text: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "Наименование"
+      comment: "Адрес офиса в виде текста"
     },
-    information: {
+    geo: {
       type: DataTypes.TEXT,
       allowNull: true,
-      comment: "Данные организации"
+      comment: "ГЕО позиция офиса"
     },
-    images: {
-      type: DataTypes.TEXT,
+    is_main: {
+      type: DataTypes.BOOLEAN,
       allowNull: true,
-      comment: "Изображдения организации"
+      comment: "Главный офис"
     }
   }, {
-    tableName: 'organizations',
-    schema: 'prod',
+    tableName: 'offices',
+    schema: 'guide',
     timestamps: false,
     indexes: [
       {
-        name: "organuzation_id_idx",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "organuzation_pk",
+        name: "offices_pk",
         unique: true,
         fields: [
           { name: "id" },

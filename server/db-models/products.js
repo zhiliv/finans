@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  return offers.init(sequelize, DataTypes);
+  return products.init(sequelize, DataTypes);
 }
 
-class offers extends Sequelize.Model {
+class products extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-  return sequelize.define('offers', {
+  return sequelize.define('products', {
     id: {
       autoIncrement: true,
       autoIncrementIdentity: true,
@@ -120,7 +120,7 @@ class offers extends Sequelize.Model {
       }
     }
   }, {
-    tableName: 'offers',
+    tableName: 'products',
     schema: 'prod',
     timestamps: false,
     indexes: [

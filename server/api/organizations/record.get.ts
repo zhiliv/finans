@@ -9,20 +9,22 @@ export default defineEventHandler(async (event: H3Event) => {
   SELECT
     org.id, -- Идентификатор
     org.name, -- Наименование
-    short_description, -- Короткое описание
-    org.description, -- Полное описание
-    org.site, -- Сайт организации
-    (SELECT 
-      json_agg(img.*)      
-    FROM 
-      prod.img_organization AS img
-    WHERE 
-      img.id_organization=${params.id}
-    ) as images
+    CASE WHEN information IS NOT  NULL
+      THEN 
+        to_jsonb(information)
+      ELSE
+        NULL
+      END AS information,
+    CASE WHEN images IS NOT NULL
+      THEN 
+        -- array_to_json(array[to_json(images)])
+        images
+      ELSE  
+        NULL
+      END AS Images
   FROM 
     prod.organizations AS org
   WHERE org.id=${params.id}
-  GROUP BY org.id
   ORDER BY name 
 `
 

@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { Query } from '~/types/query'
-import { uploadData } from '~/types/upload'
 
 /**
  * @interface QueryParams
@@ -16,69 +15,7 @@ type SelectParams = {
   order?: string
 }
 
-/** 
-** Описание сущности "Изображения"
-* @type Image
-* @param {Number} id - Идентификатор
-* @param {String} name - Имя изображения
-* @param {String} path - Путь к изображения
-* @param {Boolean} isLicense - Признак лицензии
-* @param {Boolean} isNew - Признак нового изображения
-* @param {Boolean} isDel - Признак удаления изображения
-* @param {String} label - Описание изображения
-* @param {Boolean} isMain - Главное описание изображения
-*/
-export type Image = {
-  id: number
-  name: string
-  path: string
-  isLicense?: boolean
-  isNew?: boolean
-  idDel?: boolean
-  isMain?: boolean
-}
-
-/**
-** Описание сущности "Данные организации"
-* @type Information
-* @param { String } Ur_name - Юридическое название организации
-* @param { Array } Ur_address - Адреса организации
-* @param { String } Ur_name - Юридическое наименование
-* @param { String } description - Описание
-* @param { String } short_description - Короткое описание
-* @param { String } site - Сайт организации
-* @param { Array } images - Изображения организации
-* @param { Number } INN - ИНН организации
-* @param { Number } OGRN - ОГРН организации
-* @param { Array } phones - Номера телефонов
-*/
-export type Information = {
-  Ur_name: string | null
-  Ur_address: string | null
-  description: string | null
-  short_description: string | null
-  site: string | null
-  INN: number | null
-  OGRN: number | null
-  phones: string | null
-}
-
-/** 
-** Описание сущности организации 
-* @type Organization
-* @param {Number} id - Идентификатор
-* @param {String} name - Наименование
-* @param {Object} data - Данные организации
-* @param {Array} images - Список изображений
-*/
-export type Organization = {
-  id: number | null
-  name: string | null
-  information: Information | string | any
-  images: Image[]
-}
-
-export const useOrganizationsStore = defineStore('organizations', () => {
+export const useSitesStore = defineStore('sites', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки
@@ -88,7 +25,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   const selectParams = ref<SelectParams>({ offset, limit, order: JSON.stringify([['name', 'ASC']]) }) // Параметры для запроса
   const where = ref<any>({}) // Условия отбора данных
   const filterCondition = ref<any>() // Данные фильтрации
-  const table = ref<string>('organizations') // Получение наименования таблицы
+  const table = ref<string>('sites') // Получение наименования категории(таблицы)
 
   /**
    * Назначение условий отбора
@@ -115,7 +52,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   }
 
   /**
-   * Получение списка всех организация
+   * Получение списка всех категорий
    * @function getList
    * @param {String} _url - Ссылка для api
    */
@@ -185,7 +122,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   */
   async function editRecord(data: any) {
     data.table = table.value // Установка параметра имени таблицы
-    const paramsQuery: Query = { url: `/api/organizations/edit`, method: 'post', body: data } // параметры запроса
+    const paramsQuery: Query = { url: `/api/fetch/edit`, method: 'post', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на редактирование данных
       await getList()
@@ -204,7 +141,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   * @param {String} _url - Ссылка для api
   */
   async function getRecord(id: number) {
-    const paramsQuery: Query = { url: `/api/organizations/record?id=${id}&table=${table.value}`, method: 'get' } // параметры запроса
+    const paramsQuery: Query = { url: `/api/fetch/record?id=${id}&table=${table.value}`, method: 'get' } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на получение данных
       return response.data
@@ -223,7 +160,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   */
   async function deleteRecord(data: any) {
     data.table = table.value // Наименование таблицы
-    const paramsQuery: Query = { url: `/api/organizations/delete`, method: 'delete', body: data } // параметры запроса
+    const paramsQuery: Query = { url: `/api/sites/delete`, method: 'delete', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на удаление
       await getList()
@@ -234,7 +171,6 @@ export const useOrganizationsStore = defineStore('organizations', () => {
       showToast({ message: err.value.data.message, type: 'error' })
     }
   }
-
 
   return { list, loading, error, getList, setFilter, getCount, count, limit, offset, filterCondition, addNewRecord, getRecord, editRecord, deleteRecord, table }
 })
