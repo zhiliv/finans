@@ -1,15 +1,30 @@
 <template>
   <div class="relative flex flex-col justify-center h-screen overflow-hidden">
-    <div class="w-full p-6 m-auto rounded-md shadow-2xl ring-2 lg:max-w-xl ">
-      <div class="space-y-4 ">
+    <div class="w-full p-6 m-auto rounded-md shadow-2xl ring-2 lg:max-w-xl">
+      <div class="space-y-4">
         <div>
-          <app-input v-model.number="valueModel.login" class="w-full input" type="user" label="Логин" />
+          <app-input
+            class="w-full input"
+            label="Логин"
+            type="user"
+            v-model.number="valueModel.login"
+          />
         </div>
         <div>
-          <app-input v-model.number="valueModel.password" class="w-full" type="password" label="Пароль" />
+          <app-input
+            class="w-full"
+            label="Пароль"
+            type="password"
+            v-model.number="valueModel.password"
+          />
         </div>
         <div>
-          <app-button type="submit" @click="auth" class="w-full btn-primary" :disabled="disabledAuth">Войти</app-button>
+          <app-button
+            :disabled="disabledAuth"
+            @click="auth"
+            @keyup.enter="auth"
+            class="w-full btn-primary"
+          >Войти</app-button>
         </div>
       </div>
     </div>
@@ -37,4 +52,11 @@ async function auth() {
   if(error.value) showToast({ message: error.value.data.message, type: 'warning' })
   else window.location.href = '/' // редирект на страницу
 }
+
+onMounted(() => {
+  /* Отслеживание нажатия кнопки "Enter" */
+  document.body.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter') auth()
+  })
+})
 </script>

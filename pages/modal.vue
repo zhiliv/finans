@@ -18,7 +18,7 @@
               <span class="text-lg px-4">{{ modal.title }}</span>
             </div>
             <div
-              class="overflow-y-auto pb-4 pl-2 pr-2"
+              class="overflow-y-auto pb-4 pl-2 pr-2 min-h-[60px]"
               ref="subForm"
             >
               <component
@@ -122,14 +122,14 @@ emitter.on('show-modal', (event: any) => {
 */
 const setButtons = (_buttons: any) => {
   const btns = {
-  save: _buttons?.save ? _buttons?.save : false, // Кнопка "Сохранить"
-  close: false, // Кнопка "Закрыть"
-  cancel: _buttons?.cancel ? _buttons?.cancel : false, // Кнопка Отменить
-  new: false, // Кнопка "Создать" 
-  yes: _buttons?.yes ? _buttons?.yes : false, // Кнопка "Да"
-  no: _buttons?.no ? _buttons?.no : false, // Кнопка "Нет"
-  add: _buttons?.add ? _buttons?.add : false, // Кнопка  "Добавить"  
-  change: _buttons?.change ? _buttons?.change : false // Кнопка  "Добавить"  
+    save: _buttons?.save ? _buttons?.save : false, // Кнопка "Сохранить"
+    close: false, // Кнопка "Закрыть"
+    cancel: _buttons?.cancel ? _buttons?.cancel : false, // Кнопка Отменить
+    new: false, // Кнопка "Создать" 
+    yes: _buttons?.yes ? _buttons?.yes : false, // Кнопка "Да"
+    no: _buttons?.no ? _buttons?.no : false, // Кнопка "Нет"
+    add: _buttons?.add ? _buttons?.add : false, // Кнопка  "Добавить"  
+    change: _buttons?.change ? _buttons?.change : false // Кнопка  "Добавить"  
   }
   return btns
 }

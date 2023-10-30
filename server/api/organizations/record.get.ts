@@ -8,7 +8,7 @@ export default defineEventHandler(async (event: H3Event) => {
   const sql = `
   SELECT
     org.id, -- Идентификатор
-    org.name, -- Наименование
+    org.name as name, -- Наименование
     CASE WHEN information IS NOT  NULL
       THEN 
         to_jsonb(information)
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event: H3Event) => {
     CASE WHEN images IS NOT NULL
       THEN 
         -- array_to_json(array[to_json(images)])
-        images
+        to_jsonb(images)
       ELSE  
         NULL
       END AS Images

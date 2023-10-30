@@ -2,7 +2,7 @@
   <div class="carousel w-full block-carousel mt-2 pb-2">
     <h4
       class="text-center w-full justify-center pt-16"
-      v-if="!images || !images.length && isLoad"
+      v-if="(!images || !images.length && isLoad) || getCountIsDel() ===images.length"
     >Изображения отсутствуют</h4>
     <div
       class="flex w-full justify-center"
@@ -21,9 +21,9 @@
         :class="{'border-green-600': image.isActive,  'border-4': image.isActive}"
         :src="image.path"
         @click="select(index)"
-        format="webp"
         class="carousel-img"
-        v-if="!image?.isNew && image.path"
+        format="webp"
+        v-if="(!image?.isNew && image.path) && !image.isDel"
       />
       <img
         :src="getImageUrl(image)"
@@ -33,18 +33,22 @@
       />
       <app-button
         @click="del(index)"
+        v-if="!image.isDel"
         class="btn-xs ml-2 btn-error hover:bg-red-500"
       >X</app-button>
     </div>
   </div>
+  
   <div class="flex justify-center w-full py-2 gap-2 relative border-b mb-4">
+    <template v-for="(item, index) in images">
     <a
-      v-for="(item, index) in images"
       :class="{'btn-success': item.isActive}"
       :href="getIdLink(index)"
       :key="item.id"
       class="btn btn-xs"
+      v-if="!item.isDel"
     >{{ index + 1 }}</a>
+    </template>
   </div>
   <div class="flex w-full justify-center">
     <app-button
@@ -102,7 +106,7 @@ const props = withDefaults(defineProps<Props>(), {
   images: []
 })
 
-const images: Image[] | any= ref(props.images) // Переменная со списком изображений
+const images: Image[] | any = ref(props.images) // Переменная со списком изображений
 
 /**
  ** Отправка события о загрузке файла
@@ -142,6 +146,14 @@ watch(() => images, (newVal) => {
   emit('update', newVal)
 })
 
+/** 
+** Получение количества изображений с признаком удаления
+* @function getCountIsDel 
+*/
+const getCountIsDel = () => {
+  return images.value.filter((el: any) => el.isDel)
+}
+
 
 onMounted(() => {
   isLoad.value = true // Установка признака загрузки формы
@@ -156,8 +168,7 @@ async function del(index: number) {
   const text = images.value[index].isActive ? 'Внимание! Данная запись является главной для записи, действительно удалить?' : 'Подтвердите удаление записи?'
   const body: any = await showModal('modal_confirm', { options: { title: 'Удалить запись?', width: '25%', isDrawer: false, buttons: { cancel: false, yes: true, no: true }, text } }) // Получение ответа из модального окна
   if(body) {
-    images.value.splice(index, 1) // Удаление элемента  
-    console.log('new', images)
+    images.value[index]?.isNew ? images.value.splice(index, 1) : images.value[index].isDel = true
   }
 }
 
@@ -168,7 +179,6 @@ async function del(index: number) {
 * @param {Object} image - Данные изображения
 */
 function select(index: number) {
-  console.log('🚀 -> select -> index:', index)
   images.value.map((el: Image) => {
     delete el.isActive
     return el
@@ -189,8 +199,8 @@ function select(index: number) {
       height: 350px;
     }
   }
-  
-  .carousel-img{
+
+  .carousel-img {
     max-width: 92%;
   }
 </style>

@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { useOrganizationsStore } from '~/stores/organizations-store'
 
-const meta = { title: 'Категории' } // Установка мета данных страницы
+const meta = { title: 'Организации' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
 const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
@@ -30,8 +30,8 @@ const columns = [
     filter: 'number'
   },
   { key: 'name', label: 'Наименование', filter: 'text', witdh: '300px' },
-  { key: 'short_description', label: 'Короткое описание', filter: 'text' },
-  { key: 'site', label: 'Адрес сайта', filter: 'text', width: '300px' },
+  { key: 'o_information_short_description', label: 'Короткое описание', filter: 'text' },
+  { key: 'o_information_site', label: 'Адрес сайта', filter: 'text', width: '300px' },
 ]
 
 /**  

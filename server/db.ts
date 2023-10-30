@@ -1,4 +1,3 @@
-import * as fs from 'fs'
 import Sequelize from 'sequelize'
 import { initModels } from '~/server/db-models/init-models'
 const config = useRuntimeConfig()

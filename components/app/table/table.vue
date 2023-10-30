@@ -29,7 +29,7 @@
               value="value"
             />
             <app-input
-              class="input-sm w-full"
+              class="input-sm w-full pl-16"
               v-model.trim="column.filterValue"
             />
             <app-button

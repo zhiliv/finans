@@ -10,12 +10,16 @@
     v-model="data.name"
   />
   <div class="flex-row mt-2 border p-2 rounded-lg">
-    <div class="text-center flex justify-center">
+    <div class="text-center flex-col justify-center">
       <h5 class="w-full">Главный банер</h5>
-      <div class="h-[150px] w-[150px] border hidden">
-        <!-- <nuxt-img
-    format="webp"
-        />-->
+      <div class="w-full justify-center flex">
+      <div class="h-[150px] w-[150px]">
+      <nuxt-img
+        :src="mainImage?.path"
+        format="webp"
+        v-if="mainImage?.path"
+      />
+      </div>
       </div>
     </div>
     <div class="flex justify-end">
@@ -123,8 +127,9 @@ onMounted(async () => {
   isLoad.value = true
   data.value.id = id
   data.value.name = response.value.name
-  data.value.information = data.value.information
   data.value.images = response.value.images || []
+  if(response.value.information)
+    data.value.information = response.value.information
 })
 
 
@@ -150,14 +155,6 @@ async function addImage(dataFile: any) {
 }
 
 /** 
-** Получение изображения
-* @function getImage
-*/
-const getImage = () => {
-
-}
-
-/** 
 ** Управление изображениями
 * @function controlImage
 */
@@ -177,7 +174,8 @@ async function controlImage() {
   }
 }
 
-const getPath = () => {
-  return `/img/organization/${data.value.id}`
-}
+const mainImage:any = computed(() => {
+  const index = data.value.images.findIndex((el:any) => el.isActive)  
+  return index !== -1 ? data.value.images[index] : {}
+})
 </script>

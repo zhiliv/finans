@@ -9,8 +9,7 @@ export default defineNuxtConfig({
   buildModules: [ '@nuxt-modules/compression', {
     algorithm: 'brotliCompress'
   } ],
-
-  
+  devtools: { enabled: false },
   render: {
     resourceHints: false
   },
@@ -63,6 +62,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-icons',
     '@pinia/nuxt',
+    '@nuxt/image',
     '@nuxt/devtools',
     [
       'nuxt-purgecss',
@@ -74,9 +74,12 @@ export default defineNuxtConfig({
     ],
   ],
 
-  image: {
-    dir: 'public/img',
-  },
-
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        verbatimModuleSyntax: false
+      }
+    }
+  }
 
 })

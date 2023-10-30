@@ -120,7 +120,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
    * @param {String} _url - Ссылка для api
    */
   async function getList() {
-    let url = `/api/fetch/all?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}&table=${table.value}`
+    let url = `/api/organizations/all?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}&table=${table.value}`
     if(!checkEmptyObject(where.value)) url += `&where=${JSON.stringify(where.value)}`
     try {
       loading.value = true
@@ -143,7 +143,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
    * @param {String} _url - Ссылка для api
    */
   async function getCount() {
-    let url = !checkEmptyObject(where.value) ? `/api/fetch/count?where=${JSON.stringify(where.value)}&table=${table.value}` : `/api/fetch/count?table=${table.value}` // Проверка на наличие дополнительных параметров получения количества
+    let url = !checkEmptyObject(where.value) ? `/api/organizations/count?where=${JSON.stringify(where.value)}&limit=${selectParams.value.limit}&offset=${selectParams.value.offset}` : `/api/organizations/count?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}` // Проверка на наличие дополнительных параметров получения количества
     try {
       const paramsQuery: Query = {
         url, // TODO добавить параметры фильтрации

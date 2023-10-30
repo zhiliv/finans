@@ -1,7 +1,7 @@
 import { H3Event } from 'h3'
 import { updateItem } from '~/server/utils/helper.js'
 import { File } from '~/types/organization'
-import { saveImage } from '~/server/utils/helper.js'
+import { saveImage, delImage } from '~/server/utils/helper.js'
 import { uuid } from 'vue-uuid'
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -14,12 +14,21 @@ export default defineEventHandler(async (event: H3Event) => {
     }
   }
   const delImages: File[] = params.images.filter((el: File) => el.isDel) // Получение списка удаляемых изображений
+  if(delImages.length) {
+    for await(let image of delImages) {
+      await delImage(image.path)
+    }
+  }
   params.images.map((el: any) => {
+    if(el.isDel) {
+      const index = params.images.findIndex((image: any) => el.uuid === image.uuid)
+      params.images.splice(index, 1)
+    }
     delete el.dataFile
     delete el.file
     delete el.isNew
     delete el.isDel
-    el.path = `organizations/${params.id}/${el.fileName}`
+    el.path = `img/organizations/${params.id}/${el.fileName}`
     el.id = el.id ? el.id : uuid.v4()
     return el
   })

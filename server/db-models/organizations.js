@@ -16,18 +16,18 @@ class organizations extends Sequelize.Model {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       comment: "Наименование"
     },
     information: {
-      type: DataTypes.TEXT,
+      type: DataTypes.JSON,
       allowNull: true,
       comment: "Данные организации"
     },
     images: {
-      type: DataTypes.TEXT,
+      type: DataTypes.JSON,
       allowNull: true,
-      comment: "Изображдения организации"
+      comment: "Изображения"
     }
   }, {
     tableName: 'organizations',
