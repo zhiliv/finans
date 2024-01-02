@@ -44,33 +44,30 @@ module.exports = {
   daisyui: {
     themes: [ {
       'theme': {
-        "primary": "#0d6efd",
+        "primary": "#3b82f6",
         "secondary": "#4b5563",
         "accent": "#991b1b",
         "neutral": "#333c4d",
         "base-100": "#ffffff",
         "info": "#0dcaf0",
-        "success": "#198754",
+        "success": "#059669",
         "warning": "#ffc107",
-        "error": "#dc3545",        
+        "error": "#e11d48",        
         '.standart': {
-          height: '38px'
-        },
-        'tbody tr:not(.active):hover th': {
-          'background': '#e5e5e5',
-          'color': '#44403c'
+          height: '34px'
         },
         'a.active': {
           'background': '#198754 !important',
           'color': 'white !important',
           '-webkit-transition': 'background-color .7s ease-in-out',
-          'transition': 'background-color 0.7s ease-in',
-      
-          
+          'transition': 'background-color 0.7s ease-in',  
         },
-        'div.active': {
+        
+        '.tbl  div.active': {
           'background': '#737373',
-          'color': 'white'
+          'color': 'white',
+          '-webkit-transition': 'background-color .3s ease-in-out',
+          'transition': 'background-color .3s ease-in',
         }
       }
     } ],

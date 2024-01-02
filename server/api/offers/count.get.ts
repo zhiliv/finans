@@ -1,5 +1,5 @@
 import { sequelize } from '~/server/db'
-import { getWhereSql } from './../../utils/helper'
+import { getWhereOffer } from './all.get'
 
 export default defineEventHandler(async event => {
   const params: any = getQuery(event)
@@ -7,11 +7,10 @@ export default defineEventHandler(async event => {
   try {
     const query: string = `
     SELECT
-      COUNT(org.id)
-    FROM prod.organizations AS org
-    ${params.where ? getWhereSql(JSON.parse(params.where)) : ' '}
+      COUNT(id)
+    FROM prod.offers
+    ${params.where ? getWhereOffer(JSON.parse(params.where)) : ' '}
     LIMIT ${params.limit} OFFSET ${params.offset}`
-
     const result = await sequelize.query(query)
     return result[0][0].count
 

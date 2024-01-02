@@ -1,6 +1,6 @@
 <template>
   <div
-    class="btn-group justify-center w-full border-t py-2 h-16 min-h-16"
+    class="btn-group justify-center w-full border-t py-2 h-16 min-h-16 flex"
     ref="listPagination"
   >
     <app-button
@@ -43,7 +43,7 @@ const emit = defineEmits(['pagination']) // Отправляемые событ�
 * @param {Number} countItems - Количество строк в таблице
 */
 type Props = {
-  count: number
+  count: any
   countItems?: number
 }
 

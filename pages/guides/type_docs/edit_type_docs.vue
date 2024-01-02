@@ -1,6 +1,6 @@
 <template>
   <app-spinner v-if="!isLoad" class="w-full" />
-  <div class="p-2  overflow-y-auto">
+  <div class="p-2  overflow-y-auto shadow shadow-zinc-300 p-2 rounded-lg border">
     <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
   </div>
 </template>

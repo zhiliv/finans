@@ -1,7 +1,18 @@
 <template>
-  <app-spinner v-if="!isLoad" class="w-full" />
-  <div class="p-2  overflow-y-auto" v-if="isLoad">
-    <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
+  <app-spinner
+    class="w-full"
+    v-if="!isLoad"
+  />
+  <div
+    class="p-2 overflow-y-auto shadow shadow-zinc-300 p-2 rounded-lg border"
+    v-if="isLoad"
+  >
+    <app-input
+      :is-valid="isValid.name"
+      class="standart w-full input"
+      label="Наименование"
+      v-model="data.name"
+    />
   </div>
 </template>
 
@@ -25,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
 * Модель данных для формы
 * @interface Data
 */
-interface Data{
+interface Data {
   name: String | null
   id: number | null
 }
@@ -68,7 +79,7 @@ onMounted(async () => {
 watch(data.value, (newVal: Data) => {
   isValid.value.name = !!(newVal.name && newVal.name.length && newVal.name.length > 3) // Установка валидации для поля "Наименование"
   isValid.value.result = getValidForm(isValid.value)
-  emit('valid', {save: !isValid.value.result})
+  emit('valid', { save: !isValid.value.result })
   emit('data', data.value)
 })
 

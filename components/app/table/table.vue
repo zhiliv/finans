@@ -1,109 +1,42 @@
 <template>
-  <div
-    class="w-full pr-1 md:max-w-full md:min-w-full md:flex flex-wrap h-full max-md:pt-10"
-    ref="table"
-  >
+  <div class="w-full pr-1 md:max-w-full md:min-w-full md:flex flex-wrap h-full max-md:pt-10 tbl" ref="table">
     <div class="flex flex-col md:flex-row w-full mr-3">
-      <div
-        :class="{ 'w-full': !column?.width, 'border-r': index === columns.length - 1 }"
-        :key="column"
-        :style="{ 'min-width': column?.width }"
-        class="border-l border-b border-t border-zinc-300"
-        v-for="(column, index) in columns"
-      >
-        <div
-          :style="{ 'width': column?.width }"
-          class="bg-zinc-200 border-l border-t border-b pl-1 pr-1 min-w-full min-h-[55px]"
-        >
+      <div :class="{ 'w-full': !column?.width, 'border-r': index === columns.length - 1 }" :key="column" :style="{ 'min-width': column?.width }"
+        class="border-l border-b border-t border-zinc-300" v-for="(column, index) in columns">
+        <div :style="{ 'width': column?.width }" class="bg-neutral-200 border-l border-t border-b pl-1 pr-1 min-w-full min-h-[55px]">
           <div class="z-100 text-zinc-700 text-sm font-medium pl-1">{{ column.label }}</div>
-          <div
-            class="w-full flex relative"
-            v-if="column.filter === 'text'"
-          >
-            <app-select
-              :is-load="true"
-              :options="listFilter"
-              :select-value="listFilter[0].value"
-              select-class="select-sm w-14 absolute left-0 bg-zinc-100"
-              v-model="column.filterCondition"
-              value="value"
-            />
-            <app-input
-              class="input-sm w-full pl-16"
-              v-model.trim="column.filterValue"
-            />
-            <app-button
-              @click="applyFilter(column.key, column.filterValue, column.filterCondition)"
-              class="btn-sm absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500"
-            >
-              <nuxt-icon
-                class="icon-apply"
-                filled
-                loading="lazy"
-                name="mdi/check-bold"
-                quality="90"
-              />
+          <div class="w-full flex relative" v-if="column.filter === 'text'">
+            <app-select :is-load="true" :options="listFilter" :select-value="listFilter[0].value" select-class="select-sm w-14 absolute left-0 bg-zinc-100"
+              v-model="column.filterCondition" value="value" />
+            <app-input class="input-sm w-full" style="padding-left: 60px" v-model.trim="column.filterValue" />
+            <app-button @click="applyFilter(column.key, column.filterValue, column.filterCondition)"
+              class="btn-sm absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500">
+              <nuxt-icon class="icon-apply" filled loading="lazy" name="mdi/check-bold" quality="90" />
             </app-button>
           </div>
-          <div
-            class="w-full relative flex"
-            v-if="column.filter === 'number'"
-          >
-            <app-input
-              class="input-sm w-full"
-              v-model.trim="column.filterValue"
-            />
-            <app-button
-              @click="applyFilter(column.key, column.filterValue, column.filterCondition)"
-              class="btn-sm absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500"
-            >
-              <nuxt-icon
-                class="icon-apply"
-                filled
-                loading="lazy"
-                name="mdi/check-bold"
-                quality="90"
-              />
+          <div class="w-full relative flex" v-if="column.filter === 'number'">
+            <app-input class="input-sm w-full" v-model.trim="column.filterValue" />
+            <app-button @click="applyFilter(column.key, column.filterValue, column.filterCondition)"
+              class="btn-sm absolute right-0 border-zinc-300 bg-zinc-100 hover:bg-zinc-400 text-lime-500">
+              <nuxt-icon class="icon-apply" filled loading="lazy" name="mdi/check-bold" quality="90" />
             </app-button>
           </div>
         </div>
       </div>
     </div>
-    <app-spinner
-      class="w-full"
-      v-show="!store.list"
-    />
-    <div
-      class="overflow-y-scroll min-h-full w-full overflow-x-hidden"
-      ref="tableBody"
-    >
-      <div
-        :key="row.key"
-        @click="onClick(row)"
-        @dblclick="dblClick(row)"
+    <app-spinner class="w-full" v-show="!store.list" />
+    <div class="overflow-y-scroll min-h-full w-full overflow-x-hidden shadow-lg shadow-zinc-300 border" ref="tableBody">
+      <div :key="row.key" @click="onClick(row)" @dblclick="dblClick(row)"
         class="md:flex lg:h-[35px] row-table border-zinc-300 row-table max-md:border-b-2 md:border-b hover:bg-gray-100 w-full max-w-full"
-        v-for="row in store.list"
-      >
-        <div
-          :class="{ 'w-full': !column?.width, 'border-r': index === columns.length - 1 }"
-          :key="column"
-          :style="{ 'min-width': column?.width }"
-          class="md:border-l pl-2"
-          v-for="(column, index) in columns"
-        >
-          <span
-            class="font-medium sm:hidden"
-            v-if="row[column.key]"
-          >{{ column.label }}</span>
-          <div class="h-full truncate-text pt-1 w-full max-md:pl-6 max-md:py-2">{{ row[column.key] }}</div>
+        v-for="row in store.list">
+        <div :class="{ 'w-full': !column?.width, 'border-r': index === columns.length - 1 }" :key="column" :style="{ 'min-width': column?.width }"
+          class="md:border-l pl-2" v-for="(column, index) in columns">
+          <span class="font-medium sm:hidden" v-if="row[column.key]">{{ column.label }}</span>
+          <div class="h-full truncate-text pt-1 w-full max-md:pl-6 max-md:py-2" v-html="row[column.key]" />
         </div>
       </div>
     </div>
-    <pagination
-      :count="store.count"
-      :count-items="limit"
-      @pagination="getPagination"
-    />
+    <pagination :count="store.count" :count-items="limit" @pagination="getPagination" />
   </div>
 </template>
 
@@ -232,21 +165,25 @@ onMounted(() => {
 </script>
 
 <style scoped>
-  .truncate-text {
-    margin: 0;
-    /* Убираем внешний отступ */
-    -webkit-line-clamp: 1;
-    /* Число отображаемых строк */
-    display: -webkit-box;
-    /* Включаем флексбоксы */
-    -webkit-box-orient: vertical;
-    /* Вертикальная ориентация */
-    overflow: hidden;
-    /* Обрезаем всё за пределами блока */
-  }
+.truncate-text {
+  margin: 0;
+  /* Убираем внешний отступ */
+  -webkit-line-clamp: 1;
+  /* Число отображаемых строк */
+  display: -webkit-box;
+  /* Включаем флексбоксы */
+  -webkit-box-orient: vertical;
+  /* Вертикальная ориентация */
+  overflow: hidden;
+  /* Обрезаем всё за пределами блока */
+}
 
-  .icon-apply {
-    font-size: 1em;
-    fill: #166534;
-  }
+.icon-apply {
+  font-size: 1em;
+  fill: #166534;
+}
+
+.pl-16 {
+  padding-left: 56% !important
+}
 </style>

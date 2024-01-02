@@ -4,7 +4,7 @@
     class="relative"
   >
     <app-spinner
-      :class="{'left-[50%]': $attrs.multiple}"
+      :class="[$attrs['spinner-class'], {'left-[50%]': $attrs.multiple}]"
       class="absolute pt-2"
       v-if="isLoad === false"
     />
@@ -16,7 +16,7 @@
       :class="[$attrs['select-class'], {'mt-3': $attrs.multiple}]"
       :disabled="attrs?.disabled"
       :multiple="attrs.multiple"
-      class="select select-bordered"
+      class="select select-bordered ыефтвфке"
       v-model="selected"
     >
       <option

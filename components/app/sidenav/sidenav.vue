@@ -6,7 +6,7 @@
     <div class="drawer border-r-2 border-gray-300">
       <ul class="menu p-0 w-80 bg-gray-200 text-base-content pt-1">
         <div
-          class="w-full bg-gray-300 h-[48px] pl-2 flex items-center"
+          class="w-full bg-neutral-300 h-[48px] pl-2 flex items-center"
           style="margin-top: -4px;"
         >
           <div class="w-full flex flex-col items-center">

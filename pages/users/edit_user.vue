@@ -1,9 +1,32 @@
 <template>
   <div class="p-2">
-    <app-input class="standart w-full input" label="Имя пользователя" v-model="data.name" :disabled="true" />
-    <app-input class="standart w-full input" label="Электронная почта" v-model="data.email" />
-    <app-input  class="standart w-full input" label="Новый пароль" v-model="data.new_password" type="password" />
-    <app-input class="standart w-full input" label="Подтверждение пароля" v-model="data.confirm_password" type="password" />
+    <div class="shadow-md shadow-zinc-300 p-2 rounded-lg border">
+      <app-input
+        :disabled="true"
+        class="standart w-full input"
+        label="Имя пользователя"
+        v-model="data.name"
+      />
+    </div>
+    <div class="shadow-md shadow-zinc-300 p-2 rounded-lg border mt-2">
+      <app-input
+        class="standart w-full input"
+        label="Электронная почта"
+        v-model="data.email"
+      />
+      <app-input
+        class="standart w-full input"
+        label="Новый пароль"
+        type="password"
+        v-model="data.new_password"
+      />
+      <app-input
+        class="standart w-full input"
+        label="Подтверждение пароля"
+        type="password"
+        v-model="data.confirm_password"
+      />
+    </div>
   </div>
 </template>
 

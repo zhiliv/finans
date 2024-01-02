@@ -1,8 +1,24 @@
 <template>
-  <app-spinner v-if="!isLoad" class="w-full" />
-  <div class="p-2  overflow-y-auto" v-if="isLoad">
-    <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
-    <app-textarea class="h-[550px]" v-model="data.description" label="Описание" :is-valid="isValid.description"></app-textarea>
+  <app-spinner
+    class="w-full"
+    v-if="!isLoad"
+  />
+  <div
+    class="overflow-y-auto shadow shadow-zinc-300 p-2 rounded-lg border"
+    v-if="isLoad"
+  >
+    <app-input
+      :is-valid="isValid.name"
+      class="standart w-full input"
+      label="Наименование"
+      v-model="data.name"
+    />
+    <app-textarea
+      :is-valid="isValid.description"
+      class="h-[550px]"
+      label="Описание"
+      v-model="data.description"
+    ></app-textarea>
   </div>
 </template>
 
@@ -26,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
 * Модель данных для формы
 * @interface Data
 */
-interface Data{
+interface Data {
   name: String | null
   description: String | null
   id: number | null
@@ -79,7 +95,7 @@ watch(data.value, (newVal: Data) => {
   }
   else isValid.value.description = false
   isValid.value.result = getValidForm(isValid.value)
-  emit('valid', {save: !isValid.value.result})
+  emit('valid', { save: !isValid.value.result })
   emit('data', data.value)
 })
 

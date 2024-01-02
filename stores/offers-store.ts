@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { Query } from '~/types/query'
 
+
 /**
  * @interface QueryParams
  * @member {Number} offset - Сдвиг записей
@@ -38,46 +39,57 @@ export type Image = {
 }
 
 /**
-** Описание сущности "Данные организации"
+** Описание сущности "Данные оффера"
 * @type Information
-* @param { String } Ur_name - Юридическое название организации
-* @param { Array } Ur_address - Адреса организации
-* @param { String } Ur_name - Юридическое наименование
-* @param { String } description - Описание
-* @param { String } short_description - Короткое описание
-* @param { String } site - Сайт организации
-* @param { Array } images - Изображения организации
-* @param { Number } INN - ИНН организации
-* @param { Number } OGRN - ОГРН организации
-* @param { Array } phones - Номера телефонов
+* @param {String} description - Полное описание
+* @param {String} short_description - Короткое описание
+* @param {Number} sum_start - Начальная сумма
+* @param {Number} sum_end - Максимальная сумма
+* @param {Number} free_period - Льготный период
+* @param {Number} type_free_period - Идентификатор типа льготного периода
+* @param {Number} period_min - Минимальный период
+* @param {Number} type_period_min - Идентификатор типа минимального периода
+* @param {Number} period_max - Максимальный период
+* @param {Number} type_period_max - Идентификатор типа максимального срока
+* @param {NUmber} review_time - Время рассмотрения
+* @param {Number} type_review_time - Идентификатор типа времени рассмотрения заявки
 */
 export type Information = {
-  Ur_name: string | null
-  Ur_address: string | null
   description: string | null
   short_description: string | null
-  site: string | null
-  INN: number | null
-  OGRN: number | null
-  phones: string | null
+  sum_start: number | null
+  sum_end: number | null
+  free_period: number | null
+  type_free_period: number | null
+  period_min: number | null
+  type_period_min: number | null
+  period_max: number | null
+  type_period_max: number | null
+  review_time: number | null
+  type_review_time: number | null
 }
 
 /** 
-** Описание сущности организации 
-* @type Organization
+** Описание сущности оффера 
+* @type Offer
 * @param {Number} id - Идентификатор
 * @param {String} name - Наименование
-* @param {Object} data - Данные организации
+* @param {Boolean} status - Статус оффера
+* @param {Number} id_cpa - Идентификатор партнерской программы
+* @param {Number} id_organization - Идентификатор организации
 * @param {Array} images - Список изображений
 */
-export type Organization = {
+export type Offer = {
   id: number | null
   name: string | null
-  information: Information | string | any
+  information: Information
+  status: boolean
+  id_cpa: number | null
+  id_organization: number | null
   images: Image[]
 }
 
-export const useOrganizationsStore = defineStore('organizations', () => {
+export const useOffersStore = defineStore('offers', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки
@@ -87,7 +99,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   const selectParams = ref<SelectParams>({ offset, limit, order: JSON.stringify([['name', 'ASC']]) }) // Параметры для запроса
   const where = ref<any>({}) // Условия отбора данных
   const filterCondition = ref<any>() // Данные фильтрации
-  const table = ref<string>('organizations') // Получение наименования таблицы
+  const table = ref<string>('offers') // Получение наименования таблицы
 
   /**
    * Назначение условий отбора
@@ -119,7 +131,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
    * @param {String} _url - Ссылка для api
    */
   async function getList() {
-    let url = `/api/organizations/all?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}&table=${table.value}`
+    let url = `/api/offers/all?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}&table=${table.value}`
     if(!checkEmptyObject(where.value)) url += `&where=${JSON.stringify(where.value)}`
     try {
       loading.value = true
@@ -142,14 +154,14 @@ export const useOrganizationsStore = defineStore('organizations', () => {
    * @param {String} _url - Ссылка для api
    */
   async function getCount() {
-    let url = !checkEmptyObject(where.value) ? `/api/organizations/count?where=${JSON.stringify(where.value)}&limit=${selectParams.value.limit}&offset=${selectParams.value.offset}` : `/api/organizations/count?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}` // Проверка на наличие дополнительных параметров получения количества
+    let url = !checkEmptyObject(where.value) ? `/api/offers/count?where=${JSON.stringify(where.value)}&limit=${selectParams.value.limit}&offset=${selectParams.value.offset}` : `/api/offers/count?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}` // Проверка на наличие дополнительных параметров получения количества
     try {
       const paramsQuery: Query = {
         url, // TODO добавить параметры фильтрации
         method: 'get'
       }
       let response: any = await query(paramsQuery) // Отправка запроса на удаление
-      count.value = response.data.value || 0 // Отправка запроса на удаление
+      count.value = +response.data.value || 0 // Отправка запроса на удаление
     } catch(err: any) {
       error.value = err.value ? true : false // Установка статуса ошибки
       err.value ? showToast({ message: err.value.data.message, type: 'error' }) : (loading.value = false)
@@ -184,7 +196,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   */
   async function editRecord(data: any) {
     data.table = table.value // Установка параметра имени таблицы
-    const paramsQuery: Query = { url: `/api/organizations/edit`, method: 'post', body: data } // параметры запроса
+    const paramsQuery: Query = { url: `/api/offers/edit`, method: 'post', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на редактирование данных
       await getList()
@@ -203,7 +215,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   * @param {String} _url - Ссылка для api
   */
   async function getRecord(id: number) {
-    const paramsQuery: Query = { url: `/api/organizations/record?id=${id}&table=${table.value}`, method: 'get' } // параметры запроса
+    const paramsQuery: Query = { url: `/api/offers/record?id=${id}&table=${table.value}`, method: 'get' } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на получение данных
       return response.data
@@ -222,7 +234,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   */
   async function deleteRecord(data: any) {
     data.table = table.value // Наименование таблицы
-    const paramsQuery: Query = { url: `/api/organizations/delete`, method: 'delete', body: data } // параметры запроса
+    const paramsQuery: Query = { url: `/api/offers/delete`, method: 'delete', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на удаление
       await getList()

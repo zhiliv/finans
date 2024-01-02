@@ -9,12 +9,12 @@
     >
       <div :class="{ 'modal-wrapper': !modal.isDrawer }">
         <div
-          :class="{ 'right-0': modal?.isDrawer && modal?.position === 'right', 'left-0': modal?.position === 'left', 'absolute': modal.isDrawer, 'h-full': modal.isDrawer }"
+          :class="{ 'right-0': modal?.isDrawer && modal?.position === 'right', 'left-0': modal?.position === 'left', 'absolute': modal.isDrawer, 'h-full': modal.isDrawer , 'border-l-4': modal.isDrawer}"
           :style="{ width: modal.data.options?.width || '50%' }"
-          class="modal-container border-2"
+          class="modal-container border-2 border-zinc-600"
         >
           <div class="body-modal max-h-full">
-            <div class="p-1 border-b mb-2 text-center">
+            <div class="p-1 border-b mb-2 text-center bg-neutral-100">
               <span class="text-lg px-4">{{ modal.title }}</span>
             </div>
             <div
@@ -30,24 +30,25 @@
             </div>
           </div>
           <div
-            :class="{ 'h-10': modal.isDrawer, 'h-16': !modal.isDrawer }"
-            class="bottom-0 p-2 w-full border-t-2 border-zinc-400"
+            :class="{ 'h-15': modal.isDrawer, 'h-16': !modal.isDrawer }"
+            class="bottom-0 p-2 w-full border-t-2 border-neutral-400 bg-neutral-100"
           >
             <app-button
               @click="close"
-              class="m-1 standart btn-sm btn-error"
+              class="m-1 standart btn-sm btn-error text-slate-100 ring ring-red-100 hover:bg-rose-700"
               v-if="modal.buttons.cancel"
             >Отменить</app-button>
             <app-button
               :disabled="disabled.save"
               @click="onSave"
-              class="btn-success m-1 standart btn-sm float-right"
+              :class="{ring: !disabled.save, 'ring-green-100': !disabled.save}"
+              class="btn-success m-1 standart btn-sm float-right text-slate-100 hover:bg-green-700"
               v-if="modal.buttons.save"
             >Сохранить</app-button>
             <app-button
               :disabled="disabled.add"
               @click="onAdd"
-              class="btn-primary m-1 standart btn-sm float-right"
+              class="btn-primary m-1 standart btn-sm float-right text-slate-100"
               v-if="modal.buttons.add"
             >Добавить</app-button>
             <app-button
@@ -57,12 +58,12 @@
             >Нет</app-button>
             <app-button
               @click="onYes"
-              class="w-20 btn-success m-1 standart btn-sm float-right"
+              class="w-20 btn-success m-1 standart btn-sm float-right text-slate-100"
               v-if="modal.buttons.yes"
             >Да</app-button>
             <app-button
               @click="onSave"
-              class="w-25 btn-success m-1 standart btn-sm float-right"
+              class="w-25 btn-success m-1 standart btn-sm float-right text-slate-100"
               v-if="modal.buttons.change"
             >Изменить</app-button>
           </div>

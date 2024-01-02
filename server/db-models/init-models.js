@@ -84,14 +84,6 @@ function initModels(sequelize) {
   organizations.hasMany(offers, { as: "offers", foreignKey: "id_organization"});
   link_type_docs.belongsTo(type_docs, { as: "id_type_doc_type_doc", foreignKey: "id_type_doc"});
   type_docs.hasMany(link_type_docs, { as: "link_type_docs", foreignKey: "id_type_doc"});
-  offers.belongsTo(types_period, { as: "type_free_period_types_period", foreignKey: "type_free_period"});
-  types_period.hasMany(offers, { as: "offers", foreignKey: "type_free_period"});
-  offers.belongsTo(types_period, { as: "type_period_max_types_period", foreignKey: "type_period_max"});
-  types_period.hasMany(offers, { as: "type_period_max_offers", foreignKey: "type_period_max"});
-  offers.belongsTo(types_period, { as: "type_period_min_types_period", foreignKey: "type_period_min"});
-  types_period.hasMany(offers, { as: "type_period_min_offers", foreignKey: "type_period_min"});
-  offers.belongsTo(types_period, { as: "type_review_time_types_period", foreignKey: "type_review_time"});
-  types_period.hasMany(offers, { as: "type_review_time_offers", foreignKey: "type_review_time"});
 
   return {
     accesses,

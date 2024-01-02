@@ -1,24 +1,40 @@
 <template>
   <div class="w-full h-full max-h-full">
     <div>
-      <app-control-record ref="control" @on-new="onNew" modal-title-new="Создание новой организации" modal-title-edit="Редактирование организации"
-        modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_organization" />
+      <app-control-record
+        :p-select-item="selectItem"
+        :uniq="true"
+        @on-delete="onDelete"
+        @on-edit="onEdit"
+        @on-new="onNew"
+        modal-title-edit="Редактирование оффера"
+        modal-title-new="Создание нового оффера"
+        modal-width-new="30%"
+        name-edit-form="edit_offer"
+        ref="control"
+      />
     </div>
     <div class="min-h-full">
-      <app-table ref="table" :store="store" :columns="columns" @click="(data) => selectItem = data" @dblclick="onDblEdit" />
+      <app-table
+        :columns="columns"
+        :store="store"
+        @click="(data) => selectItem = data"
+        @dblclick="onDblEdit"
+        ref="table"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useOrganizationsStore } from '~/stores/organizations-store'
+import { useOffersStore } from '~/stores/offers-store'
 
-const meta = { title: 'Организации' } // Установка мета данных страницы
+const meta = { title: 'Офферы' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
 const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
 const control = ref() // Ссылка на кнопки управления
-const store = useOrganizationsStore() // Создание нового стора
+const store = useOffersStore() // Создание нового стора
 
 const columns = [
   {
@@ -30,9 +46,8 @@ const columns = [
     filter: 'number'
   },
   { key: 'name', label: 'Наименование', filter: 'text', witdh: '300px' },
-  { key: 'o_information_short_description', label: 'Короткое описание', filter: 'text' },
-  { key: 'o_information_site', label: 'Адрес сайта', filter: 'text', width: '300px' },
-  { key: 'is_main_img', label: 'Наличие главного изображения', width: '150px'}
+  { key: 'cpa_name', label: 'Партнерская программа', filter: 'text' },
+  { key: 'org_name', label: 'Организация', filter: 'text' },
 ]
 
 /**  
@@ -69,7 +84,7 @@ async function onEdit(data: any) {
 * @function onDelete
 */
 async function onDelete() {
-  const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/categories' })
+  const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/offers' })
   if(result?.value)
     showToast({ message: result?.value?.message, type: result?.value?.typeMessage }) // Отображение сообщения об успешном удалении записи
 }

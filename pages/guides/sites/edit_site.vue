@@ -4,7 +4,7 @@
     v-if="!isLoad"
   />
   <div
-    class="p-2 overflow-y-auto"
+    class="p-2 overflow-y-auto shadow shadow-zinc-300 p-2 rounded-lg border"
     v-if="isLoad"
   >
     <app-input

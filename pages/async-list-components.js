@@ -1,4 +1,6 @@
+/* Список компонентов для модальных форм */
 export const listComponents = {
+  'edit_offer': markRaw(defineAsyncComponent(() => import(`./prod/offers/edit_offer.vue`))),
   'edit_categories': markRaw(defineAsyncComponent(() => import(`./guides/categories/edit_categories.vue`))),
   'modal_name': markRaw(defineAsyncComponent(() => import(`./modals/modal_name.vue`))),
   'modal_confirm': markRaw(defineAsyncComponent(() => import(`./modals/modal-configrm.vue`))),

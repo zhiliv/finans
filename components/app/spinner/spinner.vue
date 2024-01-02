@@ -15,7 +15,7 @@
     animation: changeContent 0.8s linear infinite;
     display: block;
     content: "⠋";
-    font-size: 50px;
+    font-size: 35px;
   }
 
   @keyframes changeContent {

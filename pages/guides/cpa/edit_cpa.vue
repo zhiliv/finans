@@ -1,8 +1,21 @@
 <template>
-  <app-spinner v-if="!isLoad" class="w-full" />
-  <div class="p-2  overflow-y-auto">
-    <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
-    <app-input v-model="data.site" class="standart w-full input" label="Наименование" :is-valid="isValid.site" />
+  <app-spinner
+    class="w-full"
+    v-if="!isLoad"
+  />
+  <div class="p-2 overflow-y-auto shadow shadow-zinc-300 p-2 rounded-lg border">
+    <app-input
+      :is-valid="isValid.name"
+      class="standart w-full input"
+      label="Наименование"
+      v-model="data.name"
+    />
+    <app-input
+      :is-valid="isValid.site"
+      class="standart w-full input"
+      label="Наименование"
+      v-model="data.site"
+    />
   </div>
 </template>
 
@@ -26,7 +39,7 @@ const props = withDefaults(defineProps<Props>(), {
 * Модель данных для формы
 * @interface Data
 */
-interface Data{
+interface Data {
   name: String | null
   id: number | null
   site: string
@@ -74,7 +87,7 @@ watch(data.value, (newVal: Data) => {
   isValid.value.name = !!(newVal.name && newVal.name.length && newVal.name.length > 3) // Установка валидации для поля "Наименование"
   isValid.value.site = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(newVal.site)
   isValid.value.result = getValidForm(isValid.value)
-  emit('valid', {save: !isValid.value.result})
+  emit('valid', { save: !isValid.value.result })
   emit('data', data.value)
 })
 

@@ -19,16 +19,6 @@ class offers extends Sequelize.Model {
       allowNull: false,
       comment: "Наименование оффера"
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      comment: "Описание оффера"
-    },
-    short_description: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      comment: "Короткое описание оффера"
-    },
     status: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
@@ -53,71 +43,15 @@ class offers extends Sequelize.Model {
         key: 'id'
       }
     },
-    sum_start: {
-      type: DataTypes.INTEGER,
+    information: {
+      type: DataTypes.JSON,
       allowNull: true,
-      comment: "Минимальная сумма"
+      comment: "Данные оффера"
     },
-    sum_end: {
-      type: DataTypes.INTEGER,
+    images: {
+      type: DataTypes.JSON,
       allowNull: true,
-      comment: "Максимальная сумма"
-    },
-    free_period: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Беспроцентный период"
-    },
-    type_free_period: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Тип беспроцентного периода",
-      references: {
-        model: 'types_period',
-        key: 'id'
-      }
-    },
-    period_min: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Минимальный период"
-    },
-    type_period_min: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Тип минимального периода",
-      references: {
-        model: 'types_period',
-        key: 'id'
-      }
-    },
-    period_max: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Максимальный период"
-    },
-    type_period_max: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Тип максимального периода",
-      references: {
-        model: 'types_period',
-        key: 'id'
-      }
-    },
-    review_time: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Время рассмотрения заявки"
-    },
-    type_review_time: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      comment: "Тип времени рассотрения",
-      references: {
-        model: 'types_period',
-        key: 'id'
-      }
+      comment: "Изображения оффера"
     }
   }, {
     tableName: 'offers',

@@ -1,60 +1,26 @@
 <template>
-  <div class="carousel w-full block-carousel mt-2 pb-2">
-    <h4
-      class="text-center w-full justify-center pt-16"
-      v-if="(!images || !images.length && isLoad) || getCountIsDel() ===images.length"
-    >Изображения отсутствуют</h4>
-    <div
-      class="flex w-full justify-center"
-      v-if="!isLoad"
-    >
+  <div class="carousel w-full block-carousel mt-2 pb-2  shadow-md shadow-zinc-300 rounded-lg border">
+    <h4 class="text-center w-full justify-center pt-16" v-if="(!images || !images.length && isLoad) || getCountIsDel() === images.length">Изображения отсутствуют
+    </h4>
+    <div class="flex w-full justify-center" v-if="!isLoad">
       <app-spinner />
     </div>
 
-    <div
-      :id="geIdImage(index)"
-      :key="index"
-      class="carousel-item w-full flex justify-center"
-      v-for="(image, index) in images"
-    >
-      <nuxt-img
-        :class="{'border-green-600': image.isActive,  'border-4': image.isActive}"
-        :src="image.path"
-        @click="select(index)"
-        class="carousel-img"
-        format="webp"
-        v-if="(!image?.isNew && image.path) && !image.isDel"
-      />
-      <img
-        :src="getImageUrl(image)"
-        @click="select(index)"
-        class="mt-2 carousel-img"
-        v-if="image.isNew"
-      />
-      <app-button
-        @click="del(index)"
-        v-if="!image.isDel"
-        class="btn-xs ml-2 btn-error hover:bg-red-500"
-      >X</app-button>
+    <div :id="geIdImage(index)" :key="index" class="carousel-item w-full flex justify-center" v-for="(image, index) in images">
+      <nuxt-img :class="{ 'border-green-600': image.isActive, 'border-4': image.isActive }" :src="image.path" @click="select(index)" class="carousel-img"
+        format="webp" v-if="(!image?.isNew && image.path) && !image.isDel" />
+      <img :src="getImageUrl(image)" @click="select(index)" class="mt-2 carousel-img" v-if="image.isNew" />
+      <app-button @click="del(index)" v-if="!image.isDel" class="btn-xs ml-2 btn-error hover:bg-red-500">X</app-button>
     </div>
   </div>
-  
-  <div class="flex justify-center w-full py-2 gap-2 relative border-b mb-4">
+
+  <div class="flex justify-center w-full py-2 gap-2 relative mb-4">
     <template v-for="(item, index) in images">
-    <a
-      :class="{'btn-success': item.isActive}"
-      :href="getIdLink(index)"
-      :key="item.id"
-      class="btn btn-xs"
-      v-if="!item.isDel"
-    >{{ index + 1 }}</a>
+      <a :class="{ 'btn-success': item.isActive }" :href="getIdLink(index)" :key="item.id" class="btn btn-xs" v-if="!item.isDel">{{ index + 1 }}</a>
     </template>
   </div>
   <div class="flex w-full justify-center">
-    <app-button
-      @click="add"
-      class="btn-md btn-primary"
-    >Добавить</app-button>
+    <app-button @click="add" class="standart btn-primary text-white ring ring-blue-100 w-40">Добавить</app-button>
   </div>
 </template>
 
@@ -188,19 +154,19 @@ function select(index: number) {
 </script>
 
 <style scoped>
-  @media (max-width: 767.9px) {
-    .block-carousel {
-      height: 200px;
-    }
+@media (max-width: 767.9px) {
+  .block-carousel {
+    height: 200px;
   }
+}
 
-  @media (min-width: 768px) {
-    .block-carousel {
-      height: 350px;
-    }
+@media (min-width: 768px) {
+  .block-carousel {
+    height: 350px;
   }
+}
 
-  .carousel-img {
-    max-width: 92%;
-  }
+.carousel-img {
+  max-width: 92%;
+}
 </style>

@@ -1,9 +1,27 @@
 <template>
-  <app-spinner v-if="!isLoad" class="w-full" />
-  <div class="p-2  overflow-y-auto">
-    <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
-    <app-input v-model="data.padez" class="standart w-full input" label="Родительский падеж" :is-valid="isValid.padez" />
-    <app-input v-model="data.mnozh" class="standart w-full input" label="Множественное число" :is-valid="isValid.mnozh" />
+  <app-spinner
+    class="w-full"
+    v-if="!isLoad"
+  />
+  <div class="p-2 overflow-y-auto shadow shadow-zinc-300 rounded-lg border">
+    <app-input
+      :is-valid="isValid.name"
+      class="standart w-full input"
+      label="Наименование"
+      v-model="data.name"
+    />
+    <app-input
+      :is-valid="isValid.padez"
+      class="standart w-full input"
+      label="Родительский падеж"
+      v-model="data.padez"
+    />
+    <app-input
+      :is-valid="isValid.mnozh"
+      class="standart w-full input"
+      label="Множественное число"
+      v-model="data.mnozh"
+    />
   </div>
 </template>
 
@@ -27,7 +45,7 @@ const props = withDefaults(defineProps<Props>(), {
 * Модель данных для формы
 * @interface Data
 */
-interface Data{
+interface Data {
   name: String | null
   padez: String
   mnozh: String
@@ -78,7 +96,7 @@ watch(data.value, (newVal: Data) => {
   isValid.value.padez = !!(newVal.padez && newVal.padez.length && newVal.padez.length > 2) // Установка валидации для поля "Родительский падеж"
   isValid.value.mnozh = !!(newVal.mnozh && newVal.mnozh.length && newVal.mnozh.length > 2) // Установка валидации для поля "Множественное число"
   isValid.value.result = getValidForm(isValid.value)
-  emit('valid', {save: !isValid.value.result})
+  emit('valid', { save: !isValid.value.result })
   emit('data', data.value)
 })
 

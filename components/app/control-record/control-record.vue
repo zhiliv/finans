@@ -5,7 +5,7 @@
   >
     <app-button
       @click="onNew"
-      class="standart btn-primary btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add"
+      class="standart btn-primary btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record add ring ring-blue-100 text-white"
     >
       <svg
         class="add-record h-[16px] w-[18px]"
@@ -16,7 +16,6 @@
       >
         <path
           d="m22 9h-7v-7h-6v7h-7v6h7v7h6v-7h7z"
-          fill
         />
       </svg>
       Добавить
@@ -24,7 +23,8 @@
     <app-button
       :disabled="!pSelectItem"
       @click="onEdit"
-      class="standart btn-success btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit"
+      :class="{'ring': pSelectItem, 'ring-green-100': pSelectItem}"
+      class="standart btn-success btn-sm p-2 md:m-1 mt-1 w-full md:w-auto btn-record edit hover:bg-green-700 text-white"
     >
       <svg
         class="edit-record h-[16px] w-[18px]"
@@ -53,7 +53,8 @@
     <app-button
       :disabled="!pSelectItem"
       @click="onDelete"
-      class="standart btn-error btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete"
+      :class="{'ring': pSelectItem,  'ring-red-100': pSelectItem }"
+      class="standart btn-error btn-sm p-2 md:m-1 mt-1 w-full mb-2 md:w-auto float-right btn-record delete hover:bg-rose-700"
     >
       <svg
         class="delete-record h-[16px] w-[18px]"
@@ -165,12 +166,8 @@ defineExpose({
   .btn-record:hover {
     color: white;
   }
-
-  .add-record {
-    fill: white;
-    transition: 0.3s;
-  }
-
+  
+  .add-record,
   .edit-record,
   .delete-record {
     fill: white;
