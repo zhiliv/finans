@@ -15,7 +15,7 @@ type SelectParams = {
   order?: string
 }
 
-export const useStore = defineStore('types-period', () => {
+export const useTypesPeriodStore = defineStore('types-period', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки

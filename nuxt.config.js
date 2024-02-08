@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   buildModules: [ '@nuxt-modules/compression', {
     algorithm: 'brotliCompress'
   } ],
-  
+  devtools: { enabled: false },
   render: {
     resourceHints: false
   },
@@ -57,12 +57,19 @@ export default defineNuxtConfig({
       baseName: 'img',
       dir: './public/img'
     } ]
+    ,
+    esbuild: {
+      options: {
+        target: 'esnext'
+      }
+    },
   },
 
   modules: [
-    '@nuxt/image-edge',
     'nuxt-icons',
     '@pinia/nuxt',
+    '@nuxt/image',
+    '@nuxt/devtools',
     [
       'nuxt-purgecss',
       {
@@ -73,9 +80,12 @@ export default defineNuxtConfig({
     ],
   ],
 
-  image: {
-    dir: 'assets/img',
-  },
-
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        verbatimModuleSyntax: false
+      }
+    }
+  }
 
 })

@@ -166,6 +166,7 @@ export const query = async (args: Query) => {
 export const showModal = async (nameForm: string, event: any) => {
   if (!event) event = {}
   event.formUuid = uuid.v4() // Добавление идентификатора формы
+  
   event.form = nameForm // Передача значения имени формы
   emitter.emit(`show-modal`, event) // Отправка события для показа модального окна
   /* Создание ожидания ответа закрытия модального окна для возврата результата */

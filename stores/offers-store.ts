@@ -1,0 +1,251 @@
+import { defineStore } from 'pinia'
+import { Query } from '~/types/query'
+
+
+/**
+ * @interface QueryParams
+ * @member {Number} offset - Сдвиг записей
+ * @member {Number} limit - Количество записей
+ * @member {Object} where - Условия отбора записи
+ * @member {String} order - Поле сортировки
+ */
+type SelectParams = {
+  offset?: number | any
+  limit?: number | any
+  where?: any
+  order?: string
+}
+
+/** 
+** Описание сущности "Изображения"
+* @type Image
+* @param {Number} id - Идентификатор
+* @param {String} name - Имя изображения
+* @param {String} path - Путь к изображения
+* @param {Boolean} isLicense - Признак лицензии
+* @param {Boolean} isNew - Признак нового изображения
+* @param {Boolean} isDel - Признак удаления изображения
+* @param {String} label - Описание изображения
+* @param {Boolean} isMain - Главное описание изображения
+*/
+export type Image = {
+  id: number
+  name: string
+  path: string
+  isLicense?: boolean
+  isNew?: boolean
+  idDel?: boolean
+  isMain?: boolean
+}
+
+/**
+** Описание сущности "Данные оффера"
+* @type Information
+* @param {String} description - Полное описание
+* @param {String} short_description - Короткое описание
+* @param {Number} sum_start - Начальная сумма
+* @param {Number} sum_end - Максимальная сумма
+* @param {Number} free_period - Льготный период
+* @param {Number} type_free_period - Идентификатор типа льготного периода
+* @param {Number} period_min - Минимальный период
+* @param {Number} type_period_min - Идентификатор типа минимального периода
+* @param {Number} period_max - Максимальный период
+* @param {Number} type_period_max - Идентификатор типа максимального срока
+* @param {NUmber} review_time - Время рассмотрения
+* @param {Number} type_review_time - Идентификатор типа времени рассмотрения заявки
+*/
+export type Information = {
+  description: string | null
+  short_description: string | null
+  sum_start: number | null
+  sum_end: number | null
+  free_period: number | null
+  type_free_period: number | null
+  period_min: number | null
+  type_period_min: number | null
+  period_max: number | null
+  type_period_max: number | null
+  review_time: number | null
+  type_review_time: number | null
+}
+
+/** 
+** Описание сущности оффера 
+* @type Offer
+* @param {Number} id - Идентификатор
+* @param {String} name - Наименование
+* @param {Boolean} status - Статус оффера
+* @param {Number} id_cpa - Идентификатор партнерской программы
+* @param {Number} id_organization - Идентификатор организации
+* @param {Array} images - Список изображений
+*/
+export type Offer = {
+  id: number | null
+  name: string | null
+  information: Information
+  status: boolean
+  id_cpa: number | null
+  id_organization: number | null
+  images: Image[]
+}
+
+export const useOffersStore = defineStore('offers', () => {
+  const list = ref<any>([]) // Список строк таблицы
+  const count = ref<number>(0) // Общее количество
+  const loading = ref<boolean>(true) // Статус загрузки
+  const error = ref<any>(true) // Данные об ошибке
+  const limit = ref<number>(50) // Лимит выбора строк
+  const offset = ref<number>(0) // Сдвиг
+  const selectParams = ref<SelectParams>({ offset, limit, order: JSON.stringify([['name', 'ASC']]) }) // Параметры для запроса
+  const where = ref<any>({}) // Условия отбора данных
+  const filterCondition = ref<any>() // Данные фильтрации
+  const table = ref<string>('offers') // Получение наименования таблицы
+
+  /**
+   * Назначение условий отбора
+   * @function setFilter
+   * @param {String} key - Наименование ключа условий отбора
+   * @param {String} value - Значение условий отбора
+   * @param {String} filterCondition - тип фильтрации
+   */
+  async function setFilter(key: string, value: any, filterCondition: string) {
+    if(!value) delete where.value[key]
+    // Удаляем из объекта свойство, если поле поиска пустое
+
+    else {
+      let typeFilter: string // Значение фильтра
+      if(filterCondition === '>') typeFilter = 'gt'
+      else if(filterCondition === '<') typeFilter = 'lt'
+      else if(filterCondition === '%') typeFilter = 'iLike'
+      else if(filterCondition === '=') typeFilter = 'eq'
+      else typeFilter = 'eq'
+      where.value[key] = { type: typeFilter, value }
+    }
+
+    await getList()
+  }
+
+  /**
+   * Получение списка всех организация
+   * @function getList
+   * @param {String} _url - Ссылка для api
+   */
+  async function getList() {
+    let url = `/api/offers/all?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}&order=${selectParams.value.order}&table=${table.value}`
+    if(!checkEmptyObject(where.value)) url += `&where=${JSON.stringify(where.value)}`
+    try {
+      loading.value = true
+      const paramsQuery: Query = {
+        url, // TODO добавить параметры фильтрации
+        method: 'get'
+      }
+      let response: any = await query(paramsQuery) // Отправка запроса на удаление
+      await getCount()
+      list.value = response.data.value // Отправка запроса на удаление
+    } catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      err.value ? showToast({ message: err.value.data.message, type: 'error' }) : (loading.value = false)
+    }
+  }
+
+  /**
+   * Получение общего количества записей
+   * @function getCount
+   * @param {String} _url - Ссылка для api
+   */
+  async function getCount() {
+    let url = !checkEmptyObject(where.value) ? `/api/offers/count?where=${JSON.stringify(where.value)}&limit=${selectParams.value.limit}&offset=${selectParams.value.offset}` : `/api/offers/count?limit=${selectParams.value.limit}&offset=${selectParams.value.offset}` // Проверка на наличие дополнительных параметров получения количества
+    try {
+      const paramsQuery: Query = {
+        url, // TODO добавить параметры фильтрации
+        method: 'get'
+      }
+      let response: any = await query(paramsQuery) // Отправка запроса на удаление
+      count.value = +response.data.value || 0 // Отправка запроса на удаление
+    } catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      err.value ? showToast({ message: err.value.data.message, type: 'error' }) : (loading.value = false)
+    }
+  }
+
+  /** 
+  * Добавление новой записи
+  * @function addNewRecord
+  * @param {Object} data - Данные для добавления
+  * @param {String} _url - Ссылка для api
+  */
+  async function addNewRecord(data: any) {
+    data.table = table.value // Установка параметра имени таблицы
+    const paramsQuery: Query = { url: `/api/fetch/add`, method: 'put', body: data } // параметры запроса
+    try {
+      let response: any = await query(paramsQuery) // Отправка запроса на добавление данных
+      await getList()
+      return response.data
+    }
+    catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      showToast({ message: err.value.data.message, type: 'error' })
+    }
+  }
+
+  /** 
+  * Редактирование записи
+  * @function editRecord
+  * @param {Object} data - Данные для добавления
+  * @param {String} _url - Ссылка для api
+  */
+  async function editRecord(data: any) {
+    data.table = table.value // Установка параметра имени таблицы
+    const paramsQuery: Query = { url: `/api/offers/edit`, method: 'post', body: data } // параметры запроса
+    try {
+      let response: any = await query(paramsQuery) // Отправка запроса на редактирование данных
+      await getList()
+      return response.data
+    }
+    catch(err: any) {
+      error.value = err?.value ? true : false // Установка статуса ошибки
+      showToast({ message: err?.value?.data?.message || err, type: 'error' })
+    }
+  }
+
+  /** 
+  * Получение данных записи 
+  * @function getRecord
+  * @param {Number} id - Идентификатор для получения записи
+  * @param {String} _url - Ссылка для api
+  */
+  async function getRecord(id: number) {
+    const paramsQuery: Query = { url: `/api/offers/record?id=${id}&table=${table.value}`, method: 'get' } // параметры запроса
+    try {
+      let response: any = await query(paramsQuery) // Отправка запроса на получение данных
+      return response.data
+    }
+    catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      showToast({ message: err.value.data.message, type: 'error' })
+    }
+  }
+
+  /** 
+  * Удаление записи
+  * @function deleteRecord
+  * @param {Object} data - Данные для удаления
+  * @param {String} _url - Ссылка для api
+  */
+  async function deleteRecord(data: any) {
+    data.table = table.value // Наименование таблицы
+    const paramsQuery: Query = { url: `/api/offers/delete`, method: 'delete', body: data } // параметры запроса
+    try {
+      let response: any = await query(paramsQuery) // Отправка запроса на удаление
+      await getList()
+      return response.data
+    }
+    catch(err: any) {
+      error.value = err.value ? true : false // Установка статуса ошибки
+      showToast({ message: err.value.data.message, type: 'error' })
+    }
+  }
+
+
+  return { list, loading, error, getList, setFilter, getCount, count, limit, offset, filterCondition, addNewRecord, getRecord, editRecord, deleteRecord, table }
+})

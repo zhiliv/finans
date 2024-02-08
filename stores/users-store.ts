@@ -15,7 +15,7 @@ type SelectParams = {
   order?: string
 }
 
-export const useStore = defineStore('users', () => {
+export const useUserStore = defineStore('users', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки
@@ -122,7 +122,6 @@ export const useStore = defineStore('users', () => {
   */
   async function editRecord(data: any) {
     data.table = table.value // Установка параметра имени таблицы
-    console.log(data)
     if(!data.new_password || !data.confirm_password){
       delete data.new_password
       delete data.confirm_password

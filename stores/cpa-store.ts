@@ -15,7 +15,7 @@ type SelectParams = {
   order?: string
 }
 
-export const useStore = defineStore('cpa', () => {
+export const useCPAStore = defineStore('cpa', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки
@@ -163,7 +163,6 @@ export const useStore = defineStore('cpa', () => {
     const paramsQuery: Query = { url: `/api/cpa/delete`, method: 'delete', body: data } // параметры запроса
     try {
       let response: any = await query(paramsQuery) // Отправка запроса на удаление
-      console.log('🚀 -> deleteRecord -> response:', response)
       await getList()
       return response.data
     }

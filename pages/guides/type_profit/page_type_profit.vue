@@ -11,14 +11,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/type-profit-store'
+import { useTypeProfitStore } from '~/stores/type-profit-store'
 
 const meta = { title: 'Партнерские программы' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
 const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
 const control = ref() // Ссылка на кнопки управления
-const store = useStore() // Создание нового стора
+const store = useTypeProfitStore() // Создание нового стора
 
 const columns = [
   {
@@ -68,7 +68,6 @@ async function onEdit(data: any) {
 */
 async function onDelete() {
   const result: any = await store.deleteRecord({ id: selectItem.value.id, _url: '/type_profit' })
-  console.log('🚀 -> onDelete -> result:', result)
   if(result?.value)
     showToast({ message: result?.value?.message, type: result?.value?.typeMessage }) // Отображение сообщения об успешном удалении записи
 }
@@ -79,7 +78,6 @@ async function onDelete() {
 * @param {Object} data - Данные для открытия формы
 */
 function onDblEdit(data?: any) {
-  console.log('🚀 -> onDblEdit -> data:', data)
   control.value.onEdit(data)
 }
 </script>

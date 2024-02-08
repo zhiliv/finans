@@ -1,4 +1,4 @@
-import { sequelize } from '~/server/db.js'
+import { db } from '~/server/db'
 import { Response } from '~/types/query'
 import { getErrorResponse } from '~/server/utils/helper.js'
 

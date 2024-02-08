@@ -15,7 +15,7 @@ type SelectParams = {
   order?: string
 }
 
-export const useStore = defineStore('categories', () => {
+export const useCategoriesStore = defineStore('categories', () => {
   const list = ref<any>([]) // Список строк таблицы
   const count = ref<number>(0) // Общее количество
   const loading = ref<boolean>(true) // Статус загрузки

@@ -1,17 +1,17 @@
 <template>
   <app-spinner v-if="!isLoad" class="w-full" />
-  <div class="p-2  overflow-y-auto">
+  <div class="p-2  overflow-y-auto shadow shadow-zinc-300 p-2 rounded-lg border">
     <app-input v-model="data.name" class="standart w-full input" label="Наименование" :is-valid="isValid.name" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/type-docs-store'
+import { useTypeDocsStore } from '~/stores/type-docs-store'
 const emit = defineEmits(['valid', 'data'])
 
 /** 
 * @interface Props
-* @member {Function} modelValue - Данные формы
+* @member {Object} modelValue - Данные формы
 */
 interface Props {
   modelValue?: any
@@ -49,7 +49,7 @@ const isValid = ref({
 })
 
 const isLoad = ref(false) // Статус загрузки данных
-const store = useStore() // Создание нового стора
+const store = useTypeDocsStore() // Создание нового стора
 const id = ref(props.modelValue.id) // Идентификатор записи
 
 onMounted(async () => {

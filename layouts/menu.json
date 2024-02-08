@@ -5,11 +5,11 @@
   },
   {
     "name": "Организации",
-    "href": "/organizations/page_organizations"
+    "href": "/prod/organizations/page_organizations"
   },
   {
     "name": "Офферы",
-    "href": "/offers/page_offers"
+    "href": "/prod/offers/page_offer"
   },
   {
     "name": "Справочники",
@@ -38,6 +38,10 @@
       {
         "name": "Типы профитов",
         "href": "/guides/type_profit/page_type_profit"
+      },
+      {
+        "name": "Сайты",
+        "href": "/guides/sites/page_sites"
       }
     ]
   }

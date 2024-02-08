@@ -11,14 +11,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '~/stores/categories-store'
+import { useCategoriesStore } from '~/stores/categories-store'
 
 const meta = { title: 'Категории' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
 const selectItem = ref() // Данные о выбранной записи
 const table = ref() // Ссылка на элемент таблицы
 const control = ref() // Ссылка на кнопки управления
-const store = useStore() // Создание нового стора
+const store = useCategoriesStore() // Создание нового стора
 
 const columns = [
   {
