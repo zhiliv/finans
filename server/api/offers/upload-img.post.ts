@@ -1,5 +1,5 @@
 import { saveImage } from '~/server/utils/helper.js'
-import { sequelize } from '~/server/db'
+import { db } from '~/server/db'
 
 export default defineEventHandler(async (event) => {
   const { fileName, file, id } = await readBody(event)

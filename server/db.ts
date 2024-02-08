@@ -1,20 +1,17 @@
-import Sequelize from 'sequelize'
-import { initModels } from '~/server/db-models/init-models'
+import pg from 'pg'
+
 const config = useRuntimeConfig()
 
-
-export const sequelize = new Sequelize(config.database.database, config.database.username, config.database.password, {
+export const db = new pg.Client({
   host: config.database.host,
   port: config.database.port,
-  dialect: 'postgres',
-  logging: false,
-  dialectOptions: {
-    useUTC: false
-  },
-  timezone: '+03:00' //Установка часового пояса
+  database: 'finance',
+  user: 'postgres',
+  password: '1',
 })
-initModels(sequelize)
-sequelize.authenticate()
+
+await db.connect()
+
 
 /* 
 const arrImgDir = [ 'organizations', 'offers' ] // список директорий для изображений
@@ -27,7 +24,7 @@ arrImgDir.forEach(dir => {
  * Если нет пользователей, то создаем пользователя admin
  * @function checkUsers
  */
-const checkUsers = async () => {
+/* const checkUsers = async () => {
   const optionsWhere = {
     where: {
       name: 'admin',
@@ -46,4 +43,4 @@ const checkUsers = async () => {
   }
 }
 
-checkUsers()
+checkUsers() */

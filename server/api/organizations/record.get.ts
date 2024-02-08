@@ -1,9 +1,29 @@
 import { H3Event } from 'h3'
-import { sequelize } from '~/server/db'
+import { db } from '~/server/db'
+
+
+interface Organization {
+  id: number
+}
 
 /* Получение данных записи по ее идентификатору */
 export default defineEventHandler(async (event: H3Event) => {
-  const params: any = getQuery(event)
+  console.log('🚀 -> defineEventHandler -> event:', event)
+  const params: Organization = getQuery(event) // получение параметров
+  if(!params) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Ошибка получения параметров при получении данных о организации'
+    })
+  }
+
+  if(!params.id) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Не передан идентификатор организации для получения данных'
+    })
+  }
+
 
   const sql = `
   SELECT
@@ -24,10 +44,18 @@ export default defineEventHandler(async (event: H3Event) => {
       END AS Images
   FROM 
     prod.organizations AS org
-  WHERE org.id=${params.id}
-  ORDER BY name 
+  WHERE org.id=$1
+  ORDER BY name  LIMIT 1
 `
 
-  const result = await sequelize.query(sql)
-  return result.length ? result[0][0] : null
+  const result = await db.query(sql, [params.id])
+  console.log('🚀 -> defineEventHandler -> result:', result)
+  if(!result) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Ошибка получения данных о организации'
+    })
+  }
+
+  return result.rows[0]
 })

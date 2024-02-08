@@ -5,7 +5,7 @@
   * @member {String} data - Данные файла
   * @member {String} id - Идентификатор
   */
-export type uploadData = {
+export interface uploadData {
   filename: String
   data: String
   id: Number

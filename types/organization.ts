@@ -1,7 +1,33 @@
+/**
+** Описание сущности "Данные организации"
+* @interface Information
+* @param { String } Ur_name - Юридическое название организации
+* @param { Array } Ur_address - Адреса организации
+* @param { String } Ur_name - Юридическое наименование
+* @param { String } description - Описание
+* @param { String } short_description - Короткое описание
+* @param { String } site - Сайт организации
+* @param { Array } images - Изображения организации
+* @param { Number } INN - ИНН организации
+* @param { Number } OGRN - ОГРН организации
+* @param { Array } phones - Номера телефонов
+*/
+export interface Information {
+  Ur_name: string | null
+  Ur_address: string | null
+  description: string | null
+  short_description: string | null
+  site: string | null
+  INN: number | null
+  OGRN: number | null
+  phones: string | null
+}
+
+
 
 /** 
 ** Описание сущности файла загрузки для организации\
-* @type File
+* @interface File
 * @param {NUmber} id - Идентификатор
 * @param {Number} id_organization - Идентификатор органищации
 * @param {String} path - Путь к файлу 
@@ -16,7 +42,7 @@
 * @param {Boolean} isNew - Признак нового файла
 * @param {Boolean} isDel - Признак удаления файла
 */
-export type File = {
+export interface File {
   id?: Number
   id_organization?: number
   path?: string
@@ -33,6 +59,32 @@ export type File = {
   fileName: string | null
 }
 
+
+
+/** 
+** Описание сущности "Изображения"
+* @interface Image
+* @param {Number} id - Идентификатор
+* @param {String} name - Имя изображения
+* @param {String} path - Путь к изображения
+* @param {Boolean} isLicense - Признак лицензии
+* @param {Boolean} isNew - Признак нового изображения
+* @param {Boolean} isDel - Признак удаления изображения
+* @param {String} label - Описание изображения
+* @param {Boolean} isMain - Главное описание изображения
+*/
+export interface Image {
+  id: number
+  name: string
+  path: string
+  isLicense?: boolean
+  isNew?: boolean
+  idDel?: boolean
+  isMain?: boolean
+}
+
+
+
 /**
 ** Описание сущности "Организация
 * @type organization
@@ -43,11 +95,9 @@ export type File = {
 * @param {File[]} images - Список изображений
 * @param {String } table - Таблица
 */
-export type Organization = {
+export interface Organization {
   name: string
-  description: string
-  short_description: string
   id: number
-  images: File[]
-  table: string
+  images: Image[]
+  information: string
 }

@@ -1,29 +1,29 @@
 /* Модель пользователя */
-export interface UserAuth {
-  id: number;
-  name: string;
-  password_hash: string;
-  created_date: Date;
-  update_date?: Date;
-  email: string;
+export interface UserAuth  {
+  usr_id: number
+  usr_name: string
+  usr_password_hash: string
+  usr_created_date: Date
+  usr_update_date?: Date
+  usr_email: string
 }
 
 /* модель верификации JWT */
-export type VerifyJWT = {
+export interface VerifyJWT  {
   user_id: number | null | undefined // Идентификатор пользователя
 }
 
 /* Модель входные параметры авторизации*/
-export type EnterAuthData =  {
+export interface EnterAuthData  {
   login: string // имя пользователя
   password: string // пароль пользователя
 }
 
 /* Модель логирование авторизации */
-export type LoggerAuth = {
+export interface LoggerAuth  {
   user_id: null | number // Идентификатор пользователя
-  date_requiest: Date // установка даты запроса
-  date_auth: null | Date // установка даты авторизации
+  date_request: string // установка даты запроса
+  date_auth: null | string // установка даты авторизации
   status: boolean // установка статуса
   token: null | string // установка токена
 }

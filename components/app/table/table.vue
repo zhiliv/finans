@@ -63,7 +63,7 @@ type Column = {
   labelPosition?: 'left' | 'right' | 'center'
   filter: 'text' | 'list' | 'number'
   filterValue: string | number | boolean | null
-  filterCondition: '=' | '>' | '<' | '%'
+  filterCondition: '=' | '>' | '>=' | '<' | '<=' | '%'
 }
 
 /**
@@ -78,7 +78,7 @@ type Props = {
   limit?: number
 }
 
-const emit = defineEmits(['click', 'offset', 'dblclick']) // События для отправки
+const emit = defineEmits(['click', 'offset', 'limit', 'dblclick']) // События для отправки
 
 /* Установка значений входных параметров по умолчанию */
 const props = withDefaults(defineProps<Props>(), {
@@ -98,17 +98,19 @@ defineExpose({
 const listFilter = ref([
   { value: '=', name: '=' },
   { value: '>', name: '>' },
+  { value: '>=', name: '>=' },
   { value: '<', name: '<' },
+  { value: '<=', name: '<=' },
   { value: '%', name: '%' }
 ]) // список статусов) 
 
 await props.store.getCount() // Получение всех строк
+
 props.store.limit = props.limit // Установка лимита
 props.store.offset = offset.value // Установка сдвига
 await props.store.getList() // Получение всех строк
 
 const tableBody = ref<any>() // Ссылка на таблица
-
 
 /**
  * @function dblClick

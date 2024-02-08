@@ -1,14 +1,40 @@
-import { sequelize } from '~/server/db'
+import { db } from '~/server/db'
 import { Response } from '~/types/query'
-import { Op, DataTypes, where } from 'sequelize'
 import fs from 'fs'
+import { SchemaDB } from '~/types/SchemaDB'
 
-type SelectParams = {
-  offset: number
-  limit: number
-  where?: any
-  order?: string
-  desc?: boolean
+/** 
+** Удаление свойства из объекта
+* @function removeObjectProperty
+* @param {Object} obj - Объект для удаления свойства
+* @param {String} name - Имя свойства для удаления
+*/
+export const removeObjectProperty = (obj: object, name: string): object => {
+  let newObj:any = { ...obj };
+  delete newObj[name];
+  return newObj;
+}
+
+/** 
+** Получение колонок из схемы
+* @function getColumnFromSchema
+* @param {Object} obj- Схема для получения колонок
+*/
+export const getColumnFromSchema = (schema: SchemaDB): string[] | null => {
+  if(!schema){
+    return null
+  } 
+  const keys = Object.keys(schema.columns)
+  const columns = keys.map((key: any) => `${schema.short}.${key} as ${schema.short}_${key}`)
+  keys.forEach((col:any) => {
+    if(schema.columns[col].type === 'JSONB'){
+      schema.columns[col].columns.forEach((el:any) => {
+        
+      })
+    }
+  })
+  
+  return columns
 }
 
 /*
@@ -185,31 +211,38 @@ export const delImage = async (path: string | undefined) => {
 * @function getWhereSql
 */
 export const getWhereSql = (params: any) => {
-  if(!params) return
+  if(!params) {
+    return null
+  }
 
-  let result = ''
-
-  const keys = Object.keys(params)
+  let result = ' WHERE ' // Результат формирования условия 
+  const keys = Object.keys(params) // Получение ключей параметров 
   keys.forEach((key: any, index: number) => {
-
-
     let condition = ''
+    
     switch(params[key].type) {
-      case 'eq':
+      case '=':
         condition = ' = '
         break
-      case 'gt':
+      case '>':
         condition = ' > '
         break
-      case 'lt':
+      case '>=':
+        condition = ' >= '
+        break
+      case '<':
         condition = ' < '
         break
-      case 'iLike':
-        condition = ' iLIKE '
+      case '<=':
+        condition = ' <= '
+        break
+      case '%':
+        condition = ' LIKE '
         break
       default:
         condition = ' = '
     }
+    
     let isJson = false
     if(key.substring(0, 2) === 'o_') {
       isJson = key.split('_')[1]
@@ -218,7 +251,7 @@ export const getWhereSql = (params: any) => {
 
     if(isJson === false) {
       if(index === 0) {
-        result += ` WHERE ${key} ${condition} '${condition === ' iLIKE ' ? '%' : ""}${params[key].value}${condition === ' iLIKE ' ? '%' : ""}' `
+        result += `  ${key} ${condition} '${condition === ' iLIKE ' ? '%' : ""}${params[key].value}${condition === ' iLIKE ' ? '%' : ""}' `
       }
       else result += ` AND ${key} ${condition} '${condition === ' iLIKE ' ? '%' : ""}${params[key].value}${condition === ' iLIKE ' ? '%' : ""}' `
     }

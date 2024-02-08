@@ -1,4 +1,4 @@
-import { sequelize } from '~/server/db'
+import { db } from '~/server/db'
 import { getWhereOffer } from './all.get'
 
 export default defineEventHandler(async event => {

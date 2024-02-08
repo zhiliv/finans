@@ -5,13 +5,14 @@
         modal-width-new="30%" :p-select-item="selectItem" @on-edit="onEdit" @on-delete="onDelete" :uniq="true" name-edit-form="edit_organization" />
     </div>
     <div class="min-h-full">
-      <app-table ref="table" :store="store" :columns="columns" @click="(data) => selectItem = data" @dblclick="onDblEdit" />
+      <app-table ref="table" :store="store" :columns="columnsTable" @click="(data) => selectItem = data" @dblclick="onDblEdit" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useOrganizationsStore } from '~/stores/organizations-store'
+import {organizations_schema} from '~/schemas/organizations_schema'
 
 const meta = { title: 'Организации' } // Установка мета данных страницы
 useSeoMeta(meta) // Установка заголовка
@@ -20,19 +21,20 @@ const table = ref() // Ссылка на элемент таблицы
 const control = ref() // Ссылка на кнопки управления
 const store = useOrganizationsStore() // Создание нового стора
 
-const columns = [
+
+const columnsTable = [
   {
-    key: 'id',
+    key: `${organizations_schema.short}_id`,
     label: 'Идентификатор',
     width: '200px',
     textPosition: 'center',
     labelPosition: 'center',
     filter: 'number'
   },
-  { key: 'name', label: 'Наименование', filter: 'text', witdh: '300px' },
-  { key: 'o_information_short_description', label: 'Короткое описание', filter: 'text' },
-  { key: 'o_information_site', label: 'Адрес сайта', filter: 'text', width: '300px' },
-  { key: 'is_main_img', label: 'Наличие главного изображения', width: '150px'}
+  { key: `${organizations_schema.short}_name`, label: 'Наименование', filter: 'text', witdh: '300px' },
+  { key: `${organizations_schema.short}_short_description`, label: 'Короткое описание', filter: 'text' },
+  { key: `${organizations_schema.short}_information_site`, label: 'Адрес сайта', filter: 'text', width: '300px' },
+  { key: `${organizations_schema.short}_is_main_img`, label: 'Наличие главного изображения', width: '150px'}
 ]
 
 /**  

@@ -57,6 +57,12 @@ export default defineNuxtConfig({
       baseName: 'img',
       dir: './public/img'
     } ]
+    ,
+    esbuild: {
+      options: {
+        target: 'esnext'
+      }
+    },
   },
 
   modules: [

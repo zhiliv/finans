@@ -4,7 +4,7 @@
  * @member {string} method - Метод отправки запроса
  * @member {any} body - Тело запроса
  */
-export type Query = {
+export interface Query  {
   url: string
   method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options' | 'head' | undefined
   body?: any | string | number
@@ -17,7 +17,7 @@ export type Query = {
  * @member {string} message - Сообщение
  * @member {any} data - Данные
  */
-export type Response = {
+export interface Response  {
   status?: number
   typeMessage?: 'success' | 'warning' | 'error'
   message?: string

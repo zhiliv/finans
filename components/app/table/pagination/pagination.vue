@@ -1,35 +1,21 @@
+
 <template>
-  <div
-    class="btn-group justify-center w-full border-t py-2 h-16 min-h-16 flex"
-    ref="listPagination"
-  >
-    <app-button
-      @click="start"
-      class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white"
-      v-if="position > 0"
-    >&#60;&#60;</app-button>
-    <app-button
-      @click="prew"
-      class="btn btn-sm btn-link hover:bg-green-700 hover:text-white"
-      v-if="position > 0"
-    >&#60;</app-button>
-    <app-button
-      :class="{ active: item === pagination }"
-      :key="item"
-      @click="select(item)"
-      class="bg-gray-200 border-0 text-slate-600 btn-sm hover:bg-green-600 hover:text-white"
-      v-for="item in list[position]"
-    >{{ item }}</app-button>
-    <app-button
-      @click="next"
-      class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white"
-      v-if="position < list.length - 1"
-    >&#62;</app-button>
-    <app-button
-      @click="end"
-      class="btn btn-sm btn-primary hover:bg-green-700 hover:text-white"
-      v-if="position < list.length - 1"
-    >&#62;&#62;</app-button>
+  <div class="btn-group justify-center w-full border-t py-2 h-16 min-h-16 flex" ref="listPagination" v-if="list.length > 1">
+    <app-button @click="start"
+      class="btn btn-sm border-slate-300 border-2 shadow-md text-slate-600 hover:bg-green-600 hover:text-white h-[36px] w-[36px] rounded-full ml-2"
+      v-if="position > 0">&#60;&#60;</app-button>
+    <app-button @click="prew" class="btn btn-sm border-slate-300 border-2 shadow-md hover:bg-green-600 hover:text-white h-[36px] w-[36px] rounded-full ml-2"
+      v-if="position > 0">&#60;</app-button>
+    <app-button :class="{ active: item === pagination }" :key="item" @click="select(item)"
+      class="bg-gray-200 border-2 border-slate-300 text-slate-600 shadow-md btn-sm hover:bg-green-600 hover:text-white h-[36px] w-[36px] rounded-full ml-2"
+      v-for="item in list[position]">{{
+        item }}</app-button>
+    <app-button @click="next"
+      class="btn btn-sm border-slate-300 border-2 shadow-md text-slate-600 hover:bg-green-600 hover:text-white h-[36px] w-[36px] rounded-full ml-2"
+      v-if="position < list.length - 1">&#62;</app-button>
+    <app-button @click="end"
+      class="btn btn-sm border-slate-300 border-2 shadow-md text-slate-600  hover:bg-green-600 hover:text-white h-[36px] w-[36px] rounded-full ml-2"
+      v-if="position < list.length - 1">&#62;&#62;</app-button>
   </div>
 </template>
 
@@ -128,8 +114,8 @@ function end() {
 </script>
 
 <style scoped>
-  .active {
-    background: #198754;
-    color: white;
-  }
+.active {
+  background: #198754;
+  color: white;
+}
 </style>

@@ -1,5 +1,5 @@
 import { H3Event } from 'h3'
-import { sequelize } from '~/server/db'
+import { db } from '~/server/db'
 
 /* Получение данных записи по ее идентификатору */
 export default defineEventHandler(async (event: H3Event) => {

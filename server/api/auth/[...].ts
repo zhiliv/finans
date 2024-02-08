@@ -1,33 +1,83 @@
-import { sequelize } from '~/server/db'
+import { db } from '~/server/db'
 import * as bcrypt from 'bcrypt' // модуль криптографии
 import jwt from 'jsonwebtoken'
-import { EnterAuthData, LoggerAuth } from '~/types/auth'
+import { EnterAuthData, LoggerAuth, UserAuth } from '~/types/auth'
 import { DateNow } from '~/server/utils/time'
-import moment from 'moment'
-import { Op } from 'sequelize'
+import moment from 'moment-timezone'
 import { Response } from '~/types/query'
-import { UserAuth } from '~/types/auth'
+import { users_schema } from '~/schemas/users_schema'
+import { auth_logger_schema } from '~/schemas/auth_logger_shema'
+import { getColumnFromSchema, removeObjectProperty } from '~/server/utils/helper'
+import { QueryArrayResult, QueryResult } from 'pg'
 const config = useRuntimeConfig() // получение данных конфигурации
 
-const getUser = (params: EnterAuthData) => {
-  return sequelize.models.users.findOne({ where: { name: params.login } })
-    .then((res: any) => {
-      return res.dataValues
-    })
+
+
+/** 
+** Получение пользователя из БД
+* @function getUser
+* @param {Object} params - Объект с параметром, содержащим свойство login
+* @return {Object} - Данные о пользователе
+*/
+const getUser = async (params: EnterAuthData): Promise<UserAuth | null> => {
+  const { login } = params // Получение имени пользователя
+  if(!login || /[^\w\s]/.test(login)) { // Проверка на наличие небезопасных символов
+    return null
+  }
+
+  try {
+    const columns: string[] | null = getColumnFromSchema(users_schema) // Получение колонок схемы
+    if(!columns) {
+      return null
+    }
+
+    const sql: string = `
+      SELECT 
+        id, 
+        name, 
+        password_hash,
+        created_date,
+        update_date,
+        email
+      FROM  
+        ${users_schema.fullPath}  
+      WHERE name=$1 LIMIT 1` // Использование параметризованного запроса
+    const result: QueryArrayResult = await db.query(sql, [login]) // Передача параметра в запрос
+
+    if(result && result.rows && result.rows.length) { // Проверка полученного результата
+      const res: any = result.rows[0]
+      return res
+    }
+
+    if(!result) {
+      return null
+    }
+  } catch(error) {
+    console.error('Ошибка выполнения запроса:', error) // Обработка ошибки
+    return null
+  }
+  return null
 }
 
+
+
 export default defineEventHandler(async event => {
-  deleteCookie(event, 'token') // удаление куки
-  const params: EnterAuthData = await readBody(event) // параметры запроса
+  if(!event) {
+    return null
+  }
+
+  await deleteCookie(event, 'token') // Удаление куки
+  const params: EnterAuthData = await readBody(event) // Получение параметров запроса
+
   const response: Response = {
     status: 400, // установка статуса ответа
-    message: '',
+    message: ''
   }
 
   const dataAuth: LoggerAuth = {
     // объект данных авторизации
     user_id: null, // Идентификатор пользователя
-    date_requiest: DateNow(), // установка даты запроса
+    date_request: DateNow(), // установка даты запроса
     date_auth: null, // установка даты авторизации
     status: false,// установка статуса
     token: null, // установка токена
@@ -39,16 +89,19 @@ export default defineEventHandler(async event => {
     return createError(response)
   }
 
-  const user: UserAuth = await getUser(params)
-  // user = user.dataValues
-  if(!user?.id) {
+  const user: UserAuth | null = await getUser(params)
+  if(!user) { // Проверка на то что данные от пользователя получены
+    return null
+  }
+
+  if(!user.id) { // Проверка на то что найден идентификатор пользователя
     response.status = 401
     response.message = 'Неверный логин или пароль'
     return createError(response)
   }
 
   const countAuth = await checkCountAuth(user?.id) // Получение количества подключений
-  if(countAuth > 500) {
+  if(countAuth > 100) { // Если количество попыток превышает 100 то возвращаем ответ о превышении лимита попыток входа
     dataAuth.user_id = user?.id
     response.status = 401
     response.message = 'Превышено количество запросов авторизации. Доступ к авторизации будет доступен в течении 5 минут'
@@ -63,10 +116,10 @@ export default defineEventHandler(async event => {
     response.status = 200 // установка статуса
     dataAuth.user_id = user.id // установка идентификатора пользователя
     dataAuth.date_auth = DateNow() // установка даты авторизации
-    dataAuth.token = token
-    setCookie(event, 'token', token, config.sessionOptions)
-    setCookie(event, 'user', user.name, config.sessionOptions)
-    setCookie(event, 'user_id', String(user.id), config.sessionOptions)
+    dataAuth.token = token // Установка токена
+    setCookie(event, 'token', token, config.sessionOptions) // Установка в куки токена
+    setCookie(event, 'user', user.name, config.sessionOptions) // Установка в куки имени пользователя
+    setCookie(event, 'user_id', String(user.id), config.sessionOptions) // Установка в куки идентификатор пользователя
     logger(dataAuth) // логирование
     return response
   }
@@ -79,14 +132,21 @@ export default defineEventHandler(async event => {
   }
 })
 
+
+
 /*
  * Добавление записи в таблицу логера авторизации
  * @function logger
  * @param {Object} authData - Данные для записи
  */
 const logger = async (authData: LoggerAuth) => {
-  sequelize.models.auth_logger.create(authData)
+  const columnsSchema: object = removeObjectProperty(auth_logger_schema.columns, 'id') // Получение списка колонок без идентификатора
+  const columns: string[] = Object.keys(columnsSchema) // Получение списка колонок для запроса
+  const sql: string = `INSERT INTO controls.auth_logger(${columns.toString()}) VALUES($1, $2, $3, $4, $5)`
+  const response: QueryResult = await db.query(sql, Object.values(authData))
 }
+
+
 
 /* 
 * Проверка количества запросов авторизации по логину
@@ -96,17 +156,18 @@ const logger = async (authData: LoggerAuth) => {
 */
 const checkCountAuth = async (user_id: number) => {
   if(user_id) {
-    const DateMinus5Minutes = moment().tz("Europe/Moscow").subtract(5, 'minutes') // получение даты минус 5 минут
-    const params = {
-      where: {
-        user_id,
-        date_requiest: {
-          [Op.between]: [DateMinus5Minutes, DateNow()]   // получение диапазон между текущей датой и датой минус 5 минут
-        }
-      }
-    }
-    return await sequelize.models.auth_logger.count(params) // получение количества записей за 5 минут  
+    const dateTimeStart: string = moment().tz("Europe/Moscow").subtract(5, 'minutes').format('YYYY-MM-DD HH:mm:ss') // получение даты минус 5 минут
+    const dateTimeEnd: string = moment().tz("Europe/Moscow").format('YYYY-MM-DD HH:mm:ss') // Текущая дата  и время 
+
+    const sql: string = `SELECT COUNT(*) FROM ${auth_logger_schema.fullPath} WHERE date_request BETWEEN '${dateTimeStart}' AND '${dateTimeEnd}'`
+    const response: QueryArrayResult = await db.query(sql) // Выполнение запроса
+    if(!response || !response.rows || response.rows.length) return false
+
+    const obj_result: any = response.rows[0] // Получение первого элемента 
+    if(!obj_result) return false
+
+    const result = obj_result.count// Получение значения свойства 
+    return result
   }
   else return false
-
 }
